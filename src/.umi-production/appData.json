@@ -1,0 +1,2194 @@
+{
+  "cwd": "E:\\Web\\equipment-system",
+  "pkg": {
+    "name": "equipment-system",
+    "version": "1.0.0",
+    "private": true,
+    "description": "设备借还管理系统（Electron + Umi + AntD + sql.js）",
+    "author": "lab-admin",
+    "scripts": {
+      "dev:web": "umi dev",
+      "dev:electron": "wait-on http://localhost:8000 && electron ./electron/main.js",
+      "dev": "concurrently \"pnpm dev:web\" \"pnpm dev:electron\"",
+      "build:web": "umi build",
+      "build:win": "electron-builder",
+      "prepare": "husky"
+    },
+    "engines": {
+      "node": ">=18"
+    },
+    "dependencies": {
+      "antd": "^5.18.0",
+      "bcryptjs": "^2.4.3",
+      "dayjs": "^1.11.11",
+      "react": "^18.2.0",
+      "react-dom": "^18.2.0",
+      "sql.js": "^1.9.0"
+    },
+    "devDependencies": {
+      "@types/node": "^20.11.3",
+      "@types/react": "^18.2.46",
+      "@types/react-dom": "^18.2.18",
+      "concurrently": "^8.2.2",
+      "electron": "^30.0.0",
+      "electron-builder": "^24.6.4",
+      "electron-is-dev": "^3.0.1",
+      "typescript": "^5",
+      "umi": "^4.0.46",
+      "wait-on": "^7.2.0",
+      "prettier": "^2",
+      "prettier-plugin-organize-imports": "^3.2.2",
+      "prettier-plugin-packagejson": "^2.4.3",
+      "husky": "^9",
+      "lint-staged": "^13"
+    }
+  },
+  "pkgPath": "E:\\Web\\equipment-system\\package.json",
+  "plugins": {
+    "./node_modules/.pnpm/@umijs+core@4.5.3/node_modules/@umijs/core/dist/service/servicePlugin": {
+      "config": {},
+      "time": {
+        "hooks": {},
+        "register": 14
+      },
+      "enableBy": "register",
+      "type": "preset",
+      "path": "E:/Web/equipment-system/node_modules/.pnpm/@umijs+core@4.5.3/node_modules/@umijs/core/dist/service/servicePlugin.js",
+      "cwd": "E:\\Web\\equipment-system",
+      "id": "./node_modules/.pnpm/@umijs+core@4.5.3/node_modules/@umijs/core/dist/service/servicePlugin",
+      "key": "servicePlugin"
+    },
+    "@umijs/preset-umi": {
+      "config": {},
+      "time": {
+        "hooks": {},
+        "register": 66
+      },
+      "enableBy": "register",
+      "type": "preset",
+      "path": "E:/Web/equipment-system/node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/index.js",
+      "cwd": "E:\\Web\\equipment-system",
+      "id": "@umijs/preset-umi",
+      "key": "umi"
+    },
+    "./node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/registerMethods": {
+      "config": {},
+      "time": {
+        "hooks": {
+          "onStart": [
+            0
+          ]
+        },
+        "register": 91
+      },
+      "enableBy": "register",
+      "type": "plugin",
+      "path": "E:/Web/equipment-system/node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/registerMethods.js",
+      "cwd": "E:\\Web\\equipment-system",
+      "id": "./node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/registerMethods",
+      "key": "registerMethods"
+    },
+    "@umijs/did-you-know": {
+      "config": {},
+      "time": {
+        "hooks": {
+          "onStart": [
+            7
+          ]
+        },
+        "register": 77
+      },
+      "enableBy": "register",
+      "type": "plugin",
+      "path": "E:/Web/equipment-system/node_modules/.pnpm/@umijs+did-you-know@1.0.4/node_modules/@umijs/did-you-know/dist/plugin.js",
+      "cwd": "E:\\Web\\equipment-system",
+      "id": "@umijs/did-you-know",
+      "key": "umijsDidYouKnow"
+    },
+    "./node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/features/404/404": {
+      "config": {},
+      "time": {
+        "hooks": {
+          "modifyRoutes": [
+            0
+          ]
+        },
+        "register": 38
+      },
+      "enableBy": "register",
+      "type": "plugin",
+      "path": "E:/Web/equipment-system/node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/features/404/404.js",
+      "cwd": "E:\\Web\\equipment-system",
+      "id": "./node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/features/404/404",
+      "key": "404"
+    },
+    "./node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/features/aiDev/aiDev": {
+      "config": {},
+      "time": {
+        "hooks": {},
+        "register": 51
+      },
+      "enableBy": "register",
+      "type": "plugin",
+      "path": "E:/Web/equipment-system/node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/features/aiDev/aiDev.js",
+      "cwd": "E:\\Web\\equipment-system",
+      "id": "./node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/features/aiDev/aiDev",
+      "key": "aiDev"
+    },
+    "./node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/features/appData/appData": {
+      "config": {},
+      "time": {
+        "hooks": {
+          "modifyAppData": [
+            45
+          ]
+        },
+        "register": 265
+      },
+      "enableBy": "register",
+      "type": "plugin",
+      "path": "E:/Web/equipment-system/node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/features/appData/appData.js",
+      "cwd": "E:\\Web\\equipment-system",
+      "id": "./node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/features/appData/appData",
+      "key": "appData"
+    },
+    "./node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/features/appData/umiInfo": {
+      "config": {},
+      "time": {
+        "hooks": {},
+        "register": 13
+      },
+      "enableBy": "register",
+      "type": "plugin",
+      "path": "E:/Web/equipment-system/node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/features/appData/umiInfo.js",
+      "cwd": "E:\\Web\\equipment-system",
+      "id": "./node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/features/appData/umiInfo",
+      "key": "umiInfo"
+    },
+    "./node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/features/check/check": {
+      "config": {},
+      "time": {
+        "hooks": {
+          "onCheckConfig": [
+            0
+          ],
+          "onCheck": [
+            1
+          ]
+        },
+        "register": 16
+      },
+      "enableBy": "register",
+      "type": "plugin",
+      "path": "E:/Web/equipment-system/node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/features/check/check.js",
+      "cwd": "E:\\Web\\equipment-system",
+      "id": "./node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/features/check/check",
+      "key": "check"
+    },
+    "./node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/features/check/babel722": {
+      "config": {},
+      "time": {
+        "hooks": {
+          "onCheck": [
+            0
+          ]
+        },
+        "register": 14
+      },
+      "enableBy": "register",
+      "type": "plugin",
+      "path": "E:/Web/equipment-system/node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/features/check/babel722.js",
+      "cwd": "E:\\Web\\equipment-system",
+      "id": "./node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/features/check/babel722",
+      "key": "babel722"
+    },
+    "./node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/features/codeSplitting/codeSplitting": {
+      "config": {},
+      "time": {
+        "hooks": {},
+        "register": 16
+      },
+      "enableBy": "config",
+      "type": "plugin",
+      "path": "E:/Web/equipment-system/node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/features/codeSplitting/codeSplitting.js",
+      "cwd": "E:\\Web\\equipment-system",
+      "id": "./node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/features/codeSplitting/codeSplitting",
+      "key": "codeSplitting"
+    },
+    "./node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/features/configPlugins/configPlugins": {
+      "config": {},
+      "time": {
+        "hooks": {
+          "modifyConfig": [
+            0
+          ]
+        },
+        "register": 133
+      },
+      "enableBy": "register",
+      "type": "plugin",
+      "path": "E:/Web/equipment-system/node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/features/configPlugins/configPlugins.js",
+      "cwd": "E:\\Web\\equipment-system",
+      "id": "./node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/features/configPlugins/configPlugins",
+      "key": "configPlugins"
+    },
+    "virtual: config-title": {
+      "id": "virtual: config-title",
+      "key": "title",
+      "config": {},
+      "type": "plugin",
+      "enableBy": "register",
+      "time": {
+        "hooks": {},
+        "register": 0
+      }
+    },
+    "virtual: config-styles": {
+      "id": "virtual: config-styles",
+      "key": "styles",
+      "config": {},
+      "type": "plugin",
+      "enableBy": "register",
+      "time": {
+        "hooks": {},
+        "register": 0
+      }
+    },
+    "virtual: config-scripts": {
+      "id": "virtual: config-scripts",
+      "key": "scripts",
+      "config": {},
+      "type": "plugin",
+      "enableBy": "register",
+      "time": {
+        "hooks": {},
+        "register": 0
+      }
+    },
+    "virtual: config-routes": {
+      "id": "virtual: config-routes",
+      "key": "routes",
+      "config": {
+        "onChange": "regenerateTmpFiles"
+      },
+      "type": "plugin",
+      "enableBy": "register",
+      "time": {
+        "hooks": {},
+        "register": 0
+      }
+    },
+    "virtual: config-routeLoader": {
+      "id": "virtual: config-routeLoader",
+      "key": "routeLoader",
+      "config": {
+        "default": {
+          "moduleType": "esm"
+        }
+      },
+      "type": "plugin",
+      "enableBy": "register",
+      "time": {
+        "hooks": {},
+        "register": 0
+      }
+    },
+    "virtual: config-reactRouter5Compat": {
+      "id": "virtual: config-reactRouter5Compat",
+      "key": "reactRouter5Compat",
+      "config": {},
+      "type": "plugin",
+      "enableBy": "register",
+      "time": {
+        "hooks": {},
+        "register": 0
+      }
+    },
+    "virtual: config-presets": {
+      "id": "virtual: config-presets",
+      "key": "presets",
+      "config": {},
+      "type": "plugin",
+      "enableBy": "register",
+      "time": {
+        "hooks": {},
+        "register": 0
+      }
+    },
+    "virtual: config-plugins": {
+      "id": "virtual: config-plugins",
+      "key": "plugins",
+      "config": {},
+      "type": "plugin",
+      "enableBy": "register",
+      "time": {
+        "hooks": {},
+        "register": 0
+      }
+    },
+    "virtual: config-npmClient": {
+      "id": "virtual: config-npmClient",
+      "key": "npmClient",
+      "config": {},
+      "type": "plugin",
+      "enableBy": "register",
+      "time": {
+        "hooks": {},
+        "register": 0
+      }
+    },
+    "virtual: config-mountElementId": {
+      "id": "virtual: config-mountElementId",
+      "key": "mountElementId",
+      "config": {
+        "default": "root"
+      },
+      "type": "plugin",
+      "enableBy": "register",
+      "time": {
+        "hooks": {},
+        "register": 0
+      }
+    },
+    "virtual: config-metas": {
+      "id": "virtual: config-metas",
+      "key": "metas",
+      "config": {},
+      "type": "plugin",
+      "enableBy": "register",
+      "time": {
+        "hooks": {},
+        "register": 0
+      }
+    },
+    "virtual: config-links": {
+      "id": "virtual: config-links",
+      "key": "links",
+      "config": {},
+      "type": "plugin",
+      "enableBy": "register",
+      "time": {
+        "hooks": {},
+        "register": 0
+      }
+    },
+    "virtual: config-historyWithQuery": {
+      "id": "virtual: config-historyWithQuery",
+      "key": "historyWithQuery",
+      "config": {},
+      "type": "plugin",
+      "enableBy": "register",
+      "time": {
+        "hooks": {},
+        "register": 0
+      }
+    },
+    "virtual: config-history": {
+      "id": "virtual: config-history",
+      "key": "history",
+      "config": {
+        "default": {
+          "type": "browser"
+        }
+      },
+      "type": "plugin",
+      "enableBy": "register",
+      "time": {
+        "hooks": {},
+        "register": 0
+      }
+    },
+    "virtual: config-headScripts": {
+      "id": "virtual: config-headScripts",
+      "key": "headScripts",
+      "config": {},
+      "type": "plugin",
+      "enableBy": "register",
+      "time": {
+        "hooks": {},
+        "register": 0
+      }
+    },
+    "virtual: config-esbuildMinifyIIFE": {
+      "id": "virtual: config-esbuildMinifyIIFE",
+      "key": "esbuildMinifyIIFE",
+      "config": {},
+      "type": "plugin",
+      "enableBy": "register",
+      "time": {
+        "hooks": {},
+        "register": 0
+      }
+    },
+    "virtual: config-conventionRoutes": {
+      "id": "virtual: config-conventionRoutes",
+      "key": "conventionRoutes",
+      "config": {},
+      "type": "plugin",
+      "enableBy": "register",
+      "time": {
+        "hooks": {},
+        "register": 0
+      }
+    },
+    "virtual: config-conventionLayout": {
+      "id": "virtual: config-conventionLayout",
+      "key": "conventionLayout",
+      "config": {},
+      "type": "plugin",
+      "enableBy": "register",
+      "time": {
+        "hooks": {},
+        "register": 0
+      }
+    },
+    "virtual: config-base": {
+      "id": "virtual: config-base",
+      "key": "base",
+      "config": {
+        "default": "/"
+      },
+      "type": "plugin",
+      "enableBy": "register",
+      "time": {
+        "hooks": {},
+        "register": 0
+      }
+    },
+    "virtual: config-analyze": {
+      "id": "virtual: config-analyze",
+      "key": "analyze",
+      "config": {},
+      "type": "plugin",
+      "enableBy": "register",
+      "time": {
+        "hooks": {},
+        "register": 0
+      }
+    },
+    "virtual: config-writeToDisk": {
+      "id": "virtual: config-writeToDisk",
+      "key": "writeToDisk",
+      "config": {},
+      "type": "plugin",
+      "enableBy": "register",
+      "time": {
+        "hooks": {},
+        "register": 0
+      }
+    },
+    "virtual: config-transformRuntime": {
+      "id": "virtual: config-transformRuntime",
+      "key": "transformRuntime",
+      "config": {},
+      "type": "plugin",
+      "enableBy": "register",
+      "time": {
+        "hooks": {},
+        "register": 0
+      }
+    },
+    "virtual: config-theme": {
+      "id": "virtual: config-theme",
+      "key": "theme",
+      "config": {},
+      "type": "plugin",
+      "enableBy": "register",
+      "time": {
+        "hooks": {},
+        "register": 0
+      }
+    },
+    "virtual: config-targets": {
+      "id": "virtual: config-targets",
+      "key": "targets",
+      "config": {},
+      "type": "plugin",
+      "enableBy": "register",
+      "time": {
+        "hooks": {},
+        "register": 0
+      }
+    },
+    "virtual: config-svgr": {
+      "id": "virtual: config-svgr",
+      "key": "svgr",
+      "config": {
+        "default": {}
+      },
+      "type": "plugin",
+      "enableBy": "register",
+      "time": {
+        "hooks": {},
+        "register": 0
+      }
+    },
+    "virtual: config-svgo": {
+      "id": "virtual: config-svgo",
+      "key": "svgo",
+      "config": {},
+      "type": "plugin",
+      "enableBy": "register",
+      "time": {
+        "hooks": {},
+        "register": 0
+      }
+    },
+    "virtual: config-stylusLoader": {
+      "id": "virtual: config-stylusLoader",
+      "key": "stylusLoader",
+      "config": {},
+      "type": "plugin",
+      "enableBy": "register",
+      "time": {
+        "hooks": {},
+        "register": 0
+      }
+    },
+    "virtual: config-styleLoader": {
+      "id": "virtual: config-styleLoader",
+      "key": "styleLoader",
+      "config": {},
+      "type": "plugin",
+      "enableBy": "register",
+      "time": {
+        "hooks": {},
+        "register": 0
+      }
+    },
+    "virtual: config-srcTranspilerOptions": {
+      "id": "virtual: config-srcTranspilerOptions",
+      "key": "srcTranspilerOptions",
+      "config": {},
+      "type": "plugin",
+      "enableBy": "register",
+      "time": {
+        "hooks": {},
+        "register": 0
+      }
+    },
+    "virtual: config-srcTranspiler": {
+      "id": "virtual: config-srcTranspiler",
+      "key": "srcTranspiler",
+      "config": {},
+      "type": "plugin",
+      "enableBy": "register",
+      "time": {
+        "hooks": {},
+        "register": 0
+      }
+    },
+    "virtual: config-sassLoader": {
+      "id": "virtual: config-sassLoader",
+      "key": "sassLoader",
+      "config": {},
+      "type": "plugin",
+      "enableBy": "register",
+      "time": {
+        "hooks": {},
+        "register": 0
+      }
+    },
+    "virtual: config-runtimePublicPath": {
+      "id": "virtual: config-runtimePublicPath",
+      "key": "runtimePublicPath",
+      "config": {},
+      "type": "plugin",
+      "enableBy": "register",
+      "time": {
+        "hooks": {},
+        "register": 0
+      }
+    },
+    "virtual: config-purgeCSS": {
+      "id": "virtual: config-purgeCSS",
+      "key": "purgeCSS",
+      "config": {},
+      "type": "plugin",
+      "enableBy": "register",
+      "time": {
+        "hooks": {},
+        "register": 0
+      }
+    },
+    "virtual: config-publicPath": {
+      "id": "virtual: config-publicPath",
+      "key": "publicPath",
+      "config": {
+        "default": "/"
+      },
+      "type": "plugin",
+      "enableBy": "register",
+      "time": {
+        "hooks": {},
+        "register": 0
+      }
+    },
+    "virtual: config-proxy": {
+      "id": "virtual: config-proxy",
+      "key": "proxy",
+      "config": {},
+      "type": "plugin",
+      "enableBy": "register",
+      "time": {
+        "hooks": {},
+        "register": 0
+      }
+    },
+    "virtual: config-postcssLoader": {
+      "id": "virtual: config-postcssLoader",
+      "key": "postcssLoader",
+      "config": {},
+      "type": "plugin",
+      "enableBy": "register",
+      "time": {
+        "hooks": {},
+        "register": 0
+      }
+    },
+    "virtual: config-outputPath": {
+      "id": "virtual: config-outputPath",
+      "key": "outputPath",
+      "config": {},
+      "type": "plugin",
+      "enableBy": "register",
+      "time": {
+        "hooks": {},
+        "register": 0
+      }
+    },
+    "virtual: config-normalCSSLoaderModules": {
+      "id": "virtual: config-normalCSSLoaderModules",
+      "key": "normalCSSLoaderModules",
+      "config": {},
+      "type": "plugin",
+      "enableBy": "register",
+      "time": {
+        "hooks": {},
+        "register": 0
+      }
+    },
+    "virtual: config-mfsu": {
+      "id": "virtual: config-mfsu",
+      "key": "mfsu",
+      "config": {
+        "default": {
+          "strategy": "eager"
+        }
+      },
+      "type": "plugin",
+      "enableBy": "register",
+      "time": {
+        "hooks": {},
+        "register": 0
+      }
+    },
+    "virtual: config-mdx": {
+      "id": "virtual: config-mdx",
+      "key": "mdx",
+      "config": {},
+      "type": "plugin",
+      "enableBy": "register",
+      "time": {
+        "hooks": {},
+        "register": 0
+      }
+    },
+    "virtual: config-manifest": {
+      "id": "virtual: config-manifest",
+      "key": "manifest",
+      "config": {},
+      "type": "plugin",
+      "enableBy": "register",
+      "time": {
+        "hooks": {},
+        "register": 0
+      }
+    },
+    "virtual: config-lessLoader": {
+      "id": "virtual: config-lessLoader",
+      "key": "lessLoader",
+      "config": {},
+      "type": "plugin",
+      "enableBy": "register",
+      "time": {
+        "hooks": {},
+        "register": 0
+      }
+    },
+    "virtual: config-jsMinifierOptions": {
+      "id": "virtual: config-jsMinifierOptions",
+      "key": "jsMinifierOptions",
+      "config": {},
+      "type": "plugin",
+      "enableBy": "register",
+      "time": {
+        "hooks": {},
+        "register": 0
+      }
+    },
+    "virtual: config-jsMinifier": {
+      "id": "virtual: config-jsMinifier",
+      "key": "jsMinifier",
+      "config": {},
+      "type": "plugin",
+      "enableBy": "register",
+      "time": {
+        "hooks": {},
+        "register": 0
+      }
+    },
+    "virtual: config-inlineLimit": {
+      "id": "virtual: config-inlineLimit",
+      "key": "inlineLimit",
+      "config": {},
+      "type": "plugin",
+      "enableBy": "register",
+      "time": {
+        "hooks": {},
+        "register": 0
+      }
+    },
+    "virtual: config-ignoreMomentLocale": {
+      "id": "virtual: config-ignoreMomentLocale",
+      "key": "ignoreMomentLocale",
+      "config": {
+        "default": true
+      },
+      "type": "plugin",
+      "enableBy": "register",
+      "time": {
+        "hooks": {},
+        "register": 0
+      }
+    },
+    "virtual: config-https": {
+      "id": "virtual: config-https",
+      "key": "https",
+      "config": {},
+      "type": "plugin",
+      "enableBy": "register",
+      "time": {
+        "hooks": {},
+        "register": 0
+      }
+    },
+    "virtual: config-hash": {
+      "id": "virtual: config-hash",
+      "key": "hash",
+      "config": {},
+      "type": "plugin",
+      "enableBy": "register",
+      "time": {
+        "hooks": {},
+        "register": 0
+      }
+    },
+    "virtual: config-forkTSChecker": {
+      "id": "virtual: config-forkTSChecker",
+      "key": "forkTSChecker",
+      "config": {},
+      "type": "plugin",
+      "enableBy": "register",
+      "time": {
+        "hooks": {},
+        "register": 0
+      }
+    },
+    "virtual: config-fastRefresh": {
+      "id": "virtual: config-fastRefresh",
+      "key": "fastRefresh",
+      "config": {},
+      "type": "plugin",
+      "enableBy": "register",
+      "time": {
+        "hooks": {},
+        "register": 0
+      }
+    },
+    "virtual: config-extraPostCSSPlugins": {
+      "id": "virtual: config-extraPostCSSPlugins",
+      "key": "extraPostCSSPlugins",
+      "config": {},
+      "type": "plugin",
+      "enableBy": "register",
+      "time": {
+        "hooks": {},
+        "register": 0
+      }
+    },
+    "virtual: config-extraBabelPresets": {
+      "id": "virtual: config-extraBabelPresets",
+      "key": "extraBabelPresets",
+      "config": {},
+      "type": "plugin",
+      "enableBy": "register",
+      "time": {
+        "hooks": {},
+        "register": 0
+      }
+    },
+    "virtual: config-extraBabelPlugins": {
+      "id": "virtual: config-extraBabelPlugins",
+      "key": "extraBabelPlugins",
+      "config": {},
+      "type": "plugin",
+      "enableBy": "register",
+      "time": {
+        "hooks": {},
+        "register": 0
+      }
+    },
+    "virtual: config-extraBabelIncludes": {
+      "id": "virtual: config-extraBabelIncludes",
+      "key": "extraBabelIncludes",
+      "config": {},
+      "type": "plugin",
+      "enableBy": "register",
+      "time": {
+        "hooks": {},
+        "register": 0
+      }
+    },
+    "virtual: config-externals": {
+      "id": "virtual: config-externals",
+      "key": "externals",
+      "config": {
+        "default": {}
+      },
+      "type": "plugin",
+      "enableBy": "register",
+      "time": {
+        "hooks": {},
+        "register": 0
+      }
+    },
+    "virtual: config-esm": {
+      "id": "virtual: config-esm",
+      "key": "esm",
+      "config": {},
+      "type": "plugin",
+      "enableBy": "register",
+      "time": {
+        "hooks": {},
+        "register": 0
+      }
+    },
+    "virtual: config-devtool": {
+      "id": "virtual: config-devtool",
+      "key": "devtool",
+      "config": {},
+      "type": "plugin",
+      "enableBy": "register",
+      "time": {
+        "hooks": {},
+        "register": 0
+      }
+    },
+    "virtual: config-depTranspiler": {
+      "id": "virtual: config-depTranspiler",
+      "key": "depTranspiler",
+      "config": {},
+      "type": "plugin",
+      "enableBy": "register",
+      "time": {
+        "hooks": {},
+        "register": 0
+      }
+    },
+    "virtual: config-define": {
+      "id": "virtual: config-define",
+      "key": "define",
+      "config": {},
+      "type": "plugin",
+      "enableBy": "register",
+      "time": {
+        "hooks": {},
+        "register": 0
+      }
+    },
+    "virtual: config-deadCode": {
+      "id": "virtual: config-deadCode",
+      "key": "deadCode",
+      "config": {},
+      "type": "plugin",
+      "enableBy": "register",
+      "time": {
+        "hooks": {},
+        "register": 0
+      }
+    },
+    "virtual: config-cssPublicPath": {
+      "id": "virtual: config-cssPublicPath",
+      "key": "cssPublicPath",
+      "config": {},
+      "type": "plugin",
+      "enableBy": "register",
+      "time": {
+        "hooks": {},
+        "register": 0
+      }
+    },
+    "virtual: config-cssMinifierOptions": {
+      "id": "virtual: config-cssMinifierOptions",
+      "key": "cssMinifierOptions",
+      "config": {},
+      "type": "plugin",
+      "enableBy": "register",
+      "time": {
+        "hooks": {},
+        "register": 0
+      }
+    },
+    "virtual: config-cssMinifier": {
+      "id": "virtual: config-cssMinifier",
+      "key": "cssMinifier",
+      "config": {},
+      "type": "plugin",
+      "enableBy": "register",
+      "time": {
+        "hooks": {},
+        "register": 0
+      }
+    },
+    "virtual: config-cssLoaderModules": {
+      "id": "virtual: config-cssLoaderModules",
+      "key": "cssLoaderModules",
+      "config": {},
+      "type": "plugin",
+      "enableBy": "register",
+      "time": {
+        "hooks": {},
+        "register": 0
+      }
+    },
+    "virtual: config-cssLoader": {
+      "id": "virtual: config-cssLoader",
+      "key": "cssLoader",
+      "config": {},
+      "type": "plugin",
+      "enableBy": "register",
+      "time": {
+        "hooks": {},
+        "register": 0
+      }
+    },
+    "virtual: config-copy": {
+      "id": "virtual: config-copy",
+      "key": "copy",
+      "config": {},
+      "type": "plugin",
+      "enableBy": "register",
+      "time": {
+        "hooks": {},
+        "register": 0
+      }
+    },
+    "virtual: config-checkDepCssModules": {
+      "id": "virtual: config-checkDepCssModules",
+      "key": "checkDepCssModules",
+      "config": {},
+      "type": "plugin",
+      "enableBy": "register",
+      "time": {
+        "hooks": {},
+        "register": 0
+      }
+    },
+    "virtual: config-chainWebpack": {
+      "id": "virtual: config-chainWebpack",
+      "key": "chainWebpack",
+      "config": {},
+      "type": "plugin",
+      "enableBy": "register",
+      "time": {
+        "hooks": {},
+        "register": 0
+      }
+    },
+    "virtual: config-cacheDirectoryPath": {
+      "id": "virtual: config-cacheDirectoryPath",
+      "key": "cacheDirectoryPath",
+      "config": {},
+      "type": "plugin",
+      "enableBy": "register",
+      "time": {
+        "hooks": {},
+        "register": 0
+      }
+    },
+    "virtual: config-babelLoaderCustomize": {
+      "id": "virtual: config-babelLoaderCustomize",
+      "key": "babelLoaderCustomize",
+      "config": {},
+      "type": "plugin",
+      "enableBy": "register",
+      "time": {
+        "hooks": {},
+        "register": 0
+      }
+    },
+    "virtual: config-autoprefixer": {
+      "id": "virtual: config-autoprefixer",
+      "key": "autoprefixer",
+      "config": {},
+      "type": "plugin",
+      "enableBy": "register",
+      "time": {
+        "hooks": {},
+        "register": 0
+      }
+    },
+    "virtual: config-autoCSSModules": {
+      "id": "virtual: config-autoCSSModules",
+      "key": "autoCSSModules",
+      "config": {
+        "default": true
+      },
+      "type": "plugin",
+      "enableBy": "register",
+      "time": {
+        "hooks": {},
+        "register": 0
+      }
+    },
+    "virtual: config-alias": {
+      "id": "virtual: config-alias",
+      "key": "alias",
+      "config": {
+        "default": {
+          "umi": "@@/exports",
+          "react": "E:\\Web\\equipment-system\\node_modules\\react",
+          "react-dom": "E:\\Web\\equipment-system\\node_modules\\react-dom",
+          "react-router": "E:\\Web\\equipment-system\\node_modules\\.pnpm\\react-router@6.3.0_react@18.3.1\\node_modules\\react-router",
+          "react-router-dom": "E:\\Web\\equipment-system\\node_modules\\.pnpm\\react-router-dom@6.3.0_reac_beb70b932a60871592d5dec302f52003\\node_modules\\react-router-dom"
+        }
+      },
+      "type": "plugin",
+      "enableBy": "register",
+      "time": {
+        "hooks": {},
+        "register": 0
+      }
+    },
+    "./node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/features/crossorigin/crossorigin": {
+      "config": {},
+      "time": {
+        "hooks": {},
+        "register": 12
+      },
+      "enableBy": "config",
+      "type": "plugin",
+      "path": "E:/Web/equipment-system/node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/features/crossorigin/crossorigin.js",
+      "cwd": "E:\\Web\\equipment-system",
+      "id": "./node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/features/crossorigin/crossorigin",
+      "key": "crossorigin"
+    },
+    "./node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/features/depsOnDemand/depsOnDemand": {
+      "config": {},
+      "time": {
+        "hooks": {
+          "onStart": [
+            0
+          ]
+        },
+        "register": 15
+      },
+      "enableBy": "register",
+      "type": "plugin",
+      "path": "E:/Web/equipment-system/node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/features/depsOnDemand/depsOnDemand.js",
+      "cwd": "E:\\Web\\equipment-system",
+      "id": "./node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/features/depsOnDemand/depsOnDemand",
+      "key": "depsOnDemand"
+    },
+    "./node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/features/devTool/devTool": {
+      "config": {},
+      "time": {
+        "hooks": {},
+        "register": 47
+      },
+      "enableBy": "register",
+      "type": "plugin",
+      "path": "E:/Web/equipment-system/node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/features/devTool/devTool.js",
+      "cwd": "E:\\Web\\equipment-system",
+      "id": "./node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/features/devTool/devTool",
+      "key": "devTool"
+    },
+    "./node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/features/esbuildHelperChecker/esbuildHelperChecker": {
+      "config": {},
+      "time": {
+        "hooks": {},
+        "register": 891
+      },
+      "enableBy": "register",
+      "type": "plugin",
+      "path": "E:/Web/equipment-system/node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/features/esbuildHelperChecker/esbuildHelperChecker.js",
+      "cwd": "E:\\Web\\equipment-system",
+      "id": "./node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/features/esbuildHelperChecker/esbuildHelperChecker",
+      "key": "esbuildHelperChecker"
+    },
+    "./node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/features/esmi/esmi": {
+      "config": {},
+      "time": {
+        "hooks": {},
+        "register": 1106
+      },
+      "enableBy": "config",
+      "type": "plugin",
+      "path": "E:/Web/equipment-system/node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/features/esmi/esmi.js",
+      "cwd": "E:\\Web\\equipment-system",
+      "id": "./node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/features/esmi/esmi",
+      "key": "esmi"
+    },
+    "./node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/features/exportStatic/exportStatic": {
+      "config": {},
+      "time": {
+        "hooks": {},
+        "register": 399
+      },
+      "enableBy": "config",
+      "type": "plugin",
+      "path": "E:/Web/equipment-system/node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/features/exportStatic/exportStatic.js",
+      "cwd": "E:\\Web\\equipment-system",
+      "id": "./node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/features/exportStatic/exportStatic",
+      "key": "exportStatic"
+    },
+    "./node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/features/favicons/favicons": {
+      "config": {},
+      "time": {
+        "hooks": {
+          "modifyAppData": [
+            0
+          ]
+        },
+        "register": 13
+      },
+      "enableBy": "register",
+      "type": "plugin",
+      "path": "E:/Web/equipment-system/node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/features/favicons/favicons.js",
+      "cwd": "E:\\Web\\equipment-system",
+      "id": "./node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/features/favicons/favicons",
+      "key": "favicons"
+    },
+    "./node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/features/helmet/helmet": {
+      "config": {},
+      "time": {
+        "hooks": {},
+        "register": 12
+      },
+      "enableBy": "register",
+      "type": "plugin",
+      "path": "E:/Web/equipment-system/node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/features/helmet/helmet.js",
+      "cwd": "E:\\Web\\equipment-system",
+      "id": "./node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/features/helmet/helmet",
+      "key": "helmet"
+    },
+    "./node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/features/icons/icons": {
+      "config": {},
+      "time": {
+        "hooks": {},
+        "register": 19
+      },
+      "enableBy": "config",
+      "type": "plugin",
+      "path": "E:/Web/equipment-system/node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/features/icons/icons.js",
+      "cwd": "E:\\Web\\equipment-system",
+      "id": "./node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/features/icons/icons",
+      "key": "icons"
+    },
+    "./node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/features/mock/mock": {
+      "config": {},
+      "time": {
+        "hooks": {},
+        "register": 343
+      },
+      "type": "plugin",
+      "path": "E:/Web/equipment-system/node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/features/mock/mock.js",
+      "cwd": "E:\\Web\\equipment-system",
+      "id": "./node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/features/mock/mock",
+      "key": "mock"
+    },
+    "./node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/features/mpa/mpa": {
+      "config": {},
+      "time": {
+        "hooks": {},
+        "register": 22
+      },
+      "enableBy": "config",
+      "type": "plugin",
+      "path": "E:/Web/equipment-system/node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/features/mpa/mpa.js",
+      "cwd": "E:\\Web\\equipment-system",
+      "id": "./node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/features/mpa/mpa",
+      "key": "mpa"
+    },
+    "./node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/features/okam/okam": {
+      "config": {},
+      "time": {
+        "hooks": {},
+        "register": 12
+      },
+      "type": "plugin",
+      "path": "E:/Web/equipment-system/node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/features/okam/okam.js",
+      "cwd": "E:\\Web\\equipment-system",
+      "id": "./node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/features/okam/okam",
+      "key": "okam"
+    },
+    "./node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/features/overrides/overrides": {
+      "config": {},
+      "time": {
+        "hooks": {},
+        "register": 1
+      },
+      "enableBy": "register",
+      "type": "plugin",
+      "path": "E:/Web/equipment-system/node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/features/overrides/overrides.js",
+      "cwd": "E:\\Web\\equipment-system",
+      "id": "./node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/features/overrides/overrides",
+      "key": "overrides"
+    },
+    "./node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/features/phantomDependency/phantomDependency": {
+      "config": {},
+      "time": {
+        "hooks": {},
+        "register": 14
+      },
+      "enableBy": "config",
+      "type": "plugin",
+      "path": "E:/Web/equipment-system/node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/features/phantomDependency/phantomDependency.js",
+      "cwd": "E:\\Web\\equipment-system",
+      "id": "./node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/features/phantomDependency/phantomDependency",
+      "key": "phantomDependency"
+    },
+    "./node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/features/polyfill/polyfill": {
+      "config": {},
+      "time": {
+        "hooks": {
+          "modifyConfig": [
+            8
+          ]
+        },
+        "register": 29
+      },
+      "type": "plugin",
+      "path": "E:/Web/equipment-system/node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/features/polyfill/polyfill.js",
+      "cwd": "E:\\Web\\equipment-system",
+      "id": "./node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/features/polyfill/polyfill",
+      "key": "polyfill"
+    },
+    "./node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/features/polyfill/publicPathPolyfill": {
+      "config": {},
+      "time": {
+        "hooks": {},
+        "register": 11
+      },
+      "enableBy": "register",
+      "type": "plugin",
+      "path": "E:/Web/equipment-system/node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/features/polyfill/publicPathPolyfill.js",
+      "cwd": "E:\\Web\\equipment-system",
+      "id": "./node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/features/polyfill/publicPathPolyfill",
+      "key": "publicPathPolyfill"
+    },
+    "./node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/features/prepare/prepare": {
+      "config": {},
+      "time": {
+        "hooks": {},
+        "register": 24
+      },
+      "enableBy": "register",
+      "type": "plugin",
+      "path": "E:/Web/equipment-system/node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/features/prepare/prepare.js",
+      "cwd": "E:\\Web\\equipment-system",
+      "id": "./node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/features/prepare/prepare",
+      "key": "prepare"
+    },
+    "./node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/features/routePrefetch/routePrefetch": {
+      "config": {},
+      "time": {
+        "hooks": {},
+        "register": 11
+      },
+      "enableBy": "config",
+      "type": "plugin",
+      "path": "E:/Web/equipment-system/node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/features/routePrefetch/routePrefetch.js",
+      "cwd": "E:\\Web\\equipment-system",
+      "id": "./node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/features/routePrefetch/routePrefetch",
+      "key": "routePrefetch"
+    },
+    "./node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/features/stagewise/stagewise": {
+      "config": {},
+      "time": {
+        "hooks": {},
+        "register": 13
+      },
+      "enableBy": "config",
+      "type": "plugin",
+      "path": "E:/Web/equipment-system/node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/features/stagewise/stagewise.js",
+      "cwd": "E:\\Web\\equipment-system",
+      "id": "./node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/features/stagewise/stagewise",
+      "key": "stagewise"
+    },
+    "./node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/features/terminal/terminal": {
+      "config": {},
+      "time": {
+        "hooks": {},
+        "register": 14
+      },
+      "enableBy": "register",
+      "type": "plugin",
+      "path": "E:/Web/equipment-system/node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/features/terminal/terminal.js",
+      "cwd": "E:\\Web\\equipment-system",
+      "id": "./node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/features/terminal/terminal",
+      "key": "terminal"
+    },
+    "./node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/features/tmpFiles/tmpFiles": {
+      "config": {},
+      "time": {
+        "hooks": {},
+        "register": 93
+      },
+      "enableBy": "register",
+      "type": "plugin",
+      "path": "E:/Web/equipment-system/node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/features/tmpFiles/tmpFiles.js",
+      "cwd": "E:\\Web\\equipment-system",
+      "id": "./node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/features/tmpFiles/tmpFiles",
+      "key": "tmpFiles"
+    },
+    "./node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/features/clientLoader/clientLoader": {
+      "config": {},
+      "time": {
+        "hooks": {},
+        "register": 27
+      },
+      "enableBy": "config",
+      "type": "plugin",
+      "path": "E:/Web/equipment-system/node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/features/clientLoader/clientLoader.js",
+      "cwd": "E:\\Web\\equipment-system",
+      "id": "./node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/features/clientLoader/clientLoader",
+      "key": "clientLoader"
+    },
+    "./node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/features/routeProps/routeProps": {
+      "config": {},
+      "time": {
+        "hooks": {},
+        "register": 12
+      },
+      "type": "plugin",
+      "path": "E:/Web/equipment-system/node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/features/routeProps/routeProps.js",
+      "cwd": "E:\\Web\\equipment-system",
+      "id": "./node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/features/routeProps/routeProps",
+      "key": "routeProps"
+    },
+    "./node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/features/ssr/ssr": {
+      "config": {},
+      "time": {
+        "hooks": {},
+        "register": 33
+      },
+      "enableBy": "config",
+      "type": "plugin",
+      "path": "E:/Web/equipment-system/node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/features/ssr/ssr.js",
+      "cwd": "E:\\Web\\equipment-system",
+      "id": "./node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/features/ssr/ssr",
+      "key": "ssr"
+    },
+    "./node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/features/tmpFiles/configTypes": {
+      "config": {},
+      "time": {
+        "hooks": {},
+        "register": 49
+      },
+      "enableBy": "register",
+      "type": "plugin",
+      "path": "E:/Web/equipment-system/node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/features/tmpFiles/configTypes.js",
+      "cwd": "E:\\Web\\equipment-system",
+      "id": "./node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/features/tmpFiles/configTypes",
+      "key": "configTypes"
+    },
+    "./node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/features/transform/transform": {
+      "config": {},
+      "time": {
+        "hooks": {},
+        "register": 46
+      },
+      "enableBy": "register",
+      "type": "plugin",
+      "path": "E:/Web/equipment-system/node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/features/transform/transform.js",
+      "cwd": "E:\\Web\\equipment-system",
+      "id": "./node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/features/transform/transform",
+      "key": "transform"
+    },
+    "./node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/features/lowImport/lowImport": {
+      "config": {},
+      "time": {
+        "hooks": {},
+        "register": 57
+      },
+      "enableBy": "config",
+      "type": "plugin",
+      "path": "E:/Web/equipment-system/node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/features/lowImport/lowImport.js",
+      "cwd": "E:\\Web\\equipment-system",
+      "id": "./node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/features/lowImport/lowImport",
+      "key": "lowImport"
+    },
+    "./node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/features/vite/vite": {
+      "config": {},
+      "time": {
+        "hooks": {},
+        "register": 40
+      },
+      "enableBy": "config",
+      "type": "plugin",
+      "path": "E:/Web/equipment-system/node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/features/vite/vite.js",
+      "cwd": "E:\\Web\\equipment-system",
+      "id": "./node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/features/vite/vite",
+      "key": "vite"
+    },
+    "./node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/features/apiRoute/apiRoute": {
+      "config": {},
+      "time": {
+        "hooks": {},
+        "register": 116
+      },
+      "type": "plugin",
+      "path": "E:/Web/equipment-system/node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/features/apiRoute/apiRoute.js",
+      "cwd": "E:\\Web\\equipment-system",
+      "id": "./node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/features/apiRoute/apiRoute",
+      "key": "apiRoute"
+    },
+    "./node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/features/monorepo/redirect": {
+      "config": {},
+      "time": {
+        "hooks": {},
+        "register": 148
+      },
+      "enableBy": "config",
+      "type": "plugin",
+      "path": "E:/Web/equipment-system/node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/features/monorepo/redirect.js",
+      "cwd": "E:\\Web\\equipment-system",
+      "id": "./node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/features/monorepo/redirect",
+      "key": "monorepoRedirect"
+    },
+    "./node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/features/test/test": {
+      "config": {},
+      "time": {
+        "hooks": {},
+        "register": 43
+      },
+      "type": "plugin",
+      "path": "E:/Web/equipment-system/node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/features/test/test.js",
+      "cwd": "E:\\Web\\equipment-system",
+      "id": "./node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/features/test/test",
+      "key": "test"
+    },
+    "./node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/features/clickToComponent/clickToComponent": {
+      "config": {},
+      "time": {
+        "hooks": {},
+        "register": 45
+      },
+      "type": "plugin",
+      "path": "E:/Web/equipment-system/node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/features/clickToComponent/clickToComponent.js",
+      "cwd": "E:\\Web\\equipment-system",
+      "id": "./node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/features/clickToComponent/clickToComponent",
+      "key": "clickToComponent"
+    },
+    "./node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/features/legacy/legacy": {
+      "config": {},
+      "time": {
+        "hooks": {},
+        "register": 17
+      },
+      "enableBy": "config",
+      "type": "plugin",
+      "path": "E:/Web/equipment-system/node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/features/legacy/legacy.js",
+      "cwd": "E:\\Web\\equipment-system",
+      "id": "./node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/features/legacy/legacy",
+      "key": "legacy"
+    },
+    "./node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/features/classPropertiesLoose/classPropertiesLoose": {
+      "config": {},
+      "time": {
+        "hooks": {},
+        "register": 12
+      },
+      "enableBy": "config",
+      "type": "plugin",
+      "path": "E:/Web/equipment-system/node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/features/classPropertiesLoose/classPropertiesLoose.js",
+      "cwd": "E:\\Web\\equipment-system",
+      "id": "./node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/features/classPropertiesLoose/classPropertiesLoose",
+      "key": "classPropertiesLoose"
+    },
+    "./node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/features/webpack/webpack": {
+      "config": {},
+      "time": {
+        "hooks": {},
+        "register": 26
+      },
+      "type": "plugin",
+      "path": "E:/Web/equipment-system/node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/features/webpack/webpack.js",
+      "cwd": "E:\\Web\\equipment-system",
+      "id": "./node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/features/webpack/webpack",
+      "key": "preset-umi:webpack"
+    },
+    "./node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/features/swc/swc": {
+      "config": {},
+      "time": {
+        "hooks": {
+          "addOnDemandDeps": [
+            0
+          ]
+        },
+        "register": 11
+      },
+      "enableBy": "register",
+      "type": "plugin",
+      "path": "E:/Web/equipment-system/node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/features/swc/swc.js",
+      "cwd": "E:\\Web\\equipment-system",
+      "id": "./node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/features/swc/swc",
+      "key": "swc"
+    },
+    "./node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/features/ui/ui": {
+      "config": {},
+      "time": {
+        "hooks": {},
+        "register": 61
+      },
+      "type": "plugin",
+      "path": "E:/Web/equipment-system/node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/features/ui/ui.js",
+      "cwd": "E:\\Web\\equipment-system",
+      "id": "./node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/features/ui/ui",
+      "key": "ui"
+    },
+    "./node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/features/mako/mako": {
+      "config": {},
+      "time": {
+        "hooks": {},
+        "register": 15
+      },
+      "enableBy": "config",
+      "type": "plugin",
+      "path": "E:/Web/equipment-system/node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/features/mako/mako.js",
+      "cwd": "E:\\Web\\equipment-system",
+      "id": "./node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/features/mako/mako",
+      "key": "mako"
+    },
+    "./node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/features/utoopack/utoopack": {
+      "config": {},
+      "time": {
+        "hooks": {},
+        "register": 16
+      },
+      "type": "plugin",
+      "path": "E:/Web/equipment-system/node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/features/utoopack/utoopack.js",
+      "cwd": "E:\\Web\\equipment-system",
+      "id": "./node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/features/utoopack/utoopack",
+      "key": "utoopack"
+    },
+    "./node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/features/hmrGuardian/hmrGuardian": {
+      "config": {},
+      "time": {
+        "hooks": {},
+        "register": 28
+      },
+      "type": "plugin",
+      "path": "E:/Web/equipment-system/node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/features/hmrGuardian/hmrGuardian.js",
+      "cwd": "E:\\Web\\equipment-system",
+      "id": "./node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/features/hmrGuardian/hmrGuardian",
+      "key": "hmrGuardian"
+    },
+    "./node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/features/routePreloadOnLoad/routePreloadOnLoad": {
+      "config": {},
+      "time": {
+        "hooks": {},
+        "register": 106
+      },
+      "type": "plugin",
+      "path": "E:/Web/equipment-system/node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/features/routePreloadOnLoad/routePreloadOnLoad.js",
+      "cwd": "E:\\Web\\equipment-system",
+      "id": "./node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/features/routePreloadOnLoad/routePreloadOnLoad",
+      "key": "routePreloadOnLoad"
+    },
+    "./node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/features/forget/forget": {
+      "config": {},
+      "time": {
+        "hooks": {},
+        "register": 49
+      },
+      "enableBy": "config",
+      "type": "plugin",
+      "path": "E:/Web/equipment-system/node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/features/forget/forget.js",
+      "cwd": "E:\\Web\\equipment-system",
+      "id": "./node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/features/forget/forget",
+      "key": "forget"
+    },
+    "./node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/features/bundler/bundler": {
+      "config": {},
+      "time": {
+        "hooks": {},
+        "register": 24
+      },
+      "enableBy": "register",
+      "type": "plugin",
+      "path": "E:/Web/equipment-system/node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/features/bundler/bundler.js",
+      "cwd": "E:\\Web\\equipment-system",
+      "id": "./node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/features/bundler/bundler",
+      "key": "preset-umi:bundler"
+    },
+    "./node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/commands/build": {
+      "config": {},
+      "time": {
+        "hooks": {},
+        "register": 69
+      },
+      "enableBy": "register",
+      "type": "plugin",
+      "path": "E:/Web/equipment-system/node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/commands/build.js",
+      "cwd": "E:\\Web\\equipment-system",
+      "id": "./node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/commands/build",
+      "key": "build"
+    },
+    "./node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/commands/config/config": {
+      "config": {},
+      "time": {
+        "hooks": {},
+        "register": 234
+      },
+      "enableBy": "register",
+      "type": "plugin",
+      "path": "E:/Web/equipment-system/node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/commands/config/config.js",
+      "cwd": "E:\\Web\\equipment-system",
+      "id": "./node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/commands/config/config",
+      "key": "config"
+    },
+    "./node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/commands/dev/dev": {
+      "config": {},
+      "time": {
+        "hooks": {},
+        "register": 658
+      },
+      "type": "plugin",
+      "path": "E:/Web/equipment-system/node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/commands/dev/dev.js",
+      "cwd": "E:\\Web\\equipment-system",
+      "id": "./node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/commands/dev/dev",
+      "key": "dev"
+    },
+    "./node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/commands/help": {
+      "config": {},
+      "time": {
+        "hooks": {},
+        "register": 12
+      },
+      "enableBy": "register",
+      "type": "plugin",
+      "path": "E:/Web/equipment-system/node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/commands/help.js",
+      "cwd": "E:\\Web\\equipment-system",
+      "id": "./node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/commands/help",
+      "key": "help"
+    },
+    "./node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/commands/lint": {
+      "config": {},
+      "time": {
+        "hooks": {},
+        "register": 12
+      },
+      "enableBy": "register",
+      "type": "plugin",
+      "path": "E:/Web/equipment-system/node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/commands/lint.js",
+      "cwd": "E:\\Web\\equipment-system",
+      "id": "./node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/commands/lint",
+      "key": "lint"
+    },
+    "./node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/commands/setup": {
+      "config": {},
+      "time": {
+        "hooks": {},
+        "register": 12
+      },
+      "enableBy": "register",
+      "type": "plugin",
+      "path": "E:/Web/equipment-system/node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/commands/setup.js",
+      "cwd": "E:\\Web\\equipment-system",
+      "id": "./node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/commands/setup",
+      "key": "setup"
+    },
+    "./node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/commands/deadcode": {
+      "config": {},
+      "time": {
+        "hooks": {},
+        "register": 14
+      },
+      "enableBy": "register",
+      "type": "plugin",
+      "path": "E:/Web/equipment-system/node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/commands/deadcode.js",
+      "cwd": "E:\\Web\\equipment-system",
+      "id": "./node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/commands/deadcode",
+      "key": "deadcode"
+    },
+    "./node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/commands/version": {
+      "config": {},
+      "time": {
+        "hooks": {},
+        "register": 11
+      },
+      "enableBy": "register",
+      "type": "plugin",
+      "path": "E:/Web/equipment-system/node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/commands/version.js",
+      "cwd": "E:\\Web\\equipment-system",
+      "id": "./node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/commands/version",
+      "key": "version"
+    },
+    "./node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/commands/generators/page": {
+      "config": {},
+      "time": {
+        "hooks": {},
+        "register": 33
+      },
+      "enableBy": "register",
+      "type": "plugin",
+      "path": "E:/Web/equipment-system/node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/commands/generators/page.js",
+      "cwd": "E:\\Web\\equipment-system",
+      "id": "./node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/commands/generators/page",
+      "key": "generator:page"
+    },
+    "./node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/commands/generators/prettier": {
+      "config": {},
+      "time": {
+        "hooks": {},
+        "register": 13
+      },
+      "enableBy": "register",
+      "type": "plugin",
+      "path": "E:/Web/equipment-system/node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/commands/generators/prettier.js",
+      "cwd": "E:\\Web\\equipment-system",
+      "id": "./node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/commands/generators/prettier",
+      "key": "generator:prettier"
+    },
+    "./node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/commands/generators/tsconfig": {
+      "config": {},
+      "time": {
+        "hooks": {},
+        "register": 13
+      },
+      "enableBy": "register",
+      "type": "plugin",
+      "path": "E:/Web/equipment-system/node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/commands/generators/tsconfig.js",
+      "cwd": "E:\\Web\\equipment-system",
+      "id": "./node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/commands/generators/tsconfig",
+      "key": "generator:tsconfig"
+    },
+    "./node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/commands/generators/jest": {
+      "config": {},
+      "time": {
+        "hooks": {},
+        "register": 13
+      },
+      "enableBy": "register",
+      "type": "plugin",
+      "path": "E:/Web/equipment-system/node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/commands/generators/jest.js",
+      "cwd": "E:\\Web\\equipment-system",
+      "id": "./node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/commands/generators/jest",
+      "key": "generator:jest"
+    },
+    "./node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/commands/generators/tailwindcss": {
+      "config": {},
+      "time": {
+        "hooks": {},
+        "register": 13
+      },
+      "enableBy": "register",
+      "type": "plugin",
+      "path": "E:/Web/equipment-system/node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/commands/generators/tailwindcss.js",
+      "cwd": "E:\\Web\\equipment-system",
+      "id": "./node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/commands/generators/tailwindcss",
+      "key": "generator:tailwindcss"
+    },
+    "./node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/commands/generators/dva": {
+      "config": {},
+      "time": {
+        "hooks": {},
+        "register": 13
+      },
+      "enableBy": "register",
+      "type": "plugin",
+      "path": "E:/Web/equipment-system/node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/commands/generators/dva.js",
+      "cwd": "E:\\Web\\equipment-system",
+      "id": "./node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/commands/generators/dva",
+      "key": "generator:dva"
+    },
+    "./node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/commands/generators/component": {
+      "config": {},
+      "time": {
+        "hooks": {},
+        "register": 13
+      },
+      "enableBy": "register",
+      "type": "plugin",
+      "path": "E:/Web/equipment-system/node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/commands/generators/component.js",
+      "cwd": "E:\\Web\\equipment-system",
+      "id": "./node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/commands/generators/component",
+      "key": "generator:component"
+    },
+    "./node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/commands/generators/mock": {
+      "config": {},
+      "time": {
+        "hooks": {},
+        "register": 13
+      },
+      "enableBy": "register",
+      "type": "plugin",
+      "path": "E:/Web/equipment-system/node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/commands/generators/mock.js",
+      "cwd": "E:\\Web\\equipment-system",
+      "id": "./node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/commands/generators/mock",
+      "key": "generator:mock"
+    },
+    "./node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/commands/generators/cypress": {
+      "config": {},
+      "time": {
+        "hooks": {},
+        "register": 15
+      },
+      "enableBy": "register",
+      "type": "plugin",
+      "path": "E:/Web/equipment-system/node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/commands/generators/cypress.js",
+      "cwd": "E:\\Web\\equipment-system",
+      "id": "./node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/commands/generators/cypress",
+      "key": "generator:cypress"
+    },
+    "./node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/commands/generators/api": {
+      "config": {},
+      "time": {
+        "hooks": {},
+        "register": 14
+      },
+      "enableBy": "register",
+      "type": "plugin",
+      "path": "E:/Web/equipment-system/node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/commands/generators/api.js",
+      "cwd": "E:\\Web\\equipment-system",
+      "id": "./node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/commands/generators/api",
+      "key": "generator:api"
+    },
+    "./node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/commands/generators/precommit": {
+      "config": {},
+      "time": {
+        "hooks": {},
+        "register": 13
+      },
+      "enableBy": "register",
+      "type": "plugin",
+      "path": "E:/Web/equipment-system/node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/commands/generators/precommit.js",
+      "cwd": "E:\\Web\\equipment-system",
+      "id": "./node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/commands/generators/precommit",
+      "key": "generator:precommit"
+    },
+    "./node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/commands/plugin": {
+      "config": {},
+      "time": {
+        "hooks": {},
+        "register": 12
+      },
+      "enableBy": "register",
+      "type": "plugin",
+      "path": "E:/Web/equipment-system/node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/commands/plugin.js",
+      "cwd": "E:\\Web\\equipment-system",
+      "id": "./node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/commands/plugin",
+      "key": "command:plugin"
+    },
+    "./node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/commands/verify-commit": {
+      "config": {},
+      "time": {
+        "hooks": {},
+        "register": 14
+      },
+      "enableBy": "register",
+      "type": "plugin",
+      "path": "E:/Web/equipment-system/node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/commands/verify-commit.js",
+      "cwd": "E:\\Web\\equipment-system",
+      "id": "./node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/commands/verify-commit",
+      "key": "verifyCommit"
+    },
+    "./node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/commands/preview": {
+      "config": {},
+      "time": {
+        "hooks": {},
+        "register": 177
+      },
+      "enableBy": "register",
+      "type": "plugin",
+      "path": "E:/Web/equipment-system/node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/commands/preview.js",
+      "cwd": "E:\\Web\\equipment-system",
+      "id": "./node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/commands/preview",
+      "key": "preview"
+    },
+    "./node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/commands/mfsu/mfsu": {
+      "config": {},
+      "time": {
+        "hooks": {},
+        "register": 43
+      },
+      "enableBy": "register",
+      "type": "plugin",
+      "path": "E:/Web/equipment-system/node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/commands/mfsu/mfsu.js",
+      "cwd": "E:\\Web\\equipment-system",
+      "id": "./node_modules/.pnpm/@umijs+preset-umi@4.5.3_@ty_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/commands/mfsu/mfsu",
+      "key": "mfsu-cli"
+    },
+    "@umijs/plugin-run": {
+      "config": {},
+      "time": {
+        "hooks": {},
+        "register": 49
+      },
+      "enableBy": "register",
+      "type": "plugin",
+      "path": "E:/Web/equipment-system/node_modules/.pnpm/@umijs+plugin-run@4.5.3/node_modules/@umijs/plugin-run/dist/index.js",
+      "cwd": "E:\\Web\\equipment-system",
+      "id": "@umijs/plugin-run",
+      "key": "run"
+    },
+    "./node_modules/.pnpm/@umijs+core@4.5.3/node_modules/@umijs/core/dist/service/generatePlugin": {
+      "config": {},
+      "time": {
+        "hooks": {},
+        "register": 15
+      },
+      "enableBy": "register",
+      "type": "plugin",
+      "path": "E:/Web/equipment-system/node_modules/.pnpm/@umijs+core@4.5.3/node_modules/@umijs/core/dist/service/generatePlugin.js",
+      "cwd": "E:\\Web\\equipment-system",
+      "id": "./node_modules/.pnpm/@umijs+core@4.5.3/node_modules/@umijs/core/dist/service/generatePlugin",
+      "key": "generatePlugin"
+    }
+  },
+  "presets": [],
+  "name": "build",
+  "args": {
+    "_": []
+  },
+  "userConfig": {
+    "npmClient": "pnpm",
+    "routes": [
+      {
+        "path": "/login",
+        "component": "@/pages/Login"
+      },
+      {
+        "path": "/",
+        "component": "@/layouts/BasicLayout",
+        "routes": [
+          {
+            "path": "/",
+            "redirect": "/dashboard"
+          },
+          {
+            "path": "/dashboard",
+            "component": "@/pages/Dashboard"
+          },
+          {
+            "path": "/devices",
+            "component": "@/pages/Devices"
+          },
+          {
+            "path": "/borrow",
+            "component": "@/pages/Borrow"
+          },
+          {
+            "path": "/returned",
+            "component": "@/pages/Returned"
+          },
+          {
+            "path": "/profile",
+            "component": "@/pages/Profile"
+          }
+        ]
+      }
+    ]
+  },
+  "mainConfigFile": "E:\\Web\\equipment-system\\.umirc.ts",
+  "config": {
+    "routeLoader": {
+      "moduleType": "esm"
+    },
+    "mountElementId": "root",
+    "history": {
+      "type": "browser"
+    },
+    "base": "/",
+    "svgr": {},
+    "publicPath": "/",
+    "mfsu": {
+      "strategy": "eager"
+    },
+    "ignoreMomentLocale": true,
+    "externals": {},
+    "autoCSSModules": true,
+    "alias": {
+      "umi": "@@/exports",
+      "react": "E:\\Web\\equipment-system\\node_modules\\react",
+      "react-dom": "E:\\Web\\equipment-system\\node_modules\\react-dom",
+      "react-router": "E:\\Web\\equipment-system\\node_modules\\.pnpm\\react-router@6.3.0_react@18.3.1\\node_modules\\react-router",
+      "react-router-dom": "E:\\Web\\equipment-system\\node_modules\\.pnpm\\react-router-dom@6.3.0_reac_beb70b932a60871592d5dec302f52003\\node_modules\\react-router-dom",
+      "@": "E:/Web/equipment-system/src",
+      "@@": "E:/Web/equipment-system/src/.umi-production",
+      "regenerator-runtime": "E:\\Web\\equipment-system\\node_modules\\.pnpm\\regenerator-runtime@0.13.11\\node_modules\\regenerator-runtime"
+    },
+    "npmClient": "pnpm",
+    "routes": [
+      {
+        "path": "/login",
+        "component": "@/pages/Login"
+      },
+      {
+        "path": "/",
+        "component": "@/layouts/BasicLayout",
+        "routes": [
+          {
+            "path": "/",
+            "redirect": "/dashboard"
+          },
+          {
+            "path": "/dashboard",
+            "component": "@/pages/Dashboard"
+          },
+          {
+            "path": "/devices",
+            "component": "@/pages/Devices"
+          },
+          {
+            "path": "/borrow",
+            "component": "@/pages/Borrow"
+          },
+          {
+            "path": "/returned",
+            "component": "@/pages/Returned"
+          },
+          {
+            "path": "/profile",
+            "component": "@/pages/Profile"
+          }
+        ]
+      }
+    ],
+    "targets": {
+      "chrome": 80
+    }
+  },
+  "routes": {
+    "1": {
+      "path": "/login",
+      "file": "@/pages/Login/index.tsx",
+      "id": "1",
+      "absPath": "/login",
+      "__content": "import { useState } from 'react';\nimport { Button, Form, Input, message, Card } from 'antd';\nimport { history } from 'umi';\nimport { invoke } from '@/services/ipc';\n\nexport default function Login() {\n  const [loading, setLoading] = useState(false);\n  const onFinish = async (values: any) => {\n    setLoading(true);\n    const { username, password } = values;\n    try {\n      const res = await invoke('auth:login', username, password);\n      if (res?.success) {\n        localStorage.setItem('loginUser', username);\n        message.success('登录成功');\n        history.push('/dashboard');\n      } else {\n        message.error(res?.message || '用户名或密码错误');\n      }\n    } finally {\n      setLoading(false);\n    }\n  };\n\n  return (\n    <div style={{ display: 'flex', justifyContent: 'center', marginTop: 120 }}>\n      <Card title=\"登录\" style={{ width: 380 }}>\n        <Form onFinish={onFinish} layout=\"vertical\">\n          <Form.Item name=\"username\" label=\"用户名\" rules={[{ required: true }]}> \n            <Input />\n          </Form.Item>\n          <Form.Item name=\"password\" label=\"密码\" rules={[{ required: true }]}> \n            <Input.Password />\n          </Form.Item>\n          <Button type=\"primary\" htmlType=\"submit\" loading={loading} block>\n            登录\n          </Button>\n        </Form>\n      </Card>\n    </div>\n  );\n}\n\n",
+      "__isJSFile": true,
+      "__absFile": "E:/Web/equipment-system/src/pages/Login/index.tsx"
+    },
+    "2": {
+      "path": "/",
+      "file": "@/layouts/BasicLayout.tsx",
+      "id": "2",
+      "absPath": "/",
+      "__content": "import { Layout, Menu, Button } from 'antd';\nimport { Outlet, history, useLocation } from 'umi';\n\nconst { Header, Sider, Content } = Layout;\n\nconst items = [\n  { key: '/dashboard', label: '首页看板' },\n  { key: '/borrow', label: '借出设备记录' },\n  { key: '/returned', label: '已还设备记录' },\n  { key: '/devices', label: '设备管理' },\n  { key: '/profile', label: '个人中心' },\n];\n\nexport default function BasicLayout() {\n  const location = useLocation();\n  const selectedKeys = [location.pathname.startsWith('/dashboard') ? '/dashboard' : location.pathname];\n\n  return (\n    <Layout style={{ minHeight: '100vh' }}>\n      <Sider width={200} theme=\"light\">\n        <div style={{ height: 48, fontSize: 16, display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 600 }}>\n          设备借还系统\n        </div>\n        <Menu\n          mode=\"inline\"\n          selectedKeys={selectedKeys}\n          items={items}\n          onClick={(e) => history.push(e.key)}\n        />\n      </Sider>\n      <Layout>\n        <Header style={{ height: 48, background: '#fff', padding: '0 16px', display: 'flex', justifyContent: 'flex-end', alignItems: 'center' }}>\n          <Button onClick={() => { localStorage.removeItem('loginUser'); history.push('/login'); }}>退出登录</Button>\n        </Header>\n        <Content style={{ margin: 16 }}>\n          <Outlet />\n        </Content>\n      </Layout>\n    </Layout>\n  );\n}\n",
+      "__isJSFile": true,
+      "__absFile": "E:/Web/equipment-system/src/layouts/BasicLayout.tsx"
+    },
+    "3": {
+      "path": "/",
+      "redirect": "/dashboard",
+      "parentId": "2",
+      "id": "3",
+      "absPath": "/"
+    },
+    "4": {
+      "path": "/dashboard",
+      "file": "@/pages/Dashboard/index.tsx",
+      "parentId": "2",
+      "id": "4",
+      "absPath": "/dashboard",
+      "__content": "import { useEffect, useState } from 'react';\nimport { Card, Col, Row, Statistic, Modal, Table, Button } from 'antd';\nimport { invoke } from '@/services/ipc';\n\nexport default function Dashboard() {\n  const [stats, setStats] = useState({ totalDevices: 0, borrowedDevices: 0, availableDevices: 0, overdueDevices: 0 });\n  const [overdue, setOverdue] = useState<any[]>([]);\n  const [dueSoon, setDueSoon] = useState<any[]>([]);\n  const [visible, setVisible] = useState(false);\n\n  useEffect(() => {\n    load();\n    loadReminders();\n  }, []);\n\n  const load = async () => {\n    const data = await invoke('stats:dashboard');\n    setStats(data);\n  };\n\n  const loadReminders = async () => {\n    const data = await invoke('borrow:listOverdue');\n    setOverdue(data?.overdue || []);\n    setDueSoon(data?.dueSoon || []);\n    setVisible(true);\n  };\n\n  const columns = [\n    { title: '设备编号', dataIndex: 'device_code' },\n    { title: '设备名称', dataIndex: 'device_name' },\n    { title: '借用人', dataIndex: 'borrower_name' },\n    { title: '联系方式', dataIndex: 'borrower_phone' },\n    { title: '剩余天数', dataIndex: 'remaining_days' },\n    {\n      title: '通知状态',\n      dataIndex: 'notified',\n      render: (_: any, r: any) => (\n        <Button type={r.notified ? 'default' : 'primary'} onClick={async () => {\n          if (!r.notified) {\n            await invoke('notify:mark', r.id);\n            loadReminders();\n          }\n        }}>\n          {r.notified ? '已通知' : '未通知'}\n        </Button>\n      )\n    }\n  ];\n\n  return (\n    <div style={{ padding: 24 }}>\n      <Row gutter={16}>\n        <Col span={6}><Card><Statistic title=\"设备总数\" value={stats.totalDevices} /></Card></Col>\n        <Col span={6}><Card><Statistic title=\"在借设备\" value={stats.borrowedDevices} /></Card></Col>\n        <Col span={6}><Card><Statistic title=\"可借设备\" value={stats.availableDevices} /></Card></Col>\n        <Col span={6}><Card><Statistic title=\"逾期设备\" value={stats.overdueDevices} valueStyle={{ color: 'red' }} /></Card></Col>\n      </Row>\n\n      <Modal title=\"设备归还提醒\" open={visible} onCancel={() => setVisible(false)} footer={null} width={900}>\n        <h3>逾期设备</h3>\n        <Table columns={columns} dataSource={overdue} rowKey=\"id\" pagination={false} />\n        <h3 style={{ marginTop: 16 }}>临期设备（≤5天）</h3>\n        <Table columns={columns} dataSource={dueSoon} rowKey=\"id\" pagination={false} />\n      </Modal>\n    </div>\n  );\n}\n\n",
+      "__isJSFile": true,
+      "__absFile": "E:/Web/equipment-system/src/pages/Dashboard/index.tsx"
+    },
+    "5": {
+      "path": "/devices",
+      "file": "@/pages/Devices/index.tsx",
+      "parentId": "2",
+      "id": "5",
+      "absPath": "/devices",
+      "__content": "import { useEffect, useState } from 'react';\nimport { Table, Button, Modal, Form, Input, Select, message } from 'antd';\nimport { invoke } from '@/services/ipc';\n\nexport default function Devices() {\n  const [devices, setDevices] = useState<any[]>([]);\n  const [loading, setLoading] = useState(false);\n  const [modalVisible, setModalVisible] = useState(false);\n  const [form] = Form.useForm();\n\n  useEffect(() => { loadDevices(); }, []);\n\n  const loadDevices = async () => {\n    setLoading(true);\n    try {\n      const data = await invoke<any[]>('device:list');\n      setDevices(data);\n    } catch (error) {\n      message.error('加载设备列表失败');\n    } finally {\n      setLoading(false);\n    }\n  };\n\n  const handleCreate = async (values: any) => {\n    try {\n      const res = await invoke('device:create', values);\n      if (res?.success) {\n        message.success('新增设备成功');\n        setModalVisible(false);\n        form.resetFields();\n        loadDevices();\n      } else {\n        message.error(res?.message || '新增设备失败');\n      }\n    } catch (error) {\n      message.error('新增设备失败');\n    }\n  };\n\n  const handleDelete = async (id: number) => {\n    const result = await invoke('device:delete', id);\n    if (result.success) {\n      message.success('删除成功');\n      loadDevices();\n    } else {\n      message.error(result.message);\n    }\n  };\n\n  const columns = [\n    { title: '设备编号', dataIndex: 'code', key: 'code' },\n    { title: '设备名称', dataIndex: 'name', key: 'name' },\n    { title: '设备类型', dataIndex: 'type', key: 'type' },\n    { title: '品牌', dataIndex: 'brand', key: 'brand' },\n    { title: '状态', dataIndex: 'status', key: 'status' },\n    {\n      title: '操作',\n      key: 'action',\n      render: (_: any, record: any) => (\n        <>\n          <Button type=\"link\">编辑</Button>\n          <Button type=\"link\" danger onClick={() => handleDelete(record.id)}>删除</Button>\n        </>\n      ),\n    },\n  ];\n\n  return (\n    <div style={{ padding: 24 }}>\n      <Button type=\"primary\" onClick={() => setModalVisible(true)}>新增设备</Button>\n      <Table columns={columns} dataSource={devices} loading={loading} rowKey=\"id\" style={{ marginTop: 16 }} />\n      <Modal title=\"新增设备\" open={modalVisible} onCancel={() => setModalVisible(false)} onOk={() => form.submit()}>\n        <Form form={form} onFinish={handleCreate} labelCol={{ span: 6 }} wrapperCol={{ span: 16 }}>\n          <Form.Item name=\"code\" label=\"设备编号\" rules={[{ required: true }]}> <Input /> </Form.Item>\n          <Form.Item name=\"name\" label=\"设备名称\" rules={[{ required: true }]}> <Input /> </Form.Item>\n          <Form.Item name=\"type\" label=\"设备类型\"> <Input /> </Form.Item>\n          <Form.Item name=\"brand\" label=\"设备品牌\"> <Input /> </Form.Item>\n          <Form.Item name=\"model\" label=\"规格型号\"> <Input /> </Form.Item>\n          <Form.Item name=\"price\" label=\"单价\"> <Input type=\"number\" /> </Form.Item>\n          <Form.Item name=\"location\" label=\"存放地点\"> <Input /> </Form.Item>\n        </Form>\n      </Modal>\n    </div>\n  );\n}\n\n",
+      "__isJSFile": true,
+      "__absFile": "E:/Web/equipment-system/src/pages/Devices/index.tsx"
+    },
+    "6": {
+      "path": "/borrow",
+      "file": "@/pages/Borrow/index.tsx",
+      "parentId": "2",
+      "id": "6",
+      "absPath": "/borrow",
+      "__content": "import { useEffect, useState } from 'react';\nimport { Table, Button, Modal, Form, Input, DatePicker, message } from 'antd';\nimport { invoke } from '@/services/ipc';\nimport dayjs from 'dayjs';\n\nexport default function Borrow() {\n  const [records, setRecords] = useState<any[]>([]);\n  const [visible, setVisible] = useState(false);\n  const [form] = Form.useForm();\n\n  const load = async () => {\n    const data = await invoke<any[]>('borrow:list');\n    setRecords(data);\n  };\n  useEffect(() => { load(); }, []);\n\n  const handleCreate = async (values: any) => {\n    const payload = {\n      device_id: Number(values.device_id),\n      borrower_name: values.borrower_name,\n      borrower_class: values.borrower_class,\n      borrower_student_id: values.borrower_student_id,\n      borrower_phone: values.borrower_phone,\n      borrow_time: dayjs(values.borrow_time).toISOString(),\n      return_deadline: dayjs(values.return_deadline).toISOString(),\n    };\n    const res = await invoke('borrow:create', payload);\n    if (res?.success) { message.success('借出成功'); setVisible(false); form.resetFields(); load(); }\n    else { message.error(res?.message || '借出失败'); }\n  };\n\n  const handleReturn = async (id: number) => {\n    const res = await invoke('borrow:return', id);\n    if (res?.success) { message.success('归还成功'); load(); }\n    else { message.error(res?.message || '归还失败'); }\n  };\n\n  const columns = [\n    { title: '设备编号', dataIndex: 'device_code' },\n    { title: '设备名称', dataIndex: 'device_name' },\n    { title: '借用人', dataIndex: 'borrower_name' },\n    { title: '班级', dataIndex: 'borrower_class' },\n    { title: '学号', dataIndex: 'borrower_student_id' },\n    { title: '联系方式', dataIndex: 'borrower_phone' },\n    { title: '借出时间', dataIndex: 'borrow_time' },\n    { title: '应还时间', dataIndex: 'return_deadline' },\n    { title: '操作', render: (_: any, r: any) => (<Button type=\"link\" onClick={() => handleReturn(r.id)}>归还</Button>) },\n  ];\n\n  return (\n    <div style={{ padding: 24 }}>\n      <Button type=\"primary\" onClick={() => setVisible(true)}>新增借出</Button>\n      <Table columns={columns} dataSource={records} rowKey=\"id\" style={{ marginTop: 16 }} />\n      <Modal title=\"借出设备\" open={visible} onCancel={() => setVisible(false)} onOk={() => form.submit()}>\n        <Form form={form} onFinish={handleCreate} labelCol={{ span: 6 }} wrapperCol={{ span: 16 }}>\n          <Form.Item name=\"device_id\" label=\"设备ID\" rules={[{ required: true }]}> <Input /> </Form.Item>\n          <Form.Item name=\"borrower_name\" label=\"借出人\" rules={[{ required: true }]}> <Input /> </Form.Item>\n          <Form.Item name=\"borrower_class\" label=\"班级\" rules={[{ required: true }]}> <Input /> </Form.Item>\n          <Form.Item name=\"borrower_student_id\" label=\"学号\" rules={[{ required: true, len: 10 }]}> <Input /> </Form.Item>\n          <Form.Item name=\"borrower_phone\" label=\"联系方式\" rules={[{ required: true, len: 11 }]}> <Input /> </Form.Item>\n          <Form.Item name=\"borrow_time\" label=\"借出时间\" rules={[{ required: true }]}> <DatePicker showTime /> </Form.Item>\n          <Form.Item name=\"return_deadline\" label=\"应还时间\" rules={[{ required: true }]}> <DatePicker showTime /> </Form.Item>\n        </Form>\n      </Modal>\n    </div>\n  );\n}\n\n",
+      "__isJSFile": true,
+      "__absFile": "E:/Web/equipment-system/src/pages/Borrow/index.tsx"
+    },
+    "7": {
+      "path": "/returned",
+      "file": "@/pages/Returned/index.tsx",
+      "parentId": "2",
+      "id": "7",
+      "absPath": "/returned",
+      "__content": "import { useEffect, useState } from 'react';\nimport { Table } from 'antd';\nimport { invoke } from '@/services/ipc';\n\nexport default function Returned() {\n  const [records, setRecords] = useState<any[]>([]);\n  const load = async () => {\n    const data = await invoke<any[]>('borrow:list', { returned: true });\n    setRecords((data || []).filter(r => r.actual_return_time));\n  };\n  useEffect(() => { load(); }, []);\n\n  const columns = [\n    { title: '设备编号', dataIndex: 'device_code' },\n    { title: '设备名称', dataIndex: 'device_name' },\n    { title: '借出时间', dataIndex: 'borrow_time' },\n    { title: '归还时间', dataIndex: 'actual_return_time' },\n  ];\n\n  return (\n    <div style={{ padding: 24 }}>\n      <Table columns={columns} dataSource={records} rowKey=\"id\" />\n    </div>\n  );\n}\n\n",
+      "__isJSFile": true,
+      "__absFile": "E:/Web/equipment-system/src/pages/Returned/index.tsx"
+    },
+    "8": {
+      "path": "/profile",
+      "file": "@/pages/Profile/index.tsx",
+      "parentId": "2",
+      "id": "8",
+      "absPath": "/profile",
+      "__content": "import { Form, Input, Button, message, Card } from 'antd';\nimport { invoke } from '@/services/ipc';\nimport React from 'react';\n\nexport default function Profile() {\n  const [form] = Form.useForm();\n  const username = localStorage.getItem('loginUser') || 'admin';\n\n  const onFinish = async (v: any) => {\n    if (v.newPwd !== v.confirmPwd) {\n      message.error('两次输入的新密码不一致');\n      return;\n    }\n    const res = await invoke('auth:changePassword', username, v.oldPwd, v.newPwd);\n    if (res?.success) {\n      message.success('密码修改成功，请重新登录');\n      localStorage.removeItem('loginUser');\n    } else {\n      message.error(res?.message || '修改失败');\n    }\n  };\n\n  return (\n    <>\n      <div style={{ display: 'flex', justifyContent: 'center', marginTop: 80 }}>\n        <Card title=\"修改密码\" style={{ width: 480 }}>\n          <Form\n            form={form}\n            onFinish={onFinish}\n            labelCol={{ span: 6 }}\n            wrapperCol={{ span: 16 }}\n            validateTrigger={['onSubmit']}\n          >\n            <Form.Item name=\"oldPwd\" label=\"原密码\" rules={[{ required: true, message: '请输入原密码' }]}> \n              <Input.Password autoComplete=\"off\" /> \n            </Form.Item>\n            <Form.Item \n              name=\"newPwd\" \n              label=\"新密码\" \n              rules={[\n                { required: true, message: '请输入新密码' },\n                { min: 6, message: '新密码至少6位' },\n                { max: 20, message: '新密码最多20位' },\n              ]}\n            > \n              <Input.Password autoComplete=\"off\" /> \n            </Form.Item>\n            <Form.Item name=\"confirmPwd\" label=\"确认新密码\" rules={[{ required: true, message: '请确认新密码' }]}> \n              <Input.Password autoComplete=\"off\" /> \n            </Form.Item>\n            <Form.Item wrapperCol={{ span: 16, offset: 6 }}>\n              <Button type=\"primary\" onClick={() => form.submit()}>确认修改</Button>\n            </Form.Item>\n          </Form>\n        </Card>\n      </div>\n    </>\n  );\n}\n",
+      "__isJSFile": true,
+      "__absFile": "E:/Web/equipment-system/src/pages/Profile/index.tsx"
+    }
+  },
+  "apiRoutes": {},
+  "hasSrcDir": true,
+  "npmClient": "pnpm",
+  "umi": {
+    "version": "4.5.3",
+    "name": "Umi",
+    "importSource": "umi",
+    "cliName": "umi"
+  },
+  "bundleStatus": {
+    "done": false
+  },
+  "mfsuBundleStatus": {
+    "done": false
+  },
+  "react": {
+    "version": "18.3.1",
+    "path": "E:\\Web\\equipment-system\\node_modules\\react"
+  },
+  "react-dom": {
+    "version": "18.3.1",
+    "path": "E:\\Web\\equipment-system\\node_modules\\react-dom"
+  },
+  "appJS": {
+    "path": "E:\\Web\\equipment-system\\src\\app.tsx",
+    "exports": [
+      "onRouteChange"
+    ]
+  },
+  "locale": "zh-CN",
+  "globalCSS": [
+    "E:\\Web\\equipment-system\\src\\global.css"
+  ],
+  "globalJS": [],
+  "overridesCSS": [],
+  "bundler": "webpack",
+  "framework": "react",
+  "typescript": {
+    "tsVersion": "5.9.3",
+    "tslibVersion": "2.8.1"
+  },
+  "faviconFiles": []
+}
