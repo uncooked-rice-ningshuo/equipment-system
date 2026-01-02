@@ -3,7 +3,7 @@
     "prettier --cache --write"
   ],
   "*.{js,jsx}": [
-    "umi lint --fix --eslint-only",
+    "umi lint --fix --eslint-only --ignore-pattern electron/main.js",
     "prettier --cache --write"
   ],
   "*.{css,less}": [

@@ -5,20 +5,20 @@
   "description": "设备借还管理系统（Electron + Umi + AntD + sql.js）",
   "author": "lab-admin",
   "scripts": {
-    "dev:web": "umi dev",
-    "dev:electron": "wait-on http://localhost:8000 && electron ./electron/main.js",
-    "dev": "concurrently \"pnpm dev:web\" \"pnpm dev:electron\"",
+    "build:linux": "npm run build:web && electron-builder --linux",
+    "build:mac": "npm run build:web && electron-builder --mac",
     "build:web": "umi build",
-    "build:win": "electron-builder",
+    "build:win": "npm run build:web && electron-builder --win",
+    "dev": "concurrently \"npm run dev:web\" \"npm run dev:electron\"",
+    "dev:electron": "wait-on tcp:127.0.0.1:8000 && electron ./electron/main.js",
+    "dev:web": "cross-env PORT=8000 umi dev",
     "prepare": "husky"
-  },
-  "engines": {
-    "node": ">=18"
   },
   "dependencies": {
     "antd": "^5.18.0",
     "bcryptjs": "^2.4.3",
     "dayjs": "^1.11.11",
+    "jsonwebtoken": "^9.0.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "sql.js": "^1.9.0"
@@ -27,17 +27,51 @@
     "@types/node": "^20.11.3",
     "@types/react": "^18.2.46",
     "@types/react-dom": "^18.2.18",
+    "@umijs/plugins": "^4.6.18",
     "concurrently": "^8.2.2",
+    "cross-env": "^10.1.0",
     "electron": "^30.0.0",
     "electron-builder": "^24.6.4",
     "electron-is-dev": "^3.0.1",
-    "typescript": "^5",
-    "umi": "^4.0.46",
-    "wait-on": "^7.2.0",
+    "husky": "^9",
+    "lint-staged": "^13",
     "prettier": "^2",
     "prettier-plugin-organize-imports": "^3.2.2",
     "prettier-plugin-packagejson": "^2.4.3",
-    "husky": "^9",
-    "lint-staged": "^13"
+    "typescript": "^5",
+    "umi": "^4.0.46",
+    "wait-on": "^7.2.0"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "build": {
+    "appId": "com.equipment.system",
+    "productName": "设备借还管理系统",
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "electron/**/*",
+      "dist/**/*",
+      "package.json",
+      "node_modules/sql.js/dist/sql-wasm.wasm"
+    ],
+    "mac": {
+      "target": "dmg",
+      "artifactName": "${productName}-${version}-mac.${ext}"
+    },
+    "win": {
+      "target": "nsis",
+      "artifactName": "${productName}-${version}-win.${ext}"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true
+    },
+    "linux": {
+      "target": "AppImage",
+      "artifactName": "${productName}-${version}-linux.${ext}"
+    }
   }
 }

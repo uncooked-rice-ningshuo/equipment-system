@@ -32,3 +32,4 @@ coverage
 # 忽略掉dist、node_modules
 /dist/
 /node_modules/
+/.trae/
