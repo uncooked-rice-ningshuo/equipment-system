@@ -37,7 +37,8 @@ export default defineConfig({
     ],
     allowEmoji: true,
   },
-  eslint: {
-    ignore: ['electron/**/*'],
+  mfsu: {
+    strategy: 'normal',
   },
+  fastRefresh: true,
 });

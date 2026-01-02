@@ -10,18 +10,17 @@
     "build:web": "umi build",
     "build:win": "npm run build:web && electron-builder --win",
     "dev": "concurrently \"npm run dev:web\" \"npm run dev:electron\"",
-    "dev:electron": "wait-on tcp:127.0.0.1:8000 && electron ./electron/main.js",
+    "dev:electron": "wait-on tcp:127.0.0.1:8000 --interval 1000 --timeout 60000 && electron ./electron/main.js",
     "dev:web": "cross-env PORT=8000 umi dev",
     "prepare": "husky"
   },
   "dependencies": {
     "antd": "^5.18.0",
-    "bcryptjs": "^2.4.3",
+    "better-auth": "^1.4.10",
+    "better-sqlite3": "^12.5.0",
     "dayjs": "^1.11.11",
-    "jsonwebtoken": "^9.0.3",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "sql.js": "^1.9.0"
+    "react-dom": "^18.2.0"
   },
   "devDependencies": {
     "@types/node": "^20.11.3",

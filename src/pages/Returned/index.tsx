@@ -1,14 +1,24 @@
-import { useEffect, useState } from 'react';
-import { Table } from 'antd';
 import { invoke } from '@/services/ipc';
+import { Table } from 'antd';
+import { useEffect, useState } from 'react';
 
 export default function Returned() {
   const [records, setRecords] = useState<any[]>([]);
-  const load = async () => {
-    const data = await invoke<any[]>('borrow:list', { returned: true });
-    setRecords((data || []).filter(r => r.actual_return_time));
-  };
-  useEffect(() => { load(); }, []);
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    (async () => {
+      setLoading(true);
+      try {
+        const data = await invoke<any[]>('borrow:list', { returned: true });
+        // filter on client side as backend returns all
+        const list = Array.isArray(data) ? data : [];
+        setRecords(list.filter((r: any) => r.actual_return_time));
+      } finally {
+        setLoading(false);
+      }
+    })();
+  }, []);
 
   const columns = [
     { title: '设备编号', dataIndex: 'device_code' },
@@ -23,4 +33,3 @@ export default function Returned() {
     </div>
   );
 }
-
