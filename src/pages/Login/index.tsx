@@ -1,14 +1,17 @@
 import { invoke } from '@/services/ipc';
-import { Button, Card, Form, Input, message } from 'antd';
+import { Button, Checkbox, Form, Input, message } from 'antd';
 import { useState } from 'react';
 import { history } from 'umi';
+import styles from './index.less';
 
 export default function Login() {
   const [loading, setLoading] = useState(false);
+
   const onFinish = async (values: any) => {
     setLoading(true);
     const { username, password } = values;
     try {
+      // Mapping 'admin' to email if needed, handled in backend now but good to keep in mind
       const res = await invoke('auth:login', username, password);
       if (res?.success) {
         localStorage.setItem('loginUser', username);
@@ -26,24 +29,43 @@ export default function Login() {
   };
 
   return (
-    <div style={{ display: 'flex', justifyContent: 'center', marginTop: 120 }}>
-      <Card title="登录" style={{ width: 380 }}>
-        <Form onFinish={onFinish} layout="vertical">
+    <div className={styles.container}>
+      <div className={styles.card}>
+        <div className={styles.title}>崔力老师，欢迎回来！</div>
+        <Form
+          onFinish={onFinish}
+          layout="vertical"
+          className={styles.form}
+          initialValues={{ remember: true }}
+        >
           <Form.Item
             name="username"
-            label="用户名"
-            rules={[{ required: true }]}
+            rules={[{ required: true, message: '请输入账号' }]}
           >
-            <Input />
+            <Input placeholder="账号" />
           </Form.Item>
-          <Form.Item name="password" label="密码" rules={[{ required: true }]}>
-            <Input.Password />
+
+          <Form.Item
+            name="password"
+            rules={[{ required: true, message: '请输入密码' }]}
+          >
+            <Input.Password placeholder="密码" />
           </Form.Item>
-          <Button type="primary" htmlType="submit" loading={loading} block>
+
+          <Form.Item name="remember" valuePropName="checked">
+            <Checkbox>记住我吗</Checkbox>
+          </Form.Item>
+
+          <Button
+            type="primary"
+            htmlType="submit"
+            loading={loading}
+            className={styles.loginBtn}
+          >
             登录
           </Button>
         </Form>
-      </Card>
+      </div>
     </div>
   );
 }

@@ -1,0 +1,167 @@
+.container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f2f6fc;
+  overflow: hidden;
+
+  // Decorator Circles
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+    z-index: 0;
+  }
+
+  // Top Right Circle (Matches Axure u1 SVG)
+  &::before {
+    width: 420px;
+    height: 420px;
+    top: -100px;
+    right: -80px;
+    background: linear-gradient(135deg, #fff 0%, rgba(79, 84, 189, 64%) 100%);
+  }
+
+  // Bottom Left Circle (Approximating u26)
+  &::after {
+    width: 450px;
+    height: 450px;
+    bottom: -100px;
+    left: -100px;
+    // Darker gradient as requested
+    background: linear-gradient(135deg, rgba(79, 84, 189, 50%) 0%, #fff 100%);
+    opacity: 0.8;
+  }
+}
+
+.card {
+  position: relative;
+  z-index: 1;
+  width: 432px;
+  height: 479px;
+  padding: 0; // Layout is absolute/relative inside
+  background: #fff;
+  border-radius: 62px;
+  // Axure has no shadow on u4, but a subtle one looks better.
+  // If strict adherence: box-shadow: none;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 5%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.title {
+  margin-top: 71px;
+  margin-bottom: 41px; // Gap to first input (142 - 71 - 30 = 41)
+  font-family: 'Noto Sans SC';
+  font-size: 21px;
+  font-weight: 400;
+  color: #000;
+  text-align: center;
+  width: 100%;
+}
+
+// Customizing Ant Design Form
+.form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  :global {
+    .ant-form-item {
+      margin-bottom: 0; // We control spacing manually
+    }
+
+    // Username Input
+    .ant-form-item:nth-child(1) {
+      margin-bottom: 33px; // 218 - 142 - 43 = 33px gap
+    }
+
+    // Password Input
+    .ant-form-item:nth-child(2) {
+      margin-bottom: 34px; // 295 - 218 - 43 = 34px gap to checkbox
+    }
+
+    .ant-input,
+    .ant-input-password,
+    .ant-input-affix-wrapper {
+      width: 328px;
+      height: 43px;
+      background-color: #f9f9fa;
+      border: 1px solid transparent; // Prepared for hover
+      border-radius: 18px;
+      padding: 3px 11px 3px 25px !important; // Axure padding
+      font-size: 16px;
+      font-family: 'Noto Sans SC';
+      box-shadow: none !important;
+    }
+
+    .ant-input-password .ant-input {
+      background-color: transparent;
+      padding: 0 !important;
+      height: 100%;
+    }
+
+    // Hover state from Axure
+    .ant-input:hover,
+    .ant-input-password:hover,
+    .ant-input-affix-wrapper:hover {
+      border-color: #7f7f7f;
+      background-color: #f9f9fa;
+    }
+
+    .ant-input:focus,
+    .ant-input-affix-wrapper-focused {
+      border-color: #7f7f7f;
+      box-shadow: none;
+    }
+
+    // Checkbox
+    .ant-checkbox-wrapper {
+      width: 328px; // Align with inputs
+      color: #000;
+      font-family: 'Noto Sans SC';
+      padding-left: 15px; // Indent slightly to align with input text start?
+      // Axure: left 67px (box is 432 wide). 67px is from left edge.
+      // Inputs are centered? 52px from left.
+      // Checkbox is 67px from left. So it is indented 15px relative to input start.
+    }
+  }
+}
+
+.loginBtn {
+  width: 328px;
+  height: 41px;
+  margin-top: 29px; // 348 - 295 - 24 = 29px gap
+  font-size: 21px;
+  font-weight: 400;
+  font-family: 'Noto Sans SC';
+  background-color: #4f54bd;
+  border-color: #4f54bd;
+  border-radius: 18px;
+  box-shadow: none;
+
+  &:hover,
+  &:focus {
+    background-color: #646af1 !important; // Axure Hover
+    border-color: #646af1 !important;
+  }
+}
+
+.footerLinks {
+  margin-top: 37px; // 426 - 348 - 41 = 37px gap
+  color: #aaa;
+  font-size: 14px; // Axure says 24px height container, font size usually smaller. Axure text size not explicitly captured but "color:#AAAAAA".
+  // Actually Axure text size might be default 13/14.
+  cursor: pointer;
+  text-align: center;
+  width: 100%;
+
+  &:hover {
+    color: #4f54bd;
+  }
+}
