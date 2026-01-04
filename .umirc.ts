@@ -21,6 +21,14 @@ export default defineConfig({
       ],
     },
   ],
+  theme: {
+    token: {
+      colorPrimary: '#6366F1',
+      colorPrimaryHover: '#818CF8',
+      borderRadius: 8,
+      boxShadow: '0 2px 8px rgba(0, 0, 0, 0.08)',
+    },
+  },
   verifyCommit: {
     scope: [
       'feat',

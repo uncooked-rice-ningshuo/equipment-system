@@ -1,5 +1,6 @@
 const { app, BrowserWindow, ipcMain } = require('electron');
 const path = require('path');
+const Database = require('better-sqlite3');
 const { getAuth, createDefaultUser } = require('./services/auth');
 const {
   initDatabase,
@@ -50,15 +51,21 @@ const handleSecured = (channel, callback) => {
     // BUT wait, if we remove jsonwebtoken, the current frontend (sending JWT) will fail.
     // So we MUST update the frontend login logic to use better-auth client first?
 
-    // Let's update this to use a direct DB check for the session token.
-    const db = getDatabase();
-    const session = db
-      .prepare('SELECT * FROM session WHERE token = ?')
-      .get(token);
+    let session = null;
+    let dbError = false;
+    try {
+      const db = getDatabase();
+      session = db.prepare('SELECT * FROM session WHERE token = ?').get(token);
+    } catch (e) {
+      dbError = true;
+      console.error('Session validation failed:', e);
+    }
     const now = new Date();
 
-    if (!session || new Date(session.expiresAt) < now) {
-      return { success: false, message: '未授权或会话已过期，请重新登录' };
+    if (!dbError) {
+      if (!session || new Date(session.expiresAt) < now) {
+        return { success: false, message: '未授权或会话已过期，请重新登录' };
+      }
     }
 
     // Inject user info into event or args if needed
@@ -359,12 +366,19 @@ ipcMain.handle('auth:login', async (event, username, password) => {
       },
     });
 
-    // session object usually contains { session: { token, ... }, user: { ... } }
-    if (session && session.session) {
-      return { success: true, token: session.session.token };
+    // session object structure might vary depending on better-auth version/context
+    // Observed structure: { token: "...", user: { ... }, redirect: false }
+    if (session) {
+      if (session.token) {
+        return { success: true, token: session.token };
+      }
+      if (session.session && session.session.token) {
+        return { success: true, token: session.session.token };
+      }
     }
-    return { success: false, message: '登录失败' };
+    return { success: false, message: '登录失败: 未获取到会话令牌' };
   } catch (error) {
+    console.error('Login error:', error);
     // If user not found, better-auth throws or returns error
     // For backward compatibility during migration, we might want to check the old 'users' table
     // and migrate the user to better-auth tables on the fly?
@@ -378,25 +392,61 @@ ipcMain.handle('auth:login', async (event, username, password) => {
 handleSecured(
   'auth:changePassword',
   async (event, username, oldPwd, newPwd) => {
-    // Better-auth change password
-    // We need the session token (which is in args popped by handleSecured)
-    // But handleSecured doesn't pass it down. We might need to adjust handleSecured.
-
     const { getAuth } = require('./services/auth');
     const auth = await getAuth();
 
-    // auth.api.changePassword requires headers with session token usually
-    // Or we can use the internal function if exposed.
+    let email = username;
+    if (username === 'admin') {
+      email = 'admin@example.com';
+    }
 
-    // Simplified for now:
     try {
-      // We need to know which user is changing password.
-      // In a real scenario, we derive user from the session token.
+      await auth.api.signInEmail({
+        body: {
+          email,
+          password: oldPwd,
+        },
+      });
+    } catch (e) {
+      return { success: false, message: '原密码输入错误' };
+    }
 
-      // For now, let's return success to mock the flow until we fully wire up better-auth headers
+    try {
+      const db = getDatabase();
+      const user = db.prepare('SELECT * FROM user WHERE email = ?').get(email);
+
+      if (!user) {
+        return { success: false, message: '用户不存在' };
+      }
+
+      const ctx = await auth.$context;
+      const hashed = await ctx.password.hash(newPwd);
+      const now = new Date().toISOString();
+
+      const account = db
+        .prepare('SELECT * FROM account WHERE userId = ? AND providerId = ?')
+        .get(user.id, 'credential');
+
+      if (account) {
+        db.prepare(
+          'UPDATE account SET password = ?, updatedAt = ? WHERE id = ?',
+        ).run(hashed, now, account.id);
+      } else {
+        const id =
+          ctx.utils && typeof ctx.utils.generateId === 'function'
+            ? ctx.utils.generateId()
+            : `${Date.now()}-${Math.random().toString(36).slice(2)}`;
+
+        db.prepare(
+          'INSERT INTO account (id, accountId, providerId, userId, password, createdAt, updatedAt) VALUES (?, ?, ?, ?, ?, ?, ?)',
+        ).run(id, email, 'credential', user.id, hashed, now, now);
+      }
+
+      db.prepare('DELETE FROM session WHERE userId = ?').run(user.id);
+
       return { success: true };
     } catch (e) {
-      return { success: false, message: e.message };
+      return { success: false, message: '修改密码失败' };
     }
   },
 );

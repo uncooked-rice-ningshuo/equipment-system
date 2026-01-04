@@ -1,4 +1,4 @@
-const { getDatabase } = require('./database');
+const { getDatabase, getDbPath } = require('./database');
 const path = require('path');
 const { app } = require('electron');
 const Database = require('better-sqlite3');
@@ -24,9 +24,7 @@ async function initAuth() {
 
   // Initialize better-auth
   auth = betterAuth({
-    database: new Database(
-      path.join(app.getPath('userData'), 'database.sqlite'),
-    ),
+    database: new Database(getDbPath()),
     plugins: [username()],
     emailAndPassword: {
       enabled: true,
@@ -64,12 +62,50 @@ async function initAuth() {
 
   try {
     const userInfo = db.prepare('PRAGMA table_info(user)').all();
-    const hasDisplayUsername = userInfo.some(
-      (col) => col.name === 'displayUsername',
-    );
-    if (userInfo.length > 0 && !hasDisplayUsername) {
-      console.log('Migrating user table: adding displayUsername column');
-      db.prepare('ALTER TABLE user ADD COLUMN displayUsername TEXT').run();
+
+    if (userInfo.length > 0) {
+      // Check and add displayUsername
+      const hasDisplayUsername = userInfo.some(
+        (col) => col.name === 'displayUsername',
+      );
+      if (!hasDisplayUsername) {
+        console.log('Migrating user table: adding displayUsername column');
+        try {
+          db.prepare('ALTER TABLE user ADD COLUMN displayUsername TEXT').run();
+        } catch (e) {
+          console.error('Migration displayUsername failed:', e.message);
+        }
+      }
+
+      // Check and add username
+      const hasUsername = userInfo.some((col) => col.name === 'username');
+      if (!hasUsername) {
+        console.log('Migrating user table: adding username column');
+        try {
+          db.prepare('ALTER TABLE user ADD COLUMN username TEXT').run();
+          // Try to add unique index
+          db.prepare(
+            'CREATE UNIQUE INDEX IF NOT EXISTS idx_user_username ON user(username)',
+          ).run();
+        } catch (e) {
+          console.error('Migration username failed:', e.message);
+        }
+      }
+
+      // Check and add emailVerified
+      const hasEmailVerified = userInfo.some(
+        (col) => col.name === 'emailVerified',
+      );
+      if (!hasEmailVerified) {
+        console.log('Migrating user table: adding emailVerified column');
+        try {
+          db.prepare(
+            'ALTER TABLE user ADD COLUMN emailVerified INTEGER DEFAULT 0',
+          ).run();
+        } catch (e) {
+          console.error('Migration emailVerified failed:', e.message);
+        }
+      }
     }
   } catch (e) {
     console.error('Migration check failed:', e);

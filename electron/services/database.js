@@ -4,11 +4,47 @@ const path = require('path');
 const { app } = require('electron');
 
 let db = null;
-const dbPath = path.join(app.getPath('userData'), 'database.sqlite');
-const backupPath = path.join(app.getPath('userData'), 'database_backup.sqlite');
+
+// 旧的数据库路径（之前使用 app.getPath('userData')）
+const legacyDbPath = path.join(app.getPath('userData'), 'database.sqlite');
+
+// 新的数据库路径：开发环境迁移到项目目录下，方便使用可视化工具查看
+// 生产环境仍然使用 userData，避免只读目录问题
+const isDev = !app.isPackaged;
+const projectDbPath = path.join(
+  __dirname,
+  '..',
+  '..',
+  'data',
+  'database.sqlite',
+);
+
+const dbPath = isDev ? projectDbPath : legacyDbPath;
+const backupPath = path.join(path.dirname(dbPath), 'database_backup.sqlite');
 
 function initDatabase() {
-  // Create backup if database exists
+  // 确保目录存在
+  const dbDir = path.dirname(dbPath);
+  try {
+    fs.mkdirSync(dbDir, { recursive: true });
+  } catch (e) {
+    console.error('Failed to ensure database directory exists:', dbDir, e);
+  }
+
+  // 如果是开发环境，且新路径不存在但旧路径存在，则做一次迁移拷贝
+  if (isDev && !fs.existsSync(dbPath) && fs.existsSync(legacyDbPath)) {
+    try {
+      fs.copyFileSync(legacyDbPath, dbPath);
+      console.log('Database migrated from legacy path to project path:', {
+        from: legacyDbPath,
+        to: dbPath,
+      });
+    } catch (e) {
+      console.error('Failed to migrate legacy database file:', e);
+    }
+  }
+
+  // 如果当前路径已存在数据库文件，则先创建备份
   if (fs.existsSync(dbPath)) {
     try {
       fs.copyFileSync(dbPath, backupPath);
@@ -18,8 +54,7 @@ function initDatabase() {
     }
   }
 
-  // Initialize better-sqlite3
-  // verbose: console.log will log executed queries
+  // 初始化 better-sqlite3
   db = new Database(dbPath, { verbose: null });
   console.log('Database loaded using better-sqlite3:', dbPath);
 
@@ -57,12 +92,6 @@ function createTables() {
       notify_time DATETIME,
       FOREIGN KEY (device_id) REFERENCES devices(id)
     )`,
-    `CREATE TABLE IF NOT EXISTS users (
-      id INTEGER PRIMARY KEY AUTOINCREMENT,
-      username TEXT UNIQUE NOT NULL,
-      password_hash TEXT NOT NULL,
-      created_at DATETIME DEFAULT CURRENT_TIMESTAMP
-    )`,
   ];
 
   db.transaction(() => {
@@ -70,21 +99,11 @@ function createTables() {
       db.prepare(sql).run();
     }
 
-    // Create default user if not exists
-    // Note: We'll migrate to better-auth tables later, this is for backward compatibility
+    // 清理已废弃的旧表：users（旧认证逻辑使用）
     try {
-      // Check if admin exists
-      const admin = db
-        .prepare('SELECT id FROM users WHERE username = ?')
-        .get('admin');
-      if (!admin) {
-        // We temporarily use a placeholder hash or keep the old one
-        // Since we are migrating to better-auth, this user might need to be migrated or recreated
-        // For now, let's keep it compatible if we still use the old auth logic
-        // But the user asked for better-auth upgrade, so we might need new tables for better-auth.
-      }
+      db.prepare('DROP TABLE IF EXISTS users').run();
     } catch (error) {
-      console.error('Error creating default user:', error);
+      console.error('Error dropping legacy users table:', error);
     }
   })();
 }
@@ -109,6 +128,7 @@ function runStmt(database, sql, params = []) {
 module.exports = {
   initDatabase,
   getDatabase: () => db,
+  getDbPath: () => dbPath,
   saveDatabase,
   queryAll,
   runStmt,

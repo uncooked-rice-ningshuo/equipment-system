@@ -313,6 +313,13 @@ interface IConfigTypes {
     run: {
     globals?: (Array<string> | undefined);
 };
+    request: {
+    dataField?: (string | undefined);
+};
+    model: {
+    extraModels?: (Array<string> | undefined);
+    sort?: ((((...args: any[]) => unknown) | undefined) | undefined);
+};
 };
 
 type PrettifyWithCloseable<T> = {
