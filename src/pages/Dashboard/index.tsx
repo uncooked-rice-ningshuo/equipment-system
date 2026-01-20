@@ -1,5 +1,6 @@
 import { ThemeType } from '@/config/theme';
 import { invoke } from '@/services/ipc';
+import { eventBus } from '@/utils/eventBus';
 import {
   CheckCircleOutlined,
   DatabaseOutlined,
@@ -87,6 +88,7 @@ export default function Dashboard() {
   const load = async () => {
     const data = await invoke('stats:dashboard');
     setStats(data);
+    eventBus.emit('dashboard:updated', data);
   };
 
   const loadReminders = async () => {
@@ -94,6 +96,7 @@ export default function Dashboard() {
     setOverdue(data?.overdue || []);
     setDueSoon(data?.dueSoon || []);
     setVisible(true);
+    eventBus.emit('reminders:loaded', data);
   };
 
   const columns = [
