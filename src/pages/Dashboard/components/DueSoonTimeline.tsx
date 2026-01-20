@@ -1,8 +1,12 @@
+import ChartError from '@/components/ChartError';
+import ChartSkeleton from '@/components/ChartSkeleton';
 import { ThemeType } from '@/config/theme';
 import { invoke } from '@/services/ipc';
+import { eventBus } from '@/utils/eventBus';
 import { ClockCircleOutlined, PhoneOutlined } from '@ant-design/icons';
 import { Card, Col, Empty, Row, Space, Tag, Timeline } from 'antd';
-import { useEffect, useState } from 'react';
+import { debounce } from 'lodash';
+import { useEffect, useMemo, useState } from 'react';
 import styled from 'styled-components';
 
 const TimelineCard = styled(Card)<{ $theme: ThemeType }>`
@@ -90,22 +94,51 @@ const getDaysColor = (days: number) => {
 export default function DueSoonTimeline({ theme }: { theme: ThemeType }) {
   const [data, setData] = useState<any[]>([]);
   const [loading, setLoading] = useState(false);
-
-  useEffect(() => {
-    load();
-  }, []);
+  const [error, setError] = useState<string | null>(null);
 
   const load = async () => {
     setLoading(true);
+    setError(null);
     try {
       const result = await invoke('borrow:dueSoon7days');
       setData(Array.isArray(result) ? result : []);
-    } catch (error) {
-      console.error('Failed to load due soon data:', error);
+    } catch (err: any) {
+      setError(err.message || '加载归还倒计时失败');
     } finally {
       setLoading(false);
     }
   };
+
+  const debouncedLoad = useMemo(() => debounce(load, 300), []);
+
+  useEffect(() => {
+    load();
+
+    const unsub1 = eventBus.subscribe('device:borrowed', debouncedLoad);
+    const unsub2 = eventBus.subscribe('device:returned', debouncedLoad);
+
+    return () => {
+      unsub1();
+      unsub2();
+      debouncedLoad.cancel();
+    };
+  }, []);
+
+  if (loading) {
+    return (
+      <TimelineCard $theme={theme} title="归还倒计时">
+        <ChartSkeleton />
+      </TimelineCard>
+    );
+  }
+
+  if (error) {
+    return (
+      <TimelineCard $theme={theme} title="归还倒计时">
+        <ChartError message={error} onRetry={load} />
+      </TimelineCard>
+    );
+  }
 
   if (!loading && data.length === 0) {
     return (
