@@ -99,7 +99,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 0
+        "register": 2
       },
       "enableBy": "register",
       "type": "preset",
@@ -112,7 +112,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 3
+        "register": 5
       },
       "enableBy": "register",
       "type": "preset",
@@ -129,7 +129,7 @@
             0
           ]
         },
-        "register": 2
+        "register": 1
       },
       "enableBy": "register",
       "type": "plugin",
@@ -146,7 +146,7 @@
             1
           ]
         },
-        "register": 1
+        "register": 2
       },
       "enableBy": "register",
       "type": "plugin",
@@ -160,8 +160,6 @@
       "time": {
         "hooks": {
           "modifyRoutes": [
-            0,
-            0,
             0,
             0,
             0,
@@ -183,14 +181,21 @@
       "time": {
         "hooks": {
           "onDevCompileDone": [
-            5,
+            6,
             1,
-            31,
-            5,
-            7,
+            4,
+            1,
             2,
-            51,
-            4
+            2,
+            1,
+            2,
+            2,
+            1,
+            2,
+            2,
+            2,
+            1,
+            2
           ]
         },
         "register": 0
@@ -207,19 +212,17 @@
       "time": {
         "hooks": {
           "modifyAppData": [
-            11
+            8
           ],
           "onGenerateFiles": [
-            0,
-            4,
-            3,
-            13,
-            6,
-            3,
-            5
+            1,
+            18,
+            9,
+            29,
+            13
           ]
         },
-        "register": 10
+        "register": 13
       },
       "enableBy": "register",
       "type": "plugin",
@@ -237,12 +240,10 @@
             0,
             0,
             0,
-            0,
-            0,
             0
           ]
         },
-        "register": 1
+        "register": 0
       },
       "enableBy": "register",
       "type": "plugin",
@@ -263,17 +264,11 @@
           ],
           "onPrepareBuildSuccess": [
             0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
             0
           ],
           "onCheckCode": [
             0,
+            1,
             0,
             0,
             0,
@@ -283,7 +278,33 @@
             0,
             0,
             0,
-            2,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
             0,
             0,
             0,
@@ -327,10 +348,19 @@
             1,
             0,
             0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
             0
           ]
         },
-        "register": 0
+        "register": 1
       },
       "enableBy": "register",
       "type": "plugin",
@@ -347,7 +377,7 @@
             0
           ]
         },
-        "register": 1
+        "register": 0
       },
       "enableBy": "register",
       "type": "plugin",
@@ -1246,7 +1276,7 @@
             0
           ]
         },
-        "register": 0
+        "register": 1
       },
       "enableBy": "register",
       "type": "plugin",
@@ -1263,7 +1293,7 @@
             3
           ]
         },
-        "register": 1
+        "register": 0
       },
       "enableBy": "register",
       "type": "plugin",
@@ -1276,7 +1306,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 40
+        "register": 41
       },
       "enableBy": "register",
       "type": "plugin",
@@ -1302,7 +1332,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 11
+        "register": 12
       },
       "enableBy": "config",
       "type": "plugin",
@@ -1320,14 +1350,6 @@
           ],
           "addBeforeMiddlewares": [
             0
-          ],
-          "modifyHTMLFavicon": [
-            0,
-            0,
-            0,
-            0,
-            0,
-            0
           ]
         },
         "register": 0
@@ -1344,8 +1366,6 @@
       "time": {
         "hooks": {
           "onGenerateFiles": [
-            1,
-            0,
             0,
             1,
             1,
@@ -1357,12 +1377,10 @@
             0,
             0,
             0,
-            0,
-            0,
             0
           ]
         },
-        "register": 1
+        "register": 0
       },
       "enableBy": "register",
       "type": "plugin",
@@ -1389,13 +1407,13 @@
       "time": {
         "hooks": {
           "onStart": [
-            1
+            0
           ],
           "addBeforeMiddlewares": [
             1
           ]
         },
-        "register": 17
+        "register": 16
       },
       "type": "plugin",
       "path": "/Users/ningshuo/code/my-projects/equipment-system/node_modules/.pnpm/@umijs+preset-umi@4.5.3_@types+node@20.19.25_@types+react@18.3.26_@types+webpack@5.28.5_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/features/mock/mock.js",
@@ -1437,15 +1455,9 @@
             0,
             0,
             0,
-            0,
-            0,
             0
           ],
           "addEntryImports": [
-            0,
-            0,
-            0,
-            0,
             0,
             0,
             0,
@@ -1488,19 +1500,13 @@
             0
           ],
           "onGenerateFiles": [
-            32,
-            14,
-            7,
+            30,
             22,
-            6,
-            6,
-            9
+            14,
+            25,
+            26
           ],
           "addPolyfillImports": [
-            0,
-            0,
-            0,
-            0,
             0,
             0,
             0,
@@ -1535,10 +1541,6 @@
             0,
             0,
             0,
-            0,
-            0,
-            0,
-            0,
             0
           ]
         },
@@ -1557,8 +1559,6 @@
         "hooks": {
           "onGenerateFiles": [
             40,
-            0,
-            0,
             0,
             0,
             0,
@@ -1609,15 +1609,13 @@
             0,
             0,
             0,
-            0,
-            0,
             0
           ],
           "addBeforeMiddlewares": [
             0
           ]
         },
-        "register": 1
+        "register": 0
       },
       "enableBy": "register",
       "type": "plugin",
@@ -1631,23 +1629,19 @@
       "time": {
         "hooks": {
           "onGenerateFiles": [
-            4,
+            5,
             1,
             5,
             1,
-            2,
+            3,
             1,
-            5,
+            8,
             0,
             4,
-            0,
-            2,
-            1,
-            5,
-            1
+            0
           ]
         },
-        "register": 1
+        "register": 2
       },
       "enableBy": "register",
       "type": "plugin",
@@ -1699,13 +1693,11 @@
       "time": {
         "hooks": {
           "onGenerateFiles": [
-            184,
+            201,
+            9,
             6,
             4,
-            4,
-            3,
-            2,
-            6
+            7
           ]
         },
         "register": 1
@@ -1722,7 +1714,7 @@
       "time": {
         "hooks": {
           "addBeforeBabelPresets": [
-            1
+            0
           ]
         },
         "register": 1
@@ -1751,7 +1743,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 1
+        "register": 0
       },
       "enableBy": "config",
       "type": "plugin",
@@ -1764,7 +1756,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 1
+        "register": 2
       },
       "type": "plugin",
       "path": "/Users/ningshuo/code/my-projects/equipment-system/node_modules/.pnpm/@umijs+preset-umi@4.5.3_@types+node@20.19.25_@types+react@18.3.26_@types+webpack@5.28.5_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/features/apiRoute/apiRoute.js",
@@ -1776,7 +1768,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 10
+        "register": 13
       },
       "enableBy": "config",
       "type": "plugin",
@@ -1794,8 +1786,6 @@
             0,
             0,
             1,
-            1,
-            0,
             1
           ]
         },
@@ -1927,16 +1917,7 @@
     "./node_modules/.pnpm/@umijs+preset-umi@4.5.3_@types+node@20.19.25_@types+react@18.3.26_@types+webpack@5.28.5_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/features/routePreloadOnLoad/routePreloadOnLoad": {
       "config": {},
       "time": {
-        "hooks": {
-          "addHTMLHeadScripts": [
-            0,
-            0,
-            0,
-            0,
-            0,
-            0
-          ]
-        },
+        "hooks": {},
         "register": 13
       },
       "type": "plugin",
@@ -1963,7 +1944,7 @@
       "time": {
         "hooks": {
           "modifyUniBundler": [
-            223
+            230
           ]
         },
         "register": 1
@@ -2006,10 +1987,10 @@
       "time": {
         "hooks": {
           "modifyAppData": [
-            5
+            11
           ]
         },
-        "register": 14
+        "register": 15
       },
       "type": "plugin",
       "path": "/Users/ningshuo/code/my-projects/equipment-system/node_modules/.pnpm/@umijs+preset-umi@4.5.3_@types+node@20.19.25_@types+react@18.3.26_@types+webpack@5.28.5_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/commands/dev/dev.js",
@@ -2242,7 +2223,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 0
+        "register": 1
       },
       "enableBy": "register",
       "type": "plugin",
@@ -2255,7 +2236,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 11
+        "register": 10
       },
       "enableBy": "register",
       "type": "plugin",
@@ -2320,7 +2301,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 92
+        "register": 93
       },
       "enableBy": "config",
       "type": "plugin",
@@ -2536,7 +2517,7 @@
       "parentId": "2",
       "id": "4",
       "absPath": "/dashboard",
-      "__content": "import { ThemeType } from '@/config/theme';\nimport { invoke } from '@/services/ipc';\nimport {\n  CheckCircleOutlined,\n  DatabaseOutlined,\n  ExclamationCircleOutlined,\n  LaptopOutlined,\n} from '@ant-design/icons';\nimport { Button, Card, Col, Modal, Row, Statistic, Table } from 'antd';\nimport { useEffect, useState } from 'react';\nimport styled from 'styled-components';\nimport BorrowTrendsChart from './components/BorrowTrendsChart';\nimport DeviceTypeChart from './components/DeviceTypeChart';\nimport DueSoonTimeline from './components/DueSoonTimeline';\n\nconst StatCard = styled(Card)<{ $theme: ThemeType }>`\n  border: none;\n  border-radius: 16px;\n  overflow: hidden;\n  transition: all 0.3s ease;\n  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);\n  cursor: pointer;\n\n  &:hover {\n    transform: translateY(-4px);\n    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);\n  }\n\n  .ant-card-body {\n    padding: 24px;\n    display: flex;\n    align-items: center;\n    gap: 20px;\n  }\n\n  .icon-wrapper {\n    width: 56px;\n    height: 56px;\n    border-radius: 14px;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    font-size: 28px;\n    color: #ffffff;\n    flex-shrink: 0;\n  }\n\n  .stat-content {\n    flex: 1;\n  }\n\n  .ant-statistic-title {\n    font-size: 14px;\n    font-weight: 500;\n    color: ${(props) => (props.$theme === 'light' ? '#6B7280' : '#A0AEC0')};\n    margin-bottom: 8px;\n  }\n\n  .ant-statistic-content {\n    font-size: 32px;\n    font-weight: 700;\n    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,\n      'Helvetica Neue', Arial, sans-serif;\n    color: ${(props) => (props.$theme === 'light' ? '#111827' : '#ffffff')};\n  }\n`;\n\nexport default function Dashboard() {\n  const [stats, setStats] = useState({\n    totalDevices: 0,\n    borrowedDevices: 0,\n    availableDevices: 0,\n    overdueDevices: 0,\n  });\n  const [overdue, setOverdue] = useState<any[]>([]);\n  const [dueSoon, setDueSoon] = useState<any[]>([]);\n  const [visible, setVisible] = useState(false);\n  const [theme, setTheme] = useState<'light' | 'dark'>(\n    (localStorage.getItem('theme') as 'light' | 'dark') || 'light',\n  );\n\n  useEffect(() => {\n    load();\n    loadReminders();\n  }, []);\n\n  const load = async () => {\n    const data = await invoke('stats:dashboard');\n    setStats(data);\n  };\n\n  const loadReminders = async () => {\n    const data = await invoke('borrow:listOverdue');\n    setOverdue(data?.overdue || []);\n    setDueSoon(data?.dueSoon || []);\n    setVisible(true);\n  };\n\n  const columns = [\n    { title: '设备编号', dataIndex: 'device_code' },\n    { title: '设备名称', dataIndex: 'device_name' },\n    { title: '借用人', dataIndex: 'borrower_name' },\n    { title: '联系方式', dataIndex: 'borrower_phone' },\n    { title: '剩余天数', dataIndex: 'remaining_days' },\n    {\n      title: '通知状态',\n      dataIndex: 'notified',\n      render: (_: any, r: any) => (\n        <Button\n          type={r.notified ? 'default' : 'primary'}\n          onClick={async () => {\n            if (!r.notified) {\n              await invoke('notify:mark', r.id);\n              loadReminders();\n            }\n          }}\n        >\n          {r.notified ? '已通知' : '未通知'}\n        </Button>\n      ),\n    },\n  ];\n\n  return (\n    <div style={{ padding: 24 }}>\n      <Row gutter={[20, 20]}>\n        <Col span={6}>\n          <StatCard $theme={theme}>\n            <div\n              className=\"icon-wrapper\"\n              style={{\n                background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',\n              }}\n            >\n              <DatabaseOutlined />\n            </div>\n            <div className=\"stat-content\">\n              <Statistic title=\"设备总数\" value={stats.totalDevices} />\n            </div>\n          </StatCard>\n        </Col>\n        <Col span={6}>\n          <StatCard $theme={theme}>\n            <div\n              className=\"icon-wrapper\"\n              style={{\n                background: 'linear-gradient(135deg, #3b82f6 0%, #2563eb 100%)',\n              }}\n            >\n              <LaptopOutlined />\n            </div>\n            <div className=\"stat-content\">\n              <Statistic title=\"在借设备\" value={stats.borrowedDevices} />\n            </div>\n          </StatCard>\n        </Col>\n        <Col span={6}>\n          <StatCard $theme={theme}>\n            <div\n              className=\"icon-wrapper\"\n              style={{\n                background: 'linear-gradient(135deg, #10b981 0%, #059669 100%)',\n              }}\n            >\n              <CheckCircleOutlined />\n            </div>\n            <div className=\"stat-content\">\n              <Statistic title=\"可借设备\" value={stats.availableDevices} />\n            </div>\n          </StatCard>\n        </Col>\n        <Col span={6}>\n          <StatCard $theme={theme}>\n            <div\n              className=\"icon-wrapper\"\n              style={{\n                background: 'linear-gradient(135deg, #ef4444 0%, #dc2626 100%)',\n              }}\n            >\n              <ExclamationCircleOutlined />\n            </div>\n            <div className=\"stat-content\">\n              <Statistic\n                title=\"逾期设备\"\n                value={stats.overdueDevices}\n                valueStyle={{ color: '#EF4444', fontWeight: 700 }}\n              />\n            </div>\n          </StatCard>\n        </Col>\n      </Row>\n\n      <Row gutter={[20, 20]} style={{ marginTop: 20 }}>\n        <Col span={12}>\n          <DeviceTypeChart theme={theme} />\n        </Col>\n        <Col span={12}>\n          <BorrowTrendsChart theme={theme} />\n        </Col>\n      </Row>\n\n      <Row gutter={[20, 20]} style={{ marginTop: 20 }}>\n        <Col span={24}>\n          <DueSoonTimeline theme={theme} />\n        </Col>\n      </Row>\n\n      <Modal\n        title=\"设备归还提醒\"\n        open={visible}\n        onCancel={() => setVisible(false)}\n        footer={null}\n        width={900}\n      >\n        <h3>逾期设备</h3>\n        <Table\n          columns={columns}\n          dataSource={overdue}\n          rowKey=\"id\"\n          pagination={false}\n        />\n        <h3 style={{ marginTop: 16 }}>临期设备（≤5天）</h3>\n        <Table\n          columns={columns}\n          dataSource={dueSoon}\n          rowKey=\"id\"\n          pagination={false}\n        />\n      </Modal>\n    </div>\n  );\n}\n",
+      "__content": "import { ThemeType } from '@/config/theme';\nimport { invoke } from '@/services/ipc';\nimport { eventBus } from '@/utils/eventBus';\nimport {\n  CheckCircleOutlined,\n  DatabaseOutlined,\n  ExclamationCircleOutlined,\n  LaptopOutlined,\n} from '@ant-design/icons';\nimport { Button, Card, Col, Modal, Row, Statistic, Table } from 'antd';\nimport { useEffect, useState } from 'react';\nimport styled from 'styled-components';\nimport BorrowTrendsChart from './components/BorrowTrendsChart';\nimport DeviceTypeChart from './components/DeviceTypeChart';\nimport DueSoonTimeline from './components/DueSoonTimeline';\n\nconst StatCard = styled(Card)<{ $theme: ThemeType }>`\n  border: none;\n  border-radius: 16px;\n  overflow: hidden;\n  transition: all 0.3s ease;\n  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);\n  cursor: pointer;\n\n  &:hover {\n    transform: translateY(-4px);\n    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);\n  }\n\n  .ant-card-body {\n    padding: 24px;\n    display: flex;\n    align-items: center;\n    gap: 20px;\n  }\n\n  .icon-wrapper {\n    width: 56px;\n    height: 56px;\n    border-radius: 14px;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    font-size: 28px;\n    color: #ffffff;\n    flex-shrink: 0;\n  }\n\n  .stat-content {\n    flex: 1;\n  }\n\n  .ant-statistic-title {\n    font-size: 14px;\n    font-weight: 500;\n    color: ${(props) => (props.$theme === 'light' ? '#6B7280' : '#A0AEC0')};\n    margin-bottom: 8px;\n  }\n\n  .ant-statistic-content {\n    font-size: 32px;\n    font-weight: 700;\n    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,\n      'Helvetica Neue', Arial, sans-serif;\n    color: ${(props) => (props.$theme === 'light' ? '#111827' : '#ffffff')};\n  }\n`;\n\nexport default function Dashboard() {\n  const [stats, setStats] = useState({\n    totalDevices: 0,\n    borrowedDevices: 0,\n    availableDevices: 0,\n    overdueDevices: 0,\n  });\n  const [overdue, setOverdue] = useState<any[]>([]);\n  const [dueSoon, setDueSoon] = useState<any[]>([]);\n  const [visible, setVisible] = useState(false);\n  const [theme, setTheme] = useState<'light' | 'dark'>(\n    (localStorage.getItem('theme') as 'light' | 'dark') || 'light',\n  );\n\n  useEffect(() => {\n    load();\n    loadReminders();\n  }, []);\n\n  const load = async () => {\n    const data = await invoke('stats:dashboard');\n    setStats(data);\n    eventBus.emit('dashboard:updated', data);\n  };\n\n  const loadReminders = async () => {\n    const data = await invoke('borrow:listOverdue');\n    setOverdue(data?.overdue || []);\n    setDueSoon(data?.dueSoon || []);\n    setVisible(true);\n    eventBus.emit('reminders:loaded', data);\n  };\n\n  const columns = [\n    { title: '设备编号', dataIndex: 'device_code' },\n    { title: '设备名称', dataIndex: 'device_name' },\n    { title: '借用人', dataIndex: 'borrower_name' },\n    { title: '联系方式', dataIndex: 'borrower_phone' },\n    { title: '剩余天数', dataIndex: 'remaining_days' },\n    {\n      title: '通知状态',\n      dataIndex: 'notified',\n      render: (_: any, r: any) => (\n        <Button\n          type={r.notified ? 'default' : 'primary'}\n          onClick={async () => {\n            if (!r.notified) {\n              await invoke('notify:mark', r.id);\n              loadReminders();\n            }\n          }}\n        >\n          {r.notified ? '已通知' : '未通知'}\n        </Button>\n      ),\n    },\n  ];\n\n  return (\n    <div style={{ padding: 24 }}>\n      <Row gutter={[20, 20]}>\n        <Col span={6}>\n          <StatCard $theme={theme}>\n            <div\n              className=\"icon-wrapper\"\n              style={{\n                background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',\n              }}\n            >\n              <DatabaseOutlined />\n            </div>\n            <div className=\"stat-content\">\n              <Statistic title=\"设备总数\" value={stats.totalDevices} />\n            </div>\n          </StatCard>\n        </Col>\n        <Col span={6}>\n          <StatCard $theme={theme}>\n            <div\n              className=\"icon-wrapper\"\n              style={{\n                background: 'linear-gradient(135deg, #3b82f6 0%, #2563eb 100%)',\n              }}\n            >\n              <LaptopOutlined />\n            </div>\n            <div className=\"stat-content\">\n              <Statistic title=\"在借设备\" value={stats.borrowedDevices} />\n            </div>\n          </StatCard>\n        </Col>\n        <Col span={6}>\n          <StatCard $theme={theme}>\n            <div\n              className=\"icon-wrapper\"\n              style={{\n                background: 'linear-gradient(135deg, #10b981 0%, #059669 100%)',\n              }}\n            >\n              <CheckCircleOutlined />\n            </div>\n            <div className=\"stat-content\">\n              <Statistic title=\"可借设备\" value={stats.availableDevices} />\n            </div>\n          </StatCard>\n        </Col>\n        <Col span={6}>\n          <StatCard $theme={theme}>\n            <div\n              className=\"icon-wrapper\"\n              style={{\n                background: 'linear-gradient(135deg, #ef4444 0%, #dc2626 100%)',\n              }}\n            >\n              <ExclamationCircleOutlined />\n            </div>\n            <div className=\"stat-content\">\n              <Statistic\n                title=\"逾期设备\"\n                value={stats.overdueDevices}\n                valueStyle={{ color: '#EF4444', fontWeight: 700 }}\n              />\n            </div>\n          </StatCard>\n        </Col>\n      </Row>\n\n      <Row gutter={[20, 20]} style={{ marginTop: 20 }}>\n        <Col span={12}>\n          <DeviceTypeChart theme={theme} />\n        </Col>\n        <Col span={12}>\n          <BorrowTrendsChart theme={theme} />\n        </Col>\n      </Row>\n\n      <Row gutter={[20, 20]} style={{ marginTop: 20 }}>\n        <Col span={24}>\n          <DueSoonTimeline theme={theme} />\n        </Col>\n      </Row>\n\n      <Modal\n        title=\"设备归还提醒\"\n        open={visible}\n        onCancel={() => setVisible(false)}\n        footer={null}\n        width={900}\n      >\n        <h3>逾期设备</h3>\n        <Table\n          columns={columns}\n          dataSource={overdue}\n          rowKey=\"id\"\n          pagination={false}\n        />\n        <h3 style={{ marginTop: 16 }}>临期设备（≤5天）</h3>\n        <Table\n          columns={columns}\n          dataSource={dueSoon}\n          rowKey=\"id\"\n          pagination={false}\n        />\n      </Modal>\n    </div>\n  );\n}\n",
       "__isJSFile": true,
       "__absFile": "/Users/ningshuo/code/my-projects/equipment-system/src/pages/Dashboard/index.tsx"
     },
@@ -2546,7 +2527,7 @@
       "parentId": "2",
       "id": "5",
       "absPath": "/devices",
-      "__content": "import { invoke } from '@/services/ipc';\nimport {\n  DeleteOutlined,\n  EditOutlined,\n  PlusOutlined,\n  ReloadOutlined,\n  SearchOutlined,\n} from '@ant-design/icons';\nimport {\n  Button,\n  Form,\n  Input,\n  InputNumber,\n  message,\n  Modal,\n  Select,\n  Space,\n  Table,\n} from 'antd';\nimport { useEffect, useState } from 'react';\n\nexport default function Devices() {\n  const [devices, setDevices] = useState<any[]>([]);\n  const [loading, setLoading] = useState(false);\n  const [modalVisible, setModalVisible] = useState(false);\n  const [form] = Form.useForm();\n  const [filterForm] = Form.useForm();\n  const [filters, setFilters] = useState<any>({});\n\n  useEffect(() => {\n    loadDevices();\n  }, []);\n\n  const loadDevices = async (filters: any = {}) => {\n    setLoading(true);\n    try {\n      const data = await invoke<any[]>('device:list', filters);\n      setDevices(Array.isArray(data) ? data : []);\n    } catch (error) {\n      message.error('加载设备列表失败');\n    } finally {\n      setLoading(false);\n    }\n  };\n\n  const handleCreate = async (values: any) => {\n    try {\n      const res = await invoke('device:create', values);\n      if (res?.success) {\n        message.success('新增设备成功');\n        setModalVisible(false);\n        form.resetFields();\n        loadDevices(filters);\n      } else {\n        message.error(res?.message || '新增设备失败');\n      }\n    } catch (error) {\n      message.error('新增设备失败');\n    }\n  };\n\n  const handleDelete = async (id: number) => {\n    const result = await invoke('device:delete', id);\n    if (result.success) {\n      message.success('删除成功');\n      loadDevices(filters);\n    } else {\n      message.error(result.message);\n    }\n  };\n\n  const handleFilter = (values: any) => {\n    const newFilters = {\n      type: values.type,\n      status: values.status === '' ? undefined : values.status,\n      code: values.code,\n      brand: values.brand,\n    };\n    setFilters(newFilters);\n    loadDevices(newFilters);\n  };\n\n  const handleReset = () => {\n    filterForm.resetFields();\n    setFilters({});\n    loadDevices();\n  };\n\n  const columns = [\n    {\n      title: '设备编号',\n      dataIndex: 'code',\n      key: 'code',\n      width: 120,\n      ellipsis: true,\n    },\n    {\n      title: '设备类型',\n      dataIndex: 'type',\n      key: 'type',\n      width: 120,\n      ellipsis: true,\n    },\n    {\n      title: '设备厂商',\n      dataIndex: 'brand',\n      key: 'brand',\n      width: 150,\n      ellipsis: true,\n    },\n    {\n      title: '规格/型号',\n      dataIndex: 'model',\n      key: 'model',\n      width: 150,\n      ellipsis: true,\n    },\n    {\n      title: '单价',\n      dataIndex: 'price',\n      key: 'price',\n      width: 100,\n      ellipsis: true,\n      render: (text: any) => {\n        if (typeof text === 'number') {\n          return text.toLocaleString('zh-CN', {\n            minimumFractionDigits: 2,\n            maximumFractionDigits: 2,\n          });\n        }\n        return text;\n      },\n    },\n    {\n      title: '存放地点',\n      dataIndex: 'location',\n      key: 'location',\n      width: 150,\n      ellipsis: true,\n    },\n    {\n      title: '设备状态',\n      dataIndex: 'status',\n      key: 'status',\n      width: 100,\n      ellipsis: true,\n      render: (status: string) => {\n        const statusMap: any = {\n          available: '可用',\n          borrowed: '已借出',\n          maintenance: '维修中',\n          scrap: '已报废',\n        };\n        const displayStatus = statusMap[status] || status;\n\n        let statusColor = '#52c41a'; // 可用 - 绿色 (Ant Design 成功色)\n        if (status === 'borrowed') statusColor = '#6366F1'; // 已借出 - 紫色 (主题主色)\n        if (status === 'maintenance') statusColor = '#faad14'; // 维修中 - 黄色 (Ant Design 警告色)\n        if (status === 'scrap') statusColor = '#ff4d4f'; // 已报废 - 红色 (Ant Design 错误色)\n\n        return (\n          <span style={{ color: statusColor, fontWeight: 500 }}>\n            {displayStatus}\n          </span>\n        );\n      },\n    },\n    {\n      title: '操作',\n      key: 'action',\n      width: 120,\n      fixed: 'right' as const,\n      render: (_: any, record: any) => (\n        <Space size=\"middle\">\n          <Button type=\"link\" size=\"small\" icon={<EditOutlined />}>\n            编辑\n          </Button>\n          <Button\n            type=\"link\"\n            danger\n            size=\"small\"\n            icon={<DeleteOutlined />}\n            onClick={() => handleDelete(record.id)}\n          >\n            删除\n          </Button>\n        </Space>\n      ),\n    },\n  ];\n\n  const statusOptions = [\n    { label: '全部', value: '' },\n    { label: '可用', value: 'available' },\n    { label: '已借出', value: 'borrowed' },\n    { label: '维修中', value: 'maintenance' },\n    { label: '已报废', value: 'scrap' },\n  ];\n\n  // 设备类型选项，根据Figma原型添加\n  const typeOptions = [\n    { label: '柜式空调', value: '柜式空调' },\n    { label: '数字示波器', value: '数字示波器' },\n    { label: '笔记本电脑', value: '笔记本电脑' },\n    { label: '服务器', value: '服务器' },\n    { label: '打印机', value: '打印机' },\n  ];\n\n  return (\n    <div>\n      {/* 筛选卡片 */}\n      <div\n        style={{\n          backgroundColor: '#ffffff',\n          borderRadius: '16px',\n          padding: '24px',\n          marginBottom: '24px',\n          boxShadow: '0 2px 8px rgba(0, 0, 0, 0.08)',\n          border: '1px solid #e5e7eb',\n        }}\n      >\n        <Form\n          form={filterForm}\n          layout=\"inline\"\n          onFinish={handleFilter}\n          style={{\n            display: 'grid',\n            gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',\n            gap: '16px',\n            alignItems: 'end',\n          }}\n        >\n          <Form.Item name=\"code\" label=\"设备编号\">\n            <Input placeholder=\"请输入设备编号\" style={{ width: '100%' }} />\n          </Form.Item>\n\n          <Form.Item name=\"type\" label=\"设备类型\">\n            <Select\n              placeholder=\"请选择设备类型\"\n              style={{ width: '100%' }}\n              options={typeOptions}\n            />\n          </Form.Item>\n\n          <Form.Item name=\"brand\" label=\"设备厂商\">\n            <Input placeholder=\"请输入设备厂商\" style={{ width: '100%' }} />\n          </Form.Item>\n\n          <Form.Item name=\"status\" label=\"设备状态\">\n            <Select\n              placeholder=\"请选择设备状态\"\n              style={{ width: '100%' }}\n              options={statusOptions}\n            />\n          </Form.Item>\n\n          <div\n            style={{\n              display: 'flex',\n              gap: '12px',\n              alignItems: 'end',\n              marginTop: '24px',\n            }}\n          >\n            <Button\n              type=\"primary\"\n              htmlType=\"submit\"\n              icon={<SearchOutlined />}\n              style={{\n                borderRadius: '8px',\n                boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',\n                padding: '6px 16px',\n                fontSize: '14px',\n                fontWeight: 500,\n              }}\n            >\n              筛选\n            </Button>\n            <Button\n              onClick={handleReset}\n              icon={<ReloadOutlined />}\n              style={{\n                borderRadius: '8px',\n                padding: '6px 16px',\n                fontSize: '14px',\n              }}\n            >\n              重置\n            </Button>\n          </div>\n        </Form>\n      </div>\n\n      {/* 设备列表卡片 */}\n      <div\n        style={{\n          backgroundColor: '#ffffff',\n          borderRadius: '16px',\n          boxShadow: '0 2px 8px rgba(0, 0, 0, 0.08)',\n          border: '1px solid #e5e7eb',\n          overflow: 'hidden',\n        }}\n      >\n        {/* 列表头部 */}\n        <div\n          style={{\n            padding: '16px 24px',\n            backgroundColor: '#fafafa',\n            borderBottom: '1px solid #e5e7eb',\n            display: 'flex',\n            justifyContent: 'space-between',\n            alignItems: 'center',\n          }}\n        >\n          <h2\n            style={{\n              margin: 0,\n              fontSize: '18px',\n              fontWeight: 600,\n              color: '#1f2937',\n            }}\n          >\n            设备列表\n          </h2>\n          <Button\n            type=\"primary\"\n            onClick={() => setModalVisible(true)}\n            icon={<PlusOutlined />}\n            style={{\n              borderRadius: '8px',\n              boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',\n              padding: '6px 16px',\n              fontSize: '14px',\n              fontWeight: 500,\n            }}\n          >\n            新增设备\n          </Button>\n        </div>\n\n        {/* 表格 */}\n        <Table\n          columns={columns}\n          dataSource={devices}\n          loading={loading}\n          rowKey=\"id\"\n          pagination={{\n            pageSize: 10,\n            showSizeChanger: true,\n            showQuickJumper: true,\n            showTotal: (total) => `共 ${total} 条记录`,\n          }}\n          scroll={{ x: 1000 }}\n          style={{ margin: 0 }}\n          size=\"middle\"\n          className=\"device-table\"\n        />\n      </div>\n\n      {/* 新增设备模态框 */}\n      <Modal\n        title=\"新增设备\"\n        open={modalVisible}\n        onCancel={() => setModalVisible(false)}\n        onOk={() => form.submit()}\n        okText=\"确认\"\n        cancelText=\"取消\"\n        destroyOnClose\n        width={600}\n        style={{ borderRadius: '12px' }}\n        centered\n      >\n        <Form\n          form={form}\n          onFinish={handleCreate}\n          labelCol={{ span: 6 }}\n          wrapperCol={{ span: 18 }}\n          layout=\"horizontal\"\n          style={{ marginTop: 16 }}\n        >\n          <Form.Item\n            name=\"code\"\n            label=\"设备编号\"\n            rules={[{ required: true, message: '请输入设备编号' }]}\n          >\n            <Input placeholder=\"请输入设备编号\" />\n          </Form.Item>\n          <Form.Item\n            name=\"name\"\n            label=\"设备名称\"\n            rules={[{ required: true, message: '请输入设备名称' }]}\n          >\n            <Input placeholder=\"请输入设备名称\" />\n          </Form.Item>\n          <Form.Item\n            name=\"type\"\n            label=\"设备类型\"\n            rules={[{ required: true, message: '请输入设备类型' }]}\n          >\n            <Select\n              placeholder=\"请选择设备类型\"\n              style={{ width: '100%' }}\n              options={typeOptions}\n            />\n          </Form.Item>\n          <Form.Item\n            name=\"brand\"\n            label=\"设备厂商\"\n            rules={[{ required: true, message: '请输入设备厂商' }]}\n          >\n            <Input placeholder=\"请输入设备厂商\" />\n          </Form.Item>\n          <Form.Item\n            name=\"model\"\n            label=\"规格型号\"\n            rules={[{ required: true, message: '请输入规格型号' }]}\n          >\n            <Input placeholder=\"请输入规格型号\" />\n          </Form.Item>\n          <Form.Item\n            name=\"price\"\n            label=\"单价\"\n            rules={[{ required: true, message: '请输入单价' }]}\n          >\n            <InputNumber\n              placeholder=\"请输入单价\"\n              style={{ width: '100%' }}\n              min={0}\n              step={0.01}\n              formatter={(value) => `¥ ${value}`}\n              parser={(value) => (value?.replace(/¥\\s?/, '') || '') as any}\n            />\n          </Form.Item>\n          <Form.Item\n            name=\"location\"\n            label=\"存放地点\"\n            rules={[{ required: true, message: '请输入存放地点' }]}\n          >\n            <Input placeholder=\"请输入存放地点\" />\n          </Form.Item>\n          <Form.Item name=\"status\" label=\"设备状态\">\n            <Select\n              placeholder=\"请选择设备状态\"\n              style={{ width: '100%' }}\n              options={statusOptions.filter((opt) => opt.value !== '')}\n              defaultValue=\"available\"\n            />\n          </Form.Item>\n        </Form>\n      </Modal>\n    </div>\n  );\n}\n",
+      "__content": "import { invoke, invokeWithEvent } from '@/services/ipc';\nimport {\n  DeleteOutlined,\n  EditOutlined,\n  PlusOutlined,\n  ReloadOutlined,\n  SearchOutlined,\n} from '@ant-design/icons';\nimport {\n  Button,\n  Form,\n  Input,\n  InputNumber,\n  message,\n  Modal,\n  Select,\n  Space,\n  Table,\n} from 'antd';\nimport { useEffect, useState } from 'react';\n\nexport default function Devices() {\n  const [devices, setDevices] = useState<any[]>([]);\n  const [loading, setLoading] = useState(false);\n  const [modalVisible, setModalVisible] = useState(false);\n  const [form] = Form.useForm();\n  const [filterForm] = Form.useForm();\n  const [filters, setFilters] = useState<any>({});\n\n  useEffect(() => {\n    loadDevices();\n  }, []);\n\n  const loadDevices = async (filters: any = {}) => {\n    setLoading(true);\n    try {\n      const data = await invoke<any[]>('device:list', filters);\n      setDevices(Array.isArray(data) ? data : []);\n    } catch (error) {\n      message.error('加载设备列表失败');\n    } finally {\n      setLoading(false);\n    }\n  };\n\n  const handleCreate = async (values: any) => {\n    try {\n      const res = await invokeWithEvent('device:create', values);\n      if (res?.success) {\n        message.success('新增设备成功');\n        setModalVisible(false);\n        form.resetFields();\n        loadDevices(filters);\n      } else {\n        message.error(res?.message || '新增设备失败');\n      }\n    } catch (error) {\n      message.error('新增设备失败');\n    }\n  };\n\n  const handleDelete = async (id: number) => {\n    const result = await invokeWithEvent('device:delete', id);\n    if (result.success) {\n      message.success('删除成功');\n      loadDevices(filters);\n    } else {\n      message.error(result.message);\n    }\n  };\n\n  const handleFilter = (values: any) => {\n    const newFilters = {\n      type: values.type,\n      status: values.status === '' ? undefined : values.status,\n      code: values.code,\n      brand: values.brand,\n    };\n    setFilters(newFilters);\n    loadDevices(newFilters);\n  };\n\n  const handleReset = () => {\n    filterForm.resetFields();\n    setFilters({});\n    loadDevices();\n  };\n\n  const columns = [\n    {\n      title: '设备编号',\n      dataIndex: 'code',\n      key: 'code',\n      width: 120,\n      ellipsis: true,\n    },\n    {\n      title: '设备类型',\n      dataIndex: 'type',\n      key: 'type',\n      width: 120,\n      ellipsis: true,\n    },\n    {\n      title: '设备厂商',\n      dataIndex: 'brand',\n      key: 'brand',\n      width: 150,\n      ellipsis: true,\n    },\n    {\n      title: '规格/型号',\n      dataIndex: 'model',\n      key: 'model',\n      width: 150,\n      ellipsis: true,\n    },\n    {\n      title: '单价',\n      dataIndex: 'price',\n      key: 'price',\n      width: 100,\n      ellipsis: true,\n      render: (text: any) => {\n        if (typeof text === 'number') {\n          return text.toLocaleString('zh-CN', {\n            minimumFractionDigits: 2,\n            maximumFractionDigits: 2,\n          });\n        }\n        return text;\n      },\n    },\n    {\n      title: '存放地点',\n      dataIndex: 'location',\n      key: 'location',\n      width: 150,\n      ellipsis: true,\n    },\n    {\n      title: '设备状态',\n      dataIndex: 'status',\n      key: 'status',\n      width: 100,\n      ellipsis: true,\n      render: (status: string) => {\n        const statusMap: any = {\n          available: '可用',\n          borrowed: '已借出',\n          maintenance: '维修中',\n          scrap: '已报废',\n        };\n        const displayStatus = statusMap[status] || status;\n\n        let statusColor = '#52c41a'; // 可用 - 绿色 (Ant Design 成功色)\n        if (status === 'borrowed') statusColor = '#6366F1'; // 已借出 - 紫色 (主题主色)\n        if (status === 'maintenance') statusColor = '#faad14'; // 维修中 - 黄色 (Ant Design 警告色)\n        if (status === 'scrap') statusColor = '#ff4d4f'; // 已报废 - 红色 (Ant Design 错误色)\n\n        return (\n          <span style={{ color: statusColor, fontWeight: 500 }}>\n            {displayStatus}\n          </span>\n        );\n      },\n    },\n    {\n      title: '操作',\n      key: 'action',\n      width: 120,\n      fixed: 'right' as const,\n      render: (_: any, record: any) => (\n        <Space size=\"middle\">\n          <Button type=\"link\" size=\"small\" icon={<EditOutlined />}>\n            编辑\n          </Button>\n          <Button\n            type=\"link\"\n            danger\n            size=\"small\"\n            icon={<DeleteOutlined />}\n            onClick={() => handleDelete(record.id)}\n          >\n            删除\n          </Button>\n        </Space>\n      ),\n    },\n  ];\n\n  const statusOptions = [\n    { label: '全部', value: '' },\n    { label: '可用', value: 'available' },\n    { label: '已借出', value: 'borrowed' },\n    { label: '维修中', value: 'maintenance' },\n    { label: '已报废', value: 'scrap' },\n  ];\n\n  // 设备类型选项，根据Figma原型添加\n  const typeOptions = [\n    { label: '柜式空调', value: '柜式空调' },\n    { label: '数字示波器', value: '数字示波器' },\n    { label: '笔记本电脑', value: '笔记本电脑' },\n    { label: '服务器', value: '服务器' },\n    { label: '打印机', value: '打印机' },\n  ];\n\n  return (\n    <div>\n      {/* 筛选卡片 */}\n      <div\n        style={{\n          backgroundColor: '#ffffff',\n          borderRadius: '16px',\n          padding: '24px',\n          marginBottom: '24px',\n          boxShadow: '0 2px 8px rgba(0, 0, 0, 0.08)',\n          border: '1px solid #e5e7eb',\n        }}\n      >\n        <Form\n          form={filterForm}\n          layout=\"inline\"\n          onFinish={handleFilter}\n          style={{\n            display: 'grid',\n            gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',\n            gap: '16px',\n            alignItems: 'end',\n          }}\n        >\n          <Form.Item name=\"code\" label=\"设备编号\">\n            <Input placeholder=\"请输入设备编号\" style={{ width: '100%' }} />\n          </Form.Item>\n\n          <Form.Item name=\"type\" label=\"设备类型\">\n            <Select\n              placeholder=\"请选择设备类型\"\n              style={{ width: '100%' }}\n              options={typeOptions}\n            />\n          </Form.Item>\n\n          <Form.Item name=\"brand\" label=\"设备厂商\">\n            <Input placeholder=\"请输入设备厂商\" style={{ width: '100%' }} />\n          </Form.Item>\n\n          <Form.Item name=\"status\" label=\"设备状态\">\n            <Select\n              placeholder=\"请选择设备状态\"\n              style={{ width: '100%' }}\n              options={statusOptions}\n            />\n          </Form.Item>\n\n          <div\n            style={{\n              display: 'flex',\n              gap: '12px',\n              alignItems: 'end',\n              marginTop: '24px',\n            }}\n          >\n            <Button\n              type=\"primary\"\n              htmlType=\"submit\"\n              icon={<SearchOutlined />}\n              style={{\n                borderRadius: '8px',\n                boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',\n                padding: '6px 16px',\n                fontSize: '14px',\n                fontWeight: 500,\n              }}\n            >\n              筛选\n            </Button>\n            <Button\n              onClick={handleReset}\n              icon={<ReloadOutlined />}\n              style={{\n                borderRadius: '8px',\n                padding: '6px 16px',\n                fontSize: '14px',\n              }}\n            >\n              重置\n            </Button>\n          </div>\n        </Form>\n      </div>\n\n      {/* 设备列表卡片 */}\n      <div\n        style={{\n          backgroundColor: '#ffffff',\n          borderRadius: '16px',\n          boxShadow: '0 2px 8px rgba(0, 0, 0, 0.08)',\n          border: '1px solid #e5e7eb',\n          overflow: 'hidden',\n        }}\n      >\n        {/* 列表头部 */}\n        <div\n          style={{\n            padding: '16px 24px',\n            backgroundColor: '#fafafa',\n            borderBottom: '1px solid #e5e7eb',\n            display: 'flex',\n            justifyContent: 'space-between',\n            alignItems: 'center',\n          }}\n        >\n          <h2\n            style={{\n              margin: 0,\n              fontSize: '18px',\n              fontWeight: 600,\n              color: '#1f2937',\n            }}\n          >\n            设备列表\n          </h2>\n          <Button\n            type=\"primary\"\n            onClick={() => setModalVisible(true)}\n            icon={<PlusOutlined />}\n            style={{\n              borderRadius: '8px',\n              boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',\n              padding: '6px 16px',\n              fontSize: '14px',\n              fontWeight: 500,\n            }}\n          >\n            新增设备\n          </Button>\n        </div>\n\n        {/* 表格 */}\n        <Table\n          columns={columns}\n          dataSource={devices}\n          loading={loading}\n          rowKey=\"id\"\n          pagination={{\n            pageSize: 10,\n            showSizeChanger: true,\n            showQuickJumper: true,\n            showTotal: (total) => `共 ${total} 条记录`,\n          }}\n          scroll={{ x: 1000 }}\n          style={{ margin: 0 }}\n          size=\"middle\"\n          className=\"device-table\"\n        />\n      </div>\n\n      {/* 新增设备模态框 */}\n      <Modal\n        title=\"新增设备\"\n        open={modalVisible}\n        onCancel={() => setModalVisible(false)}\n        onOk={() => form.submit()}\n        okText=\"确认\"\n        cancelText=\"取消\"\n        destroyOnClose\n        width={600}\n        style={{ borderRadius: '12px' }}\n        centered\n      >\n        <Form\n          form={form}\n          onFinish={handleCreate}\n          labelCol={{ span: 6 }}\n          wrapperCol={{ span: 18 }}\n          layout=\"horizontal\"\n          style={{ marginTop: 16 }}\n        >\n          <Form.Item\n            name=\"code\"\n            label=\"设备编号\"\n            rules={[{ required: true, message: '请输入设备编号' }]}\n          >\n            <Input placeholder=\"请输入设备编号\" />\n          </Form.Item>\n          <Form.Item\n            name=\"name\"\n            label=\"设备名称\"\n            rules={[{ required: true, message: '请输入设备名称' }]}\n          >\n            <Input placeholder=\"请输入设备名称\" />\n          </Form.Item>\n          <Form.Item\n            name=\"type\"\n            label=\"设备类型\"\n            rules={[{ required: true, message: '请输入设备类型' }]}\n          >\n            <Select\n              placeholder=\"请选择设备类型\"\n              style={{ width: '100%' }}\n              options={typeOptions}\n            />\n          </Form.Item>\n          <Form.Item\n            name=\"brand\"\n            label=\"设备厂商\"\n            rules={[{ required: true, message: '请输入设备厂商' }]}\n          >\n            <Input placeholder=\"请输入设备厂商\" />\n          </Form.Item>\n          <Form.Item\n            name=\"model\"\n            label=\"规格型号\"\n            rules={[{ required: true, message: '请输入规格型号' }]}\n          >\n            <Input placeholder=\"请输入规格型号\" />\n          </Form.Item>\n          <Form.Item\n            name=\"price\"\n            label=\"单价\"\n            rules={[{ required: true, message: '请输入单价' }]}\n          >\n            <InputNumber\n              placeholder=\"请输入单价\"\n              style={{ width: '100%' }}\n              min={0}\n              step={0.01}\n              formatter={(value) => `¥ ${value}`}\n              parser={(value) => (value?.replace(/¥\\s?/, '') || '') as any}\n            />\n          </Form.Item>\n          <Form.Item\n            name=\"location\"\n            label=\"存放地点\"\n            rules={[{ required: true, message: '请输入存放地点' }]}\n          >\n            <Input placeholder=\"请输入存放地点\" />\n          </Form.Item>\n          <Form.Item name=\"status\" label=\"设备状态\">\n            <Select\n              placeholder=\"请选择设备状态\"\n              style={{ width: '100%' }}\n              options={statusOptions.filter((opt) => opt.value !== '')}\n              defaultValue=\"available\"\n            />\n          </Form.Item>\n        </Form>\n      </Modal>\n    </div>\n  );\n}\n",
       "__isJSFile": true,
       "__absFile": "/Users/ningshuo/code/my-projects/equipment-system/src/pages/Devices/index.tsx"
     },
@@ -2556,7 +2537,7 @@
       "parentId": "2",
       "id": "6",
       "absPath": "/borrow",
-      "__content": "import { invoke } from '@/services/ipc';\nimport { ProColumns, ProTable } from '@ant-design/pro-components';\nimport { Button, DatePicker, Form, Input, message, Modal, Select } from 'antd';\nimport dayjs from 'dayjs';\nimport { useEffect, useRef, useState } from 'react';\n\nconst typeOptions = [\n  { label: '柜式空调', value: '柜式空调' },\n  { label: '数字示波器', value: '数字示波器' },\n  { label: '笔记本电脑', value: '笔记本电脑' },\n  { label: '服务器', value: '服务器' },\n  { label: '打印机', value: '打印机' },\n];\n\nexport default function Borrow() {\n  const actionRef = useRef<any>();\n  const [visible, setVisible] = useState(false);\n  const [availableDevices, setAvailableDevices] = useState<any[]>([]);\n  const [form] = Form.useForm();\n\n  useEffect(() => {\n    loadAvailableDevices();\n  }, []);\n\n  const loadAvailableDevices = async () => {\n    try {\n      const data = await invoke<any[]>('device:list', { status: 'available' });\n      setAvailableDevices(Array.isArray(data) ? data : []);\n    } catch (error) {\n      console.error('加载可用设备列表失败:', error);\n    }\n  };\n\n  const handleCreate = async (values: any) => {\n    const payload = {\n      device_id: Number(values.device_id),\n      borrower_name: values.borrower_name,\n      borrower_class: values.borrower_class,\n      borrower_student_id: values.borrower_student_id,\n      borrower_phone: values.borrower_phone,\n      borrow_time: dayjs(values.borrow_time).toISOString(),\n      return_deadline: dayjs(values.return_deadline).toISOString(),\n    };\n    const res = await invoke('borrow:create', payload);\n    if (res?.success) {\n      message.success('借出成功');\n      setVisible(false);\n      form.resetFields();\n      actionRef.current?.reload();\n    } else {\n      message.error(res?.message || '借出失败');\n    }\n  };\n\n  const handleReturn = async (id: number) => {\n    const res = await invoke('borrow:return', id);\n    if (res?.success) {\n      message.success('归还成功');\n      actionRef.current?.reload();\n    } else {\n      message.error(res?.message || '归还失败');\n    }\n  };\n\n  const fetchData = async (params: any) => {\n    try {\n      const { current, pageSize, ...restParams } = params;\n      const filters: any = {};\n\n      if (restParams.deviceCode) {\n        filters.deviceCode = restParams.deviceCode;\n      }\n      if (restParams.deviceName) {\n        filters.deviceName = restParams.deviceName;\n      }\n      if (restParams.borrowerName) {\n        filters.borrowerName = restParams.borrowerName;\n      }\n      if (restParams.borrowerClass) {\n        filters.borrowerClass = restParams.borrowerClass;\n      }\n      if (restParams.deviceType) {\n        filters.deviceType = restParams.deviceType;\n      }\n      if (\n        restParams.borrowTimeRange &&\n        Array.isArray(restParams.borrowTimeRange)\n      ) {\n        filters.borrowTimeStart = dayjs(\n          restParams.borrowTimeRange[0],\n        ).toISOString();\n        filters.borrowTimeEnd = dayjs(\n          restParams.borrowTimeRange[1],\n        ).toISOString();\n      }\n      if (\n        restParams.returnDeadlineRange &&\n        Array.isArray(restParams.returnDeadlineRange)\n      ) {\n        filters.returnDeadlineStart = dayjs(\n          restParams.returnDeadlineRange[0],\n        ).toISOString();\n        filters.returnDeadlineEnd = dayjs(\n          restParams.returnDeadlineRange[1],\n        ).toISOString();\n      }\n\n      const data = await invoke<any[]>('borrow:list', filters);\n      const list = Array.isArray(data) ? data : [];\n\n      return {\n        data: list,\n        success: true,\n        total: list.length,\n      };\n    } catch (error) {\n      return {\n        data: [],\n        success: false,\n        total: 0,\n      };\n    }\n  };\n\n  const fetchUniqueValues = async (field: string) => {\n    try {\n      const data = await invoke<any[]>('borrow:list');\n      const list = Array.isArray(data) ? data : [];\n      return [...new Set(list.map((item) => item[field]).filter(Boolean))].map(\n        (value) => ({ label: value, value }),\n      );\n    } catch {\n      return [];\n    }\n  };\n\n  const columns: ProColumns<any>[] = [\n    {\n      title: '设备编号',\n      dataIndex: 'device_code',\n      valueType: 'select',\n      request: async () => fetchUniqueValues('device_code'),\n      fieldProps: {\n        placeholder: '请选择设备编号',\n        showSearch: true,\n        filterOption: (input: string, option: any) =>\n          option.label.toLowerCase().includes(input.toLowerCase()),\n      },\n    },\n    {\n      title: '设备名称',\n      dataIndex: 'device_name',\n      hideInTable: true,\n      valueType: 'select',\n      request: async () => fetchUniqueValues('device_name'),\n      fieldProps: {\n        placeholder: '请选择设备名称',\n        showSearch: true,\n        filterOption: (input: string, option: any) =>\n          option.label.toLowerCase().includes(input.toLowerCase()),\n      },\n    },\n    {\n      title: '设备类型',\n      dataIndex: 'device_type',\n      valueType: 'select',\n      valueEnum: typeOptions.reduce((acc: any, item) => {\n        acc[item.value] = { text: item.label };\n        return acc;\n      }, {}),\n      fieldProps: {\n        placeholder: '请选择设备类型',\n      },\n    },\n    {\n      title: '借用人',\n      dataIndex: 'borrower_name',\n      valueType: 'select',\n      request: async () => fetchUniqueValues('borrower_name'),\n      fieldProps: {\n        placeholder: '请选择借用人',\n        showSearch: true,\n        filterOption: (input: string, option: any) =>\n          option.label.toLowerCase().includes(input.toLowerCase()),\n      },\n    },\n    {\n      title: '学号',\n      dataIndex: 'borrower_student_id',\n      width: 120,\n      request: async () => fetchUniqueValues('borrower_student_id'),\n      fieldProps: {\n        placeholder: '请选择学号',\n        showSearch: true,\n        filterOption: (input: string, option: any) =>\n          option.label.toLowerCase().includes(input.toLowerCase()),\n      },\n    },\n    {\n      title: '班级',\n      dataIndex: 'borrower_class',\n      valueType: 'select',\n      request: async () => fetchUniqueValues('borrower_class'),\n      fieldProps: {\n        placeholder: '请选择班级',\n        showSearch: true,\n        filterOption: (input: string, option: any) =>\n          option.label.toLowerCase().includes(input.toLowerCase()),\n      },\n    },\n    {\n      title: '联系方式',\n      dataIndex: 'borrower_phone',\n      width: 120,\n      hideInSearch: true,\n    },\n    {\n      title: '借出时间',\n      dataIndex: 'borrow_time',\n      valueType: 'dateRange',\n      fieldProps: {\n        placeholder: ['开始时间', '结束时间'],\n      },\n      render: (text: string) => dayjs(text).format('YYYY-MM-DD HH:mm'),\n    },\n    {\n      title: '应还时间',\n      dataIndex: 'return_deadline',\n      valueType: 'dateRange',\n      fieldProps: {\n        placeholder: ['开始时间', '结束时间'],\n      },\n      render: (text: string) => dayjs(text).format('YYYY-MM-DD HH:mm'),\n    },\n    {\n      title: '操作',\n      valueType: 'option',\n      width: 80,\n      fixed: 'right',\n      render: (_: any, r: any) => (\n        <Button type=\"link\" onClick={() => handleReturn(r.id)}>\n          归还\n        </Button>\n      ),\n    },\n  ];\n\n  return (\n    <div style={{ padding: 24 }}>\n      <ProTable<any>\n        columns={columns}\n        actionRef={actionRef}\n        request={fetchData}\n        rowKey=\"id\"\n        search={{\n          labelWidth: 120,\n        }}\n        pagination={{\n          pageSize: 10,\n          showSizeChanger: true,\n          showQuickJumper: true,\n          showTotal: (total) => `共 ${total} 条记录`,\n        }}\n        scroll={{ x: 1300 }}\n        dateFormatter=\"string\"\n        headerTitle=\"借出记录\"\n        toolBarRender={() => [\n          <Button\n            type=\"primary\"\n            key=\"create\"\n            onClick={() => {\n              loadAvailableDevices();\n              setVisible(true);\n            }}\n          >\n            新增借出\n          </Button>,\n        ]}\n      />\n      <Modal\n        title=\"借出设备\"\n        open={visible}\n        onCancel={() => setVisible(false)}\n        onOk={() => form.submit()}\n      >\n        <Form\n          form={form}\n          onFinish={handleCreate}\n          labelCol={{ span: 6 }}\n          wrapperCol={{ span: 16 }}\n        >\n          <Form.Item name=\"device_id\" label=\"设备\" rules={[{ required: true }]}>\n            <Select\n              placeholder=\"请选择设备\"\n              showSearch\n              filterOption={(input, option) =>\n                (option?.label ?? '')\n                  .toLowerCase()\n                  .includes(input.toLowerCase())\n              }\n              options={availableDevices.map((device) => ({\n                label: `${device.code} - ${device.name}`,\n                value: device.id,\n              }))}\n            />\n          </Form.Item>\n          <Form.Item\n            name=\"borrower_name\"\n            label=\"借出人\"\n            rules={[{ required: true }]}\n          >\n            <Input />\n          </Form.Item>\n          <Form.Item\n            name=\"borrower_class\"\n            label=\"班级\"\n            rules={[{ required: true }]}\n          >\n            <Input />\n          </Form.Item>\n          <Form.Item\n            name=\"borrower_student_id\"\n            label=\"学号\"\n            rules={[{ required: true, len: 10 }]}\n          >\n            <Input />\n          </Form.Item>\n          <Form.Item\n            name=\"borrower_phone\"\n            label=\"联系方式\"\n            rules={[{ required: true, len: 11 }]}\n          >\n            <Input />\n          </Form.Item>\n          <Form.Item\n            name=\"borrow_time\"\n            label=\"借出时间\"\n            rules={[{ required: true }]}\n          >\n            <DatePicker showTime />\n          </Form.Item>\n          <Form.Item\n            name=\"return_deadline\"\n            label=\"应还时间\"\n            rules={[{ required: true }]}\n          >\n            <DatePicker showTime />\n          </Form.Item>\n        </Form>\n      </Modal>\n    </div>\n  );\n}\n",
+      "__content": "import { invoke, invokeWithEvent } from '@/services/ipc';\nimport { ProColumns, ProTable } from '@ant-design/pro-components';\nimport { Button, DatePicker, Form, Input, message, Modal, Select } from 'antd';\nimport dayjs from 'dayjs';\nimport { useEffect, useRef, useState } from 'react';\n\nconst typeOptions = [\n  { label: '柜式空调', value: '柜式空调' },\n  { label: '数字示波器', value: '数字示波器' },\n  { label: '笔记本电脑', value: '笔记本电脑' },\n  { label: '服务器', value: '服务器' },\n  { label: '打印机', value: '打印机' },\n];\n\nexport default function Borrow() {\n  const actionRef = useRef<any>();\n  const [visible, setVisible] = useState(false);\n  const [availableDevices, setAvailableDevices] = useState<any[]>([]);\n  const [form] = Form.useForm();\n\n  useEffect(() => {\n    loadAvailableDevices();\n  }, []);\n\n  const loadAvailableDevices = async () => {\n    try {\n      const data = await invoke<any[]>('device:list', { status: 'available' });\n      setAvailableDevices(Array.isArray(data) ? data : []);\n    } catch (error) {\n      console.error('加载可用设备列表失败:', error);\n    }\n  };\n\n  const handleCreate = async (values: any) => {\n    // 根据 device_code 查询设备 id\n    const device = availableDevices.find((d) => d.code === values.device_code);\n    if (!device) {\n      messageX.error('设备不存在，请重新选择');\n      return;\n    }\n\n    const payload = {\n      device_id: device.id, // 使用 device_id 而不是 device_code\n      borrower_name: values.borrower_name,\n      borrower_class: values.borrower_class,\n      borrower_student_id: values.borrower_student_id,\n      borrower_phone: values.borrower_phone,\n      borrow_time: dayjs(values.borrow_time).toISOString(),\n      return_deadline: dayjs(values.return_deadline).toISOString(),\n    };\n    const res = await invokeWithEvent('borrow:create', payload);\n    if (res?.success) {\n      message.success('借出成功');\n      setVisible(false);\n      form.resetFields();\n      actionRef.current?.reload();\n    } else {\n      message.error(res?.message || '借出失败');\n    }\n  };\n\n  const handleReturn = async (id: number) => {\n    const res = await invokeWithEvent('borrow:return', id);\n    if (res?.success) {\n      message.success('归还成功');\n      actionRef.current?.reload();\n    } else {\n      message.error(res?.message || '归还失败');\n    }\n  };\n\n  const fetchData = async (params: any) => {\n    try {\n      const { current, pageSize, ...restParams } = params;\n      const filters: any = {};\n\n      if (restParams.deviceCode) {\n        filters.deviceCode = restParams.deviceCode;\n      }\n      if (restParams.deviceName) {\n        filters.deviceName = restParams.deviceName;\n      }\n      if (restParams.borrowerName) {\n        filters.borrowerName = restParams.borrowerName;\n      }\n      if (restParams.borrowerClass) {\n        filters.borrowerClass = restParams.borrowerClass;\n      }\n      if (restParams.deviceType) {\n        filters.deviceType = restParams.deviceType;\n      }\n      if (\n        restParams.borrowTimeRange &&\n        Array.isArray(restParams.borrowTimeRange)\n      ) {\n        filters.borrowTimeStart = dayjs(\n          restParams.borrowTimeRange[0],\n        ).toISOString();\n        filters.borrowTimeEnd = dayjs(\n          restParams.borrowTimeRange[1],\n        ).toISOString();\n      }\n      if (\n        restParams.returnDeadlineRange &&\n        Array.isArray(restParams.returnDeadlineRange)\n      ) {\n        filters.returnDeadlineStart = dayjs(\n          restParams.returnDeadlineRange[0],\n        ).toISOString();\n        filters.returnDeadlineEnd = dayjs(\n          restParams.returnDeadlineRange[1],\n        ).toISOString();\n      }\n\n      const data = await invoke<any[]>('borrow:list', filters);\n      const list = Array.isArray(data) ? data : [];\n\n      return {\n        data: list,\n        success: true,\n        total: list.length,\n      };\n    } catch (error) {\n      return {\n        data: [],\n        success: false,\n        total: 0,\n      };\n    }\n  };\n\n  const fetchUniqueValues = async (field: string) => {\n    try {\n      const data = await invoke<any[]>('borrow:list');\n      const list = Array.isArray(data) ? data : [];\n      return [...new Set(list.map((item) => item[field]).filter(Boolean))].map(\n        (value) => ({ label: value, value }),\n      );\n    } catch {\n      return [];\n    }\n  };\n\n  const columns: ProColumns<any>[] = [\n    {\n      title: '设备编号',\n      dataIndex: 'device_code',\n      valueType: 'select',\n      request: async () => fetchUniqueValues('device_code'),\n      fieldProps: {\n        placeholder: '请选择设备编号',\n        showSearch: true,\n        filterOption: (input: string, option: any) =>\n          option.label.toLowerCase().includes(input.toLowerCase()),\n      },\n    },\n    {\n      title: '设备名称',\n      dataIndex: 'device_name',\n      hideInTable: true,\n      valueType: 'select',\n      request: async () => fetchUniqueValues('device_name'),\n      fieldProps: {\n        placeholder: '请选择设备名称',\n        showSearch: true,\n        filterOption: (input: string, option: any) =>\n          option.label.toLowerCase().includes(input.toLowerCase()),\n      },\n    },\n    {\n      title: '设备类型',\n      dataIndex: 'device_type',\n      valueType: 'select',\n      valueEnum: typeOptions.reduce((acc: any, item) => {\n        acc[item.value] = { text: item.label };\n        return acc;\n      }, {}),\n      fieldProps: {\n        placeholder: '请选择设备类型',\n      },\n    },\n    {\n      title: '借用人',\n      dataIndex: 'borrower_name',\n      valueType: 'select',\n      request: async () => fetchUniqueValues('borrower_name'),\n      fieldProps: {\n        placeholder: '请选择借用人',\n        showSearch: true,\n        filterOption: (input: string, option: any) =>\n          option.label.toLowerCase().includes(input.toLowerCase()),\n      },\n    },\n    {\n      title: '学号',\n      dataIndex: 'borrower_student_id',\n      width: 120,\n      request: async () => fetchUniqueValues('borrower_student_id'),\n      fieldProps: {\n        placeholder: '请选择学号',\n        showSearch: true,\n        filterOption: (input: string, option: any) =>\n          option.label.toLowerCase().includes(input.toLowerCase()),\n      },\n    },\n    {\n      title: '班级',\n      dataIndex: 'borrower_class',\n      valueType: 'select',\n      request: async () => fetchUniqueValues('borrower_class'),\n      fieldProps: {\n        placeholder: '请选择班级',\n        showSearch: true,\n        filterOption: (input: string, option: any) =>\n          option.label.toLowerCase().includes(input.toLowerCase()),\n      },\n    },\n    {\n      title: '联系方式',\n      dataIndex: 'borrower_phone',\n      width: 120,\n      hideInSearch: true,\n    },\n    {\n      title: '借出时间',\n      dataIndex: 'borrow_time',\n      valueType: 'dateRange',\n      fieldProps: {\n        placeholder: ['开始时间', '结束时间'],\n      },\n      render: (text: string) => dayjs(text).format('YYYY-MM-DD HH:mm'),\n    },\n    {\n      title: '应还时间',\n      dataIndex: 'return_deadline',\n      valueType: 'dateRange',\n      fieldProps: {\n        placeholder: ['开始时间', '结束时间'],\n      },\n      render: (text: string) => dayjs(text).format('YYYY-MM-DD HH:mm'),\n    },\n    {\n      title: '操作',\n      valueType: 'option',\n      width: 80,\n      fixed: 'right',\n      render: (_: any, r: any) => (\n        <Button type=\"link\" onClick={() => handleReturn(r.id)}>\n          归还\n        </Button>\n      ),\n    },\n  ];\n\n  return (\n    <div style={{ padding: 24 }}>\n      <ProTable<any>\n        columns={columns}\n        actionRef={actionRef}\n        request={fetchData}\n        rowKey=\"id\"\n        search={{\n          labelWidth: 120,\n        }}\n        pagination={{\n          pageSize: 10,\n          showSizeChanger: true,\n          showQuickJumper: true,\n          showTotal: (total) => `共 ${total} 条记录`,\n        }}\n        scroll={{ x: 1300 }}\n        dateFormatter=\"string\"\n        headerTitle=\"借出记录\"\n        toolBarRender={() => [\n          <Button\n            type=\"primary\"\n            key=\"create\"\n            onClick={() => {\n              loadAvailableDevices();\n              setVisible(true);\n            }}\n          >\n            新增借出\n          </Button>,\n        ]}\n      />\n      <Modal\n        title=\"借出设备\"\n        open={visible}\n        onCancel={() => setVisible(false)}\n        onOk={() => form.submit()}\n      >\n        <Form\n          form={form}\n          onFinish={handleCreate}\n          labelCol={{ span: 6 }}\n          wrapperCol={{ span: 16 }}\n        >\n          <Form.Item name=\"device_code\" label=\"设备编号\" rules={[{ required: true }]}>\n            <Select\n              placeholder=\"请选择设备编号\"\n              showSearch\n              filterOption={(input, option) =>\n                (option?.label ?? '')\n                  .toLowerCase()\n                  .includes(input.toLowerCase())\n              }\n              options={availableDevices.map((device) => ({\n                label: device.code,\n                value: device.code,\n              }))}\n            />\n          </Form.Item>\n          <Form.Item name=\"device_name\" label=\"设备名称\" rules={[{ required: true }]}>\n            <Select\n              placeholder=\"请选择设备名称\"\n              showSearch\n              filterOption={(input, option) =>\n                (option?.label ?? '')\n                  .toLowerCase()\n                  .includes(input.toLowerCase())\n              }\n              options={availableDevices.map((device) => ({\n                label: device.name,\n                value: device.name,\n              }))}\n            />\n          </Form.Item>\n          <Form.Item\n            name=\"borrower_name\"\n            label=\"借出人\"\n            rules={[{ required: true }]}\n          >\n            <Input />\n          </Form.Item>\n          <Form.Item\n            name=\"borrower_class\"\n            label=\"班级\"\n            rules={[{ required: true }]}\n          >\n            <Input />\n          </Form.Item>\n          <Form.Item\n            name=\"borrower_student_id\"\n            label=\"学号\"\n            rules={[{ required: true, len: 10 }]}\n          >\n            <Input />\n          </Form.Item>\n          <Form.Item\n            name=\"borrower_phone\"\n            label=\"联系方式\"\n            rules={[{ required: true, len: 11 }]}\n          >\n            <Input />\n          </Form.Item>\n          <Form.Item\n            name=\"borrow_time\"\n            label=\"借出时间\"\n            rules={[{ required: true }]}\n          >\n            <DatePicker showTime />\n          </Form.Item>\n          <Form.Item\n            name=\"return_deadline\"\n            label=\"应还时间\"\n            rules={[{ required: true }]}\n          >\n            <DatePicker showTime />\n          </Form.Item>\n        </Form>\n      </Modal>\n    </div>\n  );\n}\n",
       "__isJSFile": true,
       "__absFile": "/Users/ningshuo/code/my-projects/equipment-system/src/pages/Borrow/index.tsx"
     },
@@ -2601,9 +2582,7 @@
     ]
   },
   "mfsuBundleStatus": {
-    "done": true,
-    "percent": 1,
-    "status": ""
+    "done": true
   },
   "react": {
     "version": "18.3.1",
@@ -2632,11 +2611,10 @@
   },
   "framework": "react",
   "typescript": {
-    "tsVersion": "5.9.3",
-    "tslibVersion": "2.8.1"
+    "tsVersion": "5.9.3"
   },
   "faviconFiles": [],
-  "port": 8000,
+  "port": 8001,
   "host": "0.0.0.0",
   "ip": "192.168.0.100",
   "prepare": {
@@ -4031,47 +4009,6 @@
             ],
             "format": "esm"
           },
-          "src/pages/Dashboard/components/BorrowTrendsChart.tsx": {
-            "bytes": 4750,
-            "imports": [
-              {
-                "path": "@/config/theme",
-                "kind": "import-statement",
-                "external": true
-              },
-              {
-                "path": "src/services/ipc.ts",
-                "kind": "import-statement",
-                "original": "@/services/ipc"
-              },
-              {
-                "path": "antd",
-                "kind": "import-statement",
-                "external": true
-              },
-              {
-                "path": "echarts-for-react",
-                "kind": "import-statement",
-                "external": true
-              },
-              {
-                "path": "react",
-                "kind": "import-statement",
-                "external": true
-              },
-              {
-                "path": "styled-components",
-                "kind": "import-statement",
-                "external": true
-              },
-              {
-                "path": "react/jsx-runtime",
-                "kind": "import-statement",
-                "external": true
-              }
-            ],
-            "format": "esm"
-          },
           "src/components/ChartError.tsx": {
             "bytes": 702,
             "imports": [
@@ -4098,6 +4035,67 @@
             "imports": [
               {
                 "path": "antd",
+                "kind": "import-statement",
+                "external": true
+              },
+              {
+                "path": "react/jsx-runtime",
+                "kind": "import-statement",
+                "external": true
+              }
+            ],
+            "format": "esm"
+          },
+          "src/pages/Dashboard/components/BorrowTrendsChart.tsx": {
+            "bytes": 6515,
+            "imports": [
+              {
+                "path": "src/components/ChartError.tsx",
+                "kind": "import-statement",
+                "original": "@/components/ChartError"
+              },
+              {
+                "path": "src/components/ChartSkeleton.tsx",
+                "kind": "import-statement",
+                "original": "@/components/ChartSkeleton"
+              },
+              {
+                "path": "@/config/theme",
+                "kind": "import-statement",
+                "external": true
+              },
+              {
+                "path": "src/services/ipc.ts",
+                "kind": "import-statement",
+                "original": "@/services/ipc"
+              },
+              {
+                "path": "src/utils/eventBus.ts",
+                "kind": "import-statement",
+                "original": "@/utils/eventBus"
+              },
+              {
+                "path": "antd",
+                "kind": "import-statement",
+                "external": true
+              },
+              {
+                "path": "echarts-for-react",
+                "kind": "import-statement",
+                "external": true
+              },
+              {
+                "path": "lodash",
+                "kind": "import-statement",
+                "external": true
+              },
+              {
+                "path": "react",
+                "kind": "import-statement",
+                "external": true
+              },
+              {
+                "path": "styled-components",
                 "kind": "import-statement",
                 "external": true
               },
@@ -4171,8 +4169,18 @@
             "format": "esm"
           },
           "src/pages/Dashboard/components/DueSoonTimeline.tsx": {
-            "bytes": 5490,
+            "bytes": 6395,
             "imports": [
+              {
+                "path": "src/components/ChartError.tsx",
+                "kind": "import-statement",
+                "original": "@/components/ChartError"
+              },
+              {
+                "path": "src/components/ChartSkeleton.tsx",
+                "kind": "import-statement",
+                "original": "@/components/ChartSkeleton"
+              },
               {
                 "path": "@/config/theme",
                 "kind": "import-statement",
@@ -4184,12 +4192,22 @@
                 "original": "@/services/ipc"
               },
               {
+                "path": "src/utils/eventBus.ts",
+                "kind": "import-statement",
+                "original": "@/utils/eventBus"
+              },
+              {
                 "path": "@ant-design/icons",
                 "kind": "import-statement",
                 "external": true
               },
               {
                 "path": "antd",
+                "kind": "import-statement",
+                "external": true
+              },
+              {
+                "path": "lodash",
                 "kind": "import-statement",
                 "external": true
               },
@@ -4212,7 +4230,7 @@
             "format": "esm"
           },
           "src/pages/Dashboard/index.tsx": {
-            "bytes": 6327,
+            "bytes": 6463,
             "imports": [
               {
                 "path": "@/config/theme",
@@ -4223,6 +4241,11 @@
                 "path": "src/services/ipc.ts",
                 "kind": "import-statement",
                 "original": "@/services/ipc"
+              },
+              {
+                "path": "src/utils/eventBus.ts",
+                "kind": "import-statement",
+                "original": "@/utils/eventBus"
               },
               {
                 "path": "@ant-design/icons",
@@ -4268,7 +4291,7 @@
             "format": "esm"
           },
           "src/pages/Devices/index.tsx": {
-            "bytes": 12314,
+            "bytes": 12349,
             "imports": [
               {
                 "path": "src/services/ipc.ts",
@@ -4299,7 +4322,7 @@
             "format": "esm"
           },
           "src/pages/Borrow/index.tsx": {
-            "bytes": 10167,
+            "bytes": 10202,
             "imports": [
               {
                 "path": "src/services/ipc.ts",
@@ -4588,31 +4611,6 @@
                 "external": true
               },
               {
-                "path": "antd",
-                "kind": "import-statement",
-                "external": true
-              },
-              {
-                "path": "echarts-for-react",
-                "kind": "import-statement",
-                "external": true
-              },
-              {
-                "path": "react",
-                "kind": "import-statement",
-                "external": true
-              },
-              {
-                "path": "styled-components",
-                "kind": "import-statement",
-                "external": true
-              },
-              {
-                "path": "react/jsx-runtime",
-                "kind": "import-statement",
-                "external": true
-              },
-              {
                 "path": "@ant-design/icons",
                 "kind": "import-statement",
                 "external": true
@@ -4668,12 +4666,47 @@
                 "external": true
               },
               {
+                "path": "antd",
+                "kind": "import-statement",
+                "external": true
+              },
+              {
+                "path": "echarts-for-react",
+                "kind": "import-statement",
+                "external": true
+              },
+              {
+                "path": "lodash",
+                "kind": "import-statement",
+                "external": true
+              },
+              {
+                "path": "react",
+                "kind": "import-statement",
+                "external": true
+              },
+              {
+                "path": "styled-components",
+                "kind": "import-statement",
+                "external": true
+              },
+              {
+                "path": "react/jsx-runtime",
+                "kind": "import-statement",
+                "external": true
+              },
+              {
                 "path": "@ant-design/icons",
                 "kind": "import-statement",
                 "external": true
               },
               {
                 "path": "antd",
+                "kind": "import-statement",
+                "external": true
+              },
+              {
+                "path": "lodash",
                 "kind": "import-statement",
                 "external": true
               },
@@ -5893,7 +5926,7 @@
                 "bytesInOutput": 326
               },
               "src/services/ipc.ts": {
-                "bytesInOutput": 464
+                "bytesInOutput": 950
               },
               "src/.umi/core/defineApp.ts": {
                 "bytesInOutput": 72
@@ -5934,29 +5967,29 @@
               "src/.umi/core/EmptyRoute.tsx": {
                 "bytesInOutput": 363
               },
-              "src/pages/Dashboard/components/BorrowTrendsChart.tsx": {
-                "bytesInOutput": 4976
-              },
               "src/components/ChartError.tsx": {
                 "bytesInOutput": 877
               },
               "src/components/ChartSkeleton.tsx": {
                 "bytesInOutput": 484
               },
+              "src/pages/Dashboard/components/BorrowTrendsChart.tsx": {
+                "bytesInOutput": 6817
+              },
               "src/pages/Dashboard/components/DeviceTypeChart.tsx": {
-                "bytesInOutput": 4726
+                "bytesInOutput": 4753
               },
               "src/pages/Dashboard/components/DueSoonTimeline.tsx": {
-                "bytesInOutput": 6212
+                "bytesInOutput": 7126
               },
               "src/pages/Dashboard/index.tsx": {
-                "bytesInOutput": 7556
+                "bytesInOutput": 7668
               },
               "src/pages/Devices/index.tsx": {
-                "bytesInOutput": 16214
+                "bytesInOutput": 16230
               },
               "src/pages/Borrow/index.tsx": {
-                "bytesInOutput": 11774
+                "bytesInOutput": 11790
               },
               "src/pages/Returned/index.tsx": {
                 "bytesInOutput": 1260
@@ -5974,7 +6007,7 @@
                 "bytesInOutput": 2045
               }
             },
-            "bytes": 124199
+            "bytes": 127611
           }
         }
       }
@@ -8627,7 +8660,7 @@
       ],
       "/Users/ningshuo/code/my-projects/equipment-system/src/pages/Borrow/index.tsx": [
         {
-          "end": 41,
+          "end": 58,
           "importKind": "value",
           "source": "@/services/ipc",
           "specifiers": [
@@ -8635,13 +8668,18 @@
               "imported": "invoke",
               "local": "invoke",
               "type": "ImportSpecifier"
+            },
+            {
+              "imported": "invokeWithEvent",
+              "local": "invokeWithEvent",
+              "type": "ImportSpecifier"
             }
           ],
           "start": 1,
           "type": "ImportDeclaration"
         },
         {
-          "end": 108,
+          "end": 125,
           "importKind": "value",
           "source": "@ant-design/pro-components",
           "specifiers": [
@@ -8656,11 +8694,11 @@
               "type": "ImportSpecifier"
             }
           ],
-          "start": 42,
+          "start": 59,
           "type": "ImportDeclaration"
         },
         {
-          "end": 188,
+          "end": 205,
           "importKind": "value",
           "source": "antd",
           "specifiers": [
@@ -8700,11 +8738,11 @@
               "type": "ImportSpecifier"
             }
           ],
-          "start": 109,
+          "start": 126,
           "type": "ImportDeclaration"
         },
         {
-          "end": 215,
+          "end": 232,
           "importKind": "value",
           "source": "dayjs",
           "specifiers": [
@@ -8713,11 +8751,11 @@
               "type": "ImportDefaultSpecifier"
             }
           ],
-          "start": 189,
+          "start": 206,
           "type": "ImportDeclaration"
         },
         {
-          "end": 268,
+          "end": 285,
           "importKind": "value",
           "source": "react",
           "specifiers": [
@@ -8737,13 +8775,39 @@
               "type": "ImportSpecifier"
             }
           ],
-          "start": 216,
+          "start": 233,
           "type": "ImportDeclaration"
         }
       ],
       "/Users/ningshuo/code/my-projects/equipment-system/src/pages/Dashboard/components/BorrowTrendsChart.tsx": [
         {
-          "end": 44,
+          "end": 50,
+          "importKind": "value",
+          "source": "@/components/ChartError",
+          "specifiers": [
+            {
+              "local": "ChartError",
+              "type": "ImportDefaultSpecifier"
+            }
+          ],
+          "start": 1,
+          "type": "ImportDeclaration"
+        },
+        {
+          "end": 106,
+          "importKind": "value",
+          "source": "@/components/ChartSkeleton",
+          "specifiers": [
+            {
+              "local": "ChartSkeleton",
+              "type": "ImportDefaultSpecifier"
+            }
+          ],
+          "start": 51,
+          "type": "ImportDeclaration"
+        },
+        {
+          "end": 150,
           "importKind": "value",
           "source": "@/config/theme",
           "specifiers": [
@@ -8753,11 +8817,11 @@
               "type": "ImportSpecifier"
             }
           ],
-          "start": 1,
+          "start": 107,
           "type": "ImportDeclaration"
         },
         {
-          "end": 85,
+          "end": 191,
           "importKind": "value",
           "source": "@/services/ipc",
           "specifiers": [
@@ -8767,11 +8831,25 @@
               "type": "ImportSpecifier"
             }
           ],
-          "start": 45,
+          "start": 151,
           "type": "ImportDeclaration"
         },
         {
-          "end": 127,
+          "end": 236,
+          "importKind": "value",
+          "source": "@/utils/eventBus",
+          "specifiers": [
+            {
+              "imported": "eventBus",
+              "local": "eventBus",
+              "type": "ImportSpecifier"
+            }
+          ],
+          "start": 192,
+          "type": "ImportDeclaration"
+        },
+        {
+          "end": 278,
           "importKind": "value",
           "source": "antd",
           "specifiers": [
@@ -8791,11 +8869,11 @@
               "type": "ImportSpecifier"
             }
           ],
-          "start": 86,
+          "start": 237,
           "type": "ImportDeclaration"
         },
         {
-          "end": 173,
+          "end": 324,
           "importKind": "value",
           "source": "echarts-for-react",
           "specifiers": [
@@ -8804,11 +8882,25 @@
               "type": "ImportDefaultSpecifier"
             }
           ],
-          "start": 128,
+          "start": 279,
           "type": "ImportDeclaration"
         },
         {
-          "end": 218,
+          "end": 359,
+          "importKind": "value",
+          "source": "lodash",
+          "specifiers": [
+            {
+              "imported": "debounce",
+              "local": "debounce",
+              "type": "ImportSpecifier"
+            }
+          ],
+          "start": 325,
+          "type": "ImportDeclaration"
+        },
+        {
+          "end": 413,
           "importKind": "value",
           "source": "react",
           "specifiers": [
@@ -8818,16 +8910,21 @@
               "type": "ImportSpecifier"
             },
             {
+              "imported": "useMemo",
+              "local": "useMemo",
+              "type": "ImportSpecifier"
+            },
+            {
               "imported": "useState",
               "local": "useState",
               "type": "ImportSpecifier"
             }
           ],
-          "start": 174,
+          "start": 360,
           "type": "ImportDeclaration"
         },
         {
-          "end": 258,
+          "end": 453,
           "importKind": "value",
           "source": "styled-components",
           "specifiers": [
@@ -8836,7 +8933,7 @@
               "type": "ImportDefaultSpecifier"
             }
           ],
-          "start": 219,
+          "start": 414,
           "type": "ImportDeclaration"
         }
       ],
@@ -8995,7 +9092,33 @@
       ],
       "/Users/ningshuo/code/my-projects/equipment-system/src/pages/Dashboard/components/DueSoonTimeline.tsx": [
         {
-          "end": 44,
+          "end": 50,
+          "importKind": "value",
+          "source": "@/components/ChartError",
+          "specifiers": [
+            {
+              "local": "ChartError",
+              "type": "ImportDefaultSpecifier"
+            }
+          ],
+          "start": 1,
+          "type": "ImportDeclaration"
+        },
+        {
+          "end": 106,
+          "importKind": "value",
+          "source": "@/components/ChartSkeleton",
+          "specifiers": [
+            {
+              "local": "ChartSkeleton",
+              "type": "ImportDefaultSpecifier"
+            }
+          ],
+          "start": 51,
+          "type": "ImportDeclaration"
+        },
+        {
+          "end": 150,
           "importKind": "value",
           "source": "@/config/theme",
           "specifiers": [
@@ -9005,11 +9128,11 @@
               "type": "ImportSpecifier"
             }
           ],
-          "start": 1,
+          "start": 107,
           "type": "ImportDeclaration"
         },
         {
-          "end": 85,
+          "end": 191,
           "importKind": "value",
           "source": "@/services/ipc",
           "specifiers": [
@@ -9019,11 +9142,25 @@
               "type": "ImportSpecifier"
             }
           ],
-          "start": 45,
+          "start": 151,
           "type": "ImportDeclaration"
         },
         {
-          "end": 157,
+          "end": 236,
+          "importKind": "value",
+          "source": "@/utils/eventBus",
+          "specifiers": [
+            {
+              "imported": "eventBus",
+              "local": "eventBus",
+              "type": "ImportSpecifier"
+            }
+          ],
+          "start": 192,
+          "type": "ImportDeclaration"
+        },
+        {
+          "end": 308,
           "importKind": "value",
           "source": "@ant-design/icons",
           "specifiers": [
@@ -9038,11 +9175,11 @@
               "type": "ImportSpecifier"
             }
           ],
-          "start": 86,
+          "start": 237,
           "type": "ImportDeclaration"
         },
         {
-          "end": 225,
+          "end": 376,
           "importKind": "value",
           "source": "antd",
           "specifiers": [
@@ -9082,11 +9219,25 @@
               "type": "ImportSpecifier"
             }
           ],
-          "start": 158,
+          "start": 309,
           "type": "ImportDeclaration"
         },
         {
-          "end": 270,
+          "end": 411,
+          "importKind": "value",
+          "source": "lodash",
+          "specifiers": [
+            {
+              "imported": "debounce",
+              "local": "debounce",
+              "type": "ImportSpecifier"
+            }
+          ],
+          "start": 377,
+          "type": "ImportDeclaration"
+        },
+        {
+          "end": 465,
           "importKind": "value",
           "source": "react",
           "specifiers": [
@@ -9096,16 +9247,21 @@
               "type": "ImportSpecifier"
             },
             {
+              "imported": "useMemo",
+              "local": "useMemo",
+              "type": "ImportSpecifier"
+            },
+            {
               "imported": "useState",
               "local": "useState",
               "type": "ImportSpecifier"
             }
           ],
-          "start": 226,
+          "start": 412,
           "type": "ImportDeclaration"
         },
         {
-          "end": 310,
+          "end": 505,
           "importKind": "value",
           "source": "styled-components",
           "specifiers": [
@@ -9114,7 +9270,7 @@
               "type": "ImportDefaultSpecifier"
             }
           ],
-          "start": 271,
+          "start": 466,
           "type": "ImportDeclaration"
         }
       ],
@@ -9148,7 +9304,21 @@
           "type": "ImportDeclaration"
         },
         {
-          "end": 212,
+          "end": 130,
+          "importKind": "value",
+          "source": "@/utils/eventBus",
+          "specifiers": [
+            {
+              "imported": "eventBus",
+              "local": "eventBus",
+              "type": "ImportSpecifier"
+            }
+          ],
+          "start": 86,
+          "type": "ImportDeclaration"
+        },
+        {
+          "end": 257,
           "importKind": "value",
           "source": "@ant-design/icons",
           "specifiers": [
@@ -9173,11 +9343,11 @@
               "type": "ImportSpecifier"
             }
           ],
-          "start": 86,
+          "start": 131,
           "type": "ImportDeclaration"
         },
         {
-          "end": 284,
+          "end": 329,
           "importKind": "value",
           "source": "antd",
           "specifiers": [
@@ -9217,11 +9387,11 @@
               "type": "ImportSpecifier"
             }
           ],
-          "start": 213,
+          "start": 258,
           "type": "ImportDeclaration"
         },
         {
-          "end": 329,
+          "end": 374,
           "importKind": "value",
           "source": "react",
           "specifiers": [
@@ -9236,11 +9406,11 @@
               "type": "ImportSpecifier"
             }
           ],
-          "start": 285,
+          "start": 330,
           "type": "ImportDeclaration"
         },
         {
-          "end": 369,
+          "end": 414,
           "importKind": "value",
           "source": "styled-components",
           "specifiers": [
@@ -9249,11 +9419,11 @@
               "type": "ImportDefaultSpecifier"
             }
           ],
-          "start": 330,
+          "start": 375,
           "type": "ImportDeclaration"
         },
         {
-          "end": 433,
+          "end": 478,
           "importKind": "value",
           "source": "./components/BorrowTrendsChart",
           "specifiers": [
@@ -9262,11 +9432,11 @@
               "type": "ImportDefaultSpecifier"
             }
           ],
-          "start": 370,
+          "start": 415,
           "type": "ImportDeclaration"
         },
         {
-          "end": 493,
+          "end": 538,
           "importKind": "value",
           "source": "./components/DeviceTypeChart",
           "specifiers": [
@@ -9275,11 +9445,11 @@
               "type": "ImportDefaultSpecifier"
             }
           ],
-          "start": 434,
+          "start": 479,
           "type": "ImportDeclaration"
         },
         {
-          "end": 553,
+          "end": 598,
           "importKind": "value",
           "source": "./components/DueSoonTimeline",
           "specifiers": [
@@ -9288,13 +9458,13 @@
               "type": "ImportDefaultSpecifier"
             }
           ],
-          "start": 494,
+          "start": 539,
           "type": "ImportDeclaration"
         }
       ],
       "/Users/ningshuo/code/my-projects/equipment-system/src/pages/Devices/index.tsx": [
         {
-          "end": 41,
+          "end": 58,
           "importKind": "value",
           "source": "@/services/ipc",
           "specifiers": [
@@ -9302,13 +9472,18 @@
               "imported": "invoke",
               "local": "invoke",
               "type": "ImportSpecifier"
+            },
+            {
+              "imported": "invokeWithEvent",
+              "local": "invokeWithEvent",
+              "type": "ImportSpecifier"
             }
           ],
           "start": 1,
           "type": "ImportDeclaration"
         },
         {
-          "end": 164,
+          "end": 181,
           "importKind": "value",
           "source": "@ant-design/icons",
           "specifiers": [
@@ -9338,11 +9513,11 @@
               "type": "ImportSpecifier"
             }
           ],
-          "start": 42,
+          "start": 59,
           "type": "ImportDeclaration"
         },
         {
-          "end": 278,
+          "end": 295,
           "importKind": "value",
           "source": "antd",
           "specifiers": [
@@ -9392,11 +9567,11 @@
               "type": "ImportSpecifier"
             }
           ],
-          "start": 165,
+          "start": 182,
           "type": "ImportDeclaration"
         },
         {
-          "end": 323,
+          "end": 340,
           "importKind": "value",
           "source": "react",
           "specifiers": [
@@ -9411,7 +9586,7 @@
               "type": "ImportSpecifier"
             }
           ],
-          "start": 279,
+          "start": 296,
           "type": "ImportDeclaration"
         }
       ],

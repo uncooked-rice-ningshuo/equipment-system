@@ -200,7 +200,7 @@ handleSecured('device:delete', async (event, id) => {
 handleSecured('borrow:create', async (event, record) => {
   const db = getDatabase();
   const {
-    device_id,
+    device_code,
     borrower_name,
     borrower_class,
     borrower_student_id,
@@ -209,21 +209,33 @@ handleSecured('borrow:create', async (event, record) => {
     return_deadline,
   } = record;
   try {
-    // 再次校验设备可借
-    const st = queryAll(db, 'SELECT status FROM devices WHERE id = ?', [
-      device_id,
-    ])[0]?.status;
-    if (st === 'borrowed') {
+    // 通过设备编号查询设备信息并校验是否可借
+    const device = queryAll(db, 'SELECT * FROM devices WHERE code = ?', [
+      device_code,
+    ])[0];
+
+    if (!device) {
+      return { success: false, message: '设备不存在' };
+    }
+
+    if (device.status === 'borrowed') {
       return { success: false, message: '该设备当前不可借，请选择其他设备' };
     }
 
+    // 插入借出记录，包含设备信息的快照
     runStmt(
       db,
       `INSERT INTO borrow_records 
-       (device_id, borrower_name, borrower_class, borrower_student_id, borrower_phone, borrow_time, return_deadline, notified)
-       VALUES (?, ?, ?, ?, ?, ?, ?, 0)`,
+       (device_id, device_code, device_name, device_type, device_brand, 
+        borrower_name, borrower_class, borrower_student_id, borrower_phone, 
+        borrow_time, return_deadline, notified)
+       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 0)`,
       [
-        device_id,
+        device.id,
+        device.code,
+        device.name,
+        device.type,
+        device.brand,
         borrower_name,
         borrower_class,
         borrower_student_id,
@@ -232,10 +244,13 @@ handleSecured('borrow:create', async (event, record) => {
         return_deadline,
       ],
     );
-    runStmt(db, 'UPDATE devices SET status = ? WHERE id = ?', [
+
+    // 更新设备状态为已借出
+    runStmt(db, 'UPDATE devices SET status = ? WHERE code = ?', [
       'borrowed',
-      device_id,
+      device_code,
     ]);
+
     saveDatabase();
     return { success: true };
   } catch (e) {
@@ -276,9 +291,13 @@ handleSecured('borrow:list', async (event, filters) => {
              FROM borrow_records br JOIN devices d ON d.id = br.device_id
              WHERE br.actual_return_time IS NULL`;
   const params = [];
-  if (filters?.device_code) {
+  if (filters?.deviceCode) {
     sql += ' AND d.code LIKE ?';
-    params.push(`%${filters.device_code}%`);
+    params.push(`%${filters.deviceCode}%`);
+  }
+  if (filters?.device_name) {
+    sql += ' AND d.name LIKE ?';
+    params.push(`%${filters.device_name}%`);
   }
   const rows = queryAll(db, sql, params);
   return rows;

@@ -32,8 +32,15 @@ export default function Borrow() {
   };
 
   const handleCreate = async (values: any) => {
+    // 根据 device_code 查询设备 id
+    const device = availableDevices.find((d) => d.code === values.device_code);
+    if (!device) {
+      messageX.error('设备不存在，请重新选择');
+      return;
+    }
+
     const payload = {
-      device_id: Number(values.device_id),
+      device_id: device.id, // 使用 device_id 而不是 device_code
       borrower_name: values.borrower_name,
       borrower_class: values.borrower_class,
       borrower_student_id: values.borrower_student_id,
@@ -289,9 +296,13 @@ export default function Borrow() {
           labelCol={{ span: 6 }}
           wrapperCol={{ span: 16 }}
         >
-          <Form.Item name="device_id" label="设备" rules={[{ required: true }]}>
+          <Form.Item
+            name="device_code"
+            label="设备编号"
+            rules={[{ required: true }]}
+          >
             <Select
-              placeholder="请选择设备"
+              placeholder="请选择设备编号"
               showSearch
               filterOption={(input, option) =>
                 (option?.label ?? '')
@@ -299,8 +310,27 @@ export default function Borrow() {
                   .includes(input.toLowerCase())
               }
               options={availableDevices.map((device) => ({
-                label: `${device.code} - ${device.name}`,
-                value: device.id,
+                label: device.code,
+                value: device.code,
+              }))}
+            />
+          </Form.Item>
+          <Form.Item
+            name="device_name"
+            label="设备名称"
+            rules={[{ required: true }]}
+          >
+            <Select
+              placeholder="请选择设备名称"
+              showSearch
+              filterOption={(input, option) =>
+                (option?.label ?? '')
+                  .toLowerCase()
+                  .includes(input.toLowerCase())
+              }
+              options={availableDevices.map((device) => ({
+                label: device.name,
+                value: device.name,
               }))}
             />
           </Form.Item>

@@ -49,6 +49,18 @@ function initDatabase() {
     try {
       fs.copyFileSync(dbPath, backupPath);
       console.log('Database backup created at:', backupPath);
+
+      // 检查是否需要重建数据库（通过检查是否有 updated_at 字段）
+      const testDb = new Database(backupPath, { verbose: null });
+      const columns = testDb.pragma('table_info(devices)');
+      const hasUpdatedAt = columns.some((col) => col.name === 'updated_at');
+      testDb.close();
+
+      if (!hasUpdatedAt) {
+        console.log('Database schema needs update, deleting old database...');
+        fs.unlinkSync(dbPath);
+        console.log('Old database deleted, will create with new schema');
+      }
     } catch (e) {
       console.error('Failed to create database backup:', e);
     }
@@ -70,17 +82,22 @@ function createTables() {
       id INTEGER PRIMARY KEY AUTOINCREMENT,
       code TEXT UNIQUE NOT NULL,
       name TEXT NOT NULL,
-      type TEXT,
+      type TEXT NOT NULL,
       brand TEXT,
       model TEXT,
       price REAL,
       location TEXT,
-      status TEXT DEFAULT 'available',
-      created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+      status TEXT NOT NULL DEFAULT 'available' CHECK (status IN ('available', 'borrowed', 'maintenance', 'retired')),
+      created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+      updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
     )`,
     `CREATE TABLE IF NOT EXISTS borrow_records (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
       device_id INTEGER NOT NULL,
+      device_code TEXT NOT NULL,
+      device_name TEXT NOT NULL,
+      device_type TEXT NOT NULL,
+      device_brand TEXT,
       borrower_name TEXT NOT NULL,
       borrower_class TEXT NOT NULL,
       borrower_student_id TEXT NOT NULL,
@@ -88,9 +105,11 @@ function createTables() {
       borrow_time DATETIME NOT NULL,
       return_deadline DATETIME NOT NULL,
       actual_return_time DATETIME,
-      notified INTEGER DEFAULT 0,
+      notified INTEGER DEFAULT 0 CHECK (notified IN (0, 1)),
       notify_time DATETIME,
-      FOREIGN KEY (device_id) REFERENCES devices(id)
+      FOREIGN KEY (device_id) REFERENCES devices(id) ON DELETE RESTRICT,
+      CHECK (borrow_time < return_deadline),
+      CHECK (actual_return_time IS NULL OR actual_return_time >= borrow_time)
     )`,
   ];
 
@@ -99,7 +118,16 @@ function createTables() {
       db.prepare(sql).run();
     }
 
-    // 添加索引以提高查询性能
+    runStmt(db, 'CREATE INDEX IF NOT EXISTS idx_devices_code ON devices(code)');
+    runStmt(
+      db,
+      'CREATE INDEX IF NOT EXISTS idx_devices_status ON devices(status)',
+    );
+    runStmt(db, 'CREATE INDEX IF NOT EXISTS idx_devices_type ON devices(type)');
+    runStmt(
+      db,
+      'CREATE INDEX IF NOT EXISTS idx_devices_brand ON devices(brand, type)',
+    );
     runStmt(
       db,
       'CREATE INDEX IF NOT EXISTS idx_borrow_device ON borrow_records(device_id)',
@@ -112,12 +140,42 @@ function createTables() {
       db,
       'CREATE INDEX IF NOT EXISTS idx_borrow_deadline ON borrow_records(return_deadline)',
     );
+    runStmt(
+      db,
+      'CREATE INDEX IF NOT EXISTS idx_borrow_returned ON borrow_records(actual_return_time)',
+    );
+    runStmt(
+      db,
+      'CREATE INDEX IF NOT EXISTS idx_borrow_borrower ON borrow_records(borrower_name, borrower_student_id)',
+    );
+    runStmt(
+      db,
+      'CREATE INDEX IF NOT EXISTS idx_borrow_device_code ON borrow_records(device_code)',
+    );
 
-    // 清理已废弃的旧表：users（旧认证逻辑使用）
     try {
       db.prepare('DROP TABLE IF EXISTS users').run();
     } catch (error) {
       console.error('Error dropping legacy users table:', error);
+    }
+
+    const triggers = db
+      .prepare("SELECT name FROM sqlite_master WHERE type='trigger'")
+      .all();
+    const triggerNames = triggers.map((t) => t.name);
+
+    if (!triggerNames.includes('update_devices_timestamp')) {
+      db.prepare(
+        `
+        CREATE TRIGGER update_devices_timestamp
+        AFTER UPDATE ON devices
+        FOR EACH ROW
+        BEGIN
+          UPDATE devices SET updated_at = CURRENT_TIMESTAMP WHERE id = NEW.id;
+        END
+      `,
+      ).run();
+      console.log('Created trigger: update_devices_timestamp');
     }
   })();
 }
