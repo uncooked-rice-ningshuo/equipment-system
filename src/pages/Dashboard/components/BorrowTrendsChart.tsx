@@ -1,8 +1,12 @@
+import ChartError from '@/components/ChartError';
+import ChartSkeleton from '@/components/ChartSkeleton';
 import { ThemeType } from '@/config/theme';
 import { invoke } from '@/services/ipc';
+import { eventBus } from '@/utils/eventBus';
 import { Card, Empty, Tabs } from 'antd';
 import ReactECharts from 'echarts-for-react';
-import { useEffect, useState } from 'react';
+import { debounce } from 'lodash';
+import { useEffect, useMemo, useState } from 'react';
 import styled from 'styled-components';
 
 const ChartCard = styled(Card)<{ $theme: ThemeType }>`
@@ -56,15 +60,72 @@ const CHART_COLORS = [
 export default function BorrowTrendsChart({ theme }: { theme: ThemeType }) {
   const [period, setPeriod] = useState<'week' | 'month' | 'year'>('week');
   const [data, setData] = useState<any[]>([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  const load = async () => {
+    setLoading(true);
+    setError(null);
+    try {
+      const result = await invoke('stats:borrowedByType', period);
+      setData(Array.isArray(result) ? result : []);
+    } catch (err: any) {
+      setError(err.message || '加载借用统计失败');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const debouncedLoad = useMemo(() => debounce(load, 300), [period]);
 
   useEffect(() => {
     load();
+
+    const unsub1 = eventBus.subscribe('device:borrowed', debouncedLoad);
+    const unsub2 = eventBus.subscribe('device:returned', debouncedLoad);
+
+    return () => {
+      unsub1();
+      unsub2();
+      debouncedLoad.cancel();
+    };
   }, [period]);
 
-  const load = async () => {
-    const result = await invoke('stats:borrowedByType', period);
-    setData(Array.isArray(result) ? result : []);
-  };
+  if (loading) {
+    return (
+      <ChartCard $theme={theme} title="借用统计">
+        <StyledTabs
+          $theme={theme}
+          activeKey={period}
+          onChange={(key) => setPeriod(key as 'week' | 'month' | 'year')}
+          items={[
+            { key: 'week', label: '本周' },
+            { key: 'month', label: '本月' },
+            { key: 'year', label: '本年' },
+          ]}
+        />
+        <ChartSkeleton />
+      </ChartCard>
+    );
+  }
+
+  if (error) {
+    return (
+      <ChartCard $theme={theme} title="借用统计">
+        <StyledTabs
+          $theme={theme}
+          activeKey={period}
+          onChange={(key) => setPeriod(key as 'week' | 'month' | 'year')}
+          items={[
+            { key: 'week', label: '本周' },
+            { key: 'month', label: '本月' },
+            { key: 'year', label: '本年' },
+          ]}
+        />
+        <ChartError message={error} onRetry={load} />
+      </ChartCard>
+    );
+  }
 
   if (data.length === 0) {
     return (
