@@ -1,4 +1,4 @@
-import { invoke } from '@/services/ipc';
+import { invoke, invokeWithEvent } from '@/services/ipc';
 import {
   DeleteOutlined,
   EditOutlined,
@@ -45,7 +45,7 @@ export default function Devices() {
 
   const handleCreate = async (values: any) => {
     try {
-      const res = await invoke('device:create', values);
+      const res = await invokeWithEvent('device:create', values);
       if (res?.success) {
         message.success('新增设备成功');
         setModalVisible(false);
@@ -60,7 +60,7 @@ export default function Devices() {
   };
 
   const handleDelete = async (id: number) => {
-    const result = await invoke('device:delete', id);
+    const result = await invokeWithEvent('device:delete', id);
     if (result.success) {
       message.success('删除成功');
       loadDevices(filters);
