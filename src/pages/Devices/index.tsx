@@ -169,7 +169,7 @@ export default function Devices() {
       title: '操作',
       key: 'action',
       width: 120,
-      fixed: 'right',
+      fixed: 'right' as const,
       render: (_: any, record: any) => (
         <Space size="middle">
           <Button type="link" size="small" icon={<EditOutlined />}>
@@ -428,7 +428,7 @@ export default function Devices() {
               min={0}
               step={0.01}
               formatter={(value) => `¥ ${value}`}
-              parser={(value) => value?.replace(/¥\s?/, '') || ''}
+              parser={(value) => (value?.replace(/¥\s?/, '') || '') as any}
             />
           </Form.Item>
           <Form.Item

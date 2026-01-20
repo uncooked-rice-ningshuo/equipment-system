@@ -306,6 +306,43 @@ handleSecured('borrow:listOverdue', async () => {
   return { overdue, dueSoon };
 });
 
+handleSecured('borrow:dueSoon7days', async () => {
+  const db = getDatabase();
+  const dayjs = require('dayjs');
+  const now = dayjs();
+  const sevenDaysLater = now.add(7, 'day');
+
+  const sql = `SELECT 
+    br.id,
+    d.code as device_code,
+    d.name as device_name,
+    d.brand as device_brand,
+    br.borrower_name,
+    br.borrower_phone,
+    br.return_deadline,
+    br.borrow_time
+  FROM borrow_records br 
+  JOIN devices d ON d.id = br.device_id 
+  WHERE br.actual_return_time IS NULL 
+    AND datetime(br.return_deadline) >= datetime('now')
+    AND datetime(br.return_deadline) <= datetime(?)
+  ORDER BY br.return_deadline ASC`;
+
+  const rows = queryAll(db, sql, [sevenDaysLater.toISOString()]);
+
+  const data = rows.map((r) => {
+    const ddl = dayjs(r.return_deadline);
+    const remainingDays = ddl.diff(now, 'day');
+    return {
+      ...r,
+      remaining_days: remainingDays,
+      deadline: ddl.format('YYYY-MM-DD HH:mm'),
+    };
+  });
+
+  return data;
+});
+
 handleSecured('notify:mark', async (event, recordId) => {
   const db = getDatabase();
   const now = new Date().toISOString();
@@ -344,6 +381,55 @@ handleSecured('stats:dashboard', async () => {
     availableDevices: totalDevices - borrowedDevices,
     overdueDevices,
   };
+});
+
+handleSecured('stats:deviceTypeDistribution', async () => {
+  const db = getDatabase();
+  const rows = queryAll(
+    db,
+    'SELECT type, COUNT(*) as count FROM devices GROUP BY type ORDER BY count DESC',
+  );
+  return rows.map((r) => ({
+    name: r.type || '未分类',
+    value: r.count,
+  }));
+});
+
+handleSecured('stats:borrowedByType', async (event, period = 'week') => {
+  const db = getDatabase();
+  const dayjs = require('dayjs');
+  const now = dayjs();
+  let days;
+
+  switch (period) {
+    case 'week':
+      days = 7;
+      break;
+    case 'month':
+      days = 30;
+      break;
+    case 'year':
+      days = 365;
+      break;
+  }
+
+  const startDate = now.subtract(days, 'day');
+
+  const rows = queryAll(
+    db,
+    `SELECT d.type, COUNT(*) as count 
+     FROM borrow_records br 
+     JOIN devices d ON d.id = br.device_id 
+     WHERE br.borrow_time >= ? 
+     GROUP BY d.type 
+     ORDER BY count DESC`,
+    [startDate.toISOString()],
+  );
+
+  return rows.map((r) => ({
+    name: r.type || '未分类',
+    value: r.count,
+  }));
 });
 
 // 认证 API（better-auth）
