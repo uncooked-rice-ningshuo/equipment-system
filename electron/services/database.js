@@ -99,6 +99,20 @@ function createTables() {
       db.prepare(sql).run();
     }
 
+    // 添加索引以提高查询性能
+    runStmt(
+      db,
+      'CREATE INDEX IF NOT EXISTS idx_borrow_device ON borrow_records(device_id)',
+    );
+    runStmt(
+      db,
+      'CREATE INDEX IF NOT EXISTS idx_borrow_time ON borrow_records(borrow_time)',
+    );
+    runStmt(
+      db,
+      'CREATE INDEX IF NOT EXISTS idx_borrow_deadline ON borrow_records(return_deadline)',
+    );
+
     // 清理已废弃的旧表：users（旧认证逻辑使用）
     try {
       db.prepare('DROP TABLE IF EXISTS users').run();
