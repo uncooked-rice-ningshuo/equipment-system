@@ -1,4 +1,4 @@
-import { invoke } from '@/services/ipc';
+import { invoke, invokeWithEvent } from '@/services/ipc';
 import { ProColumns, ProTable } from '@ant-design/pro-components';
 import { Button, DatePicker, Form, Input, message, Modal, Select } from 'antd';
 import dayjs from 'dayjs';
@@ -41,7 +41,7 @@ export default function Borrow() {
       borrow_time: dayjs(values.borrow_time).toISOString(),
       return_deadline: dayjs(values.return_deadline).toISOString(),
     };
-    const res = await invoke('borrow:create', payload);
+    const res = await invokeWithEvent('borrow:create', payload);
     if (res?.success) {
       message.success('借出成功');
       setVisible(false);
@@ -53,7 +53,7 @@ export default function Borrow() {
   };
 
   const handleReturn = async (id: number) => {
-    const res = await invoke('borrow:return', id);
+    const res = await invokeWithEvent('borrow:return', id);
     if (res?.success) {
       message.success('归还成功');
       actionRef.current?.reload();
