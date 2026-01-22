@@ -99,7 +99,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 2
+        "register": 0
       },
       "enableBy": "register",
       "type": "preset",
@@ -112,7 +112,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 5
+        "register": 7
       },
       "enableBy": "register",
       "type": "preset",
@@ -129,7 +129,7 @@
             0
           ]
         },
-        "register": 1
+        "register": 2
       },
       "enableBy": "register",
       "type": "plugin",
@@ -143,10 +143,10 @@
       "time": {
         "hooks": {
           "onStart": [
-            1
+            2
           ]
         },
-        "register": 2
+        "register": 1
       },
       "enableBy": "register",
       "type": "plugin",
@@ -164,10 +164,46 @@
             0,
             0,
             0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
             0
           ]
         },
-        "register": 0
+        "register": 1
       },
       "enableBy": "register",
       "type": "plugin",
@@ -182,18 +218,64 @@
         "hooks": {
           "onDevCompileDone": [
             6,
-            1,
-            4,
-            1,
-            2,
-            2,
-            1,
             2,
             2,
             1,
             2,
             2,
             2,
+            2,
+            3,
+            1,
+            2,
+            2,
+            1,
+            2,
+            2,
+            1,
+            2,
+            6,
+            2,
+            3,
+            2,
+            3,
+            3,
+            2,
+            2,
+            1,
+            1,
+            2,
+            2,
+            1,
+            1,
+            2,
+            1,
+            2,
+            1,
+            1,
+            3,
+            1,
+            2,
+            1,
+            3,
+            1,
+            1,
+            2,
+            1,
+            3,
+            2,
+            9,
+            1,
+            1,
+            1,
+            2,
+            1,
+            1,
+            1,
+            2,
+            1,
+            2,
+            1,
             1,
             2
           ]
@@ -212,17 +294,53 @@
       "time": {
         "hooks": {
           "modifyAppData": [
-            8
+            14
           ],
           "onGenerateFiles": [
             1,
-            18,
+            16,
+            11,
+            16,
+            21,
+            15,
+            15,
+            22,
+            6,
+            12,
+            17,
+            12,
+            12,
             9,
-            29,
-            13
+            90,
+            8,
+            11,
+            14,
+            9,
+            15,
+            11,
+            10,
+            9,
+            15,
+            10,
+            8,
+            8,
+            4,
+            13,
+            17,
+            16,
+            6,
+            6,
+            6,
+            12,
+            22,
+            17,
+            16,
+            14,
+            13,
+            10
           ]
         },
-        "register": 13
+        "register": 11
       },
       "enableBy": "register",
       "type": "plugin",
@@ -240,10 +358,46 @@
             0,
             0,
             0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
             0
           ]
         },
-        "register": 0
+        "register": 1
       },
       "enableBy": "register",
       "type": "plugin",
@@ -264,32 +418,59 @@
           ],
           "onPrepareBuildSuccess": [
             0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            2,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
             0
           ],
           "onCheckCode": [
             0,
-            1,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
             0,
             0,
             0,
@@ -346,7 +527,6 @@
             0,
             0,
             1,
-            0,
             0,
             0,
             0,
@@ -360,7 +540,7 @@
             0
           ]
         },
-        "register": 1
+        "register": 0
       },
       "enableBy": "register",
       "type": "plugin",
@@ -407,7 +587,7 @@
             0
           ]
         },
-        "register": 4
+        "register": 5
       },
       "enableBy": "register",
       "type": "plugin",
@@ -1290,7 +1470,7 @@
       "time": {
         "hooks": {
           "addBeforeMiddlewares": [
-            3
+            4
           ]
         },
         "register": 0
@@ -1319,7 +1499,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 16
+        "register": 17
       },
       "enableBy": "config",
       "type": "plugin",
@@ -1332,7 +1512,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 12
+        "register": 11
       },
       "enableBy": "config",
       "type": "plugin",
@@ -1350,6 +1530,21 @@
           ],
           "addBeforeMiddlewares": [
             0
+          ],
+          "modifyHTMLFavicon": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
           ]
         },
         "register": 0
@@ -1366,13 +1561,85 @@
       "time": {
         "hooks": {
           "onGenerateFiles": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            0,
+            1,
+            0,
+            1,
             0,
             1,
             1,
             0,
-            0
+            0,
+            6,
+            1,
+            1,
+            1,
+            1,
+            0,
+            1,
+            0,
+            0,
+            1,
+            1,
+            1,
+            0,
+            1,
+            1,
+            1,
+            1,
+            0,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            0,
+            1,
+            1
           ],
           "addRuntimePlugin": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
             0,
             0,
             0,
@@ -1380,7 +1647,7 @@
             0
           ]
         },
-        "register": 0
+        "register": 1
       },
       "enableBy": "register",
       "type": "plugin",
@@ -1393,7 +1660,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 1
+        "register": 0
       },
       "enableBy": "config",
       "type": "plugin",
@@ -1410,10 +1677,10 @@
             0
           ],
           "addBeforeMiddlewares": [
-            1
+            0
           ]
         },
-        "register": 16
+        "register": 18
       },
       "type": "plugin",
       "path": "/Users/ningshuo/code/my-projects/equipment-system/node_modules/.pnpm/@umijs+preset-umi@4.5.3_@types+node@20.19.25_@types+react@18.3.26_@types+webpack@5.28.5_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/features/mock/mock.js",
@@ -1455,9 +1722,117 @@
             0,
             0,
             0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
             0
           ],
           "addEntryImports": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
             0,
             0,
             0,
@@ -1497,16 +1872,124 @@
       "time": {
         "hooks": {
           "modifyConfig": [
-            0
+            1
           ],
           "onGenerateFiles": [
-            30,
+            34,
+            13,
+            16,
+            12,
+            25,
+            18,
+            16,
+            22,
+            8,
+            14,
+            17,
+            12,
+            14,
+            12,
+            221,
+            16,
+            12,
+            12,
+            9,
+            14,
+            12,
+            10,
+            13,
+            19,
+            22,
+            11,
+            14,
+            7,
+            12,
+            8,
+            9,
+            6,
+            7,
+            12,
+            14,
             22,
             14,
-            25,
-            26
+            14,
+            12,
+            26,
+            10
           ],
           "addPolyfillImports": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
             0,
             0,
             0,
@@ -1541,10 +2024,82 @@
             0,
             0,
             0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
             0
           ]
         },
-        "register": 0
+        "register": 1
       },
       "enableBy": "register",
       "type": "plugin",
@@ -1558,14 +2113,50 @@
       "time": {
         "hooks": {
           "onGenerateFiles": [
-            40,
+            33,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
             0,
             0,
             0,
             0
           ]
         },
-        "register": 1
+        "register": 0
       },
       "enableBy": "register",
       "type": "plugin",
@@ -1609,13 +2200,49 @@
             0,
             0,
             0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
             0
           ],
           "addBeforeMiddlewares": [
-            0
+            1
           ]
         },
-        "register": 0
+        "register": 1
       },
       "enableBy": "register",
       "type": "plugin",
@@ -1631,17 +2258,89 @@
           "onGenerateFiles": [
             5,
             1,
+            6,
+            1,
+            6,
+            1,
+            6,
+            0,
+            10,
+            1,
+            5,
+            0,
+            5,
+            1,
+            5,
+            1,
+            4,
+            0,
+            6,
+            1,
+            7,
+            1,
+            5,
+            1,
+            5,
+            0,
+            2,
+            0,
+            58,
+            1,
+            7,
+            1,
+            5,
+            0,
+            4,
+            1,
+            6,
+            1,
+            5,
+            1,
+            5,
+            1,
+            4,
+            1,
+            5,
+            0,
+            7,
+            1,
+            9,
+            2,
+            3,
+            0,
+            5,
+            1,
+            4,
+            1,
+            5,
+            1,
+            5,
+            1,
             5,
             1,
             3,
-            1,
-            8,
             0,
             4,
-            0
+            1,
+            6,
+            1,
+            5,
+            1,
+            7,
+            0,
+            6,
+            2,
+            6,
+            1,
+            5,
+            1,
+            6,
+            1,
+            4,
+            1
           ]
         },
-        "register": 2
+        "register": 1
       },
       "enableBy": "register",
       "type": "plugin",
@@ -1654,7 +2353,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 0
+        "register": 1
       },
       "enableBy": "config",
       "type": "plugin",
@@ -1693,11 +2392,47 @@
       "time": {
         "hooks": {
           "onGenerateFiles": [
-            201,
-            9,
+            191,
             6,
+            6,
+            5,
+            5,
+            5,
+            6,
+            11,
             4,
-            7
+            5,
+            5,
+            5,
+            4,
+            3,
+            16,
+            5,
+            4,
+            5,
+            3,
+            4,
+            5,
+            5,
+            5,
+            8,
+            8,
+            3,
+            4,
+            3,
+            4,
+            5,
+            4,
+            2,
+            5,
+            5,
+            5,
+            5,
+            6,
+            5,
+            4,
+            5,
+            4
           ]
         },
         "register": 1
@@ -1730,7 +2465,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 1
+        "register": 2
       },
       "enableBy": "config",
       "type": "plugin",
@@ -1768,7 +2503,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 13
+        "register": 12
       },
       "enableBy": "config",
       "type": "plugin",
@@ -1783,13 +2518,49 @@
         "hooks": {
           "onGenerateFiles": [
             1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            0,
+            1,
+            1,
+            1,
             0,
             0,
             1,
-            1
+            1,
+            1,
+            0,
+            1,
+            0,
+            1,
+            1,
+            1,
+            0,
+            1,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0,
+            0,
+            1,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0
           ]
         },
-        "register": 1
+        "register": 0
       },
       "type": "plugin",
       "path": "/Users/ningshuo/code/my-projects/equipment-system/node_modules/.pnpm/@umijs+preset-umi@4.5.3_@types+node@20.19.25_@types+react@18.3.26_@types+webpack@5.28.5_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/features/test/test.js",
@@ -1869,7 +2640,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 2
+        "register": 1
       },
       "type": "plugin",
       "path": "/Users/ningshuo/code/my-projects/equipment-system/node_modules/.pnpm/@umijs+preset-umi@4.5.3_@types+node@20.19.25_@types+react@18.3.26_@types+webpack@5.28.5_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/features/ui/ui.js",
@@ -1881,7 +2652,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 0
+        "register": 1
       },
       "enableBy": "config",
       "type": "plugin",
@@ -1894,7 +2665,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 1
+        "register": 0
       },
       "type": "plugin",
       "path": "/Users/ningshuo/code/my-projects/equipment-system/node_modules/.pnpm/@umijs+preset-umi@4.5.3_@types+node@20.19.25_@types+react@18.3.26_@types+webpack@5.28.5_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/features/utoopack/utoopack.js",
@@ -1917,7 +2688,23 @@
     "./node_modules/.pnpm/@umijs+preset-umi@4.5.3_@types+node@20.19.25_@types+react@18.3.26_@types+webpack@5.28.5_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/features/routePreloadOnLoad/routePreloadOnLoad": {
       "config": {},
       "time": {
-        "hooks": {},
+        "hooks": {
+          "addHTMLHeadScripts": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
         "register": 13
       },
       "type": "plugin",
@@ -1930,7 +2717,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 0
+        "register": 1
       },
       "enableBy": "config",
       "type": "plugin",
@@ -1944,10 +2731,10 @@
       "time": {
         "hooks": {
           "modifyUniBundler": [
-            230
+            257
           ]
         },
-        "register": 1
+        "register": 0
       },
       "enableBy": "register",
       "type": "plugin",
@@ -1973,7 +2760,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 14
+        "register": 16
       },
       "enableBy": "register",
       "type": "plugin",
@@ -1987,10 +2774,10 @@
       "time": {
         "hooks": {
           "modifyAppData": [
-            11
+            5
           ]
         },
-        "register": 15
+        "register": 20
       },
       "type": "plugin",
       "path": "/Users/ningshuo/code/my-projects/equipment-system/node_modules/.pnpm/@umijs+preset-umi@4.5.3_@types+node@20.19.25_@types+react@18.3.26_@types+webpack@5.28.5_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/commands/dev/dev.js",
@@ -2028,7 +2815,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 1
+        "register": 0
       },
       "enableBy": "register",
       "type": "plugin",
@@ -2041,7 +2828,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 0
+        "register": 1
       },
       "enableBy": "register",
       "type": "plugin",
@@ -2106,7 +2893,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 1
+        "register": 0
       },
       "enableBy": "register",
       "type": "plugin",
@@ -2119,7 +2906,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 0
+        "register": 1
       },
       "enableBy": "register",
       "type": "plugin",
@@ -2171,7 +2958,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 1
+        "register": 0
       },
       "enableBy": "register",
       "type": "plugin",
@@ -2184,7 +2971,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 0
+        "register": 1
       },
       "enableBy": "register",
       "type": "plugin",
@@ -2223,7 +3010,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 1
+        "register": 0
       },
       "enableBy": "register",
       "type": "plugin",
@@ -2236,7 +3023,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 10
+        "register": 11
       },
       "enableBy": "register",
       "type": "plugin",
@@ -2275,7 +3062,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 0
+        "register": 1
       },
       "enableBy": "register",
       "type": "plugin",
@@ -2288,7 +3075,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 1
+        "register": 0
       },
       "enableBy": "config",
       "type": "plugin",
@@ -2301,7 +3088,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 93
+        "register": 96
       },
       "enableBy": "config",
       "type": "plugin",
@@ -2500,7 +3287,7 @@
       "file": "@/layouts/BasicLayout.tsx",
       "id": "2",
       "absPath": "/",
-      "__content": "import icon from '@/assets/icon/icon.svg';\nimport { themeConfig, ThemeType } from '@/config/theme';\nimport {\n  CalendarOutlined,\n  DashboardOutlined,\n  HistoryOutlined,\n  LogoutOutlined,\n  MoonFilled,\n  SunFilled,\n  ToolOutlined,\n} from '@ant-design/icons';\nimport { Breadcrumb, Button, Layout, Menu } from 'antd';\nimport { useState } from 'react';\nimport styled from 'styled-components';\nimport { history, Outlet, useLocation } from 'umi';\n\nconst { Header, Sider, Content } = Layout;\n\nconst Sidebar = styled(Sider)<{ theme: ThemeType }>`\n  .ant-layout-sider-children {\n    height: 100%;\n    display: flex;\n    flex-direction: column;\n    justify-content: space-between;\n  }\n  .ant-menu-item {\n    color: ${(props) => themeConfig[props.theme].menu.defaultColor};\n\n    &:hover {\n      color: #4f54bd;\n    }\n\n    .anticon {\n      color: ${(props) => themeConfig[props.theme].menu.defaultColor};\n    }\n  }\n\n  .ant-menu-item-selected {\n    color: ${(props) => themeConfig[props.theme].menu.selectedColor};\n    background-color: ${(props) => themeConfig[props.theme].menu.selectedBg};\n\n    .anticon {\n      color: ${(props) => themeConfig[props.theme].menu.selectedColor};\n    }\n  }\n`;\n\nconst items = [\n  {\n    key: '/dashboard',\n    label: '首页看板',\n    icon: <DashboardOutlined style={{ fontSize: 18 }} />,\n  },\n  {\n    key: '/borrow',\n    label: '借出设备',\n    icon: <CalendarOutlined style={{ fontSize: 18 }} />,\n  },\n  {\n    key: '/returned',\n    label: '已还设备',\n    icon: <HistoryOutlined style={{ fontSize: 18 }} />,\n  },\n  {\n    key: '/devices',\n    label: '设备管理',\n    icon: <ToolOutlined style={{ fontSize: 18 }} />,\n  },\n];\n\nexport default function BasicLayout() {\n  const [theme, setTheme] = useState<'light' | 'dark'>(\n    (localStorage.getItem('theme') as 'light' | 'dark') || 'light',\n  );\n  const location = useLocation();\n  const selectedKeys = [\n    location.pathname.startsWith('/dashboard')\n      ? '/dashboard'\n      : location.pathname,\n  ];\n\n  const breadcrumbItems = [\n    {\n      title: '首页',\n      href: '/dashboard',\n    },\n    items.find((item) => item.key === selectedKeys[0])\n      ? {\n          title: items.find((item) => item.key === selectedKeys[0])?.label,\n        }\n      : null,\n  ].filter(Boolean);\n\n  const toggleTheme = () => {\n    const newTheme = theme === 'light' ? 'dark' : 'light';\n    setTheme(newTheme);\n    localStorage.setItem('theme', newTheme);\n  };\n\n  const currentTheme = themeConfig[theme];\n\n  return (\n    <Layout style={{ minHeight: '100vh', height: '100%' }}>\n      <Sidebar\n        width={240}\n        theme={theme}\n        style={{\n          background: currentTheme.sider.background,\n          borderRight: `1px solid ${currentTheme.sider.borderColor}`,\n          boxShadow: '0 2px 8px rgba(0, 0, 0, 0.05)',\n          display: 'flex',\n          flexDirection: 'column',\n        }}\n      >\n        <div\n          style={{\n            height: 64,\n            fontSize: 18,\n            display: 'flex',\n            alignItems: 'center',\n            justifyContent: 'center',\n            fontWeight: 600,\n            color: currentTheme.sider.logoColor,\n            background: currentTheme.sider.background,\n          }}\n        >\n          <img\n            src={icon}\n            alt=\"icon\"\n            style={{ width: 40, height: 40, marginRight: 12 }}\n          />\n          <span>资产管理平台</span>\n        </div>\n        <Menu\n          mode=\"inline\"\n          selectedKeys={selectedKeys}\n          items={items}\n          onClick={(e) => history.push(e.key)}\n          className=\"sidebar-menu\"\n          style={{\n            borderRight: 0,\n            fontSize: 14,\n            fontWeight: 400,\n            flex: 1,\n            paddingTop: 16,\n            background: currentTheme.sider.background,\n          }}\n          theme={theme}\n          selectable\n        />\n        <div\n          style={{\n            padding: '20px 24px',\n            borderBottom: `1px solid ${currentTheme.sider.borderColor}`,\n            background: currentTheme.sider.background,\n          }}\n        >\n          <div\n            style={{\n              display: 'flex',\n              alignItems: 'center',\n              gap: '12px',\n              cursor: 'pointer',\n              padding: '8px',\n              borderRadius: '8px',\n              transition: 'all 0.3s ease',\n            }}\n            onClick={() => history.push('/profile')}\n            onMouseEnter={(e) => {\n              e.currentTarget.style.background =\n                theme === 'light' ? '#f5f7fa' : '#2D3748';\n            }}\n            onMouseLeave={(e) => {\n              e.currentTarget.style.background = 'transparent';\n            }}\n          >\n            <div\n              style={{\n                width: 40,\n                height: 40,\n                borderRadius: '50%',\n                backgroundColor: '#4f54bd',\n                display: 'flex',\n                alignItems: 'center',\n                justifyContent: 'center',\n                color: '#ffffff',\n                fontWeight: 600,\n                fontSize: 16,\n                flexShrink: 0,\n              }}\n            >\n              {localStorage.getItem('loginUser')?.charAt(0).toUpperCase() ||\n                'A'}\n            </div>\n            <div\n              style={{\n                flex: 1,\n              }}\n            >\n              <div\n                style={{\n                  fontSize: 14,\n                  fontWeight: 500,\n                  color: currentTheme.text.primary,\n                  marginBottom: 2,\n                }}\n              >\n                管理员\n              </div>\n              <div\n                style={{\n                  fontSize: 12,\n                  fontWeight: 400,\n                  color: currentTheme.text.tertiary,\n                }}\n              >\n                admin@system.com\n              </div>\n            </div>\n          </div>\n        </div>\n      </Sidebar>\n      <Layout\n        style={{\n          background: currentTheme.layout.background,\n        }}\n      >\n        <Header\n          style={{\n            height: 64,\n            background: currentTheme.header.background,\n            padding: '0 32px',\n            display: 'flex',\n            justifyContent: 'space-between',\n            alignItems: 'center',\n            borderBottom: `1px solid ${currentTheme.header.borderColor}`,\n            boxShadow: '0 1px 4px rgba(0, 0, 0, 0.04)',\n          }}\n        >\n          <div\n            style={{\n              display: 'flex',\n              alignItems: 'center',\n              gap: 16,\n              flex: 1,\n            }}\n          >\n            <Breadcrumb\n              items={breadcrumbItems}\n              style={{\n                fontSize: 14,\n                fontWeight: 500,\n              }}\n              separator={\n                <span style={{ color: currentTheme.header.breadcrumbColor }}>\n                  /\n                </span>\n              }\n              itemRender={(route, params, routes) => {\n                const isLast = routes.indexOf(route) === routes.length - 1;\n                return (\n                  <span\n                    style={{\n                      color: isLast\n                        ? currentTheme.header.breadcrumbColor\n                        : currentTheme.header.breadcrumbColor,\n                      cursor: isLast ? 'default' : 'pointer',\n                      transition: 'color 0.3s',\n                    }}\n                    onClick={(e) => {\n                      if (!isLast && route.href) {\n                        e.preventDefault();\n                        history.push(route.href);\n                      }\n                    }}\n                  >\n                    {route.title}\n                  </span>\n                );\n              }}\n            />\n          </div>\n          <div\n            style={{\n              display: 'flex',\n              alignItems: 'center',\n              gap: 12,\n            }}\n          >\n            <Button\n              type=\"text\"\n              icon={theme === 'light' ? <SunFilled /> : <MoonFilled />}\n              onClick={toggleTheme}\n              style={{\n                width: 40,\n                height: 40,\n                display: 'flex',\n                alignItems: 'center',\n                justifyContent: 'center',\n                borderRadius: 8,\n                color: currentTheme.header.textColor,\n                transition: 'all 0.3s ease',\n              }}\n              onMouseEnter={(e) => {\n                e.currentTarget.style.background =\n                  theme === 'light' ? '#f5f7fa' : '#2D3748';\n              }}\n              onMouseLeave={(e) => {\n                e.currentTarget.style.background = 'transparent';\n              }}\n            />\n            <div\n              style={{\n                display: 'flex',\n                alignItems: 'center',\n                gap: 12,\n                padding: '6px 12px',\n                borderRadius: 12,\n                border: `1px solid ${currentTheme.header.borderColor}`,\n                backgroundColor: currentTheme.header.userCardBg,\n                transition: 'all 0.3s ease',\n              }}\n            >\n              <div\n                style={{\n                  width: 36,\n                  height: 36,\n                  borderRadius: '50%',\n                  background:\n                    'linear-gradient(135deg, #4f54bd 0%, #6366f1 100%)',\n                  display: 'flex',\n                  alignItems: 'center',\n                  justifyContent: 'center',\n                  color: '#ffffff',\n                  fontWeight: 600,\n                  fontSize: 15,\n                  cursor: 'pointer',\n                  boxShadow: '0 2px 8px rgba(79, 84, 189, 0.3)',\n                  transition: 'all 0.3s ease',\n                }}\n                onMouseEnter={(e) => {\n                  e.currentTarget.style.transform = 'translateY(-1px)';\n                  e.currentTarget.style.boxShadow =\n                    '0 4px 12px rgba(79, 84, 189, 0.4)';\n                }}\n                onMouseLeave={(e) => {\n                  e.currentTarget.style.transform = 'translateY(0)';\n                  e.currentTarget.style.boxShadow =\n                    '0 2px 8px rgba(79, 84, 189, 0.3)';\n                }}\n              >\n                {localStorage.getItem('loginUser')?.charAt(0).toUpperCase() ||\n                  'U'}\n              </div>\n              <div\n                style={{\n                  display: 'flex',\n                  flexDirection: 'column',\n                  gap: 2,\n                }}\n              >\n                <div\n                  style={{\n                    fontSize: 14,\n                    fontWeight: 500,\n                    color: currentTheme.header.textColor,\n                    lineHeight: 1.2,\n                  }}\n                >\n                  {localStorage.getItem('loginUser') || '用户'}\n                </div>\n                <div\n                  style={{\n                    fontSize: 12,\n                    fontWeight: 400,\n                    color: theme === 'light' ? '#A0AEC0' : '#718096',\n                    lineHeight: 1.2,\n                  }}\n                >\n                  管理员\n                </div>\n              </div>\n            </div>\n            <Button\n              type=\"text\"\n              icon={<LogoutOutlined />}\n              onClick={() => {\n                localStorage.removeItem('loginUser');\n                history.push('/login');\n              }}\n              style={{\n                display: 'flex',\n                alignItems: 'center',\n                gap: 6,\n                padding: '8px 16px',\n                height: 36,\n                borderRadius: 8,\n                fontWeight: 500,\n                fontSize: 14,\n                color: currentTheme.header.textColor,\n                transition: 'all 0.3s ease',\n              }}\n              onMouseEnter={(e) => {\n                if (theme === 'light') {\n                  e.currentTarget.style.background = '#fee2e2';\n                  e.currentTarget.style.color = '#dc2626';\n                } else {\n                  e.currentTarget.style.background = '#7f1d1d';\n                  e.currentTarget.style.color = '#fca5a5';\n                }\n              }}\n              onMouseLeave={(e) => {\n                e.currentTarget.style.background = 'transparent';\n                e.currentTarget.style.color = currentTheme.header.textColor;\n              }}\n            >\n              退出登录\n            </Button>\n          </div>\n        </Header>\n        <Content\n          style={{\n            backgroundColor: currentTheme.content.background,\n            minHeight: 280,\n            maxHeight: 'calc(100vh - 64px)',\n            overflowY: 'auto',\n          }}\n        >\n          <Outlet />\n        </Content>\n      </Layout>\n    </Layout>\n  );\n}\n",
+      "__content": "import icon from '@/assets/icon/icon.svg';\nimport { themeConfig, ThemeType } from '@/config/theme';\nimport { eventBus } from '@/utils/eventBus';\nimport {\n  CalendarOutlined,\n  DashboardOutlined,\n  HistoryOutlined,\n  LogoutOutlined,\n  MoonFilled,\n  SunFilled,\n  ToolOutlined,\n} from '@ant-design/icons';\nimport { Breadcrumb, Button, Layout, Menu } from 'antd';\nimport { useState } from 'react';\nimport styled from 'styled-components';\nimport { history, Outlet, useLocation } from 'umi';\n\nconst { Header, Sider, Content } = Layout;\n\nconst Sidebar = styled(Sider)<{ theme: ThemeType }>`\n  .ant-layout-sider-children {\n    height: 100%;\n    display: flex;\n    flex-direction: column;\n    justify-content: space-between;\n  }\n  .ant-menu-item {\n    color: ${(props) => themeConfig[props.theme].menu.defaultColor};\n\n    &:hover {\n      color: #4f54bd;\n    }\n\n    .anticon {\n      color: ${(props) => themeConfig[props.theme].menu.defaultColor};\n    }\n  }\n\n  .ant-menu-item-selected {\n    color: ${(props) => themeConfig[props.theme].menu.selectedColor};\n    background-color: ${(props) => themeConfig[props.theme].menu.selectedBg};\n\n    .anticon {\n      color: ${(props) => themeConfig[props.theme].menu.selectedColor};\n    }\n  }\n`;\n\nconst items = [\n  {\n    key: '/dashboard',\n    label: '首页看板',\n    icon: <DashboardOutlined style={{ fontSize: 18 }} />,\n  },\n  {\n    key: '/borrow',\n    label: '借出设备',\n    icon: <CalendarOutlined style={{ fontSize: 18 }} />,\n  },\n  {\n    key: '/returned',\n    label: '已还设备',\n    icon: <HistoryOutlined style={{ fontSize: 18 }} />,\n  },\n  {\n    key: '/devices',\n    label: '设备管理',\n    icon: <ToolOutlined style={{ fontSize: 18 }} />,\n  },\n];\n\nexport default function BasicLayout() {\n  const [theme, setTheme] = useState<'light' | 'dark'>(\n    (localStorage.getItem('theme') as 'light' | 'dark') || 'light',\n  );\n  const location = useLocation();\n  const selectedKeys = [\n    location.pathname.startsWith('/dashboard')\n      ? '/dashboard'\n      : location.pathname,\n  ];\n\n  const breadcrumbItems = [\n    {\n      title: '首页',\n      href: '/dashboard',\n    },\n    items.find((item) => item.key === selectedKeys[0])\n      ? {\n          title: items.find((item) => item.key === selectedKeys[0])?.label,\n        }\n      : null,\n  ].filter(Boolean);\n\n  const toggleTheme = () => {\n    const newTheme = theme === 'light' ? 'dark' : 'light';\n    setTheme(newTheme);\n    localStorage.setItem('theme', newTheme);\n    eventBus.emit('theme:changed', newTheme);\n  };\n\n  const currentTheme = themeConfig[theme];\n\n  return (\n    <Layout style={{ minHeight: '100vh', height: '100%' }}>\n      <Sidebar\n        width={240}\n        theme={theme}\n        style={{\n          background: currentTheme.sider.background,\n          borderRight: `1px solid ${currentTheme.sider.borderColor}`,\n          boxShadow: '0 2px 8px rgba(0, 0, 0, 0.05)',\n          display: 'flex',\n          flexDirection: 'column',\n        }}\n      >\n        <div\n          style={{\n            height: 64,\n            fontSize: 18,\n            display: 'flex',\n            alignItems: 'center',\n            justifyContent: 'center',\n            fontWeight: 600,\n            color: currentTheme.sider.logoColor,\n            background: currentTheme.sider.background,\n          }}\n        >\n          <img\n            src={icon}\n            alt=\"icon\"\n            style={{ width: 40, height: 40, marginRight: 12 }}\n          />\n          <span>资产管理平台</span>\n        </div>\n        <Menu\n          mode=\"inline\"\n          selectedKeys={selectedKeys}\n          items={items}\n          onClick={(e) => history.push(e.key)}\n          className=\"sidebar-menu\"\n          style={{\n            borderRight: 0,\n            fontSize: 14,\n            fontWeight: 400,\n            flex: 1,\n            paddingTop: 16,\n            background: currentTheme.sider.background,\n          }}\n          theme={theme}\n          selectable\n        />\n        <div\n          style={{\n            padding: '20px 24px',\n            borderBottom: `1px solid ${currentTheme.sider.borderColor}`,\n            background: currentTheme.sider.background,\n          }}\n        >\n          <div\n            style={{\n              display: 'flex',\n              alignItems: 'center',\n              gap: '12px',\n              cursor: 'pointer',\n              padding: '8px',\n              borderRadius: '8px',\n              transition: 'all 0.3s ease',\n            }}\n            onClick={() => history.push('/profile')}\n            onMouseEnter={(e) => {\n              e.currentTarget.style.background =\n                theme === 'light' ? '#f5f7fa' : '#2D3748';\n            }}\n            onMouseLeave={(e) => {\n              e.currentTarget.style.background = 'transparent';\n            }}\n          >\n            <div\n              style={{\n                width: 40,\n                height: 40,\n                borderRadius: '50%',\n                backgroundColor: '#4f54bd',\n                display: 'flex',\n                alignItems: 'center',\n                justifyContent: 'center',\n                color: '#ffffff',\n                fontWeight: 600,\n                fontSize: 16,\n                flexShrink: 0,\n              }}\n            >\n              {localStorage.getItem('loginUser')?.charAt(0).toUpperCase() ||\n                'A'}\n            </div>\n            <div\n              style={{\n                flex: 1,\n              }}\n            >\n              <div\n                style={{\n                  fontSize: 14,\n                  fontWeight: 500,\n                  color: currentTheme.text.primary,\n                  marginBottom: 2,\n                }}\n              >\n                管理员\n              </div>\n              <div\n                style={{\n                  fontSize: 12,\n                  fontWeight: 400,\n                  color: currentTheme.text.tertiary,\n                }}\n              >\n                admin@system.com\n              </div>\n            </div>\n          </div>\n        </div>\n      </Sidebar>\n      <Layout\n        style={{\n          background: currentTheme.layout.background,\n        }}\n      >\n        <Header\n          style={{\n            height: 64,\n            background: currentTheme.header.background,\n            padding: '0 32px',\n            display: 'flex',\n            justifyContent: 'space-between',\n            alignItems: 'center',\n            borderBottom: `1px solid ${currentTheme.header.borderColor}`,\n            boxShadow: '0 1px 4px rgba(0, 0, 0, 0.04)',\n          }}\n        >\n          <div\n            style={{\n              display: 'flex',\n              alignItems: 'center',\n              gap: 16,\n              flex: 1,\n            }}\n          >\n            <Breadcrumb\n              items={breadcrumbItems}\n              style={{\n                fontSize: 14,\n                fontWeight: 500,\n              }}\n              separator={\n                <span style={{ color: currentTheme.header.breadcrumbColor }}>\n                  /\n                </span>\n              }\n              itemRender={(route, params, routes) => {\n                const isLast = routes.indexOf(route) === routes.length - 1;\n                return (\n                  <span\n                    style={{\n                      color: isLast\n                        ? currentTheme.header.breadcrumbColor\n                        : currentTheme.header.breadcrumbColor,\n                      cursor: isLast ? 'default' : 'pointer',\n                      transition: 'color 0.3s',\n                    }}\n                    onClick={(e) => {\n                      if (!isLast && route.href) {\n                        e.preventDefault();\n                        history.push(route.href);\n                      }\n                    }}\n                  >\n                    {route.title}\n                  </span>\n                );\n              }}\n            />\n          </div>\n          <div\n            style={{\n              display: 'flex',\n              alignItems: 'center',\n              gap: 12,\n            }}\n          >\n            <Button\n              type=\"text\"\n              icon={theme === 'light' ? <SunFilled /> : <MoonFilled />}\n              onClick={toggleTheme}\n              style={{\n                width: 40,\n                height: 40,\n                display: 'flex',\n                alignItems: 'center',\n                justifyContent: 'center',\n                borderRadius: 8,\n                color: currentTheme.header.textColor,\n                transition: 'all 0.3s ease',\n              }}\n              onMouseEnter={(e) => {\n                e.currentTarget.style.background =\n                  theme === 'light' ? '#f5f7fa' : '#2D3748';\n              }}\n              onMouseLeave={(e) => {\n                e.currentTarget.style.background = 'transparent';\n              }}\n            />\n            <div\n              style={{\n                display: 'flex',\n                alignItems: 'center',\n                gap: 12,\n                padding: '6px 12px',\n                borderRadius: 12,\n                border: `1px solid ${currentTheme.header.borderColor}`,\n                backgroundColor: currentTheme.header.userCardBg,\n                transition: 'all 0.3s ease',\n              }}\n            >\n              <div\n                style={{\n                  width: 36,\n                  height: 36,\n                  borderRadius: '50%',\n                  background:\n                    'linear-gradient(135deg, #4f54bd 0%, #6366f1 100%)',\n                  display: 'flex',\n                  alignItems: 'center',\n                  justifyContent: 'center',\n                  color: '#ffffff',\n                  fontWeight: 600,\n                  fontSize: 15,\n                  cursor: 'pointer',\n                  boxShadow: '0 2px 8px rgba(79, 84, 189, 0.3)',\n                  transition: 'all 0.3s ease',\n                }}\n                onMouseEnter={(e) => {\n                  e.currentTarget.style.transform = 'translateY(-1px)';\n                  e.currentTarget.style.boxShadow =\n                    '0 4px 12px rgba(79, 84, 189, 0.4)';\n                }}\n                onMouseLeave={(e) => {\n                  e.currentTarget.style.transform = 'translateY(0)';\n                  e.currentTarget.style.boxShadow =\n                    '0 2px 8px rgba(79, 84, 189, 0.3)';\n                }}\n              >\n                {localStorage.getItem('loginUser')?.charAt(0).toUpperCase() ||\n                  'U'}\n              </div>\n              <div\n                style={{\n                  display: 'flex',\n                  flexDirection: 'column',\n                  gap: 2,\n                }}\n              >\n                <div\n                  style={{\n                    fontSize: 14,\n                    fontWeight: 500,\n                    color: currentTheme.header.textColor,\n                    lineHeight: 1.2,\n                  }}\n                >\n                  {localStorage.getItem('loginUser') || '用户'}\n                </div>\n                <div\n                  style={{\n                    fontSize: 12,\n                    fontWeight: 400,\n                    color: theme === 'light' ? '#A0AEC0' : '#718096',\n                    lineHeight: 1.2,\n                  }}\n                >\n                  管理员\n                </div>\n              </div>\n            </div>\n            <Button\n              type=\"text\"\n              icon={<LogoutOutlined />}\n              onClick={() => {\n                localStorage.removeItem('loginUser');\n                history.push('/login');\n              }}\n              style={{\n                display: 'flex',\n                alignItems: 'center',\n                gap: 6,\n                padding: '8px 16px',\n                height: 36,\n                borderRadius: 8,\n                fontWeight: 500,\n                fontSize: 14,\n                color: currentTheme.header.textColor,\n                transition: 'all 0.3s ease',\n              }}\n              onMouseEnter={(e) => {\n                if (theme === 'light') {\n                  e.currentTarget.style.background = '#fee2e2';\n                  e.currentTarget.style.color = '#dc2626';\n                } else {\n                  e.currentTarget.style.background = '#7f1d1d';\n                  e.currentTarget.style.color = '#fca5a5';\n                }\n              }}\n              onMouseLeave={(e) => {\n                e.currentTarget.style.background = 'transparent';\n                e.currentTarget.style.color = currentTheme.header.textColor;\n              }}\n            >\n              退出登录\n            </Button>\n          </div>\n        </Header>\n        <Content\n          style={{\n            backgroundColor: currentTheme.content.background,\n            minHeight: 280,\n            maxHeight: 'calc(100vh - 64px)',\n            overflowY: 'auto',\n          }}\n        >\n          <Outlet />\n        </Content>\n      </Layout>\n    </Layout>\n  );\n}\n",
       "__isJSFile": true,
       "__absFile": "/Users/ningshuo/code/my-projects/equipment-system/src/layouts/BasicLayout.tsx"
     },
@@ -2517,7 +3304,7 @@
       "parentId": "2",
       "id": "4",
       "absPath": "/dashboard",
-      "__content": "import { ThemeType } from '@/config/theme';\nimport { invoke } from '@/services/ipc';\nimport { eventBus } from '@/utils/eventBus';\nimport {\n  CheckCircleOutlined,\n  DatabaseOutlined,\n  ExclamationCircleOutlined,\n  LaptopOutlined,\n} from '@ant-design/icons';\nimport { Button, Card, Col, Modal, Row, Statistic, Table } from 'antd';\nimport { useEffect, useState } from 'react';\nimport styled from 'styled-components';\nimport BorrowTrendsChart from './components/BorrowTrendsChart';\nimport DeviceTypeChart from './components/DeviceTypeChart';\nimport DueSoonTimeline from './components/DueSoonTimeline';\n\nconst StatCard = styled(Card)<{ $theme: ThemeType }>`\n  border: none;\n  border-radius: 16px;\n  overflow: hidden;\n  transition: all 0.3s ease;\n  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);\n  cursor: pointer;\n\n  &:hover {\n    transform: translateY(-4px);\n    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);\n  }\n\n  .ant-card-body {\n    padding: 24px;\n    display: flex;\n    align-items: center;\n    gap: 20px;\n  }\n\n  .icon-wrapper {\n    width: 56px;\n    height: 56px;\n    border-radius: 14px;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    font-size: 28px;\n    color: #ffffff;\n    flex-shrink: 0;\n  }\n\n  .stat-content {\n    flex: 1;\n  }\n\n  .ant-statistic-title {\n    font-size: 14px;\n    font-weight: 500;\n    color: ${(props) => (props.$theme === 'light' ? '#6B7280' : '#A0AEC0')};\n    margin-bottom: 8px;\n  }\n\n  .ant-statistic-content {\n    font-size: 32px;\n    font-weight: 700;\n    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,\n      'Helvetica Neue', Arial, sans-serif;\n    color: ${(props) => (props.$theme === 'light' ? '#111827' : '#ffffff')};\n  }\n`;\n\nexport default function Dashboard() {\n  const [stats, setStats] = useState({\n    totalDevices: 0,\n    borrowedDevices: 0,\n    availableDevices: 0,\n    overdueDevices: 0,\n  });\n  const [overdue, setOverdue] = useState<any[]>([]);\n  const [dueSoon, setDueSoon] = useState<any[]>([]);\n  const [visible, setVisible] = useState(false);\n  const [theme, setTheme] = useState<'light' | 'dark'>(\n    (localStorage.getItem('theme') as 'light' | 'dark') || 'light',\n  );\n\n  useEffect(() => {\n    load();\n    loadReminders();\n  }, []);\n\n  const load = async () => {\n    const data = await invoke('stats:dashboard');\n    setStats(data);\n    eventBus.emit('dashboard:updated', data);\n  };\n\n  const loadReminders = async () => {\n    const data = await invoke('borrow:listOverdue');\n    setOverdue(data?.overdue || []);\n    setDueSoon(data?.dueSoon || []);\n    setVisible(true);\n    eventBus.emit('reminders:loaded', data);\n  };\n\n  const columns = [\n    { title: '设备编号', dataIndex: 'device_code' },\n    { title: '设备名称', dataIndex: 'device_name' },\n    { title: '借用人', dataIndex: 'borrower_name' },\n    { title: '联系方式', dataIndex: 'borrower_phone' },\n    { title: '剩余天数', dataIndex: 'remaining_days' },\n    {\n      title: '通知状态',\n      dataIndex: 'notified',\n      render: (_: any, r: any) => (\n        <Button\n          type={r.notified ? 'default' : 'primary'}\n          onClick={async () => {\n            if (!r.notified) {\n              await invoke('notify:mark', r.id);\n              loadReminders();\n            }\n          }}\n        >\n          {r.notified ? '已通知' : '未通知'}\n        </Button>\n      ),\n    },\n  ];\n\n  return (\n    <div style={{ padding: 24 }}>\n      <Row gutter={[20, 20]}>\n        <Col span={6}>\n          <StatCard $theme={theme}>\n            <div\n              className=\"icon-wrapper\"\n              style={{\n                background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',\n              }}\n            >\n              <DatabaseOutlined />\n            </div>\n            <div className=\"stat-content\">\n              <Statistic title=\"设备总数\" value={stats.totalDevices} />\n            </div>\n          </StatCard>\n        </Col>\n        <Col span={6}>\n          <StatCard $theme={theme}>\n            <div\n              className=\"icon-wrapper\"\n              style={{\n                background: 'linear-gradient(135deg, #3b82f6 0%, #2563eb 100%)',\n              }}\n            >\n              <LaptopOutlined />\n            </div>\n            <div className=\"stat-content\">\n              <Statistic title=\"在借设备\" value={stats.borrowedDevices} />\n            </div>\n          </StatCard>\n        </Col>\n        <Col span={6}>\n          <StatCard $theme={theme}>\n            <div\n              className=\"icon-wrapper\"\n              style={{\n                background: 'linear-gradient(135deg, #10b981 0%, #059669 100%)',\n              }}\n            >\n              <CheckCircleOutlined />\n            </div>\n            <div className=\"stat-content\">\n              <Statistic title=\"可借设备\" value={stats.availableDevices} />\n            </div>\n          </StatCard>\n        </Col>\n        <Col span={6}>\n          <StatCard $theme={theme}>\n            <div\n              className=\"icon-wrapper\"\n              style={{\n                background: 'linear-gradient(135deg, #ef4444 0%, #dc2626 100%)',\n              }}\n            >\n              <ExclamationCircleOutlined />\n            </div>\n            <div className=\"stat-content\">\n              <Statistic\n                title=\"逾期设备\"\n                value={stats.overdueDevices}\n                valueStyle={{ color: '#EF4444', fontWeight: 700 }}\n              />\n            </div>\n          </StatCard>\n        </Col>\n      </Row>\n\n      <Row gutter={[20, 20]} style={{ marginTop: 20 }}>\n        <Col span={12}>\n          <DeviceTypeChart theme={theme} />\n        </Col>\n        <Col span={12}>\n          <BorrowTrendsChart theme={theme} />\n        </Col>\n      </Row>\n\n      <Row gutter={[20, 20]} style={{ marginTop: 20 }}>\n        <Col span={24}>\n          <DueSoonTimeline theme={theme} />\n        </Col>\n      </Row>\n\n      <Modal\n        title=\"设备归还提醒\"\n        open={visible}\n        onCancel={() => setVisible(false)}\n        footer={null}\n        width={900}\n      >\n        <h3>逾期设备</h3>\n        <Table\n          columns={columns}\n          dataSource={overdue}\n          rowKey=\"id\"\n          pagination={false}\n        />\n        <h3 style={{ marginTop: 16 }}>临期设备（≤5天）</h3>\n        <Table\n          columns={columns}\n          dataSource={dueSoon}\n          rowKey=\"id\"\n          pagination={false}\n        />\n      </Modal>\n    </div>\n  );\n}\n",
+      "__content": "import { ThemeType } from '@/config/theme';\nimport { invoke } from '@/services/ipc';\nimport { eventBus } from '@/utils/eventBus';\nimport {\n  CheckCircleOutlined,\n  DatabaseOutlined,\n  ExclamationCircleOutlined,\n  LaptopOutlined,\n} from '@ant-design/icons';\nimport { Button, Card, Col, Modal, Row, Statistic, Table } from 'antd';\nimport { useEffect, useState } from 'react';\nimport styled from 'styled-components';\nimport BorrowTrendsChart from './components/BorrowTrendsChart';\nimport DeviceTypeChart from './components/DeviceTypeChart';\nimport DueSoonTimeline from './components/DueSoonTimeline';\n\nconst StyledModal = styled(Modal)<{ $theme: ThemeType }>`\n  .ant-modal-content {\n    background: ${(props) =>\n      props.$theme === 'light' ? '#ffffff' : '#1A202C'};\n  }\n\n  .ant-modal-header {\n    background: ${(props) =>\n      props.$theme === 'light' ? '#ffffff' : '#1A202C'};\n    border-bottom: 1px solid\n      ${(props) => (props.$theme === 'light' ? '#f0f0f0' : '#2d3748')};\n\n    .ant-modal-title {\n      color: ${(props) => (props.$theme === 'light' ? '#1A202C' : '#ffffff')};\n    }\n  }\n\n  .ant-modal-close-x {\n    color: ${(props) => (props.$theme === 'light' ? '#1A202C' : '#ffffff')};\n  }\n\n  .ant-modal-body {\n    color: ${(props) => (props.$theme === 'light' ? '#1A202C' : '#ffffff')};\n  }\n\n  h3 {\n    color: ${(props) => (props.$theme === 'light' ? '#1A202C' : '#ffffff')};\n  }\n\n  .ant-table {\n    background: ${(props) =>\n      props.$theme === 'light' ? '#ffffff' : '#1A202C'};\n\n    .ant-table-container {\n      background: ${(props) =>\n        props.$theme === 'light' ? '#ffffff' : '#1A202C'};\n    }\n\n    .ant-table-thead > tr > th {\n      background: ${(props) =>\n        props.$theme === 'light' ? '#fafafa' : '#2d3748'};\n      color: ${(props) => (props.$theme === 'light' ? '#1A202C' : '#ffffff')};\n      border-bottom: 1px solid\n        ${(props) => (props.$theme === 'light' ? '#f0f0f0' : '#2d3748')};\n    }\n\n    .ant-table-tbody > tr > td {\n      background: ${(props) =>\n        props.$theme === 'light' ? '#ffffff' : '#1A202C'};\n      border-bottom: 1px solid\n        ${(props) => (props.$theme === 'light' ? '#f0f0f0' : '#2d3748')};\n      color: ${(props) => (props.$theme === 'light' ? '#1A202C' : '#ffffff')};\n    }\n\n    .ant-table-tbody > tr:hover > td {\n      background: ${(props) =>\n        props.$theme === 'light' ? '#fafafa' : '#2d3748'};\n    }\n\n    .ant-table-empty {\n      background: ${(props) =>\n        props.$theme === 'light' ? '#ffffff' : '#1A202C'};\n    }\n\n    .ant-table-placeholder {\n      background: ${(props) =>\n        props.$theme === 'light' ? '#ffffff' : '#1A202C'};\n      color: ${(props) => (props.$theme === 'light' ? '#1A202C' : '#ffffff')};\n\n      .ant-empty-description {\n        color: ${(props) => (props.$theme === 'light' ? '#1A202C' : '#ffffff')};\n      }\n    }\n  }\n`;\n\nconst StatCard = styled(Card)<{ $theme: ThemeType }>`\n  border: none;\n  border-radius: 16px;\n  overflow: hidden;\n  transition: all 0.3s ease;\n  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);\n  cursor: pointer;\n  background: ${(props) => (props.$theme === 'light' ? '#ffffff' : '#1A202C')};\n\n  &:hover {\n    transform: translateY(-4px);\n    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);\n  }\n\n  .ant-card-body {\n    padding: 24px;\n    display: flex;\n    align-items: center;\n    gap: 20px;\n  }\n\n  .icon-wrapper {\n    width: 56px;\n    height: 56px;\n    border-radius: 14px;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    font-size: 28px;\n    color: #ffffff;\n    flex-shrink: 0;\n  }\n\n  .stat-content {\n    flex: 1;\n  }\n\n  .ant-statistic-title {\n    font-size: 14px;\n    font-weight: 500;\n    color: ${(props) => (props.$theme === 'light' ? '#6B7280' : '#A0AEC0')};\n    margin-bottom: 8px;\n  }\n\n  .ant-statistic-content {\n    font-size: 32px;\n    font-weight: 700;\n    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,\n      'Helvetica Neue', Arial, sans-serif;\n    color: ${(props) => (props.$theme === 'light' ? '#111827' : '#ffffff')};\n  }\n`;\n\nexport default function Dashboard() {\n  const [stats, setStats] = useState({\n    totalDevices: 0,\n    borrowedDevices: 0,\n    availableDevices: 0,\n    overdueDevices: 0,\n  });\n  const [overdue, setOverdue] = useState<any[]>([]);\n  const [dueSoon, setDueSoon] = useState<any[]>([]);\n  const [visible, setVisible] = useState(false);\n  const [theme, setTheme] = useState<'light' | 'dark'>(\n    (localStorage.getItem('theme') as 'light' | 'dark') || 'light',\n  );\n\n  useEffect(() => {\n    load();\n    loadReminders();\n\n    const unsubscribe = eventBus.subscribe('theme:changed', (newTheme) => {\n      setTheme(newTheme);\n    });\n\n    return () => unsubscribe();\n  }, []);\n\n  const load = async () => {\n    const data = await invoke('stats:dashboard');\n    setStats(data);\n    eventBus.emit('dashboard:updated', data);\n  };\n\n  const loadReminders = async () => {\n    const data = await invoke('borrow:listOverdue');\n    setOverdue(data?.overdue || []);\n    setDueSoon(data?.dueSoon || []);\n    setVisible(true);\n    eventBus.emit('reminders:loaded', data);\n  };\n\n  const columns = [\n    { title: '设备编号', dataIndex: 'device_code' },\n    { title: '设备名称', dataIndex: 'device_name' },\n    { title: '借用人', dataIndex: 'borrower_name' },\n    { title: '联系方式', dataIndex: 'borrower_phone' },\n    { title: '剩余天数', dataIndex: 'remaining_days' },\n    {\n      title: '通知状态',\n      dataIndex: 'notified',\n      render: (_: any, r: any) => (\n        <Button\n          type={r.notified ? 'default' : 'primary'}\n          onClick={async () => {\n            if (!r.notified) {\n              await invoke('notify:mark', r.id);\n              loadReminders();\n            }\n          }}\n        >\n          {r.notified ? '已通知' : '未通知'}\n        </Button>\n      ),\n    },\n  ];\n\n  return (\n    <div style={{ padding: 24 }}>\n      <Row gutter={[20, 20]}>\n        <Col span={6}>\n          <StatCard $theme={theme}>\n            <div\n              className=\"icon-wrapper\"\n              style={{\n                background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',\n              }}\n            >\n              <DatabaseOutlined />\n            </div>\n            <div className=\"stat-content\">\n              <Statistic title=\"设备总数\" value={stats.totalDevices} />\n            </div>\n          </StatCard>\n        </Col>\n        <Col span={6}>\n          <StatCard $theme={theme}>\n            <div\n              className=\"icon-wrapper\"\n              style={{\n                background: 'linear-gradient(135deg, #3b82f6 0%, #2563eb 100%)',\n              }}\n            >\n              <LaptopOutlined />\n            </div>\n            <div className=\"stat-content\">\n              <Statistic title=\"在借设备\" value={stats.borrowedDevices} />\n            </div>\n          </StatCard>\n        </Col>\n        <Col span={6}>\n          <StatCard $theme={theme}>\n            <div\n              className=\"icon-wrapper\"\n              style={{\n                background: 'linear-gradient(135deg, #10b981 0%, #059669 100%)',\n              }}\n            >\n              <CheckCircleOutlined />\n            </div>\n            <div className=\"stat-content\">\n              <Statistic title=\"可借设备\" value={stats.availableDevices} />\n            </div>\n          </StatCard>\n        </Col>\n        <Col span={6}>\n          <StatCard $theme={theme}>\n            <div\n              className=\"icon-wrapper\"\n              style={{\n                background: 'linear-gradient(135deg, #ef4444 0%, #dc2626 100%)',\n              }}\n            >\n              <ExclamationCircleOutlined />\n            </div>\n            <div className=\"stat-content\">\n              <Statistic\n                title=\"逾期设备\"\n                value={stats.overdueDevices}\n                valueStyle={{ color: '#EF4444', fontWeight: 700 }}\n              />\n            </div>\n          </StatCard>\n        </Col>\n      </Row>\n\n      <Row gutter={[20, 20]} style={{ marginTop: 20 }}>\n        <Col span={12}>\n          <DeviceTypeChart theme={theme} />\n        </Col>\n        <Col span={12}>\n          <BorrowTrendsChart theme={theme} />\n        </Col>\n      </Row>\n\n      <Row gutter={[20, 20]} style={{ marginTop: 20 }}>\n        <Col span={24}>\n          <DueSoonTimeline theme={theme} />\n        </Col>\n      </Row>\n\n      <StyledModal\n        $theme={theme}\n        title=\"设备归还提醒\"\n        open={visible}\n        onCancel={() => setVisible(false)}\n        footer={null}\n        width={900}\n      >\n        <h3>逾期设备</h3>\n        <Table\n          columns={columns}\n          dataSource={overdue}\n          rowKey=\"id\"\n          pagination={false}\n        />\n        <h3 style={{ marginTop: 16 }}>临期设备（≤5天）</h3>\n        <Table\n          columns={columns}\n          dataSource={dueSoon}\n          rowKey=\"id\"\n          pagination={false}\n        />\n      </StyledModal>\n    </div>\n  );\n}\n",
       "__isJSFile": true,
       "__absFile": "/Users/ningshuo/code/my-projects/equipment-system/src/pages/Dashboard/index.tsx"
     },
@@ -2527,7 +3314,7 @@
       "parentId": "2",
       "id": "5",
       "absPath": "/devices",
-      "__content": "import { invoke, invokeWithEvent } from '@/services/ipc';\nimport {\n  DeleteOutlined,\n  EditOutlined,\n  PlusOutlined,\n  ReloadOutlined,\n  SearchOutlined,\n} from '@ant-design/icons';\nimport {\n  Button,\n  Form,\n  Input,\n  InputNumber,\n  message,\n  Modal,\n  Select,\n  Space,\n  Table,\n} from 'antd';\nimport { useEffect, useState } from 'react';\n\nexport default function Devices() {\n  const [devices, setDevices] = useState<any[]>([]);\n  const [loading, setLoading] = useState(false);\n  const [modalVisible, setModalVisible] = useState(false);\n  const [form] = Form.useForm();\n  const [filterForm] = Form.useForm();\n  const [filters, setFilters] = useState<any>({});\n\n  useEffect(() => {\n    loadDevices();\n  }, []);\n\n  const loadDevices = async (filters: any = {}) => {\n    setLoading(true);\n    try {\n      const data = await invoke<any[]>('device:list', filters);\n      setDevices(Array.isArray(data) ? data : []);\n    } catch (error) {\n      message.error('加载设备列表失败');\n    } finally {\n      setLoading(false);\n    }\n  };\n\n  const handleCreate = async (values: any) => {\n    try {\n      const res = await invokeWithEvent('device:create', values);\n      if (res?.success) {\n        message.success('新增设备成功');\n        setModalVisible(false);\n        form.resetFields();\n        loadDevices(filters);\n      } else {\n        message.error(res?.message || '新增设备失败');\n      }\n    } catch (error) {\n      message.error('新增设备失败');\n    }\n  };\n\n  const handleDelete = async (id: number) => {\n    const result = await invokeWithEvent('device:delete', id);\n    if (result.success) {\n      message.success('删除成功');\n      loadDevices(filters);\n    } else {\n      message.error(result.message);\n    }\n  };\n\n  const handleFilter = (values: any) => {\n    const newFilters = {\n      type: values.type,\n      status: values.status === '' ? undefined : values.status,\n      code: values.code,\n      brand: values.brand,\n    };\n    setFilters(newFilters);\n    loadDevices(newFilters);\n  };\n\n  const handleReset = () => {\n    filterForm.resetFields();\n    setFilters({});\n    loadDevices();\n  };\n\n  const columns = [\n    {\n      title: '设备编号',\n      dataIndex: 'code',\n      key: 'code',\n      width: 120,\n      ellipsis: true,\n    },\n    {\n      title: '设备类型',\n      dataIndex: 'type',\n      key: 'type',\n      width: 120,\n      ellipsis: true,\n    },\n    {\n      title: '设备厂商',\n      dataIndex: 'brand',\n      key: 'brand',\n      width: 150,\n      ellipsis: true,\n    },\n    {\n      title: '规格/型号',\n      dataIndex: 'model',\n      key: 'model',\n      width: 150,\n      ellipsis: true,\n    },\n    {\n      title: '单价',\n      dataIndex: 'price',\n      key: 'price',\n      width: 100,\n      ellipsis: true,\n      render: (text: any) => {\n        if (typeof text === 'number') {\n          return text.toLocaleString('zh-CN', {\n            minimumFractionDigits: 2,\n            maximumFractionDigits: 2,\n          });\n        }\n        return text;\n      },\n    },\n    {\n      title: '存放地点',\n      dataIndex: 'location',\n      key: 'location',\n      width: 150,\n      ellipsis: true,\n    },\n    {\n      title: '设备状态',\n      dataIndex: 'status',\n      key: 'status',\n      width: 100,\n      ellipsis: true,\n      render: (status: string) => {\n        const statusMap: any = {\n          available: '可用',\n          borrowed: '已借出',\n          maintenance: '维修中',\n          scrap: '已报废',\n        };\n        const displayStatus = statusMap[status] || status;\n\n        let statusColor = '#52c41a'; // 可用 - 绿色 (Ant Design 成功色)\n        if (status === 'borrowed') statusColor = '#6366F1'; // 已借出 - 紫色 (主题主色)\n        if (status === 'maintenance') statusColor = '#faad14'; // 维修中 - 黄色 (Ant Design 警告色)\n        if (status === 'scrap') statusColor = '#ff4d4f'; // 已报废 - 红色 (Ant Design 错误色)\n\n        return (\n          <span style={{ color: statusColor, fontWeight: 500 }}>\n            {displayStatus}\n          </span>\n        );\n      },\n    },\n    {\n      title: '操作',\n      key: 'action',\n      width: 120,\n      fixed: 'right' as const,\n      render: (_: any, record: any) => (\n        <Space size=\"middle\">\n          <Button type=\"link\" size=\"small\" icon={<EditOutlined />}>\n            编辑\n          </Button>\n          <Button\n            type=\"link\"\n            danger\n            size=\"small\"\n            icon={<DeleteOutlined />}\n            onClick={() => handleDelete(record.id)}\n          >\n            删除\n          </Button>\n        </Space>\n      ),\n    },\n  ];\n\n  const statusOptions = [\n    { label: '全部', value: '' },\n    { label: '可用', value: 'available' },\n    { label: '已借出', value: 'borrowed' },\n    { label: '维修中', value: 'maintenance' },\n    { label: '已报废', value: 'scrap' },\n  ];\n\n  // 设备类型选项，根据Figma原型添加\n  const typeOptions = [\n    { label: '柜式空调', value: '柜式空调' },\n    { label: '数字示波器', value: '数字示波器' },\n    { label: '笔记本电脑', value: '笔记本电脑' },\n    { label: '服务器', value: '服务器' },\n    { label: '打印机', value: '打印机' },\n  ];\n\n  return (\n    <div>\n      {/* 筛选卡片 */}\n      <div\n        style={{\n          backgroundColor: '#ffffff',\n          borderRadius: '16px',\n          padding: '24px',\n          marginBottom: '24px',\n          boxShadow: '0 2px 8px rgba(0, 0, 0, 0.08)',\n          border: '1px solid #e5e7eb',\n        }}\n      >\n        <Form\n          form={filterForm}\n          layout=\"inline\"\n          onFinish={handleFilter}\n          style={{\n            display: 'grid',\n            gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',\n            gap: '16px',\n            alignItems: 'end',\n          }}\n        >\n          <Form.Item name=\"code\" label=\"设备编号\">\n            <Input placeholder=\"请输入设备编号\" style={{ width: '100%' }} />\n          </Form.Item>\n\n          <Form.Item name=\"type\" label=\"设备类型\">\n            <Select\n              placeholder=\"请选择设备类型\"\n              style={{ width: '100%' }}\n              options={typeOptions}\n            />\n          </Form.Item>\n\n          <Form.Item name=\"brand\" label=\"设备厂商\">\n            <Input placeholder=\"请输入设备厂商\" style={{ width: '100%' }} />\n          </Form.Item>\n\n          <Form.Item name=\"status\" label=\"设备状态\">\n            <Select\n              placeholder=\"请选择设备状态\"\n              style={{ width: '100%' }}\n              options={statusOptions}\n            />\n          </Form.Item>\n\n          <div\n            style={{\n              display: 'flex',\n              gap: '12px',\n              alignItems: 'end',\n              marginTop: '24px',\n            }}\n          >\n            <Button\n              type=\"primary\"\n              htmlType=\"submit\"\n              icon={<SearchOutlined />}\n              style={{\n                borderRadius: '8px',\n                boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',\n                padding: '6px 16px',\n                fontSize: '14px',\n                fontWeight: 500,\n              }}\n            >\n              筛选\n            </Button>\n            <Button\n              onClick={handleReset}\n              icon={<ReloadOutlined />}\n              style={{\n                borderRadius: '8px',\n                padding: '6px 16px',\n                fontSize: '14px',\n              }}\n            >\n              重置\n            </Button>\n          </div>\n        </Form>\n      </div>\n\n      {/* 设备列表卡片 */}\n      <div\n        style={{\n          backgroundColor: '#ffffff',\n          borderRadius: '16px',\n          boxShadow: '0 2px 8px rgba(0, 0, 0, 0.08)',\n          border: '1px solid #e5e7eb',\n          overflow: 'hidden',\n        }}\n      >\n        {/* 列表头部 */}\n        <div\n          style={{\n            padding: '16px 24px',\n            backgroundColor: '#fafafa',\n            borderBottom: '1px solid #e5e7eb',\n            display: 'flex',\n            justifyContent: 'space-between',\n            alignItems: 'center',\n          }}\n        >\n          <h2\n            style={{\n              margin: 0,\n              fontSize: '18px',\n              fontWeight: 600,\n              color: '#1f2937',\n            }}\n          >\n            设备列表\n          </h2>\n          <Button\n            type=\"primary\"\n            onClick={() => setModalVisible(true)}\n            icon={<PlusOutlined />}\n            style={{\n              borderRadius: '8px',\n              boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',\n              padding: '6px 16px',\n              fontSize: '14px',\n              fontWeight: 500,\n            }}\n          >\n            新增设备\n          </Button>\n        </div>\n\n        {/* 表格 */}\n        <Table\n          columns={columns}\n          dataSource={devices}\n          loading={loading}\n          rowKey=\"id\"\n          pagination={{\n            pageSize: 10,\n            showSizeChanger: true,\n            showQuickJumper: true,\n            showTotal: (total) => `共 ${total} 条记录`,\n          }}\n          scroll={{ x: 1000 }}\n          style={{ margin: 0 }}\n          size=\"middle\"\n          className=\"device-table\"\n        />\n      </div>\n\n      {/* 新增设备模态框 */}\n      <Modal\n        title=\"新增设备\"\n        open={modalVisible}\n        onCancel={() => setModalVisible(false)}\n        onOk={() => form.submit()}\n        okText=\"确认\"\n        cancelText=\"取消\"\n        destroyOnClose\n        width={600}\n        style={{ borderRadius: '12px' }}\n        centered\n      >\n        <Form\n          form={form}\n          onFinish={handleCreate}\n          labelCol={{ span: 6 }}\n          wrapperCol={{ span: 18 }}\n          layout=\"horizontal\"\n          style={{ marginTop: 16 }}\n        >\n          <Form.Item\n            name=\"code\"\n            label=\"设备编号\"\n            rules={[{ required: true, message: '请输入设备编号' }]}\n          >\n            <Input placeholder=\"请输入设备编号\" />\n          </Form.Item>\n          <Form.Item\n            name=\"name\"\n            label=\"设备名称\"\n            rules={[{ required: true, message: '请输入设备名称' }]}\n          >\n            <Input placeholder=\"请输入设备名称\" />\n          </Form.Item>\n          <Form.Item\n            name=\"type\"\n            label=\"设备类型\"\n            rules={[{ required: true, message: '请输入设备类型' }]}\n          >\n            <Select\n              placeholder=\"请选择设备类型\"\n              style={{ width: '100%' }}\n              options={typeOptions}\n            />\n          </Form.Item>\n          <Form.Item\n            name=\"brand\"\n            label=\"设备厂商\"\n            rules={[{ required: true, message: '请输入设备厂商' }]}\n          >\n            <Input placeholder=\"请输入设备厂商\" />\n          </Form.Item>\n          <Form.Item\n            name=\"model\"\n            label=\"规格型号\"\n            rules={[{ required: true, message: '请输入规格型号' }]}\n          >\n            <Input placeholder=\"请输入规格型号\" />\n          </Form.Item>\n          <Form.Item\n            name=\"price\"\n            label=\"单价\"\n            rules={[{ required: true, message: '请输入单价' }]}\n          >\n            <InputNumber\n              placeholder=\"请输入单价\"\n              style={{ width: '100%' }}\n              min={0}\n              step={0.01}\n              formatter={(value) => `¥ ${value}`}\n              parser={(value) => (value?.replace(/¥\\s?/, '') || '') as any}\n            />\n          </Form.Item>\n          <Form.Item\n            name=\"location\"\n            label=\"存放地点\"\n            rules={[{ required: true, message: '请输入存放地点' }]}\n          >\n            <Input placeholder=\"请输入存放地点\" />\n          </Form.Item>\n          <Form.Item name=\"status\" label=\"设备状态\">\n            <Select\n              placeholder=\"请选择设备状态\"\n              style={{ width: '100%' }}\n              options={statusOptions.filter((opt) => opt.value !== '')}\n              defaultValue=\"available\"\n            />\n          </Form.Item>\n        </Form>\n      </Modal>\n    </div>\n  );\n}\n",
+      "__content": "import { invoke, invokeWithEvent } from '@/services/ipc';\nimport { ProColumns, ProTable } from '@ant-design/pro-components';\nimport { Button, Form, Input, InputNumber, message, Modal, Select } from 'antd';\nimport { useRef, useState } from 'react';\nimport styled, { createGlobalStyle } from 'styled-components';\n\nconst statusOptions = [\n  { label: '全部', value: '' },\n  { label: '可用', value: 'available' },\n  { label: '已借出', value: 'borrowed' },\n  { label: '维修中', value: 'maintenance' },\n  { label: '已报废', value: 'scrap' },\n];\n\nconst typeOptions = [\n  { label: '柜式空调', value: '柜式空调' },\n  { label: '数字示波器', value: '数字示波器' },\n  { label: '笔记本电脑', value: '笔记本电脑' },\n  { label: '服务器', value: '服务器' },\n  { label: '打印机', value: '打印机' },\n];\n\nconst GlobalSelectStyles = createGlobalStyle<{ $theme: 'light' | 'dark' }>`\n  ${(props) =>\n    props.$theme === 'dark'\n      ? `\n    .ant-select-dropdown {\n      background: #2d3748 !important;\n      border: 1px solid #4a5568 !important;\n    }\n\n    .ant-select-item {\n      color: #ffffff !important;\n\n      &:hover {\n        background: #4a5568 !important;\n      }\n\n      &.ant-select-item-option-selected {\n        background: #2d3748 !important;\n        color: #667eea !important;\n      }\n    }\n\n    .ant-select-item-option-active {\n      background: #4a5568 !important;\n    }\n  `\n      : ''}\n`;\n\nconst StyledModal = styled(Modal)<{ $theme: 'light' | 'dark' }>`\n  .ant-modal-content {\n    background: ${(props) =>\n      props.$theme === 'light' ? '#ffffff' : '#1A202C'};\n  }\n\n  .ant-modal-header {\n    background: ${(props) =>\n      props.$theme === 'light' ? '#ffffff' : '#1A202C'};\n    border-bottom: 1px solid\n      ${(props) => (props.$theme === 'light' ? '#f0f0f0' : '#2d3748')};\n\n    .ant-modal-title {\n      color: ${(props) => (props.$theme === 'light' ? '#1A202C' : '#ffffff')};\n    }\n  }\n\n  .ant-modal-close-x {\n    color: ${(props) => (props.$theme === 'light' ? '#1A202C' : '#ffffff')};\n  }\n\n  .ant-modal-body {\n    color: ${(props) => (props.$theme === 'light' ? '#1A202C' : '#ffffff')};\n  }\n\n  .ant-form-item-label > label {\n    color: ${(props) => (props.$theme === 'light' ? '#1A202C' : '#ffffff')};\n  }\n\n  .ant-input,\n  .ant-input-password {\n    background: ${(props) =>\n      props.$theme === 'light' ? '#ffffff' : '#2d3748'};\n    border-color: ${(props) =>\n      props.$theme === 'light' ? '#d9d9d9' : '#4a5568'};\n    color: ${(props) => (props.$theme === 'light' ? '#1A202C' : '#ffffff')};\n\n    &::placeholder {\n      color: ${(props) => (props.$theme === 'light' ? '#bfbfbf' : '#718096')};\n    }\n\n    &:hover {\n      border-color: ${(props) =>\n        props.$theme === 'light' ? '#4096ff' : '#667eea'};\n    }\n  }\n\n  .ant-input:focus,\n  .ant-input-password:focus {\n    border-color: ${(props) =>\n      props.$theme === 'light' ? '#4096ff' : '#667eea'};\n    box-shadow: ${(props) =>\n      props.$theme === 'light'\n        ? '0 0 0 2px rgba(64, 150, 255, 0.2)'\n        : '0 0 0 2px rgba(102, 126, 234, 0.2)'};\n  }\n\n  .ant-select {\n    .ant-select-selector {\n      background: ${(props) =>\n        props.$theme === 'light' ? '#ffffff' : '#2d3748'};\n      border-color: ${(props) =>\n        props.$theme === 'light' ? '#d9d9d9' : '#4a5568'};\n      color: ${(props) => (props.$theme === 'light' ? '#1A202C' : '#ffffff')};\n\n      .ant-select-selection-placeholder {\n        color: ${(props) => (props.$theme === 'light' ? '#bfbfbf' : '#718096')};\n      }\n\n      .ant-select-selection-item {\n        color: ${(props) => (props.$theme === 'light' ? '#1A202C' : '#ffffff')};\n      }\n    }\n\n    &:hover .ant-select-selector {\n      border-color: ${(props) =>\n        props.$theme === 'light' ? '#4096ff' : '#667eea'};\n    }\n\n    &.ant-select-focused .ant-select-selector {\n      border-color: ${(props) =>\n        props.$theme === 'light' ? '#4096ff' : '#667eea'};\n      box-shadow: ${(props) =>\n        props.$theme === 'light'\n          ? '0 0 0 2px rgba(64, 150, 255, 0.2)'\n          : '0 0 0 2px rgba(102, 126, 234, 0.2)'};\n    }\n\n    .ant-select-arrow {\n      color: ${(props) => (props.$theme === 'light' ? '#bfbfbf' : '#718096')};\n    }\n  }\n\n  .ant-picker {\n    background: ${(props) =>\n      props.$theme === 'light' ? '#ffffff' : '#2d3748'};\n    border-color: ${(props) =>\n      props.$theme === 'light' ? '#d9d9d9' : '#4a5568'};\n    color: ${(props) => (props.$theme === 'light' ? '#1A202C' : '#ffffff')};\n\n    &::placeholder {\n      color: ${(props) => (props.$theme === 'light' ? '#bfbfbf' : '#718096')};\n    }\n\n    &:hover {\n      border-color: ${(props) =>\n        props.$theme === 'light' ? '#4096ff' : '#667eea'};\n    }\n  }\n\n  .ant-picker-focused {\n    border-color: ${(props) =>\n      props.$theme === 'light' ? '#4096ff' : '#667eea'};\n    box-shadow: ${(props) =>\n      props.$theme === 'light'\n        ? '0 0 0 2px rgba(64, 150, 255, 0.2)'\n        : '0 0 0 2px rgba(102, 126, 234, 0.2)'};\n  }\n\n  .ant-select-dropdown {\n    background: ${(props) =>\n      props.$theme === 'light' ? '#ffffff' : '#2d3748'};\n\n    .ant-select-item {\n      color: ${(props) => (props.$theme === 'light' ? '#1A202C' : '#ffffff')};\n\n      &:hover {\n        background: ${(props) =>\n          props.$theme === 'light' ? '#f5f5f5' : '#4a5568'};\n      }\n\n      &.ant-select-item-option-selected {\n        background: ${(props) =>\n          props.$theme === 'light' ? '#e6f7ff' : '#2d3748'};\n      }\n    }\n  }\n\n  .ant-picker-dropdown {\n    background: ${(props) =>\n      props.$theme === 'light' ? '#ffffff' : '#2d3748'};\n\n    .ant-picker-panel {\n      background: ${(props) =>\n        props.$theme === 'light' ? '#ffffff' : '#2d3748'};\n      color: ${(props) => (props.$theme === 'light' ? '#1A202C' : '#ffffff')};\n    }\n\n    .ant-picker-cell {\n      color: ${(props) => (props.$theme === 'light' ? '#1A202C' : '#ffffff')};\n\n      &:hover {\n        background: ${(props) =>\n          props.$theme === 'light' ? '#f5f5f5' : '#4a5568'};\n      }\n\n      &.ant-picker-cell-selected {\n        background: ${(props) =>\n          props.$theme === 'light' ? '#1890ff' : '#667eea'};\n      }\n    }\n\n    .ant-picker-header {\n      color: ${(props) => (props.$theme === 'light' ? '#1A202C' : '#ffffff')};\n    }\n\n    .ant-picker-footer {\n      border-top-color: ${(props) =>\n        props.$theme === 'light' ? '#f0f0f0' : '#4a5568'};\n    }\n  }\n\n  .ant-input-number {\n    background: ${(props) =>\n      props.$theme === 'light' ? '#ffffff' : '#2d3748'};\n    border-color: ${(props) =>\n      props.$theme === 'light' ? '#d9d9d9' : '#4a5568'};\n    color: ${(props) => (props.$theme === 'light' ? '#1A202C' : '#ffffff')};\n\n    &:hover {\n      border-color: ${(props) =>\n        props.$theme === 'light' ? '#4096ff' : '#667eea'};\n    }\n\n    &:focus-within {\n      border-color: ${(props) =>\n        props.$theme === 'light' ? '#4096ff' : '#667eea'};\n      box-shadow: ${(props) =>\n        props.$theme === 'light'\n          ? '0 0 0 2px rgba(64, 150, 255, 0.2)'\n          : '0 0 0 2px rgba(102, 126, 234, 0.2)'};\n    }\n\n    .ant-input-number-input {\n      color: ${(props) => (props.$theme === 'light' ? '#1A202C' : '#ffffff')};\n    }\n  }\n`;\n\nexport default function Devices() {\n  const actionRef = useRef<any>();\n  const [createVisible, setCreateVisible] = useState(false);\n  const [editVisible, setEditVisible] = useState(false);\n  const [deleteVisible, setDeleteVisible] = useState(false);\n  const [createForm] = Form.useForm();\n  const [editForm] = Form.useForm();\n  const [currentRecord, setCurrentRecord] = useState<any>(null);\n  const theme = (localStorage.getItem('theme') as 'light' | 'dark') || 'light';\n\n  const handleCreate = async (values: any) => {\n    try {\n      const res = await invokeWithEvent('device:create', values);\n      if (res?.success) {\n        message.success('新增设备成功');\n        setCreateVisible(false);\n        createForm.resetFields();\n        actionRef.current?.reload();\n      } else {\n        message.error(res?.message || '新增设备失败');\n      }\n    } catch (error) {\n      message.error('新增设备失败');\n    }\n  };\n\n  const handleEdit = (record: any) => {\n    setCurrentRecord(record);\n    editForm.setFieldsValue({\n      ...record,\n    });\n    setEditVisible(true);\n  };\n\n  const handleUpdate = async (values: any) => {\n    try {\n      const res = await invokeWithEvent('device:update', {\n        id: currentRecord.id,\n        ...values,\n      });\n      if (res?.success) {\n        message.success('更新设备成功');\n        setEditVisible(false);\n        editForm.resetFields();\n        setCurrentRecord(null);\n        actionRef.current?.reload();\n      } else {\n        message.error(res?.message || '更新设备失败');\n      }\n    } catch (error) {\n      message.error('更新设备失败');\n    }\n  };\n\n  const handleDelete = (record: any) => {\n    setCurrentRecord(record);\n    setDeleteVisible(true);\n  };\n\n  const confirmDelete = async () => {\n    try {\n      const result = await invokeWithEvent('device:delete', currentRecord.id);\n      if (result.success) {\n        message.success('删除成功');\n        setDeleteVisible(false);\n        setCurrentRecord(null);\n        actionRef.current?.reload();\n      } else {\n        message.error(result.message || '删除失败');\n      }\n    } catch (error) {\n      message.error('删除失败');\n    }\n  };\n\n  const fetchData = async (params: any) => {\n    try {\n      const { current, pageSize, ...restParams } = params;\n      const filters: any = {};\n\n      if (restParams.code) {\n        filters.code = restParams.code;\n      }\n      if (restParams.name) {\n        filters.name = restParams.name;\n      }\n      if (restParams.type) {\n        filters.type = restParams.type;\n      }\n      if (restParams.brand) {\n        filters.brand = restParams.brand;\n      }\n      if (restParams.status && restParams.status !== '') {\n        filters.status = restParams.status;\n      }\n\n      const data = await invoke<any[]>('device:list', filters);\n      const list = Array.isArray(data) ? data : [];\n\n      return {\n        data: list,\n        success: true,\n        total: list.length,\n      };\n    } catch (error) {\n      return {\n        data: [],\n        success: false,\n        total: 0,\n      };\n    }\n  };\n\n  const fetchUniqueValues = async (field: string) => {\n    try {\n      const data = await invoke<any[]>('device:list');\n      const list = Array.isArray(data) ? data : [];\n      return [...new Set(list.map((item) => item[field]).filter(Boolean))].map(\n        (value) => ({ label: value, value }),\n      );\n    } catch {\n      return [];\n    }\n  };\n\n  const columns: ProColumns<any>[] = [\n    {\n      title: '设备编号',\n      dataIndex: 'code',\n      valueType: 'select',\n      request: async () => fetchUniqueValues('code'),\n      fieldProps: {\n        placeholder: '请选择设备编号',\n        showSearch: true,\n        filterOption: (input: string, option: any) =>\n          option.label.toLowerCase().includes(input.toLowerCase()),\n      },\n    },\n    {\n      title: '设备名称',\n      dataIndex: 'name',\n      hideInTable: true,\n      valueType: 'select',\n      request: async () => fetchUniqueValues('name'),\n      fieldProps: {\n        placeholder: '请选择设备名称',\n        showSearch: true,\n        filterOption: (input: string, option: any) =>\n          option.label.toLowerCase().includes(input.toLowerCase()),\n      },\n    },\n    {\n      title: '设备类型',\n      dataIndex: 'type',\n      valueType: 'select',\n      valueEnum: typeOptions.reduce((acc: any, item) => {\n        acc[item.value] = { text: item.label };\n        return acc;\n      }, {}),\n      fieldProps: {\n        placeholder: '请选择设备类型',\n      },\n    },\n    {\n      title: '设备厂商',\n      dataIndex: 'brand',\n      valueType: 'select',\n      request: async () => fetchUniqueValues('brand'),\n      fieldProps: {\n        placeholder: '请选择设备厂商',\n        showSearch: true,\n        filterOption: (input: string, option: any) =>\n          option.label.toLowerCase().includes(input.toLowerCase()),\n      },\n    },\n    {\n      title: '规格型号',\n      dataIndex: 'model',\n      hideInSearch: true,\n    },\n    {\n      title: '单价',\n      dataIndex: 'price',\n      hideInSearch: true,\n      render: (text: any) => {\n        if (typeof text === 'number') {\n          return text.toLocaleString('zh-CN', {\n            minimumFractionDigits: 2,\n            maximumFractionDigits: 2,\n          });\n        }\n        return text;\n      },\n    },\n    {\n      title: '存放地点',\n      dataIndex: 'location',\n      hideInSearch: true,\n    },\n    {\n      title: '设备状态',\n      dataIndex: 'status',\n      valueType: 'select',\n      request: async () => statusOptions,\n      fieldProps: {\n        placeholder: '请选择设备状态',\n      },\n      render: (status: string) => {\n        const statusMap: any = {\n          available: '可用',\n          borrowed: '已借出',\n          maintenance: '维修中',\n          scrap: '已报废',\n        };\n        const displayStatus = statusMap[status] || status;\n\n        let statusColor = '#52c41a';\n        if (status === 'borrowed') statusColor = '#6366F1';\n        if (status === 'maintenance') statusColor = '#faad14';\n        if (status === 'scrap') statusColor = '#ff4d4f';\n\n        return (\n          <span style={{ color: statusColor, fontWeight: 500 }}>\n            {displayStatus}\n          </span>\n        );\n      },\n    },\n    {\n      title: '操作',\n      valueType: 'option',\n      width: 120,\n      fixed: 'right',\n      render: (_: any, r: any) => [\n        <Button type=\"link\" key=\"r.edit\" onClick={() => handleEdit(r)}>\n          编辑\n        </Button>,\n        <Button\n          type=\"link\"\n          danger\n          key=\"r.delete\"\n          onClick={() => handleDelete(r)}\n        >\n          删除\n        </Button>,\n      ],\n    },\n  ];\n\n  return (\n    <>\n      <GlobalSelectStyles $theme={theme} />\n      <div style={{ padding: 24 }}>\n        <ProTable<any>\n          columns={columns}\n          actionRef={actionRef}\n          request={fetchData}\n          rowKey=\"id\"\n          search={{\n            labelWidth: 120,\n          }}\n          pagination={{\n            pageSize: 10,\n            showSizeChanger: true,\n            showQuickJumper: true,\n            showTotal: (total) => `共 ${total} 条记录`,\n          }}\n          scroll={{ x: 1000 }}\n          headerTitle=\"设备管理\"\n          toolBarRender={() => [\n            <Button\n              type=\"primary\"\n              key=\"create\"\n              onClick={() => setCreateVisible(true)}\n            >\n              新增设备\n            </Button>,\n          ]}\n        />\n        <StyledModal\n          $theme={theme}\n          title=\"新增设备\"\n          open={createVisible}\n          onCancel={() => {\n            setCreateVisible(false);\n            createForm.resetFields();\n          }}\n          onOk={() => createForm.submit()}\n          destroyOnClose\n          width={600}\n        >\n          <Form\n            form={createForm}\n            onFinish={handleCreate}\n            labelCol={{ span: 6 }}\n            wrapperCol={{ span: 18 }}\n            layout=\"horizontal\"\n            style={{ marginTop: 16 }}\n          >\n            <Form.Item\n              name=\"code\"\n              label=\"设备编号\"\n              rules={[{ required: true, message: '请输入设备编号' }]}\n            >\n              <Input placeholder=\"请输入设备编号\" />\n            </Form.Item>\n            <Form.Item\n              name=\"name\"\n              label=\"设备名称\"\n              rules={[{ required: true, message: '请输入设备名称' }]}\n            >\n              <Input placeholder=\"请输入设备名称\" />\n            </Form.Item>\n            <Form.Item\n              name=\"type\"\n              label=\"设备类型\"\n              rules={[{ required: true, message: '请选择设备类型' }]}\n            >\n              <Select placeholder=\"请选择设备类型\" options={typeOptions} />\n            </Form.Item>\n            <Form.Item\n              name=\"brand\"\n              label=\"设备厂商\"\n              rules={[{ required: true, message: '请输入设备厂商' }]}\n            >\n              <Input placeholder=\"请输入设备厂商\" />\n            </Form.Item>\n            <Form.Item\n              name=\"model\"\n              label=\"规格型号\"\n              rules={[{ required: true, message: '请输入规格型号' }]}\n            >\n              <Input placeholder=\"请输入规格型号\" />\n            </Form.Item>\n            <Form.Item\n              name=\"price\"\n              label=\"单价\"\n              rules={[{ required: true, message: '请输入单价' }]}\n            >\n              <InputNumber\n                placeholder=\"请输入单价\"\n                style={{ width: '100%' }}\n                min={0}\n                step={0.01}\n                formatter={(value) => `¥ ${value}`}\n                parser={(value) => (value?.replace(/¥\\s?/, '') || '') as any}\n              />\n            </Form.Item>\n            <Form.Item\n              name=\"location\"\n              label=\"存放地点\"\n              rules={[{ required: true, message: '请输入存放地点' }]}\n            >\n              <Input placeholder=\"请输入存放地点\" />\n            </Form.Item>\n            <Form.Item name=\"status\" label=\"设备状态\" initialValue=\"available\">\n              <Select\n                placeholder=\"请选择设备状态\"\n                options={statusOptions.filter((opt) => opt.value !== '')}\n              />\n            </Form.Item>\n          </Form>\n        </StyledModal>\n        <StyledModal\n          $theme={theme}\n          title=\"编辑设备\"\n          open={editVisible}\n          onCancel={() => {\n            setEditVisible(false);\n            editForm.resetFields();\n            setCurrentRecord(null);\n          }}\n          onOk={() => editForm.submit()}\n          destroyOnClose\n          width={600}\n        >\n          <Form\n            form={editForm}\n            onFinish={handleUpdate}\n            labelCol={{ span: 6 }}\n            wrapperCol={{ span: 18 }}\n            layout=\"horizontal\"\n            style={{ marginTop: 16 }}\n          >\n            <Form.Item name=\"code\" label=\"设备编号\">\n              <Input disabled />\n            </Form.Item>\n            <Form.Item\n              name=\"name\"\n              label=\"设备名称\"\n              rules={[{ required: true, message: '请输入设备名称' }]}\n            >\n              <Input placeholder=\"请输入设备名称\" />\n            </Form.Item>\n            <Form.Item\n              name=\"type\"\n              label=\"设备类型\"\n              rules={[{ required: true, message: '请选择设备类型' }]}\n            >\n              <Select placeholder=\"请选择设备类型\" options={typeOptions} />\n            </Form.Item>\n            <Form.Item\n              name=\"brand\"\n              label=\"设备厂商\"\n              rules={[{ required: true, message: '请输入设备厂商' }]}\n            >\n              <Input placeholder=\"请输入设备厂商\" />\n            </Form.Item>\n            <Form.Item\n              name=\"model\"\n              label=\"规格型号\"\n              rules={[{ required: true, message: '请输入规格型号' }]}\n            >\n              <Input placeholder=\"请输入规格型号\" />\n            </Form.Item>\n            <Form.Item\n              name=\"price\"\n              label=\"单价\"\n              rules={[{ required: true, message: '请输入单价' }]}\n            >\n              <InputNumber\n                placeholder=\"请输入单价\"\n                style={{ width: '100%' }}\n                min={0}\n                step={0.01}\n                formatter={(value) => `¥ ${value}`}\n                parser={(value) => (value?.replace(/¥\\s?/, '') || '') as any}\n              />\n            </Form.Item>\n            <Form.Item\n              name=\"location\"\n              label=\"存放地点\"\n              rules={[{ required: true, message: '请输入存放地点' }]}\n            >\n              <Input placeholder=\"请输入存放地点\" />\n            </Form.Item>\n            <Form.Item name=\"status\" label=\"设备状态\">\n              <Select\n                placeholder=\"请选择设备状态\"\n                options={statusOptions.filter((opt) => opt.value !== '')}\n              />\n            </Form.Item>\n          </Form>\n        </StyledModal>\n        <StyledModal\n          $theme={theme}\n          title=\"确认删除\"\n          open={deleteVisible}\n          onOk={confirmDelete}\n          onCancel={() => {\n            setDeleteVisible(false);\n            setCurrentRecord(null);\n          }}\n          okText=\"确认删除\"\n          cancelText=\"取消\"\n        >\n          {currentRecord && (\n            <div>\n              <p>确认删除以下设备？</p>\n              <p style={{ marginTop: 16 }}>\n                <strong>设备编号：</strong>\n                {currentRecord.code}\n              </p>\n              <p>\n                <strong>设备名称：</strong>\n                {currentRecord.name}\n              </p>\n              {currentRecord.status === 'borrowed' && (\n                <p style={{ color: '#ff4d4f', marginTop: 16 }}>\n                  该设备当前已借出，无法删除！\n                </p>\n              )}\n              {currentRecord.status !== 'borrowed' && (\n                <p style={{ color: '#ff4d4f', marginTop: 16 }}>\n                  删除后数据不可恢复！\n                </p>\n              )}\n            </div>\n          )}\n        </StyledModal>\n      </div>\n    </>\n  );\n}\n",
       "__isJSFile": true,
       "__absFile": "/Users/ningshuo/code/my-projects/equipment-system/src/pages/Devices/index.tsx"
     },
@@ -2537,7 +3324,7 @@
       "parentId": "2",
       "id": "6",
       "absPath": "/borrow",
-      "__content": "import { invoke, invokeWithEvent } from '@/services/ipc';\nimport { ProColumns, ProTable } from '@ant-design/pro-components';\nimport { Button, DatePicker, Form, Input, message, Modal, Select } from 'antd';\nimport dayjs from 'dayjs';\nimport { useEffect, useRef, useState } from 'react';\n\nconst typeOptions = [\n  { label: '柜式空调', value: '柜式空调' },\n  { label: '数字示波器', value: '数字示波器' },\n  { label: '笔记本电脑', value: '笔记本电脑' },\n  { label: '服务器', value: '服务器' },\n  { label: '打印机', value: '打印机' },\n];\n\nexport default function Borrow() {\n  const actionRef = useRef<any>();\n  const [visible, setVisible] = useState(false);\n  const [availableDevices, setAvailableDevices] = useState<any[]>([]);\n  const [form] = Form.useForm();\n\n  useEffect(() => {\n    loadAvailableDevices();\n  }, []);\n\n  const loadAvailableDevices = async () => {\n    try {\n      const data = await invoke<any[]>('device:list', { status: 'available' });\n      setAvailableDevices(Array.isArray(data) ? data : []);\n    } catch (error) {\n      console.error('加载可用设备列表失败:', error);\n    }\n  };\n\n  const handleCreate = async (values: any) => {\n    // 根据 device_code 查询设备 id\n    const device = availableDevices.find((d) => d.code === values.device_code);\n    if (!device) {\n      messageX.error('设备不存在，请重新选择');\n      return;\n    }\n\n    const payload = {\n      device_id: device.id, // 使用 device_id 而不是 device_code\n      borrower_name: values.borrower_name,\n      borrower_class: values.borrower_class,\n      borrower_student_id: values.borrower_student_id,\n      borrower_phone: values.borrower_phone,\n      borrow_time: dayjs(values.borrow_time).toISOString(),\n      return_deadline: dayjs(values.return_deadline).toISOString(),\n    };\n    const res = await invokeWithEvent('borrow:create', payload);\n    if (res?.success) {\n      message.success('借出成功');\n      setVisible(false);\n      form.resetFields();\n      actionRef.current?.reload();\n    } else {\n      message.error(res?.message || '借出失败');\n    }\n  };\n\n  const handleReturn = async (id: number) => {\n    const res = await invokeWithEvent('borrow:return', id);\n    if (res?.success) {\n      message.success('归还成功');\n      actionRef.current?.reload();\n    } else {\n      message.error(res?.message || '归还失败');\n    }\n  };\n\n  const fetchData = async (params: any) => {\n    try {\n      const { current, pageSize, ...restParams } = params;\n      const filters: any = {};\n\n      if (restParams.deviceCode) {\n        filters.deviceCode = restParams.deviceCode;\n      }\n      if (restParams.deviceName) {\n        filters.deviceName = restParams.deviceName;\n      }\n      if (restParams.borrowerName) {\n        filters.borrowerName = restParams.borrowerName;\n      }\n      if (restParams.borrowerClass) {\n        filters.borrowerClass = restParams.borrowerClass;\n      }\n      if (restParams.deviceType) {\n        filters.deviceType = restParams.deviceType;\n      }\n      if (\n        restParams.borrowTimeRange &&\n        Array.isArray(restParams.borrowTimeRange)\n      ) {\n        filters.borrowTimeStart = dayjs(\n          restParams.borrowTimeRange[0],\n        ).toISOString();\n        filters.borrowTimeEnd = dayjs(\n          restParams.borrowTimeRange[1],\n        ).toISOString();\n      }\n      if (\n        restParams.returnDeadlineRange &&\n        Array.isArray(restParams.returnDeadlineRange)\n      ) {\n        filters.returnDeadlineStart = dayjs(\n          restParams.returnDeadlineRange[0],\n        ).toISOString();\n        filters.returnDeadlineEnd = dayjs(\n          restParams.returnDeadlineRange[1],\n        ).toISOString();\n      }\n\n      const data = await invoke<any[]>('borrow:list', filters);\n      const list = Array.isArray(data) ? data : [];\n\n      return {\n        data: list,\n        success: true,\n        total: list.length,\n      };\n    } catch (error) {\n      return {\n        data: [],\n        success: false,\n        total: 0,\n      };\n    }\n  };\n\n  const fetchUniqueValues = async (field: string) => {\n    try {\n      const data = await invoke<any[]>('borrow:list');\n      const list = Array.isArray(data) ? data : [];\n      return [...new Set(list.map((item) => item[field]).filter(Boolean))].map(\n        (value) => ({ label: value, value }),\n      );\n    } catch {\n      return [];\n    }\n  };\n\n  const columns: ProColumns<any>[] = [\n    {\n      title: '设备编号',\n      dataIndex: 'device_code',\n      valueType: 'select',\n      request: async () => fetchUniqueValues('device_code'),\n      fieldProps: {\n        placeholder: '请选择设备编号',\n        showSearch: true,\n        filterOption: (input: string, option: any) =>\n          option.label.toLowerCase().includes(input.toLowerCase()),\n      },\n    },\n    {\n      title: '设备名称',\n      dataIndex: 'device_name',\n      hideInTable: true,\n      valueType: 'select',\n      request: async () => fetchUniqueValues('device_name'),\n      fieldProps: {\n        placeholder: '请选择设备名称',\n        showSearch: true,\n        filterOption: (input: string, option: any) =>\n          option.label.toLowerCase().includes(input.toLowerCase()),\n      },\n    },\n    {\n      title: '设备类型',\n      dataIndex: 'device_type',\n      valueType: 'select',\n      valueEnum: typeOptions.reduce((acc: any, item) => {\n        acc[item.value] = { text: item.label };\n        return acc;\n      }, {}),\n      fieldProps: {\n        placeholder: '请选择设备类型',\n      },\n    },\n    {\n      title: '借用人',\n      dataIndex: 'borrower_name',\n      valueType: 'select',\n      request: async () => fetchUniqueValues('borrower_name'),\n      fieldProps: {\n        placeholder: '请选择借用人',\n        showSearch: true,\n        filterOption: (input: string, option: any) =>\n          option.label.toLowerCase().includes(input.toLowerCase()),\n      },\n    },\n    {\n      title: '学号',\n      dataIndex: 'borrower_student_id',\n      width: 120,\n      request: async () => fetchUniqueValues('borrower_student_id'),\n      fieldProps: {\n        placeholder: '请选择学号',\n        showSearch: true,\n        filterOption: (input: string, option: any) =>\n          option.label.toLowerCase().includes(input.toLowerCase()),\n      },\n    },\n    {\n      title: '班级',\n      dataIndex: 'borrower_class',\n      valueType: 'select',\n      request: async () => fetchUniqueValues('borrower_class'),\n      fieldProps: {\n        placeholder: '请选择班级',\n        showSearch: true,\n        filterOption: (input: string, option: any) =>\n          option.label.toLowerCase().includes(input.toLowerCase()),\n      },\n    },\n    {\n      title: '联系方式',\n      dataIndex: 'borrower_phone',\n      width: 120,\n      hideInSearch: true,\n    },\n    {\n      title: '借出时间',\n      dataIndex: 'borrow_time',\n      valueType: 'dateRange',\n      fieldProps: {\n        placeholder: ['开始时间', '结束时间'],\n      },\n      render: (text: string) => dayjs(text).format('YYYY-MM-DD HH:mm'),\n    },\n    {\n      title: '应还时间',\n      dataIndex: 'return_deadline',\n      valueType: 'dateRange',\n      fieldProps: {\n        placeholder: ['开始时间', '结束时间'],\n      },\n      render: (text: string) => dayjs(text).format('YYYY-MM-DD HH:mm'),\n    },\n    {\n      title: '操作',\n      valueType: 'option',\n      width: 80,\n      fixed: 'right',\n      render: (_: any, r: any) => (\n        <Button type=\"link\" onClick={() => handleReturn(r.id)}>\n          归还\n        </Button>\n      ),\n    },\n  ];\n\n  return (\n    <div style={{ padding: 24 }}>\n      <ProTable<any>\n        columns={columns}\n        actionRef={actionRef}\n        request={fetchData}\n        rowKey=\"id\"\n        search={{\n          labelWidth: 120,\n        }}\n        pagination={{\n          pageSize: 10,\n          showSizeChanger: true,\n          showQuickJumper: true,\n          showTotal: (total) => `共 ${total} 条记录`,\n        }}\n        scroll={{ x: 1300 }}\n        dateFormatter=\"string\"\n        headerTitle=\"借出记录\"\n        toolBarRender={() => [\n          <Button\n            type=\"primary\"\n            key=\"create\"\n            onClick={() => {\n              loadAvailableDevices();\n              setVisible(true);\n            }}\n          >\n            新增借出\n          </Button>,\n        ]}\n      />\n      <Modal\n        title=\"借出设备\"\n        open={visible}\n        onCancel={() => setVisible(false)}\n        onOk={() => form.submit()}\n      >\n        <Form\n          form={form}\n          onFinish={handleCreate}\n          labelCol={{ span: 6 }}\n          wrapperCol={{ span: 16 }}\n        >\n          <Form.Item name=\"device_code\" label=\"设备编号\" rules={[{ required: true }]}>\n            <Select\n              placeholder=\"请选择设备编号\"\n              showSearch\n              filterOption={(input, option) =>\n                (option?.label ?? '')\n                  .toLowerCase()\n                  .includes(input.toLowerCase())\n              }\n              options={availableDevices.map((device) => ({\n                label: device.code,\n                value: device.code,\n              }))}\n            />\n          </Form.Item>\n          <Form.Item name=\"device_name\" label=\"设备名称\" rules={[{ required: true }]}>\n            <Select\n              placeholder=\"请选择设备名称\"\n              showSearch\n              filterOption={(input, option) =>\n                (option?.label ?? '')\n                  .toLowerCase()\n                  .includes(input.toLowerCase())\n              }\n              options={availableDevices.map((device) => ({\n                label: device.name,\n                value: device.name,\n              }))}\n            />\n          </Form.Item>\n          <Form.Item\n            name=\"borrower_name\"\n            label=\"借出人\"\n            rules={[{ required: true }]}\n          >\n            <Input />\n          </Form.Item>\n          <Form.Item\n            name=\"borrower_class\"\n            label=\"班级\"\n            rules={[{ required: true }]}\n          >\n            <Input />\n          </Form.Item>\n          <Form.Item\n            name=\"borrower_student_id\"\n            label=\"学号\"\n            rules={[{ required: true, len: 10 }]}\n          >\n            <Input />\n          </Form.Item>\n          <Form.Item\n            name=\"borrower_phone\"\n            label=\"联系方式\"\n            rules={[{ required: true, len: 11 }]}\n          >\n            <Input />\n          </Form.Item>\n          <Form.Item\n            name=\"borrow_time\"\n            label=\"借出时间\"\n            rules={[{ required: true }]}\n          >\n            <DatePicker showTime />\n          </Form.Item>\n          <Form.Item\n            name=\"return_deadline\"\n            label=\"应还时间\"\n            rules={[{ required: true }]}\n          >\n            <DatePicker showTime />\n          </Form.Item>\n        </Form>\n      </Modal>\n    </div>\n  );\n}\n",
+      "__content": "import { invoke, invokeWithEvent } from '@/services/ipc';\nimport { ProColumns, ProTable } from '@ant-design/pro-components';\nimport { Button, DatePicker, Form, Input, message, Modal, Select } from 'antd';\nimport dayjs from 'dayjs';\nimport { useEffect, useRef, useState } from 'react';\nimport styled, { createGlobalStyle } from 'styled-components';\n\nconst typeOptions = [\n  { label: '柜式空调', value: '柜式空调' },\n  { label: '数字示波器', value: '数字示波器' },\n  { label: '笔记本电脑', value: '笔记本电脑' },\n  { label: '服务器', value: '服务器' },\n  { label: '打印机', value: '打印机' },\n];\n\nconst GlobalSelectStyles = createGlobalStyle<{ $theme: 'light' | 'dark' }>`\n  ${(props) =>\n    props.$theme === 'dark'\n      ? `\n    .ant-select-dropdown {\n      background: #2d3748 !important;\n      border: 1px solid #4a5568 !important;\n    }\n\n    .ant-select-item {\n      color: #ffffff !important;\n\n      &:hover {\n        background: #4a5568 !important;\n      }\n\n      &.ant-select-item-option-selected {\n        background: #2d3748 !important;\n        color: #667eea !important;\n      }\n    }\n\n    .ant-select-item-option-active {\n      background: #4a5568 !important;\n    }\n  `\n      : ''}\n`;\n\nconst GlobalDatePickerStyles = createGlobalStyle<{ $theme: 'light' | 'dark' }>`\n  ${(props) =>\n    props.$theme === 'dark'\n      ? `\n    .ant-picker-dropdown {\n      background: #2d3748 !important;\n      border: 1px solid #4a5568 !important;\n    }\n\n    .ant-picker-panel {\n      background: #2d3748 !important;\n      color: #ffffff !important;\n    }\n\n    .ant-picker-header {\n      color: #ffffff !important;\n      border-bottom-color: #4a5568 !important;\n    }\n\n    .ant-picker-footer {\n      border-top-color: #4a5568 !important;\n    }\n\n    .ant-picker-cell {\n      color: #ffffff !important;\n\n      &:hover {\n        background: #4a5568 !important;\n      }\n\n      &.ant-picker-cell-selected {\n        background: #667eea !important;\n      }\n\n      &.ant-picker-cell-in-view {\n        color: #ffffff !important;\n      }\n\n      &.ant-picker-cell-disabled {\n        color: #718096 !important;\n      }\n    }\n\n    .ant-picker-cell-inner {\n      color: #ffffff !important;\n    }\n\n    .ant-picker-suffix {\n      color: #ffffff !important;\n    }\n\n    .ant-picker-clear {\n      color: #ffffff !important;\n    }\n\n    .ant-picker-separator {\n      color: #ffffff !important;\n    }\n\n    .ant-picker-today-btn {\n      color: #667eea !important;\n\n      &:hover {\n        color: #667eea !important;\n      }\n    }\n  `\n      : ''}\n`;\n\nconst StyledModal = styled(Modal)<{ $theme: 'light' | 'dark' }>`\n  .ant-modal-content {\n    background: ${(props) =>\n      props.$theme === 'light' ? '#ffffff' : '#1A202C'};\n  }\n\n  .ant-modal-header {\n    background: ${(props) =>\n      props.$theme === 'light' ? '#ffffff' : '#1A202C'};\n    border-bottom: 1px solid\n      ${(props) => (props.$theme === 'light' ? '#f0f0f0' : '#2d3748')};\n\n    .ant-modal-title {\n      color: ${(props) => (props.$theme === 'light' ? '#1A202C' : '#ffffff')};\n    }\n  }\n\n  .ant-modal-close-x {\n    color: ${(props) => (props.$theme === 'light' ? '#1A202C' : '#ffffff')};\n  }\n\n  .ant-modal-body {\n    color: ${(props) => (props.$theme === 'light' ? '#1A202C' : '#ffffff')};\n  }\n\n  .ant-form-item-label > label {\n    color: ${(props) => (props.$theme === 'light' ? '#1A202C' : '#ffffff')};\n  }\n\n  .ant-input,\n  .ant-input-password {\n    background: ${(props) =>\n      props.$theme === 'light' ? '#ffffff' : '#2d3748'};\n    border-color: ${(props) =>\n      props.$theme === 'light' ? '#d9d9d9' : '#4a5568'};\n    color: ${(props) => (props.$theme === 'light' ? '#1A202C' : '#ffffff')};\n\n    &::placeholder {\n      color: ${(props) => (props.$theme === 'light' ? '#bfbfbf' : '#718096')};\n    }\n\n    &:hover {\n      border-color: ${(props) =>\n        props.$theme === 'light' ? '#4096ff' : '#667eea'};\n    }\n  }\n\n  .ant-input:focus,\n  .ant-input-password:focus {\n    border-color: ${(props) =>\n      props.$theme === 'light' ? '#4096ff' : '#667eea'};\n    box-shadow: ${(props) =>\n      props.$theme === 'light'\n        ? '0 0 0 2px rgba(64, 150, 255, 0.2)'\n        : '0 0 0 2px rgba(102, 126, 234, 0.2)'};\n  }\n\n  .ant-select {\n    .ant-select-selector {\n      background: ${(props) =>\n        props.$theme === 'light' ? '#ffffff' : '#2d3748'};\n      border-color: ${(props) =>\n        props.$theme === 'light' ? '#d9d9d9' : '#4a5568'};\n      color: ${(props) => (props.$theme === 'light' ? '#1A202C' : '#ffffff')};\n\n      .ant-select-selection-placeholder {\n        color: ${(props) => (props.$theme === 'light' ? '#bfbfbf' : '#718096')};\n      }\n\n      .ant-select-selection-item {\n        color: ${(props) => (props.$theme === 'light' ? '#1A202C' : '#ffffff')};\n      }\n    }\n\n    &:hover .ant-select-selector {\n      border-color: ${(props) =>\n        props.$theme === 'light' ? '#4096ff' : '#667eea'};\n    }\n\n    &.ant-select-focused .ant-select-selector {\n      border-color: ${(props) =>\n        props.$theme === 'light' ? '#4096ff' : '#667eea'};\n      box-shadow: ${(props) =>\n        props.$theme === 'light'\n          ? '0 0 0 2px rgba(64, 150, 255, 0.2)'\n          : '0 0 0 2px rgba(102, 126, 234, 0.2)'};\n    }\n\n    .ant-select-arrow {\n      color: ${(props) => (props.$theme === 'light' ? '#bfbfbf' : '#718096')};\n    }\n  }\n\n  .ant-picker {\n    background: ${(props) =>\n      props.$theme === 'light' ? '#ffffff' : '#2d3748'};\n    border-color: ${(props) =>\n      props.$theme === 'light' ? '#d9d9d9' : '#4a5568'};\n    color: ${(props) => (props.$theme === 'light' ? '#1A202C' : '#ffffff')};\n\n    &::placeholder {\n      color: ${(props) => (props.$theme === 'light' ? '#bfbfbf' : '#718096')};\n    }\n\n    &:hover {\n      border-color: ${(props) =>\n        props.$theme === 'light' ? '#4096ff' : '#667eea'};\n    }\n  }\n\n  .ant-picker-focused {\n    border-color: ${(props) =>\n      props.$theme === 'light' ? '#4096ff' : '#667eea'};\n    box-shadow: ${(props) =>\n      props.$theme === 'light'\n        ? '0 0 0 2px rgba(64, 150, 255, 0.2)'\n        : '0 0 0 2px rgba(102, 126, 234, 0.2)'};\n  }\n\n  .ant-select-dropdown {\n    background: ${(props) =>\n      props.$theme === 'light' ? '#ffffff' : '#2d3748'};\n\n    .ant-select-item {\n      color: ${(props) => (props.$theme === 'light' ? '#1A202C' : '#ffffff')};\n\n      &:hover {\n        background: ${(props) =>\n          props.$theme === 'light' ? '#f5f5f5' : '#4a5568'};\n      }\n\n      &.ant-select-item-option-selected {\n        background: ${(props) =>\n          props.$theme === 'light' ? '#e6f7ff' : '#2d3748'};\n      }\n    }\n  }\n\n  .ant-picker-dropdown {\n    background: ${(props) =>\n      props.$theme === 'light' ? '#ffffff' : '#2d3748'};\n\n    .ant-picker-panel {\n      background: ${(props) =>\n        props.$theme === 'light' ? '#ffffff' : '#2d3748'};\n      color: ${(props) => (props.$theme === 'light' ? '#1A202C' : '#ffffff')};\n    }\n\n    .ant-picker-cell {\n      color: ${(props) => (props.$theme === 'light' ? '#1A202C' : '#ffffff')};\n\n      &:hover {\n        background: ${(props) =>\n          props.$theme === 'light' ? '#f5f5f5' : '#4a5568'};\n      }\n\n      &.ant-picker-cell-selected {\n        background: ${(props) =>\n          props.$theme === 'light' ? '#1890ff' : '#667eea'};\n      }\n    }\n\n    .ant-picker-header {\n      color: ${(props) => (props.$theme === 'light' ? '#1A202C' : '#ffffff')};\n    }\n\n    .ant-picker-footer {\n      border-top-color: ${(props) =>\n        props.$theme === 'light' ? '#f0f0f0' : '#4a5568'};\n    }\n  }\n\n  .ant-input-number {\n    background: ${(props) =>\n      props.$theme === 'light' ? '#ffffff' : '#2d3748'};\n    border-color: ${(props) =>\n      props.$theme === 'light' ? '#d9d9d9' : '#4a5568'};\n    color: ${(props) => (props.$theme === 'light' ? '#1A202C' : '#ffffff')};\n\n    &:hover {\n      border-color: ${(props) =>\n        props.$theme === 'light' ? '#4096ff' : '#667eea'};\n    }\n\n    &:focus-within {\n      border-color: ${(props) =>\n        props.$theme === 'light' ? '#4096ff' : '#667eea'};\n      box-shadow: ${(props) =>\n        props.$theme === 'light'\n          ? '0 0 0 2px rgba(64, 150, 255, 0.2)'\n          : '0 0 0 2px rgba(102, 126, 234, 0.2)'};\n    }\n\n    .ant-input-number-input {\n      color: ${(props) => (props.$theme === 'light' ? '#1A202C' : '#ffffff')};\n    }\n  }\n`;\n\nexport default function Borrow() {\n  const actionRef = useRef<any>();\n  const [visible, setVisible] = useState(false);\n  const [availableDevices, setAvailableDevices] = useState<any[]>([]);\n  const [form] = Form.useForm();\n  const [selectedDeviceName, setSelectedDeviceName] = useState<\n    string | undefined\n  >();\n  const theme = (localStorage.getItem('theme') as 'light' | 'dark') || 'light';\n\n  useEffect(() => {\n    loadAvailableDevices();\n  }, []);\n\n  const loadAvailableDevices = async () => {\n    try {\n      const data = await invoke<any[]>('device:list', { status: 'available' });\n      setAvailableDevices(Array.isArray(data) ? data : []);\n    } catch (error) {\n      console.error('加载可用设备列表失败:', error);\n    }\n  };\n\n  const handleCreate = async (values: any) => {\n    // 根据 device_code 查询设备 id\n    const device = availableDevices.find((d) => d.code === values.device_code);\n    if (!device) {\n      message.error('设备不存在，请重新选择');\n      return;\n    }\n\n    const payload = {\n      device_id: device.id, // 使用 device_id 而不是 device_code\n      borrower_name: values.borrower_name,\n      borrower_class: values.borrower_class,\n      borrower_student_id: values.borrower_student_id,\n      borrower_phone: values.borrower_phone,\n      borrow_time: dayjs(values.borrow_time).toISOString(),\n      return_deadline: dayjs(values.return_deadline).toISOString(),\n    };\n    const res = await invokeWithEvent('borrow:create', payload);\n    if (res?.success) {\n      message.success('借出成功');\n      setVisible(false);\n      form.resetFields();\n      actionRef.current?.reload();\n    } else {\n      message.error(res?.message || '借出失败');\n    }\n  };\n\n  const handleReturn = async (id: number) => {\n    const res = await invokeWithEvent('borrow:return', id);\n    if (res?.success) {\n      message.success('归还成功');\n      actionRef.current?.reload();\n    } else {\n      message.error(res?.message || '归还失败');\n    }\n  };\n\n  const fetchData = async (params: any) => {\n    try {\n      const { current, pageSize, ...restParams } = params;\n      const filters: any = {};\n\n      if (restParams.deviceCode) {\n        filters.deviceCode = restParams.deviceCode;\n      }\n      if (restParams.deviceName) {\n        filters.deviceName = restParams.deviceName;\n      }\n      if (restParams.borrowerName) {\n        filters.borrowerName = restParams.borrowerName;\n      }\n      if (restParams.borrowerClass) {\n        filters.borrowerClass = restParams.borrowerClass;\n      }\n      if (restParams.deviceType) {\n        filters.deviceType = restParams.deviceType;\n      }\n      if (\n        restParams.borrowTimeRange &&\n        Array.isArray(restParams.borrowTimeRange)\n      ) {\n        filters.borrowTimeStart = dayjs(\n          restParams.borrowTimeRange[0],\n        ).toISOString();\n        filters.borrowTimeEnd = dayjs(\n          restParams.borrowTimeRange[1],\n        ).toISOString();\n      }\n      if (\n        restParams.returnDeadlineRange &&\n        Array.isArray(restParams.returnDeadlineRange)\n      ) {\n        filters.returnDeadlineStart = dayjs(\n          restParams.returnDeadlineRange[0],\n        ).toISOString();\n        filters.returnDeadlineEnd = dayjs(\n          restParams.returnDeadlineRange[1],\n        ).toISOString();\n      }\n\n      const data = await invoke<any[]>('borrow:list', filters);\n      const list = Array.isArray(data) ? data : [];\n\n      return {\n        data: list,\n        success: true,\n        total: list.length,\n      };\n    } catch (error) {\n      return {\n        data: [],\n        success: false,\n        total: 0,\n      };\n    }\n  };\n\n  const fetchUniqueValues = async (field: string) => {\n    try {\n      const data = await invoke<any[]>('borrow:list');\n      const list = Array.isArray(data) ? data : [];\n      return [...new Set(list.map((item) => item[field]).filter(Boolean))].map(\n        (value) => ({ label: value, value }),\n      );\n    } catch {\n      return [];\n    }\n  };\n\n  const columns: ProColumns<any>[] = [\n    {\n      title: '设备编号',\n      dataIndex: 'device_code',\n      valueType: 'select',\n      request: async () => fetchUniqueValues('device_code'),\n      fieldProps: {\n        placeholder: '请选择设备编号',\n        showSearch: true,\n        filterOption: (input: string, option: any) =>\n          option.label.toLowerCase().includes(input.toLowerCase()),\n      },\n    },\n    {\n      title: '设备名称',\n      dataIndex: 'device_name',\n      hideInTable: true,\n      valueType: 'select',\n      request: async () => fetchUniqueValues('device_name'),\n      fieldProps: {\n        placeholder: '请选择设备名称',\n        showSearch: true,\n        filterOption: (input: string, option: any) =>\n          option.label.toLowerCase().includes(input.toLowerCase()),\n      },\n    },\n    {\n      title: '设备类型',\n      dataIndex: 'device_type',\n      valueType: 'select',\n      valueEnum: typeOptions.reduce((acc: any, item) => {\n        acc[item.value] = { text: item.label };\n        return acc;\n      }, {}),\n      fieldProps: {\n        placeholder: '请选择设备类型',\n      },\n    },\n    {\n      title: '借用人',\n      dataIndex: 'borrower_name',\n      valueType: 'select',\n      request: async () => fetchUniqueValues('borrower_name'),\n      fieldProps: {\n        placeholder: '请选择借用人',\n        showSearch: true,\n        filterOption: (input: string, option: any) =>\n          option.label.toLowerCase().includes(input.toLowerCase()),\n      },\n    },\n    {\n      title: '学号',\n      dataIndex: 'borrower_student_id',\n      width: 120,\n      request: async () => fetchUniqueValues('borrower_student_id'),\n      fieldProps: {\n        placeholder: '请选择学号',\n        showSearch: true,\n        filterOption: (input: string, option: any) =>\n          option.label.toLowerCase().includes(input.toLowerCase()),\n      },\n    },\n    {\n      title: '班级',\n      dataIndex: 'borrower_class',\n      valueType: 'select',\n      request: async () => fetchUniqueValues('borrower_class'),\n      fieldProps: {\n        placeholder: '请选择班级',\n        showSearch: true,\n        filterOption: (input: string, option: any) =>\n          option.label.toLowerCase().includes(input.toLowerCase()),\n      },\n    },\n    {\n      title: '联系方式',\n      dataIndex: 'borrower_phone',\n      width: 120,\n      hideInSearch: true,\n    },\n    {\n      title: '借出时间',\n      dataIndex: 'borrow_time',\n      valueType: 'dateRange',\n      fieldProps: {\n        placeholder: ['开始时间', '结束时间'],\n      },\n      render: (text: string) => dayjs(text).format('YYYY-MM-DD HH:mm'),\n    },\n    {\n      title: '应还时间',\n      dataIndex: 'return_deadline',\n      valueType: 'dateRange',\n      fieldProps: {\n        placeholder: ['开始时间', '结束时间'],\n      },\n      render: (text: string) => dayjs(text).format('YYYY-MM-DD HH:mm'),\n    },\n    {\n      title: '操作',\n      valueType: 'option',\n      width: 80,\n      fixed: 'right',\n      render: (_: any, r: any) => (\n        <Button type=\"link\" onClick={() => handleReturn(r.id)}>\n          归还\n        </Button>\n      ),\n    },\n  ];\n\n  return (\n    <>\n      <GlobalSelectStyles $theme={theme} />\n      <GlobalDatePickerStyles $theme={theme} />\n      <div style={{ padding: 24 }}>\n        <ProTable<any>\n          columns={columns}\n          actionRef={actionRef}\n          request={fetchData}\n          rowKey=\"id\"\n          search={{\n            labelWidth: 120,\n          }}\n          pagination={{\n            pageSize: 10,\n            showSizeChanger: true,\n            showQuickJumper: true,\n            showTotal: (total) => `共 ${total} 条记录`,\n          }}\n          scroll={{ x: 1300 }}\n          dateFormatter=\"string\"\n          headerTitle=\"借出记录\"\n          toolBarRender={() => [\n            <Button\n              type=\"primary\"\n              key=\"create\"\n              onClick={() => {\n                loadAvailableDevices();\n                setVisible(true);\n              }}\n            >\n              新增借出\n            </Button>,\n          ]}\n        />\n        <StyledModal\n          $theme={theme}\n          title=\"借出设备\"\n          open={visible}\n          onCancel={() => setVisible(false)}\n          onOk={() => form.submit()}\n        >\n          <Form\n            form={form}\n            onFinish={handleCreate}\n            labelCol={{ span: 6 }}\n            wrapperCol={{ span: 16 }}\n          >\n            <Form.Item\n              name=\"device_code\"\n              label=\"设备编号\"\n              rules={[{ required: true }]}\n            >\n              <Select\n                placeholder=\"请选择设备编号\"\n                showSearch\n                filterOption={(input, option) =>\n                  (option?.label ?? '')\n                    .toLowerCase()\n                    .includes(input.toLowerCase())\n                }\n                // 根据选择的设备名称筛选设备编号\n                options={\n                  selectedDeviceName\n                    ? availableDevices\n                        .filter((device) => device.name === selectedDeviceName)\n                        .map((device) => ({\n                          label: device.code,\n                          value: device.code,\n                        }))\n                    : availableDevices.map((device) => ({\n                        label: device.code,\n                        value: device.code,\n                      }))\n                }\n                onChange={(value) => {\n                  // 选择设备编号后，自动填充设备名称\n                  if (value) {\n                    const device = availableDevices.find(\n                      (d) => d.code === value,\n                    );\n                    if (device) {\n                      form.setFieldValue('device_name', device.name);\n                      setSelectedDeviceName(device.name);\n                    }\n                  }\n                }}\n              />\n            </Form.Item>\n            <Form.Item\n              name=\"device_name\"\n              label=\"设备名称\"\n              rules={[{ required: true }]}\n            >\n              <Select\n                placeholder=\"请选择设备名称\"\n                showSearch\n                filterOption={(input, option) =>\n                  (option?.label ?? '')\n                    .toLowerCase()\n                    .includes(input.toLowerCase())\n                }\n                options={availableDevices.map((device) => ({\n                  label: device.name,\n                  value: device.name,\n                }))}\n                onChange={(value) => {\n                  // 选择设备名称后，自动填充设备编号\n                  if (value) {\n                    const device = availableDevices.find(\n                      (d) => d.name === value,\n                    );\n                    if (device) {\n                      form.setFieldValue('device_code', device.code);\n                    }\n                  }\n                }}\n              />\n            </Form.Item>\n            <Form.Item\n              name=\"borrower_name\"\n              label=\"借出人\"\n              rules={[{ required: true }]}\n            >\n              <Input />\n            </Form.Item>\n            <Form.Item\n              name=\"borrower_class\"\n              label=\"班级\"\n              rules={[{ required: true }]}\n            >\n              <Input />\n            </Form.Item>\n            <Form.Item\n              name=\"borrower_student_id\"\n              label=\"学号\"\n              rules={[{ required: true, len: 10 }]}\n            >\n              <Input />\n            </Form.Item>\n            <Form.Item\n              name=\"borrower_phone\"\n              label=\"联系方式\"\n              rules={[{ required: true, len: 11 }]}\n            >\n              <Input />\n            </Form.Item>\n            <Form.Item\n              name=\"borrow_time\"\n              label=\"借出时间\"\n              rules={[{ required: true }]}\n            >\n              <DatePicker showTime />\n            </Form.Item>\n            <Form.Item\n              name=\"return_deadline\"\n              label=\"应还时间\"\n              rules={[{ required: true }]}\n            >\n              <DatePicker showTime />\n            </Form.Item>\n          </Form>\n        </StyledModal>\n      </div>\n    </>\n  );\n}\n",
       "__isJSFile": true,
       "__absFile": "/Users/ningshuo/code/my-projects/equipment-system/src/pages/Borrow/index.tsx"
     },
@@ -2547,7 +3334,7 @@
       "parentId": "2",
       "id": "7",
       "absPath": "/returned",
-      "__content": "import { invoke } from '@/services/ipc';\nimport { Table } from 'antd';\nimport { useEffect, useState } from 'react';\n\nexport default function Returned() {\n  const [records, setRecords] = useState<any[]>([]);\n  const [loading, setLoading] = useState(false);\n\n  useEffect(() => {\n    (async () => {\n      setLoading(true);\n      try {\n        const data = await invoke<any[]>('borrow:list', { returned: true });\n        // filter on client side as backend returns all\n        const list = Array.isArray(data) ? data : [];\n        setRecords(list.filter((r: any) => r.actual_return_time));\n      } finally {\n        setLoading(false);\n      }\n    })();\n  }, []);\n\n  const columns = [\n    { title: '设备编号', dataIndex: 'device_code' },\n    { title: '设备名称', dataIndex: 'device_name' },\n    { title: '借出时间', dataIndex: 'borrow_time' },\n    { title: '归还时间', dataIndex: 'actual_return_time' },\n  ];\n\n  return (\n    <div style={{ padding: 24 }}>\n      <Table columns={columns} dataSource={records} rowKey=\"id\" />\n    </div>\n  );\n}\n",
+      "__content": "import { invoke } from '@/services/ipc';\nimport { ProColumns, ProTable } from '@ant-design/pro-components';\nimport { Button, Modal, message } from 'antd';\nimport dayjs from 'dayjs';\nimport { useRef, useState } from 'react';\nimport styled from 'styled-components';\n\nconst StyledModal = styled(Modal)<{ $theme: 'light' | 'dark' }>`\n  .ant-modal-content {\n    background: ${(props) =>\n      props.$theme === 'light' ? '#ffffff' : '#1A202C'};\n  }\n\n  .ant-modal-header {\n    background: ${(props) =>\n      props.$theme === 'light' ? '#ffffff' : '#1A202C'};\n    border-bottom: 1px solid\n      ${(props) => (props.$theme === 'light' ? '#f0f0f0' : '#2d3748')};\n\n    .ant-modal-title {\n      color: ${(props) => (props.$theme === 'light' ? '#1A202C' : '#ffffff')};\n    }\n  }\n\n  .ant-modal-close-x {\n    color: ${(props) => (props.$theme === 'light' ? '#1A202C' : '#ffffff')};\n  }\n\n  .ant-modal-body {\n    color: ${(props) => (props.$theme === 'light' ? '#1A202C' : '#ffffff')};\n  }\n\n  p {\n    color: ${(props) => (props.$theme === 'light' ? '#1A202C' : '#ffffff')};\n  }\n\n  strong {\n    color: ${(props) => (props.$theme === 'light' ? '#1A202C' : '#ffffff')};\n  }\n`;\n\nconst typeOptions = [\n  { label: '柜式空调', value: '柜式空调' },\n  { label: '数字示波器', value: '数字示波器' },\n  { label: '笔记本电脑', value: '笔记本电脑' },\n  { label: '服务器', value: '服务器' },\n  { label: '打印机', value: '打印机' },\n];\n\nexport default function Returned() {\n  const actionRef = useRef<any>();\n  const [deleteModalVisible, setDeleteModalVisible] = useState(false);\n  const [currentRecord, setCurrentRecord] = useState<any>(null);\n  const theme = (localStorage.getItem('theme') as 'light' | 'dark') || 'light';\n\n  const handleDelete = (record: any) => {\n    setCurrentRecord(record);\n    setDeleteModalVisible(true);\n  };\n\n  const confirmDelete = async () => {\n    try {\n      const res = await invoke('borrow:delete', currentRecord.id);\n      if (res?.success) {\n        message.success('删除成功');\n        setDeleteModalVisible(false);\n        actionRef.current?.reload();\n      } else {\n        message.error(res?.message || '删除失败');\n      }\n    } catch (error) {\n      message.error('删除失败');\n    }\n  };\n\n  const fetchData = async (params: any) => {\n    try {\n      const { current, pageSize, ...restParams } = params;\n      const filters: any = { returned: true };\n\n      if (restParams.deviceCode) {\n        filters.deviceCode = restParams.deviceCode;\n      }\n      if (restParams.deviceName) {\n        filters.deviceName = restParams.deviceName;\n      }\n      if (restParams.borrowerName) {\n        filters.borrowerName = restParams.borrowerName;\n      }\n      if (restParams.borrowerClass) {\n        filters.borrowerClass = restParams.borrowerClass;\n      }\n      if (restParams.deviceType) {\n        filters.deviceType = restParams.deviceType;\n      }\n      if (\n        restParams.borrowTimeRange &&\n        Array.isArray(restParams.borrowTimeRange)\n      ) {\n        filters.borrowTimeStart = dayjs(\n          restParams.borrowTimeRange[0],\n        ).toISOString();\n        filters.borrowTimeEnd = dayjs(\n          restParams.borrowTimeRange[1],\n        ).toISOString();\n      }\n      if (\n        restParams.returnTimeRange &&\n        Array.isArray(restParams.returnTimeRange)\n      ) {\n        filters.returnTimeStart = dayjs(\n          restParams.returnTimeRange[0],\n        ).toISOString();\n        filters.returnTimeEnd = dayjs(\n          restParams.returnTimeRange[1],\n        ).toISOString();\n      }\n\n      const data = await invoke<any[]>('borrow:list', filters);\n      const list = Array.isArray(data) ? data : [];\n\n      return {\n        data: list.filter((r: any) => r.actual_return_time),\n        success: true,\n        total: list.filter((r: any) => r.actual_return_time).length,\n      };\n    } catch (error) {\n      return {\n        data: [],\n        success: false,\n        total: 0,\n      };\n    }\n  };\n\n  const fetchUniqueValues = async (field: string) => {\n    try {\n      const data = await invoke<any[]>('borrow:list', { returned: true });\n      const list = Array.isArray(data) ? data : [];\n      const returnedList = list.filter((r: any) => r.actual_return_time);\n      return [\n        ...new Set(returnedList.map((item) => item[field]).filter(Boolean)),\n      ].map((value) => ({ label: value, value }));\n    } catch {\n      return [];\n    }\n  };\n\n  const columns: ProColumns<any>[] = [\n    {\n      title: '设备编号',\n      dataIndex: 'device_code',\n      valueType: 'select',\n      request: async () => fetchUniqueValues('device_code'),\n      fieldProps: {\n        placeholder: '请选择设备编号',\n        showSearch: true,\n        filterOption: (input: string, option: any) =>\n          option.label.toLowerCase().includes(input.toLowerCase()),\n      },\n    },\n    {\n      title: '设备名称',\n      dataIndex: 'device_name',\n      hideInTable: true,\n      valueType: 'select',\n      request: async () => fetchUniqueValues('device_name'),\n      fieldProps: {\n        placeholder: '请选择设备名称',\n        showSearch: true,\n        filterOption: (input: string, option: any) =>\n          option.label.toLowerCase().includes(input.toLowerCase()),\n      },\n    },\n    {\n      title: '设备类型',\n      dataIndex: 'device_type',\n      valueType: 'select',\n      valueEnum: typeOptions.reduce((acc: any, item) => {\n        acc[item.value] = { text: item.label };\n        return acc;\n      }, {}),\n      fieldProps: {\n        placeholder: '请选择设备类型',\n      },\n    },\n    {\n      title: '借用人',\n      dataIndex: 'borrower_name',\n      valueType: 'select',\n      request: async () => fetchUniqueValues('borrower_name'),\n      fieldProps: {\n        placeholder: '请选择借用人',\n        showSearch: true,\n        filterOption: (input: string, option: any) =>\n          option.label.toLowerCase().includes(input.toLowerCase()),\n      },\n    },\n    {\n      title: '学号',\n      dataIndex: 'borrower_student_id',\n      width: 120,\n      request: async () => fetchUniqueValues('borrower_student_id'),\n      fieldProps: {\n        placeholder: '请选择学号',\n        showSearch: true,\n        filterOption: (input: string, option: any) =>\n          option.label.toLowerCase().includes(input.toLowerCase()),\n      },\n    },\n    {\n      title: '班级',\n      dataIndex: 'borrower_class',\n      valueType: 'select',\n      request: async () => fetchUniqueValues('borrower_class'),\n      fieldProps: {\n        placeholder: '请选择班级',\n        showSearch: true,\n        filterOption: (input: string, option: any) =>\n          option.label.toLowerCase().includes(input.toLowerCase()),\n      },\n    },\n    {\n      title: '联系方式',\n      dataIndex: 'borrower_phone',\n      width: 120,\n      hideInSearch: true,\n    },\n    {\n      title: '借出时间',\n      dataIndex: 'borrow_time',\n      valueType: 'dateRange',\n      fieldProps: {\n        placeholder: ['开始时间', '结束时间'],\n      },\n      render: (text: string) => dayjs(text).format('YYYY-MM-DD HH:mm'),\n    },\n    {\n      title: '归还时间',\n      dataIndex: 'actual_return_time',\n      valueType: 'dateRange',\n      fieldProps: {\n        placeholder: ['开始时间', '结束时间'],\n      },\n      render: (text: string) => {\n        if (!text) return '-';\n        try {\n          return dayjs(text).format('YYYY-MM-DD HH:mm');\n        } catch (e) {\n          console.error('日期解析失败:', text, e);\n          return '-';\n        }\n      },\n    },\n    {\n      title: '应还时间',\n      dataIndex: 'return_deadline',\n      hideInSearch: true,\n      render: (text: string) => dayjs(text).format('YYYY-MM-DD HH:mm'),\n    },\n    {\n      title: '借用天数',\n      dataIndex: 'borrow_days',\n      hideInSearch: true,\n      render: (_: any, record: any) => {\n        if (record.borrow_time && record.actual_return_time) {\n          const days = dayjs(record.actual_return_time).diff(\n            dayjs(record.borrow_time),\n            'day',\n          );\n          return `${days} 天`;\n        }\n        return '-';\n      },\n    },\n    {\n      title: '操作',\n      valueType: 'option',\n      width: 80,\n      fixed: 'right',\n      render: (_: any, r: any) => (\n        <Button type=\"link\" danger onClick={() => handleDelete(r)}>\n          删除\n        </Button>\n      ),\n    },\n  ];\n\n  return (\n    <div style={{ padding: 24 }}>\n      <ProTable<any>\n        columns={columns}\n        actionRef={actionRef}\n        request={fetchData}\n        rowKey=\"id\"\n        search={{\n          labelWidth: 120,\n        }}\n        pagination={{\n          pageSize: 10,\n          showSizeChanger: true,\n          showQuickJumper: true,\n          showTotal: (total) => `共 ${total} 条记录`,\n        }}\n        scroll={{ x: 1300 }}\n        dateFormatter=\"string\"\n        headerTitle=\"归还记录\"\n      />\n      <StyledModal\n        $theme={theme}\n        title=\"确认删除\"\n        open={deleteModalVisible}\n        onOk={confirmDelete}\n        onCancel={() => setDeleteModalVisible(false)}\n        okText=\"确认删除\"\n        cancelText=\"取消\"\n      >\n        {currentRecord && (\n          <div>\n            <p>确认删除以下归还记录？</p>\n            <p style={{ marginTop: 16 }}>\n              <strong>设备编号：</strong>\n              {currentRecord.device_code}\n            </p>\n            <p>\n              <strong>设备名称：</strong>\n              {currentRecord.device_name}\n            </p>\n            <p>\n              <strong>借用人：</strong>\n              {currentRecord.borrower_name}\n            </p>\n            <p>\n              <strong>借出时间：</strong>\n              {dayjs(currentRecord.borrow_time).format('YYYY-MM-DD HH:mm')}\n            </p>\n            <p>\n              <strong>归还时间：</strong>\n              {dayjs(currentRecord.actual_return_time).format(\n                'YYYY-MM-DD HH:mm',\n              )}\n            </p>\n            <p style={{ color: '#ff4d4f', marginTop: 16 }}>\n              删除后数据不可恢复！\n            </p>\n          </div>\n        )}\n      </StyledModal>\n    </div>\n  );\n}\n",
       "__isJSFile": true,
       "__absFile": "/Users/ningshuo/code/my-projects/equipment-system/src/pages/Returned/index.tsx"
     },
@@ -2557,7 +3344,7 @@
       "parentId": "2",
       "id": "8",
       "absPath": "/profile",
-      "__content": "import { invoke } from '@/services/ipc';\nimport { Button, Card, Form, Input, message } from 'antd';\nimport { history } from 'umi';\n\nexport default function Profile() {\n  const [form] = Form.useForm();\n  const username = localStorage.getItem('loginUser') || 'admin';\n\n  const onFinish = async (v: any) => {\n    if (v.newPwd !== v.confirmPwd) {\n      message.error('两次输入的新密码不一致');\n      return;\n    }\n    const res = await invoke(\n      'auth:changePassword',\n      username,\n      v.oldPwd,\n      v.newPwd,\n    );\n    if (res?.success) {\n      message.success('密码修改成功，请重新登录');\n      localStorage.removeItem('loginUser');\n      localStorage.removeItem('token');\n      history.push('/login');\n    } else {\n      message.error(res?.message || '修改失败');\n    }\n  };\n\n  return (\n    <>\n      <div style={{ display: 'flex', justifyContent: 'center', marginTop: 80 }}>\n        <Card title=\"修改密码\" style={{ width: 480 }}>\n          <Form\n            form={form}\n            onFinish={onFinish}\n            labelCol={{ span: 6 }}\n            wrapperCol={{ span: 16 }}\n            validateTrigger={['onSubmit']}\n          >\n            <Form.Item\n              name=\"oldPwd\"\n              label=\"原密码\"\n              rules={[{ required: true, message: '请输入原密码' }]}\n            >\n              <Input.Password autoComplete=\"off\" />\n            </Form.Item>\n            <Form.Item\n              name=\"newPwd\"\n              label=\"新密码\"\n              rules={[\n                { required: true, message: '请输入新密码' },\n                { min: 6, message: '新密码至少6位' },\n                { max: 20, message: '新密码最多20位' },\n              ]}\n            >\n              <Input.Password autoComplete=\"off\" />\n            </Form.Item>\n            <Form.Item\n              name=\"confirmPwd\"\n              label=\"确认新密码\"\n              rules={[{ required: true, message: '请确认新密码' }]}\n            >\n              <Input.Password autoComplete=\"off\" />\n            </Form.Item>\n            <Form.Item wrapperCol={{ span: 16, offset: 6 }}>\n              <Button type=\"primary\" onClick={() => form.submit()}>\n                确认修改\n              </Button>\n            </Form.Item>\n          </Form>\n        </Card>\n      </div>\n    </>\n  );\n}\n",
+      "__content": "import { invoke } from '@/services/ipc';\nimport { Button, Card, Form, Input, message } from 'antd';\nimport styled from 'styled-components';\nimport { history } from 'umi';\n\nconst StyledCard = styled(Card)<{ $theme: 'light' | 'dark' }>`\n  background: ${(props) => (props.$theme === 'light' ? '#ffffff' : '#1A202C')};\n\n  .ant-card-head {\n    border-bottom: 1px solid\n      ${(props) => (props.$theme === 'light' ? '#f0f0f0' : '#2d3748')};\n\n    .ant-card-head-title {\n      color: ${(props) => (props.$theme === 'light' ? '#1A202C' : '#ffffff')};\n    }\n  }\n\n  .ant-card-body {\n    color: ${(props) => (props.$theme === 'light' ? '#1A202C' : '#ffffff')};\n  }\n\n  .ant-form-item-label > label {\n    color: ${(props) => (props.$theme === 'light' ? '#1A202C' : '#ffffff')};\n  }\n\n  .ant-input,\n  .ant-input-password {\n    background: ${(props) =>\n      props.$theme === 'light' ? '#ffffff' : '#2d3748'};\n    border-color: ${(props) =>\n      props.$theme === 'light' ? '#d9d9d9' : '#4a5568'};\n    color: ${(props) => (props.$theme === 'light' ? '#1A202C' : '#ffffff')};\n\n    &::placeholder {\n      color: ${(props) => (props.$theme === 'light' ? '#bfbfbf' : '#718096')};\n    }\n\n    &:hover {\n      border-color: ${(props) =>\n        props.$theme === 'light' ? '#4096ff' : '#667eea'};\n    }\n  }\n\n  .ant-input:focus,\n  .ant-input-password:focus {\n    border-color: ${(props) =>\n      props.$theme === 'light' ? '#4096ff' : '#667eea'};\n    box-shadow: ${(props) =>\n      props.$theme === 'light'\n        ? '0 0 0 2px rgba(64, 150, 255, 0.2)'\n        : '0 0 0 2px rgba(102, 126, 234, 0.2)'};\n  }\n`;\n\nexport default function Profile() {\n  const [form] = Form.useForm();\n  const username = localStorage.getItem('loginUser') || 'admin';\n  const theme = (localStorage.getItem('theme') as 'light' | 'dark') || 'light';\n\n  const onFinish = async (v: any) => {\n    if (v.newPwd !== v.confirmPwd) {\n      message.error('两次输入的新密码不一致');\n      return;\n    }\n    const res = await invoke(\n      'auth:changePassword',\n      username,\n      v.oldPwd,\n      v.newPwd,\n    );\n    if (res?.success) {\n      message.success('密码修改成功，请重新登录');\n      localStorage.removeItem('loginUser');\n      localStorage.removeItem('token');\n      history.push('/login');\n    } else {\n      message.error(res?.message || '修改失败');\n    }\n  };\n\n  return (\n    <>\n      <div style={{ display: 'flex', justifyContent: 'center', marginTop: 80 }}>\n        <StyledCard $theme={theme} title=\"修改密码\" style={{ width: 480 }}>\n          <Form\n            form={form}\n            onFinish={onFinish}\n            labelCol={{ span: 6 }}\n            wrapperCol={{ span: 16 }}\n            validateTrigger={['onSubmit']}\n          >\n            <Form.Item\n              name=\"oldPwd\"\n              label=\"原密码\"\n              rules={[{ required: true, message: '请输入原密码' }]}\n            >\n              <Input.Password autoComplete=\"off\" />\n            </Form.Item>\n            <Form.Item\n              name=\"newPwd\"\n              label=\"新密码\"\n              rules={[\n                { required: true, message: '请输入新密码' },\n                { min: 6, message: '新密码至少6位' },\n                { max: 20, message: '新密码最多20位' },\n              ]}\n            >\n              <Input.Password autoComplete=\"off\" />\n            </Form.Item>\n            <Form.Item\n              name=\"confirmPwd\"\n              label=\"确认新密码\"\n              rules={[{ required: true, message: '请确认新密码' }]}\n            >\n              <Input.Password autoComplete=\"off\" />\n            </Form.Item>\n            <Form.Item wrapperCol={{ span: 16, offset: 6 }}>\n              <Button type=\"primary\" onClick={() => form.submit()}>\n                确认修改\n              </Button>\n            </Form.Item>\n          </Form>\n        </StyledCard>\n      </div>\n    </>\n  );\n}\n",
       "__isJSFile": true,
       "__absFile": "/Users/ningshuo/code/my-projects/equipment-system/src/pages/Profile/index.tsx"
     }
@@ -2614,9 +3401,9 @@
     "tsVersion": "5.9.3"
   },
   "faviconFiles": [],
-  "port": 8001,
+  "port": 8000,
   "host": "0.0.0.0",
-  "ip": "192.168.0.100",
+  "ip": "192.168.0.102",
   "prepare": {
     "buildResult": {
       "errors": [],
@@ -3943,7 +4730,7 @@
             "format": "esm"
           },
           "src/layouts/BasicLayout.tsx": {
-            "bytes": 12963,
+            "bytes": 13054,
             "imports": [
               {
                 "path": "@/assets/icon/icon.svg",
@@ -3954,6 +4741,11 @@
                 "path": "src/config/theme.ts",
                 "kind": "import-statement",
                 "original": "@/config/theme"
+              },
+              {
+                "path": "src/utils/eventBus.ts",
+                "kind": "import-statement",
+                "original": "@/utils/eventBus"
               },
               {
                 "path": "@ant-design/icons",
@@ -4047,7 +4839,7 @@
             "format": "esm"
           },
           "src/pages/Dashboard/components/BorrowTrendsChart.tsx": {
-            "bytes": 6515,
+            "bytes": 6595,
             "imports": [
               {
                 "path": "src/components/ChartError.tsx",
@@ -4108,7 +4900,7 @@
             "format": "esm"
           },
           "src/pages/Dashboard/components/DeviceTypeChart.tsx": {
-            "bytes": 4513,
+            "bytes": 4593,
             "imports": [
               {
                 "path": "src/components/ChartError.tsx",
@@ -4169,7 +4961,7 @@
             "format": "esm"
           },
           "src/pages/Dashboard/components/DueSoonTimeline.tsx": {
-            "bytes": 6395,
+            "bytes": 6475,
             "imports": [
               {
                 "path": "src/components/ChartError.tsx",
@@ -4230,7 +5022,7 @@
             "format": "esm"
           },
           "src/pages/Dashboard/index.tsx": {
-            "bytes": 6463,
+            "bytes": 8956,
             "imports": [
               {
                 "path": "@/config/theme",
@@ -4291,7 +5083,7 @@
             "format": "esm"
           },
           "src/pages/Devices/index.tsx": {
-            "bytes": 12349,
+            "bytes": 21704,
             "imports": [
               {
                 "path": "src/services/ipc.ts",
@@ -4299,7 +5091,7 @@
                 "original": "@/services/ipc"
               },
               {
-                "path": "@ant-design/icons",
+                "path": "@ant-design/pro-components",
                 "kind": "import-statement",
                 "external": true
               },
@@ -4314,6 +5106,11 @@
                 "external": true
               },
               {
+                "path": "styled-components",
+                "kind": "import-statement",
+                "external": true
+              },
+              {
                 "path": "react/jsx-runtime",
                 "kind": "import-statement",
                 "external": true
@@ -4322,7 +5119,7 @@
             "format": "esm"
           },
           "src/pages/Borrow/index.tsx": {
-            "bytes": 10202,
+            "bytes": 20744,
             "imports": [
               {
                 "path": "src/services/ipc.ts",
@@ -4350,6 +5147,11 @@
                 "external": true
               },
               {
+                "path": "styled-components",
+                "kind": "import-statement",
+                "external": true
+              },
+              {
                 "path": "react/jsx-runtime",
                 "kind": "import-statement",
                 "external": true
@@ -4358,7 +5160,7 @@
             "format": "esm"
           },
           "src/pages/Returned/index.tsx": {
-            "bytes": 1051,
+            "bytes": 10183,
             "imports": [
               {
                 "path": "src/services/ipc.ts",
@@ -4366,12 +5168,27 @@
                 "original": "@/services/ipc"
               },
               {
+                "path": "@ant-design/pro-components",
+                "kind": "import-statement",
+                "external": true
+              },
+              {
                 "path": "antd",
                 "kind": "import-statement",
                 "external": true
               },
               {
+                "path": "dayjs",
+                "kind": "import-statement",
+                "external": true
+              },
+              {
                 "path": "react",
+                "kind": "import-statement",
+                "external": true
+              },
+              {
+                "path": "styled-components",
                 "kind": "import-statement",
                 "external": true
               },
@@ -4384,7 +5201,7 @@
             "format": "esm"
           },
           "src/pages/Profile/index.tsx": {
-            "bytes": 2350,
+            "bytes": 5036,
             "imports": [
               {
                 "path": "src/services/ipc.ts",
@@ -4393,6 +5210,11 @@
               },
               {
                 "path": "antd",
+                "kind": "import-statement",
+                "external": true
+              },
+              {
+                "path": "styled-components",
                 "kind": "import-statement",
                 "external": true
               },
@@ -4751,7 +5573,7 @@
                 "external": true
               },
               {
-                "path": "@ant-design/icons",
+                "path": "@ant-design/pro-components",
                 "kind": "import-statement",
                 "external": true
               },
@@ -4762,6 +5584,11 @@
               },
               {
                 "path": "react",
+                "kind": "import-statement",
+                "external": true
+              },
+              {
+                "path": "styled-components",
                 "kind": "import-statement",
                 "external": true
               },
@@ -4791,12 +5618,27 @@
                 "external": true
               },
               {
+                "path": "styled-components",
+                "kind": "import-statement",
+                "external": true
+              },
+              {
                 "path": "react/jsx-runtime",
                 "kind": "import-statement",
                 "external": true
               },
               {
+                "path": "@ant-design/pro-components",
+                "kind": "import-statement",
+                "external": true
+              },
+              {
                 "path": "antd",
+                "kind": "import-statement",
+                "external": true
+              },
+              {
+                "path": "dayjs",
                 "kind": "import-statement",
                 "external": true
               },
@@ -4806,12 +5648,22 @@
                 "external": true
               },
               {
+                "path": "styled-components",
+                "kind": "import-statement",
+                "external": true
+              },
+              {
                 "path": "react/jsx-runtime",
                 "kind": "import-statement",
                 "external": true
               },
               {
                 "path": "antd",
+                "kind": "import-statement",
+                "external": true
+              },
+              {
+                "path": "styled-components",
                 "kind": "import-statement",
                 "external": true
               },
@@ -5962,7 +6814,7 @@
                 "bytesInOutput": 1607
               },
               "src/layouts/BasicLayout.tsx": {
-                "bytesInOutput": 18327
+                "bytesInOutput": 18394
               },
               "src/.umi/core/EmptyRoute.tsx": {
                 "bytesInOutput": 363
@@ -5974,28 +6826,28 @@
                 "bytesInOutput": 484
               },
               "src/pages/Dashboard/components/BorrowTrendsChart.tsx": {
-                "bytesInOutput": 6817
+                "bytesInOutput": 6895
               },
               "src/pages/Dashboard/components/DeviceTypeChart.tsx": {
-                "bytesInOutput": 4753
+                "bytesInOutput": 4831
               },
               "src/pages/Dashboard/components/DueSoonTimeline.tsx": {
-                "bytesInOutput": 7126
+                "bytesInOutput": 7204
               },
               "src/pages/Dashboard/index.tsx": {
-                "bytesInOutput": 7668
+                "bytesInOutput": 10051
               },
               "src/pages/Devices/index.tsx": {
-                "bytesInOutput": 16230
+                "bytesInOutput": 25719
               },
               "src/pages/Borrow/index.tsx": {
-                "bytesInOutput": 11790
+                "bytesInOutput": 22270
               },
               "src/pages/Returned/index.tsx": {
-                "bytesInOutput": 1260
+                "bytesInOutput": 11184
               },
               "src/pages/Profile/index.tsx": {
-                "bytesInOutput": 3007
+                "bytesInOutput": 5536
               },
               "src/.umi/core/route.tsx": {
                 "bytesInOutput": 1409
@@ -6007,7 +6859,7 @@
                 "bytesInOutput": 2045
               }
             },
-            "bytes": 127611
+            "bytes": 162717
           }
         }
       }
@@ -8534,7 +9386,21 @@
           "type": "ImportDeclaration"
         },
         {
-          "end": 258,
+          "end": 145,
+          "importKind": "value",
+          "source": "@/utils/eventBus",
+          "specifiers": [
+            {
+              "imported": "eventBus",
+              "local": "eventBus",
+              "type": "ImportSpecifier"
+            }
+          ],
+          "start": 101,
+          "type": "ImportDeclaration"
+        },
+        {
+          "end": 303,
           "importKind": "value",
           "source": "@ant-design/icons",
           "specifiers": [
@@ -8574,11 +9440,11 @@
               "type": "ImportSpecifier"
             }
           ],
-          "start": 101,
+          "start": 146,
           "type": "ImportDeclaration"
         },
         {
-          "end": 315,
+          "end": 360,
           "importKind": "value",
           "source": "antd",
           "specifiers": [
@@ -8603,11 +9469,11 @@
               "type": "ImportSpecifier"
             }
           ],
-          "start": 259,
+          "start": 304,
           "type": "ImportDeclaration"
         },
         {
-          "end": 349,
+          "end": 394,
           "importKind": "value",
           "source": "react",
           "specifiers": [
@@ -8617,11 +9483,11 @@
               "type": "ImportSpecifier"
             }
           ],
-          "start": 316,
+          "start": 361,
           "type": "ImportDeclaration"
         },
         {
-          "end": 389,
+          "end": 434,
           "importKind": "value",
           "source": "styled-components",
           "specifiers": [
@@ -8630,11 +9496,11 @@
               "type": "ImportDefaultSpecifier"
             }
           ],
-          "start": 350,
+          "start": 395,
           "type": "ImportDeclaration"
         },
         {
-          "end": 441,
+          "end": 486,
           "importKind": "value",
           "source": "umi",
           "specifiers": [
@@ -8654,7 +9520,7 @@
               "type": "ImportSpecifier"
             }
           ],
-          "start": 390,
+          "start": 435,
           "type": "ImportDeclaration"
         }
       ],
@@ -8776,6 +9642,24 @@
             }
           ],
           "start": 233,
+          "type": "ImportDeclaration"
+        },
+        {
+          "end": 348,
+          "importKind": "value",
+          "source": "styled-components",
+          "specifiers": [
+            {
+              "local": "styled",
+              "type": "ImportDefaultSpecifier"
+            },
+            {
+              "imported": "createGlobalStyle",
+              "local": "createGlobalStyle",
+              "type": "ImportSpecifier"
+            }
+          ],
+          "start": 286,
           "type": "ImportDeclaration"
         }
       ],
@@ -9483,33 +10367,18 @@
           "type": "ImportDeclaration"
         },
         {
-          "end": 181,
+          "end": 125,
           "importKind": "value",
-          "source": "@ant-design/icons",
+          "source": "@ant-design/pro-components",
           "specifiers": [
             {
-              "imported": "DeleteOutlined",
-              "local": "DeleteOutlined",
+              "imported": "ProColumns",
+              "local": "ProColumns",
               "type": "ImportSpecifier"
             },
             {
-              "imported": "EditOutlined",
-              "local": "EditOutlined",
-              "type": "ImportSpecifier"
-            },
-            {
-              "imported": "PlusOutlined",
-              "local": "PlusOutlined",
-              "type": "ImportSpecifier"
-            },
-            {
-              "imported": "ReloadOutlined",
-              "local": "ReloadOutlined",
-              "type": "ImportSpecifier"
-            },
-            {
-              "imported": "SearchOutlined",
-              "local": "SearchOutlined",
+              "imported": "ProTable",
+              "local": "ProTable",
               "type": "ImportSpecifier"
             }
           ],
@@ -9517,7 +10386,7 @@
           "type": "ImportDeclaration"
         },
         {
-          "end": 295,
+          "end": 206,
           "importKind": "value",
           "source": "antd",
           "specifiers": [
@@ -9555,29 +10424,19 @@
               "imported": "Select",
               "local": "Select",
               "type": "ImportSpecifier"
-            },
-            {
-              "imported": "Space",
-              "local": "Space",
-              "type": "ImportSpecifier"
-            },
-            {
-              "imported": "Table",
-              "local": "Table",
-              "type": "ImportSpecifier"
             }
           ],
-          "start": 182,
+          "start": 126,
           "type": "ImportDeclaration"
         },
         {
-          "end": 340,
+          "end": 248,
           "importKind": "value",
           "source": "react",
           "specifiers": [
             {
-              "imported": "useEffect",
-              "local": "useEffect",
+              "imported": "useRef",
+              "local": "useRef",
               "type": "ImportSpecifier"
             },
             {
@@ -9586,7 +10445,25 @@
               "type": "ImportSpecifier"
             }
           ],
-          "start": 296,
+          "start": 207,
+          "type": "ImportDeclaration"
+        },
+        {
+          "end": 311,
+          "importKind": "value",
+          "source": "styled-components",
+          "specifiers": [
+            {
+              "local": "styled",
+              "type": "ImportDefaultSpecifier"
+            },
+            {
+              "imported": "createGlobalStyle",
+              "local": "createGlobalStyle",
+              "type": "ImportSpecifier"
+            }
+          ],
+          "start": 249,
           "type": "ImportDeclaration"
         }
       ],
@@ -9731,7 +10608,20 @@
           "type": "ImportDeclaration"
         },
         {
-          "end": 131,
+          "end": 140,
+          "importKind": "value",
+          "source": "styled-components",
+          "specifiers": [
+            {
+              "local": "styled",
+              "type": "ImportDefaultSpecifier"
+            }
+          ],
+          "start": 101,
+          "type": "ImportDeclaration"
+        },
+        {
+          "end": 171,
           "importKind": "value",
           "source": "umi",
           "specifiers": [
@@ -9741,7 +10631,7 @@
               "type": "ImportSpecifier"
             }
           ],
-          "start": 101,
+          "start": 141,
           "type": "ImportDeclaration"
         }
       ],
@@ -9761,13 +10651,18 @@
           "type": "ImportDeclaration"
         },
         {
-          "end": 71,
+          "end": 108,
           "importKind": "value",
-          "source": "antd",
+          "source": "@ant-design/pro-components",
           "specifiers": [
             {
-              "imported": "Table",
-              "local": "Table",
+              "imported": "ProColumns",
+              "local": "ProColumns",
+              "type": "ImportSpecifier"
+            },
+            {
+              "imported": "ProTable",
+              "local": "ProTable",
               "type": "ImportSpecifier"
             }
           ],
@@ -9775,13 +10670,50 @@
           "type": "ImportDeclaration"
         },
         {
-          "end": 116,
+          "end": 155,
+          "importKind": "value",
+          "source": "antd",
+          "specifiers": [
+            {
+              "imported": "Button",
+              "local": "Button",
+              "type": "ImportSpecifier"
+            },
+            {
+              "imported": "Modal",
+              "local": "Modal",
+              "type": "ImportSpecifier"
+            },
+            {
+              "imported": "message",
+              "local": "message",
+              "type": "ImportSpecifier"
+            }
+          ],
+          "start": 109,
+          "type": "ImportDeclaration"
+        },
+        {
+          "end": 182,
+          "importKind": "value",
+          "source": "dayjs",
+          "specifiers": [
+            {
+              "local": "dayjs",
+              "type": "ImportDefaultSpecifier"
+            }
+          ],
+          "start": 156,
+          "type": "ImportDeclaration"
+        },
+        {
+          "end": 224,
           "importKind": "value",
           "source": "react",
           "specifiers": [
             {
-              "imported": "useEffect",
-              "local": "useEffect",
+              "imported": "useRef",
+              "local": "useRef",
               "type": "ImportSpecifier"
             },
             {
@@ -9790,7 +10722,20 @@
               "type": "ImportSpecifier"
             }
           ],
-          "start": 72,
+          "start": 183,
+          "type": "ImportDeclaration"
+        },
+        {
+          "end": 264,
+          "importKind": "value",
+          "source": "styled-components",
+          "specifiers": [
+            {
+              "local": "styled",
+              "type": "ImportDefaultSpecifier"
+            }
+          ],
+          "start": 225,
           "type": "ImportDeclaration"
         }
       ],

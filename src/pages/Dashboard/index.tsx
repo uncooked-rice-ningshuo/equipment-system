@@ -1,3 +1,4 @@
+import { useTheme } from '@/components/ThemeProvider';
 import { ThemeType } from '@/config/theme';
 import { invoke } from '@/services/ipc';
 import { eventBus } from '@/utils/eventBus';
@@ -21,6 +22,7 @@ const StatCard = styled(Card)<{ $theme: ThemeType }>`
   transition: all 0.3s ease;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
   cursor: pointer;
+  background: ${(props) => (props.$theme === 'light' ? '#ffffff' : '#1A202C')};
 
   &:hover {
     transform: translateY(-4px);
@@ -67,6 +69,7 @@ const StatCard = styled(Card)<{ $theme: ThemeType }>`
 `;
 
 export default function Dashboard() {
+  const { theme } = useTheme();
   const [stats, setStats] = useState({
     totalDevices: 0,
     borrowedDevices: 0,
@@ -76,9 +79,6 @@ export default function Dashboard() {
   const [overdue, setOverdue] = useState<any[]>([]);
   const [dueSoon, setDueSoon] = useState<any[]>([]);
   const [visible, setVisible] = useState(false);
-  const [theme, setTheme] = useState<'light' | 'dark'>(
-    (localStorage.getItem('theme') as 'light' | 'dark') || 'light',
-  );
 
   useEffect(() => {
     load();
@@ -125,111 +125,118 @@ export default function Dashboard() {
   ];
 
   return (
-    <div style={{ padding: 24 }}>
-      <Row gutter={[20, 20]}>
-        <Col span={6}>
-          <StatCard $theme={theme}>
-            <div
-              className="icon-wrapper"
-              style={{
-                background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-              }}
-            >
-              <DatabaseOutlined />
-            </div>
-            <div className="stat-content">
-              <Statistic title="设备总数" value={stats.totalDevices} />
-            </div>
-          </StatCard>
-        </Col>
-        <Col span={6}>
-          <StatCard $theme={theme}>
-            <div
-              className="icon-wrapper"
-              style={{
-                background: 'linear-gradient(135deg, #3b82f6 0%, #2563eb 100%)',
-              }}
-            >
-              <LaptopOutlined />
-            </div>
-            <div className="stat-content">
-              <Statistic title="在借设备" value={stats.borrowedDevices} />
-            </div>
-          </StatCard>
-        </Col>
-        <Col span={6}>
-          <StatCard $theme={theme}>
-            <div
-              className="icon-wrapper"
-              style={{
-                background: 'linear-gradient(135deg, #10b981 0%, #059669 100%)',
-              }}
-            >
-              <CheckCircleOutlined />
-            </div>
-            <div className="stat-content">
-              <Statistic title="可借设备" value={stats.availableDevices} />
-            </div>
-          </StatCard>
-        </Col>
-        <Col span={6}>
-          <StatCard $theme={theme}>
-            <div
-              className="icon-wrapper"
-              style={{
-                background: 'linear-gradient(135deg, #ef4444 0%, #dc2626 100%)',
-              }}
-            >
-              <ExclamationCircleOutlined />
-            </div>
-            <div className="stat-content">
-              <Statistic
-                title="逾期设备"
-                value={stats.overdueDevices}
-                valueStyle={{ color: '#EF4444', fontWeight: 700 }}
-              />
-            </div>
-          </StatCard>
-        </Col>
-      </Row>
+    <>
+      <div style={{ padding: 24 }}>
+        <Row gutter={[20, 20]}>
+          <Col span={6}>
+            <StatCard $theme={theme}>
+              <div
+                className="icon-wrapper"
+                style={{
+                  background:
+                    'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                }}
+              >
+                <DatabaseOutlined />
+              </div>
+              <div className="stat-content">
+                <Statistic title="设备总数" value={stats.totalDevices} />
+              </div>
+            </StatCard>
+          </Col>
+          <Col span={6}>
+            <StatCard $theme={theme}>
+              <div
+                className="icon-wrapper"
+                style={{
+                  background:
+                    'linear-gradient(135deg, #3b82f6 0%, #2563eb 100%)',
+                }}
+              >
+                <LaptopOutlined />
+              </div>
+              <div className="stat-content">
+                <Statistic title="在借设备" value={stats.borrowedDevices} />
+              </div>
+            </StatCard>
+          </Col>
+          <Col span={6}>
+            <StatCard $theme={theme}>
+              <div
+                className="icon-wrapper"
+                style={{
+                  background:
+                    'linear-gradient(135deg, #10b981 0%, #059669 100%)',
+                }}
+              >
+                <CheckCircleOutlined />
+              </div>
+              <div className="stat-content">
+                <Statistic title="可借设备" value={stats.availableDevices} />
+              </div>
+            </StatCard>
+          </Col>
+          <Col span={6}>
+            <StatCard $theme={theme}>
+              <div
+                className="icon-wrapper"
+                style={{
+                  background:
+                    'linear-gradient(135deg, #ef4444 0%, #dc2626 100%)',
+                }}
+              >
+                <ExclamationCircleOutlined />
+              </div>
+              <div className="stat-content">
+                <Statistic
+                  title="逾期设备"
+                  value={stats.overdueDevices}
+                  valueStyle={{ color: '#EF4444', fontWeight: 700 }}
+                />
+              </div>
+            </StatCard>
+          </Col>
+        </Row>
 
-      <Row gutter={[20, 20]} style={{ marginTop: 20 }}>
-        <Col span={12}>
-          <DeviceTypeChart theme={theme} />
-        </Col>
-        <Col span={12}>
-          <BorrowTrendsChart theme={theme} />
-        </Col>
-      </Row>
+        <Row gutter={[20, 20]} style={{ marginTop: 20 }}>
+          <Col span={12}>
+            <DeviceTypeChart theme={theme} />
+          </Col>
+          <Col span={12}>
+            <BorrowTrendsChart theme={theme} />
+          </Col>
+        </Row>
 
-      <Row gutter={[20, 20]} style={{ marginTop: 20 }}>
-        <Col span={24}>
-          <DueSoonTimeline theme={theme} />
-        </Col>
-      </Row>
+        <Row gutter={[20, 20]} style={{ marginTop: 20 }}>
+          <Col span={24}>
+            <DueSoonTimeline theme={theme} />
+          </Col>
+        </Row>
 
-      <Modal
-        title="设备归还提醒"
-        open={visible}
-        onCancel={() => setVisible(false)}
-        footer={null}
-        width={900}
-      >
-        <h3>逾期设备</h3>
-        <Table
-          columns={columns}
-          dataSource={overdue}
-          rowKey="id"
-          pagination={false}
-        />
-        <h3 style={{ marginTop: 16 }}>临期设备（≤5天）</h3>
-        <Table
-          columns={columns}
-          dataSource={dueSoon}
-          rowKey="id"
-          pagination={false}
-        />
-      </Modal>
-    </div>
+        <Modal
+          className="themed-modal"
+          title="设备归还提醒"
+          open={visible}
+          onCancel={() => setVisible(false)}
+          footer={null}
+          width={900}
+        >
+          <h3>逾期设备</h3>
+          <Table
+            columns={columns}
+            dataSource={overdue}
+            rowKey="id"
+            pagination={false}
+          />
+          <h3 style={{ marginTop: 16 }}>临期设备（≤5天）</h3>
+          <Table
+            columns={columns}
+            dataSource={dueSoon}
+            rowKey="id"
+            pagination={false}
+          />
+        </Modal>
+      </div>
+    </>
   );
 }

@@ -117,6 +117,10 @@ handleSecured('device:list', async (event, filters) => {
     sql += ' AND code LIKE ?';
     params.push(`%${filters.code}%`);
   }
+  if (filters?.name) {
+    sql += ' AND name LIKE ?';
+    params.push(`%${filters.name}%`);
+  }
   if (filters?.status) {
     sql += ' AND status = ?';
     params.push(filters.status);
@@ -124,6 +128,10 @@ handleSecured('device:list', async (event, filters) => {
   if (filters?.type) {
     sql += ' AND type = ?';
     params.push(filters.type);
+  }
+  if (filters?.brand) {
+    sql += ' AND brand LIKE ?';
+    params.push(`%${filters.brand}%`);
   }
   const rows = queryAll(db, sql, params);
   return rows;
@@ -154,13 +162,14 @@ handleSecured('device:create', async (event, device) => {
   }
 });
 
-handleSecured('device:update', async (event, id, device) => {
+handleSecured('device:update', async (event, device) => {
   const db = getDatabase();
-  const { code, name, type, brand, model, price, location } = device;
+  const { id, code, name, type, brand, model, price, location, status } =
+    device;
   try {
     runStmt(
       db,
-      'UPDATE devices SET code=?, name=?, type=?, brand=?, model=?, price=?, location=? WHERE id=?',
+      'UPDATE devices SET code=?, name=?, type=?, brand=?, model=?, price=?, location=?, status=? WHERE id=?',
       [
         code,
         name,
@@ -169,6 +178,7 @@ handleSecured('device:update', async (event, id, device) => {
         model || '',
         price || 0,
         location || '',
+        status,
         id,
       ],
     );
@@ -262,25 +272,40 @@ handleSecured('borrow:return', async (event, recordId) => {
   const db = getDatabase();
   const now = new Date().toISOString();
   try {
-    const deviceId = queryAll(
-      db,
-      'SELECT device_id FROM borrow_records WHERE id = ?',
-      [recordId],
-    )[0]?.device_id;
+    console.log('归还设备，记录ID:', recordId, '归还时间:', now);
+
+    const record = queryAll(db, 'SELECT * FROM borrow_records WHERE id = ?', [
+      recordId,
+    ])[0];
+
+    if (!record) {
+      console.error('借出记录不存在，ID:', recordId);
+      return { success: false, message: '借出记录不存在' };
+    }
+
+    console.log('当前记录:', record);
+
+    const deviceId = record.device_id;
     runStmt(
       db,
       'UPDATE borrow_records SET actual_return_time = ? WHERE id = ?',
       [now, recordId],
     );
+
+    console.log('更新设备状态，设备ID:', deviceId);
+
     if (deviceId) {
       runStmt(db, 'UPDATE devices SET status = ? WHERE id = ?', [
         'available',
         deviceId,
       ]);
     }
+
     saveDatabase();
+    console.log('归还成功');
     return { success: true };
   } catch (e) {
+    console.error('归还失败:', e);
     return { success: false, message: e.message };
   }
 });
@@ -288,9 +313,15 @@ handleSecured('borrow:return', async (event, recordId) => {
 handleSecured('borrow:list', async (event, filters) => {
   const db = getDatabase();
   let sql = `SELECT br.*, d.code as device_code, d.name as device_name, d.brand as device_brand
-             FROM borrow_records br JOIN devices d ON d.id = br.device_id
-             WHERE br.actual_return_time IS NULL`;
+             FROM borrow_records br JOIN devices d ON d.id = br.device_id`;
   const params = [];
+
+  if (filters?.returned === true) {
+    sql += ' WHERE br.actual_return_time IS NOT NULL';
+  } else {
+    sql += ' WHERE br.actual_return_time IS NULL';
+  }
+
   if (filters?.deviceCode) {
     sql += ' AND d.code LIKE ?';
     params.push(`%${filters.deviceCode}%`);
@@ -299,8 +330,56 @@ handleSecured('borrow:list', async (event, filters) => {
     sql += ' AND d.name LIKE ?';
     params.push(`%${filters.device_name}%`);
   }
+  if (filters?.deviceName) {
+    sql += ' AND d.name LIKE ?';
+    params.push(`%${filters.deviceName}%`);
+  }
+  if (filters?.deviceType) {
+    sql += ' AND d.type = ?';
+    params.push(filters.deviceType);
+  }
+  if (filters?.borrowerName) {
+    sql += ' AND br.borrower_name LIKE ?';
+    params.push(`%${filters.borrowerName}%`);
+  }
+  if (filters?.borrowerClass) {
+    sql += ' AND br.borrower_class LIKE ?';
+    params.push(`%${filters.borrowerClass}%`);
+  }
+  if (filters?.borrower_student_id) {
+    sql += ' AND br.borrower_student_id = ?';
+    params.push(filters.borrower_student_id);
+  }
+  if (filters?.borrowTimeStart) {
+    sql += ' AND br.borrow_time >= ?';
+    params.push(filters.borrowTimeStart);
+  }
+  if (filters?.borrowTimeEnd) {
+    sql += ' AND br.borrow_time <= ?';
+    params.push(filters.borrowTimeEnd);
+  }
+  if (filters?.returnTimeStart) {
+    sql += ' AND br.actual_return_time >= ?';
+    params.push(filters.returnTimeStart);
+  }
+  if (filters?.returnTimeEnd) {
+    sql += ' AND br.actual_return_time <= ?';
+    params.push(filters.returnTimeEnd);
+  }
+
   const rows = queryAll(db, sql, params);
   return rows;
+});
+
+handleSecured('borrow:delete', async (event, recordId) => {
+  const db = getDatabase();
+  try {
+    runStmt(db, 'DELETE FROM borrow_records WHERE id = ?', [recordId]);
+    saveDatabase();
+    return { success: true };
+  } catch (e) {
+    return { success: false, message: e.message };
+  }
 });
 
 handleSecured('borrow:listOverdue', async () => {

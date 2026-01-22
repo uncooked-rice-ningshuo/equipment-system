@@ -1,4 +1,5 @@
 import icon from '@/assets/icon/icon.svg';
+import { useTheme } from '@/components/ThemeProvider';
 import { themeConfig, ThemeType } from '@/config/theme';
 import {
   CalendarOutlined,
@@ -10,7 +11,6 @@ import {
   ToolOutlined,
 } from '@ant-design/icons';
 import { Breadcrumb, Button, Layout, Menu } from 'antd';
-import { useState } from 'react';
 import styled from 'styled-components';
 import { history, Outlet, useLocation } from 'umi';
 
@@ -69,9 +69,7 @@ const items = [
 ];
 
 export default function BasicLayout() {
-  const [theme, setTheme] = useState<'light' | 'dark'>(
-    (localStorage.getItem('theme') as 'light' | 'dark') || 'light',
-  );
+  const { theme, toggleTheme } = useTheme();
   const location = useLocation();
   const selectedKeys = [
     location.pathname.startsWith('/dashboard')
@@ -90,12 +88,6 @@ export default function BasicLayout() {
         }
       : null,
   ].filter(Boolean);
-
-  const toggleTheme = () => {
-    const newTheme = theme === 'light' ? 'dark' : 'light';
-    setTheme(newTheme);
-    localStorage.setItem('theme', newTheme);
-  };
 
   const currentTheme = themeConfig[theme];
 

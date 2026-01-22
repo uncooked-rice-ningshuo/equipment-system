@@ -14,6 +14,7 @@ const TimelineCard = styled(Card)<{ $theme: ThemeType }>`
   border-radius: 16px;
   overflow: hidden;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  background: ${(props) => (props.$theme === 'light' ? '#ffffff' : '#1A202C')};
 
   .ant-card-head {
     border-bottom: 1px solid
