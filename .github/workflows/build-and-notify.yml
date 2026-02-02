@@ -13,6 +13,7 @@ permissions:
 jobs:
   build:
     strategy:
+      fail-fast: false
       matrix:
         os: [windows-latest, macos-latest]
     runs-on: ${{ matrix.os }}
@@ -82,7 +83,8 @@ jobs:
           if [[ "${GITHUB_REF}" == refs/tags/* ]]; then
             echo "release_tag=${GITHUB_REF_NAME}" >> "$GITHUB_OUTPUT"
           else
-            echo "release_tag=v$(node -p \"require('./package.json').version\")" >> "$GITHUB_OUTPUT"
+            VERSION="$(node -p "require('./package.json').version")"
+            echo "release_tag=v${VERSION}" >> "$GITHUB_OUTPUT"
           fi
 
       - name: Create or update GitHub Release
