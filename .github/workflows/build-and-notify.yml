@@ -121,10 +121,7 @@ jobs:
           tag: ${{ needs.release.outputs.release_tag }}
           overwrite: true
           file_glob: true
-          file: |
-            artifacts/${{ matrix.os }}/*.exe
-            artifacts/${{ matrix.os }}/*.exe.blockmap
-            artifacts/${{ matrix.os }}/latest.yml
+          file: artifacts/${{ matrix.os }}/*
 
       - name: Upload macOS assets (overwrite)
         if: matrix.os == 'macos-latest'
@@ -134,10 +131,7 @@ jobs:
           tag: ${{ needs.release.outputs.release_tag }}
           overwrite: true
           file_glob: true
-          file: |
-            artifacts/${{ matrix.os }}/*.dmg
-            artifacts/${{ matrix.os }}/*.zip
-            artifacts/${{ matrix.os }}/latest-mac.yml
+          file: artifacts/${{ matrix.os }}/*
 
   notify_feishu:
     if: startsWith(github.ref, 'refs/tags/') || github.ref == 'refs/heads/main'
