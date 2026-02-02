@@ -1,0 +1,143 @@
+name: Build Electron App and Notify Feishu
+
+on:
+  push:
+    tags:
+      - 'v*'  # 当推送 v1.0.0 这样的标签时触发
+  workflow_dispatch:  # 也支持手动触发
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        os: [windows-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: 'pnpm'
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v3
+        with:
+          version: 8
+      
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+      
+      # 打包 Electron 应用
+      - name: Build Electron app
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        shell: bash
+        run: |
+          if [ "${{ matrix.os }}" == "windows-latest" ]; then
+            pnpm run build:win
+          else
+            pnpm run build:mac
+          fi
+      
+      # 获取版本号
+      - name: Get version
+        id: get_version
+        shell: bash
+        run: echo "VERSION=${GITHUB_REF#refs/tags/}" >> $GITHUB_OUTPUT
+      
+      # 上传到 GitHub Releases
+      - name: Create Release
+        id: create_release
+        uses: softprops/action-gh-release@v1
+        if: startsWith(github.ref, 'refs/tags/')
+        with:
+          files: |
+            release/*.exe
+            release/*.exe.blockmap
+            release/*.dmg
+            release/*.dmg.blockmap
+            release/*.zip
+            release/latest.yml
+            release/latest-mac.yml
+          name: Release ${{ steps.get_version.outputs.VERSION }}
+          draft: false
+          prerelease: false
+          generate_release_notes: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      
+      # 生成下载链接并发送到飞书
+      - name: Send to Feishu
+        env:
+          FEISHU_WEBHOOK: ${{ secrets.FEISHU_WEBHOOK }}
+          VERSION: ${{ steps.get_version.outputs.VERSION }}
+          OS_NAME: ${{ matrix.os }}
+        shell: bash
+        run: |
+          # 获取 Release 页面 URL
+          RELEASE_URL="${{ github.server_url }}/${{ github.repository }}/releases/tag/${{ steps.get_version.outputs.VERSION }}"
+          
+          # Find file based on OS
+          if [ "$OS_NAME" == "windows-latest" ]; then
+            FILE_PATH=$(ls release/*.exe | head -n 1)
+            BTN_TEXT="⬇️ 下载 Windows 安装包"
+            TITLE_SUFFIX="(Windows)"
+          else
+            FILE_PATH=$(ls release/*.dmg | head -n 1)
+            BTN_TEXT="⬇️ 下载 macOS 安装包"
+            TITLE_SUFFIX="(macOS)"
+          fi
+          
+          FILE_NAME=$(basename "$FILE_PATH")
+          
+          # 构造飞书消息
+          curl -X POST "$FEISHU_WEBHOOK" \
+            -H "Content-Type: application/json" \
+            -d "{
+              \"msg_type\": \"interactive\",
+              \"card\": {
+                \"header\": {
+                  \"title\": {
+                    \"tag\": \"plain_text\",
+                    \"content\": \"🚀 Electron 应用发布通知 $TITLE_SUFFIX\"
+                  },
+                  \"template\": \"blue\"
+                },
+                \"elements\": [
+                  {
+                    \"tag\": \"div\",
+                    \"text\": {
+                      \"tag\": \"lark_md\",
+                      \"content\": \"**版本：** $VERSION\n**文件名：** $FILE_NAME\"
+                    }
+                  },
+                  {
+                    \"tag\": \"action\",
+                    \"actions\": [
+                      {
+                        \"tag\": \"button\",
+                        \"text\": {
+                          \"tag\": \"plain_text\",
+                          \"content\": \"$BTN_TEXT\"
+                        },
+                        \"type\": \"primary\",
+                        \"url\": \"$RELEASE_URL\"
+                      },
+                      {
+                        \"tag\": \"button\",
+                        \"text\": {
+                          \"tag\": \"plain_text\",
+                          \"content\": \"📋 查看 Release 页面\"
+                        },
+                        \"type\": \"default\",
+                        \"url\": \"$RELEASE_URL\"
+                      }
+                    ]
+                  }
+                ]
+              }
+            }"
