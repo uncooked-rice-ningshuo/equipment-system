@@ -4,25 +4,26 @@ const path = require('path');
 const { app } = require('electron');
 
 let db = null;
-
-// 旧的数据库路径（之前使用 app.getPath('userData')）
-const legacyDbPath = path.join(app.getPath('userData'), 'database.sqlite');
-
-// 新的数据库路径：开发环境迁移到项目目录下，方便使用可视化工具查看
-// 生产环境仍然使用 userData，避免只读目录问题
-const isDev = !app.isPackaged;
-const projectDbPath = path.join(
-  __dirname,
-  '..',
-  '..',
-  'data',
-  'database.sqlite',
-);
-
-const dbPath = isDev ? projectDbPath : legacyDbPath;
-const backupPath = path.join(path.dirname(dbPath), 'database_backup.sqlite');
+let dbPath = null;
+let backupPath = null;
 
 function initDatabase() {
+  // 旧的数据库路径（之前使用 app.getPath('userData')）
+  const legacyDbPath = path.join(app.getPath('userData'), 'database.sqlite');
+
+  // 新的数据库路径：开发环境迁移到项目目录下，方便使用可视化工具查看
+  // 生产环境仍然使用 userData，避免只读目录问题
+  const isDev = !app.isPackaged;
+  const projectDbPath = path.join(
+    __dirname,
+    '..',
+    '..',
+    'data',
+    'database.sqlite',
+  );
+
+  dbPath = isDev ? projectDbPath : legacyDbPath;
+  backupPath = path.join(path.dirname(dbPath), 'database_backup.sqlite');
   // 确保目录存在
   const dbDir = path.dirname(dbPath);
   try {
@@ -200,7 +201,7 @@ function runStmt(database, sql, params = []) {
 module.exports = {
   initDatabase,
   getDatabase: () => db,
-  getDbPath: () => dbPath,
+  getDbPath: () => dbPath || 'Not initialized',
   saveDatabase,
   queryAll,
   runStmt,
