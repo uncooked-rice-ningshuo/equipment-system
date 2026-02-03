@@ -1,5 +1,5 @@
 import { eventBus } from '@/utils/eventBus';
-import { invoke as webInvoke } from './webAdapter';
+import { invoke as webInvoke } from './httpClient';
 
 export async function invoke<T = any>(
   channel: string,
