@@ -48,12 +48,10 @@ function createServer() {
         }
       } catch (error) {
         console.error('Login error:', error);
-        res
-          .status(401)
-          .json({
-            success: false,
-            message: error.message || '用户名或密码错误',
-          });
+        res.status(401).json({
+          success: false,
+          message: error.message || '用户名或密码错误',
+        });
       }
     }),
   );
@@ -278,6 +276,42 @@ function createServer() {
     '/api/invoke',
     asyncHandler(async (req, res) => {
       const { channel, args } = req.body;
+
+      if (channel === 'auth:login') {
+        const [username, password] = args;
+        let email = username;
+        if (username === 'admin') {
+          email = 'admin@example.com';
+        }
+        const auth = await getAuth();
+        try {
+          const session = await auth.api.signInEmail({
+            body: {
+              email,
+              password,
+            },
+          });
+
+          if (
+            session &&
+            (session.token || (session.session && session.session.token))
+          ) {
+            const token = session.token || session.session.token;
+            return res.json({ success: true, token });
+          } else {
+            return res
+              .status(401)
+              .json({ success: false, message: '登录失败' });
+          }
+        } catch (error) {
+          console.error('Login error:', error);
+          return res.status(401).json({
+            success: false,
+            message: error.message || '用户名或密码错误',
+          });
+        }
+      }
+
       const handlerMap = {
         'device:list': () => apiHandlers.deviceList(args[0]),
         'device:create': () => apiHandlers.deviceCreate(args[0]),
