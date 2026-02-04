@@ -16,23 +16,30 @@ const handleSecured = async (channel, callback) => {
   ipcMain.handle(channel, async (event, ...args) => {
     const token = args.pop();
 
+    const db = getDatabase();
+    const now = new Date().toISOString();
+
     let session = null;
     try {
-      const auth = await getAuth();
-      session = await auth.api.getSession({
-        headers: { authorization: `Bearer ${token}` },
-      });
+      session = db
+        .prepare(
+          'SELECT s.*, u.* FROM session s JOIN user u ON s.userId = u.id WHERE s.token = ? AND s.expiresAt > ?',
+        )
+        .get(token, now);
     } catch (e) {
-      console.error('Session validation failed:', e);
+      console.error('Session query failed:', e);
     }
-
-    const now = new Date();
 
     if (!session) {
       return { success: false, message: '未授权或会话已过期，请重新登录' };
     }
 
-    event.user = session.user;
+    event.user = {
+      id: session.id,
+      name: session.name,
+      email: session.email,
+      username: session.username,
+    };
 
     return callback(event, ...args);
   });
