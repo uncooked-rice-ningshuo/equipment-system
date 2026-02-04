@@ -1,11 +1,21 @@
 import { invoke } from '@/services/ipc';
 import { Button, Checkbox, Form, Input, message } from 'antd';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { history } from 'umi';
 import styles from './index.less';
 
 export default function Login() {
   const [loading, setLoading] = useState(false);
+
+  // 在组件加载时检查是否有旧的 token
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      console.log('Found existing token on login page, clearing it');
+      localStorage.removeItem('token');
+      localStorage.removeItem('loginUser');
+    }
+  }, []);
 
   const onFinish = async (values: any) => {
     setLoading(true);

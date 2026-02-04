@@ -8,15 +8,31 @@ export async function invoke<T = any>(
   const token = localStorage.getItem('token');
   const newArgs = [...args];
 
-  // Append token if it exists and not logging in
   if (token && channel !== 'auth:login') {
     newArgs.push(token);
   }
 
+  let result: any;
   if (window.api && typeof window.api.invoke === 'function') {
-    return await window.api.invoke(channel, ...newArgs);
+    result = await window.api.invoke(channel, ...newArgs);
+  } else {
+    result = await webInvoke(channel, ...newArgs);
   }
-  return await webInvoke(channel, ...newArgs);
+
+  // 处理未授权错误
+  if (result && result.success === false) {
+    if (
+      result.message?.includes('未授权') ||
+      result.message?.includes('会话已过期')
+    ) {
+      console.log('Session expired, clearing token and redirecting to login');
+      localStorage.removeItem('token');
+      localStorage.removeItem('loginUser');
+      window.location.href = '/login';
+    }
+  }
+
+  return result;
 }
 
 const EVENT_MAP: Record<string, string> = {

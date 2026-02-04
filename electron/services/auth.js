@@ -31,16 +31,14 @@ async function initAuth() {
       minPasswordLength: 6,
       maxPasswordLength: 32,
     },
-    // We disable email verification for this local app
     emailVerification: {
       enabled: false,
     },
-    // Since we are in Electron, we might not have a public URL
-    // We can set a dummy base URL or handle routing manually via IPC
     baseURL: 'http://localhost:8000',
     trustedOrigins: ['app://equipment-system', 'http://localhost:8000'],
-
-    // Custom logger
+    session: {
+      expiresIn: 30 * 24 * 60 * 60 * 1000, // 30 天
+    },
     logger: {
       level: 'debug',
     },
