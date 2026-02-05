@@ -120,53 +120,103 @@ jobs:
           sudo apt-get update -y
           sudo apt-get install -y jq
 
-      - name: Remove existing release assets
+      - name: Upload release assets (replace on conflict)
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           RELEASE_TAG: ${{ needs.release.outputs.release_tag }}
         shell: bash
         run: |
           set -euo pipefail
+
+          API="https://api.github.com"
           REPO="${{ github.repository }}"
           AUTH="Authorization: Bearer $GITHUB_TOKEN"
-          REL_JSON="$(curl -s -H "$AUTH" -H "Accept: application/vnd.github+json" "https://api.github.com/repos/${REPO}/releases/tags/${RELEASE_TAG}")"
-          ASSETS_JSON="$(echo "$REL_JSON" | jq -c '.assets[]?' || true)"
-          declare -A WANT
-          for f in artifacts/${{ matrix.os }}/*; do
-            [ -e "$f" ] || continue
-            bn="$(basename "$f")"
-            WANT["$bn"]=1
-          done
-          if [ -n "$ASSETS_JSON" ]; then
-            while IFS= read -r asset; do
-              name="$(echo "$asset" | jq -r '.name')"
-              id="$(echo "$asset" | jq -r '.id')"
-              if [ -n "${WANT[$name]+x}" ]; then
-                curl -s -X DELETE -H "$AUTH" -H "Accept: application/vnd.github+json" "https://api.github.com/repos/${REPO}/releases/assets/${id}" >/dev/null
+          ACCEPT="Accept: application/vnd.github+json"
+
+          urlencode() {
+            python3 -c 'import sys, urllib.parse; print(urllib.parse.quote(sys.argv[1]))' "$1"
+          }
+
+          release_json="$(curl -sS -H "$AUTH" -H "$ACCEPT" "${API}/repos/${REPO}/releases/tags/${RELEASE_TAG}")"
+          release_id="$(echo "$release_json" | jq -r '.id')"
+          upload_url="$(echo "$release_json" | jq -r '.upload_url' | sed 's/{?name,label}$//')"
+
+          delete_asset_by_name() {
+            local asset_name="$1"
+            local page=1
+            while :; do
+              local assets
+              assets="$(curl -sS -H "$AUTH" -H "$ACCEPT" "${API}/repos/${REPO}/releases/${release_id}/assets?per_page=100&page=${page}")"
+              local count
+              count="$(echo "$assets" | jq 'length')"
+              if [ "$count" -eq 0 ]; then
+                break
               fi
-            done <<< "$ASSETS_JSON"
+
+              local ids
+              ids="$(echo "$assets" | jq -r --arg n "$asset_name" '.[] | select(.name == $n) | .id')"
+              if [ -n "$ids" ]; then
+                while IFS= read -r id; do
+                  [ -n "$id" ] || continue
+                  curl -sS -X DELETE -H "$AUTH" -H "$ACCEPT" "${API}/repos/${REPO}/releases/assets/${id}" >/dev/null || true
+                done <<< "$ids"
+              fi
+
+              if [ "$count" -lt 100 ]; then
+                break
+              fi
+              page=$((page + 1))
+            done
+          }
+
+          upload_one() {
+            local file="$1"
+            local name
+            name="$(basename "$file")"
+            local qname
+            qname="$(urlencode "$name")"
+
+            for attempt in 1 2 3 4 5; do
+              local resp
+              resp="$(mktemp)"
+              local code
+              code="$(curl -sS -o "$resp" -w "%{http_code}" -X POST \
+                -H "$AUTH" -H "$ACCEPT" -H "Content-Type: application/octet-stream" \
+                --data-binary @"$file" \
+                "${upload_url}?name=${qname}" || true)"
+
+              if [ "$code" = "201" ]; then
+                rm -f "$resp"
+                return 0
+              fi
+
+              if [ "$code" = "422" ] && jq -e '.errors[]? | select(.code=="already_exists" and .field=="name")' "$resp" >/dev/null 2>&1; then
+                rm -f "$resp"
+                delete_asset_by_name "$name"
+                sleep $((attempt * 3))
+                continue
+              fi
+
+              cat "$resp"
+              rm -f "$resp"
+              return 1
+            done
+
+            echo "Upload failed after retries: $name"
+            return 1
+          }
+
+          shopt -s nullglob
+          files=(artifacts/${{ matrix.os }}/*)
+          if [ "${#files[@]}" -eq 0 ]; then
+            echo "No files found under artifacts/${{ matrix.os }}/"
+            exit 1
           fi
-          sleep 3
 
-      - name: Upload Windows assets (overwrite)
-        if: matrix.os == 'windows-latest'
-        uses: svenstaro/upload-release-action@v2
-        with:
-          repo_token: ${{ secrets.GITHUB_TOKEN }}
-          tag: ${{ needs.release.outputs.release_tag }}
-          overwrite: true
-          file_glob: true
-          file: artifacts/${{ matrix.os }}/*
-
-      - name: Upload macOS assets (overwrite)
-        if: matrix.os == 'macos-latest'
-        uses: svenstaro/upload-release-action@v2
-        with:
-          repo_token: ${{ secrets.GITHUB_TOKEN }}
-          tag: ${{ needs.release.outputs.release_tag }}
-          overwrite: true
-          file_glob: true
-          file: artifacts/${{ matrix.os }}/*
+          for f in "${files[@]}"; do
+            [ -f "$f" ] || continue
+            upload_one "$f"
+          done
 
   notify_feishu:
     if: startsWith(github.ref, 'refs/tags/') || github.ref == 'refs/heads/main'
