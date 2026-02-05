@@ -221,8 +221,9 @@ jobs:
             name="$(basename "$file")"
             local qname
             qname="$(urlencode "$name")"
+            local deleted_once=0
 
-            for attempt in 1 2 3 4 5; do
+            for attempt in 1 2 3 4 5 6 7 8 9 10; do
               local resp
               resp="$(mktemp)"
               local code
@@ -237,13 +238,17 @@ jobs:
               fi
 
               if [ "$code" = "422" ] && jq -e '.errors[]? | select(.code=="already_exists" and .field=="name")' "$resp" >/dev/null 2>&1; then
-                echo "Conflict detected, deleting and retrying: $name"
+                echo "Conflict detected: $name (attempt=$attempt)"
+                jq '.message, .errors' "$resp" || true
                 rm -f "$resp"
-                delete_asset_by_name "$name"
-                if ! wait_asset_gone "$name" 90; then
+                if [ "$deleted_once" -eq 0 ]; then
+                  delete_asset_by_name "$name"
+                  deleted_once=1
+                fi
+                if ! wait_asset_gone "$name" 300; then
                   echo "Asset still exists after delete: $name"
                 fi
-                sleep $((attempt * 5))
+                sleep $((attempt * 30))
                 continue
               fi
 
