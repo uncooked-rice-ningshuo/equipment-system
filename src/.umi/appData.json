@@ -10,9 +10,9 @@
     "scripts": {
       "build:linux": "npm run build:web && electron-builder --linux",
       "build:mac": "npm run build:web && electron-builder --mac",
-      "build:publish:linux": "npm run build:linux && npm run publish:feishu",
-      "build:publish:mac": "npm run build:mac && npm run publish:feishu",
-      "build:publish:win": "npm run build:win && npm run publish:feishu",
+      "build:publish:linux": "node scripts/build-and-publish.js linux",
+      "build:publish:mac": "node scripts/build-and-publish.js mac",
+      "build:publish:win": "node scripts/build-and-publish.js win",
       "build:web": "umi build",
       "build:win": "npm run build:web && electron-builder --win",
       "dev": "concurrently \"npm run dev:web\" \"npm run dev:electron\"",
@@ -30,9 +30,12 @@
       "axios": "^1.13.2",
       "better-auth": "^1.4.10",
       "better-sqlite3": "^12.5.0",
+      "body-parser": "^2.2.2",
+      "cors": "^2.8.6",
       "dayjs": "^1.11.11",
       "echarts": "^6.0.0",
       "echarts-for-react": "^3.0.5",
+      "express": "^5.2.1",
       "lodash": "^4.17.21",
       "react": "^18.2.0",
       "react-dom": "^18.2.0",
@@ -99,7 +102,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 0
+        "register": 1
       },
       "enableBy": "register",
       "type": "preset",
@@ -112,7 +115,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 7
+        "register": 5
       },
       "enableBy": "register",
       "type": "preset",
@@ -143,10 +146,10 @@
       "time": {
         "hooks": {
           "onStart": [
-            2
+            1
           ]
         },
-        "register": 1
+        "register": 2
       },
       "enableBy": "register",
       "type": "plugin",
@@ -160,50 +163,10 @@
       "time": {
         "hooks": {
           "modifyRoutes": [
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
             0
           ]
         },
-        "register": 1
+        "register": 0
       },
       "enableBy": "register",
       "type": "plugin",
@@ -220,67 +183,14 @@
             6,
             2,
             2,
-            1,
             2,
             2,
             2,
             2,
-            3,
-            1,
-            2,
-            2,
-            1,
-            2,
-            2,
-            1,
-            2,
-            6,
-            2,
-            3,
-            2,
-            3,
-            3,
-            2,
-            2,
-            1,
-            1,
-            2,
-            2,
-            1,
-            1,
-            2,
-            1,
-            2,
-            1,
-            1,
-            3,
-            1,
-            2,
-            1,
-            3,
-            1,
-            1,
-            2,
-            1,
-            3,
-            2,
-            9,
-            1,
-            1,
-            1,
-            2,
-            1,
-            1,
-            1,
-            2,
-            1,
-            2,
-            1,
-            1,
             2
           ]
         },
-        "register": 0
+        "register": 1
       },
       "enableBy": "register",
       "type": "plugin",
@@ -294,53 +204,13 @@
       "time": {
         "hooks": {
           "modifyAppData": [
-            14
+            15
           ],
           "onGenerateFiles": [
-            1,
-            16,
-            11,
-            16,
-            21,
-            15,
-            15,
-            22,
-            6,
-            12,
-            17,
-            12,
-            12,
-            9,
-            90,
-            8,
-            11,
-            14,
-            9,
-            15,
-            11,
-            10,
-            9,
-            15,
-            10,
-            8,
-            8,
-            4,
-            13,
-            17,
-            16,
-            6,
-            6,
-            6,
-            12,
-            22,
-            17,
-            16,
-            14,
-            13,
-            10
+            1
           ]
         },
-        "register": 11
+        "register": 14
       },
       "enableBy": "register",
       "type": "plugin",
@@ -354,50 +224,10 @@
       "time": {
         "hooks": {
           "addEntryCode": [
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
             0
           ]
         },
-        "register": 1
+        "register": 0
       },
       "enableBy": "register",
       "type": "plugin",
@@ -421,52 +251,7 @@
             0,
             0,
             0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            2,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
+            1,
             0
           ],
           "onCheckCode": [
@@ -476,57 +261,6 @@
             0,
             0,
             0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            1,
             0,
             0,
             0,
@@ -570,7 +304,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 0
+        "register": 1
       },
       "enableBy": "config",
       "type": "plugin",
@@ -1456,7 +1190,7 @@
             0
           ]
         },
-        "register": 1
+        "register": 0
       },
       "enableBy": "register",
       "type": "plugin",
@@ -1470,10 +1204,10 @@
       "time": {
         "hooks": {
           "addBeforeMiddlewares": [
-            4
+            6
           ]
         },
-        "register": 0
+        "register": 1
       },
       "enableBy": "register",
       "type": "plugin",
@@ -1486,7 +1220,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 41
+        "register": 43
       },
       "enableBy": "register",
       "type": "plugin",
@@ -1512,7 +1246,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 11
+        "register": 12
       },
       "enableBy": "config",
       "type": "plugin",
@@ -1529,107 +1263,9 @@
             0
           ],
           "addBeforeMiddlewares": [
-            0
-          ],
-          "modifyHTMLFavicon": [
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0
-          ]
-        },
-        "register": 0
-      },
-      "enableBy": "register",
-      "type": "plugin",
-      "path": "/Users/ningshuo/code/my-projects/equipment-system/node_modules/.pnpm/@umijs+preset-umi@4.5.3_@types+node@20.19.25_@types+react@18.3.26_@types+webpack@5.28.5_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/features/favicons/favicons.js",
-      "cwd": "/Users/ningshuo/code/my-projects/equipment-system",
-      "id": "./node_modules/.pnpm/@umijs+preset-umi@4.5.3_@types+node@20.19.25_@types+react@18.3.26_@types+webpack@5.28.5_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/features/favicons/favicons",
-      "key": "favicons"
-    },
-    "./node_modules/.pnpm/@umijs+preset-umi@4.5.3_@types+node@20.19.25_@types+react@18.3.26_@types+webpack@5.28.5_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/features/helmet/helmet": {
-      "config": {},
-      "time": {
-        "hooks": {
-          "onGenerateFiles": [
-            1,
-            1,
-            1,
-            1,
-            1,
-            0,
-            1,
-            0,
-            1,
-            0,
-            1,
-            1,
-            0,
-            0,
-            6,
-            1,
-            1,
-            1,
-            1,
-            0,
-            1,
-            0,
-            0,
-            1,
-            1,
-            1,
-            0,
-            1,
-            1,
-            1,
-            1,
-            0,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            0,
-            1,
             1
           ],
-          "addRuntimePlugin": [
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            1,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
+          "modifyHTMLFavicon": [
             0,
             0,
             0,
@@ -1651,6 +1287,26 @@
       },
       "enableBy": "register",
       "type": "plugin",
+      "path": "/Users/ningshuo/code/my-projects/equipment-system/node_modules/.pnpm/@umijs+preset-umi@4.5.3_@types+node@20.19.25_@types+react@18.3.26_@types+webpack@5.28.5_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/features/favicons/favicons.js",
+      "cwd": "/Users/ningshuo/code/my-projects/equipment-system",
+      "id": "./node_modules/.pnpm/@umijs+preset-umi@4.5.3_@types+node@20.19.25_@types+react@18.3.26_@types+webpack@5.28.5_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/features/favicons/favicons",
+      "key": "favicons"
+    },
+    "./node_modules/.pnpm/@umijs+preset-umi@4.5.3_@types+node@20.19.25_@types+react@18.3.26_@types+webpack@5.28.5_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/features/helmet/helmet": {
+      "config": {},
+      "time": {
+        "hooks": {
+          "onGenerateFiles": [
+            1
+          ],
+          "addRuntimePlugin": [
+            0
+          ]
+        },
+        "register": 0
+      },
+      "enableBy": "register",
+      "type": "plugin",
       "path": "/Users/ningshuo/code/my-projects/equipment-system/node_modules/.pnpm/@umijs+preset-umi@4.5.3_@types+node@20.19.25_@types+react@18.3.26_@types+webpack@5.28.5_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/features/helmet/helmet.js",
       "cwd": "/Users/ningshuo/code/my-projects/equipment-system",
       "id": "./node_modules/.pnpm/@umijs+preset-umi@4.5.3_@types+node@20.19.25_@types+react@18.3.26_@types+webpack@5.28.5_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/features/helmet/helmet",
@@ -1660,7 +1316,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 0
+        "register": 1
       },
       "enableBy": "config",
       "type": "plugin",
@@ -1677,10 +1333,10 @@
             0
           ],
           "addBeforeMiddlewares": [
-            0
+            12
           ]
         },
-        "register": 18
+        "register": 17
       },
       "type": "plugin",
       "path": "/Users/ningshuo/code/my-projects/equipment-system/node_modules/.pnpm/@umijs+preset-umi@4.5.3_@types+node@20.19.25_@types+react@18.3.26_@types+webpack@5.28.5_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/features/mock/mock.js",
@@ -1692,7 +1348,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 1
+        "register": 0
       },
       "enableBy": "config",
       "type": "plugin",
@@ -1718,134 +1374,14 @@
       "time": {
         "hooks": {
           "onGenerateFiles": [
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            1,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
             0
           ],
           "addEntryImports": [
             0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
             0
           ]
         },
-        "register": 0
+        "register": 1
       },
       "enableBy": "register",
       "type": "plugin",
@@ -1872,132 +1408,12 @@
       "time": {
         "hooks": {
           "modifyConfig": [
-            1
+            0
           ],
           "onGenerateFiles": [
-            34,
-            13,
-            16,
-            12,
-            25,
-            18,
-            16,
-            22,
-            8,
-            14,
-            17,
-            12,
-            14,
-            12,
-            221,
-            16,
-            12,
-            12,
-            9,
-            14,
-            12,
-            10,
-            13,
-            19,
-            22,
-            11,
-            14,
-            7,
-            12,
-            8,
-            9,
-            6,
-            7,
-            12,
-            14,
-            22,
-            14,
-            14,
-            12,
-            26,
-            10
+            38
           ],
           "addPolyfillImports": [
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
             0,
             0
           ]
@@ -2016,90 +1432,10 @@
         "hooks": {
           "addPolyfillImports": [
             0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
             0
           ]
         },
-        "register": 1
+        "register": 0
       },
       "enableBy": "register",
       "type": "plugin",
@@ -2113,50 +1449,10 @@
       "time": {
         "hooks": {
           "onGenerateFiles": [
-            33,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0
+            48
           ]
         },
-        "register": 0
+        "register": 1
       },
       "enableBy": "register",
       "type": "plugin",
@@ -2196,53 +1492,13 @@
       "time": {
         "hooks": {
           "onGenerateFiles": [
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
             0
           ],
           "addBeforeMiddlewares": [
-            1
+            0
           ]
         },
-        "register": 1
+        "register": 0
       },
       "enableBy": "register",
       "type": "plugin",
@@ -2257,90 +1513,10 @@
         "hooks": {
           "onGenerateFiles": [
             5,
-            1,
-            6,
-            1,
-            6,
-            1,
-            6,
-            0,
-            10,
-            1,
-            5,
-            0,
-            5,
-            1,
-            5,
-            1,
-            4,
-            0,
-            6,
-            1,
-            7,
-            1,
-            5,
-            1,
-            5,
-            0,
-            2,
-            0,
-            58,
-            1,
-            7,
-            1,
-            5,
-            0,
-            4,
-            1,
-            6,
-            1,
-            5,
-            1,
-            5,
-            1,
-            4,
-            1,
-            5,
-            0,
-            7,
-            1,
-            9,
-            2,
-            3,
-            0,
-            5,
-            1,
-            4,
-            1,
-            5,
-            1,
-            5,
-            1,
-            5,
-            1,
-            3,
-            0,
-            4,
-            1,
-            6,
-            1,
-            5,
-            1,
-            7,
-            0,
-            6,
-            2,
-            6,
-            1,
-            5,
-            1,
-            6,
-            1,
-            4,
             1
           ]
         },
-        "register": 1
+        "register": 2
       },
       "enableBy": "register",
       "type": "plugin",
@@ -2353,7 +1529,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 1
+        "register": 0
       },
       "enableBy": "config",
       "type": "plugin",
@@ -2366,7 +1542,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 0
+        "register": 1
       },
       "type": "plugin",
       "path": "/Users/ningshuo/code/my-projects/equipment-system/node_modules/.pnpm/@umijs+preset-umi@4.5.3_@types+node@20.19.25_@types+react@18.3.26_@types+webpack@5.28.5_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/features/routeProps/routeProps.js",
@@ -2378,7 +1554,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 1
+        "register": 0
       },
       "enableBy": "config",
       "type": "plugin",
@@ -2392,47 +1568,7 @@
       "time": {
         "hooks": {
           "onGenerateFiles": [
-            191,
-            6,
-            6,
-            5,
-            5,
-            5,
-            6,
-            11,
-            4,
-            5,
-            5,
-            5,
-            4,
-            3,
-            16,
-            5,
-            4,
-            5,
-            3,
-            4,
-            5,
-            5,
-            5,
-            8,
-            8,
-            3,
-            4,
-            3,
-            4,
-            5,
-            4,
-            2,
-            5,
-            5,
-            5,
-            5,
-            6,
-            5,
-            4,
-            5,
-            4
+            195
           ]
         },
         "register": 1
@@ -2452,7 +1588,7 @@
             0
           ]
         },
-        "register": 1
+        "register": 2
       },
       "enableBy": "register",
       "type": "plugin",
@@ -2465,7 +1601,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 2
+        "register": 1
       },
       "enableBy": "config",
       "type": "plugin",
@@ -2503,7 +1639,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 12
+        "register": 10
       },
       "enableBy": "config",
       "type": "plugin",
@@ -2517,50 +1653,10 @@
       "time": {
         "hooks": {
           "onGenerateFiles": [
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            0,
-            1,
-            1,
-            1,
-            0,
-            0,
-            1,
-            1,
-            1,
-            0,
-            1,
-            0,
-            1,
-            1,
-            1,
-            0,
-            1,
-            1,
-            1,
-            1,
-            0,
-            0,
-            0,
-            0,
-            1,
-            1,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            1,
-            0,
-            0
+            1
           ]
         },
-        "register": 0
+        "register": 1
       },
       "type": "plugin",
       "path": "/Users/ningshuo/code/my-projects/equipment-system/node_modules/.pnpm/@umijs+preset-umi@4.5.3_@types+node@20.19.25_@types+react@18.3.26_@types+webpack@5.28.5_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/features/test/test.js",
@@ -2627,7 +1723,7 @@
             0
           ]
         },
-        "register": 0
+        "register": 1
       },
       "enableBy": "register",
       "type": "plugin",
@@ -2652,7 +1748,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 1
+        "register": 0
       },
       "enableBy": "config",
       "type": "plugin",
@@ -2665,7 +1761,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 0
+        "register": 1
       },
       "type": "plugin",
       "path": "/Users/ningshuo/code/my-projects/equipment-system/node_modules/.pnpm/@umijs+preset-umi@4.5.3_@types+node@20.19.25_@types+react@18.3.26_@types+webpack@5.28.5_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/features/utoopack/utoopack.js",
@@ -2702,10 +1798,12 @@
             0,
             0,
             0,
+            0,
+            0,
             0
           ]
         },
-        "register": 13
+        "register": 14
       },
       "type": "plugin",
       "path": "/Users/ningshuo/code/my-projects/equipment-system/node_modules/.pnpm/@umijs+preset-umi@4.5.3_@types+node@20.19.25_@types+react@18.3.26_@types+webpack@5.28.5_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/features/routePreloadOnLoad/routePreloadOnLoad.js",
@@ -2731,7 +1829,7 @@
       "time": {
         "hooks": {
           "modifyUniBundler": [
-            257
+            817
           ]
         },
         "register": 0
@@ -2760,7 +1858,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 16
+        "register": 17
       },
       "enableBy": "register",
       "type": "plugin",
@@ -2777,7 +1875,7 @@
             5
           ]
         },
-        "register": 20
+        "register": 18
       },
       "type": "plugin",
       "path": "/Users/ningshuo/code/my-projects/equipment-system/node_modules/.pnpm/@umijs+preset-umi@4.5.3_@types+node@20.19.25_@types+react@18.3.26_@types+webpack@5.28.5_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/commands/dev/dev.js",
@@ -2815,7 +1913,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 0
+        "register": 1
       },
       "enableBy": "register",
       "type": "plugin",
@@ -2828,7 +1926,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 1
+        "register": 0
       },
       "enableBy": "register",
       "type": "plugin",
@@ -2880,7 +1978,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 0
+        "register": 1
       },
       "enableBy": "register",
       "type": "plugin",
@@ -2906,7 +2004,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 1
+        "register": 0
       },
       "enableBy": "register",
       "type": "plugin",
@@ -2932,7 +2030,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 0
+        "register": 1
       },
       "enableBy": "register",
       "type": "plugin",
@@ -2971,7 +2069,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 1
+        "register": 0
       },
       "enableBy": "register",
       "type": "plugin",
@@ -2997,7 +2095,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 0
+        "register": 1
       },
       "enableBy": "register",
       "type": "plugin",
@@ -3049,7 +2147,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 1
+        "register": 2
       },
       "enableBy": "register",
       "type": "plugin",
@@ -3062,7 +2160,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 1
+        "register": 0
       },
       "enableBy": "register",
       "type": "plugin",
@@ -3088,7 +2186,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 96
+        "register": 105
       },
       "enableBy": "config",
       "type": "plugin",
@@ -3287,7 +2385,7 @@
       "file": "@/layouts/BasicLayout.tsx",
       "id": "2",
       "absPath": "/",
-      "__content": "import icon from '@/assets/icon/icon.svg';\nimport { themeConfig, ThemeType } from '@/config/theme';\nimport { eventBus } from '@/utils/eventBus';\nimport {\n  CalendarOutlined,\n  DashboardOutlined,\n  HistoryOutlined,\n  LogoutOutlined,\n  MoonFilled,\n  SunFilled,\n  ToolOutlined,\n} from '@ant-design/icons';\nimport { Breadcrumb, Button, Layout, Menu } from 'antd';\nimport { useState } from 'react';\nimport styled from 'styled-components';\nimport { history, Outlet, useLocation } from 'umi';\n\nconst { Header, Sider, Content } = Layout;\n\nconst Sidebar = styled(Sider)<{ theme: ThemeType }>`\n  .ant-layout-sider-children {\n    height: 100%;\n    display: flex;\n    flex-direction: column;\n    justify-content: space-between;\n  }\n  .ant-menu-item {\n    color: ${(props) => themeConfig[props.theme].menu.defaultColor};\n\n    &:hover {\n      color: #4f54bd;\n    }\n\n    .anticon {\n      color: ${(props) => themeConfig[props.theme].menu.defaultColor};\n    }\n  }\n\n  .ant-menu-item-selected {\n    color: ${(props) => themeConfig[props.theme].menu.selectedColor};\n    background-color: ${(props) => themeConfig[props.theme].menu.selectedBg};\n\n    .anticon {\n      color: ${(props) => themeConfig[props.theme].menu.selectedColor};\n    }\n  }\n`;\n\nconst items = [\n  {\n    key: '/dashboard',\n    label: '首页看板',\n    icon: <DashboardOutlined style={{ fontSize: 18 }} />,\n  },\n  {\n    key: '/borrow',\n    label: '借出设备',\n    icon: <CalendarOutlined style={{ fontSize: 18 }} />,\n  },\n  {\n    key: '/returned',\n    label: '已还设备',\n    icon: <HistoryOutlined style={{ fontSize: 18 }} />,\n  },\n  {\n    key: '/devices',\n    label: '设备管理',\n    icon: <ToolOutlined style={{ fontSize: 18 }} />,\n  },\n];\n\nexport default function BasicLayout() {\n  const [theme, setTheme] = useState<'light' | 'dark'>(\n    (localStorage.getItem('theme') as 'light' | 'dark') || 'light',\n  );\n  const location = useLocation();\n  const selectedKeys = [\n    location.pathname.startsWith('/dashboard')\n      ? '/dashboard'\n      : location.pathname,\n  ];\n\n  const breadcrumbItems = [\n    {\n      title: '首页',\n      href: '/dashboard',\n    },\n    items.find((item) => item.key === selectedKeys[0])\n      ? {\n          title: items.find((item) => item.key === selectedKeys[0])?.label,\n        }\n      : null,\n  ].filter(Boolean);\n\n  const toggleTheme = () => {\n    const newTheme = theme === 'light' ? 'dark' : 'light';\n    setTheme(newTheme);\n    localStorage.setItem('theme', newTheme);\n    eventBus.emit('theme:changed', newTheme);\n  };\n\n  const currentTheme = themeConfig[theme];\n\n  return (\n    <Layout style={{ minHeight: '100vh', height: '100%' }}>\n      <Sidebar\n        width={240}\n        theme={theme}\n        style={{\n          background: currentTheme.sider.background,\n          borderRight: `1px solid ${currentTheme.sider.borderColor}`,\n          boxShadow: '0 2px 8px rgba(0, 0, 0, 0.05)',\n          display: 'flex',\n          flexDirection: 'column',\n        }}\n      >\n        <div\n          style={{\n            height: 64,\n            fontSize: 18,\n            display: 'flex',\n            alignItems: 'center',\n            justifyContent: 'center',\n            fontWeight: 600,\n            color: currentTheme.sider.logoColor,\n            background: currentTheme.sider.background,\n          }}\n        >\n          <img\n            src={icon}\n            alt=\"icon\"\n            style={{ width: 40, height: 40, marginRight: 12 }}\n          />\n          <span>资产管理平台</span>\n        </div>\n        <Menu\n          mode=\"inline\"\n          selectedKeys={selectedKeys}\n          items={items}\n          onClick={(e) => history.push(e.key)}\n          className=\"sidebar-menu\"\n          style={{\n            borderRight: 0,\n            fontSize: 14,\n            fontWeight: 400,\n            flex: 1,\n            paddingTop: 16,\n            background: currentTheme.sider.background,\n          }}\n          theme={theme}\n          selectable\n        />\n        <div\n          style={{\n            padding: '20px 24px',\n            borderBottom: `1px solid ${currentTheme.sider.borderColor}`,\n            background: currentTheme.sider.background,\n          }}\n        >\n          <div\n            style={{\n              display: 'flex',\n              alignItems: 'center',\n              gap: '12px',\n              cursor: 'pointer',\n              padding: '8px',\n              borderRadius: '8px',\n              transition: 'all 0.3s ease',\n            }}\n            onClick={() => history.push('/profile')}\n            onMouseEnter={(e) => {\n              e.currentTarget.style.background =\n                theme === 'light' ? '#f5f7fa' : '#2D3748';\n            }}\n            onMouseLeave={(e) => {\n              e.currentTarget.style.background = 'transparent';\n            }}\n          >\n            <div\n              style={{\n                width: 40,\n                height: 40,\n                borderRadius: '50%',\n                backgroundColor: '#4f54bd',\n                display: 'flex',\n                alignItems: 'center',\n                justifyContent: 'center',\n                color: '#ffffff',\n                fontWeight: 600,\n                fontSize: 16,\n                flexShrink: 0,\n              }}\n            >\n              {localStorage.getItem('loginUser')?.charAt(0).toUpperCase() ||\n                'A'}\n            </div>\n            <div\n              style={{\n                flex: 1,\n              }}\n            >\n              <div\n                style={{\n                  fontSize: 14,\n                  fontWeight: 500,\n                  color: currentTheme.text.primary,\n                  marginBottom: 2,\n                }}\n              >\n                管理员\n              </div>\n              <div\n                style={{\n                  fontSize: 12,\n                  fontWeight: 400,\n                  color: currentTheme.text.tertiary,\n                }}\n              >\n                admin@system.com\n              </div>\n            </div>\n          </div>\n        </div>\n      </Sidebar>\n      <Layout\n        style={{\n          background: currentTheme.layout.background,\n        }}\n      >\n        <Header\n          style={{\n            height: 64,\n            background: currentTheme.header.background,\n            padding: '0 32px',\n            display: 'flex',\n            justifyContent: 'space-between',\n            alignItems: 'center',\n            borderBottom: `1px solid ${currentTheme.header.borderColor}`,\n            boxShadow: '0 1px 4px rgba(0, 0, 0, 0.04)',\n          }}\n        >\n          <div\n            style={{\n              display: 'flex',\n              alignItems: 'center',\n              gap: 16,\n              flex: 1,\n            }}\n          >\n            <Breadcrumb\n              items={breadcrumbItems}\n              style={{\n                fontSize: 14,\n                fontWeight: 500,\n              }}\n              separator={\n                <span style={{ color: currentTheme.header.breadcrumbColor }}>\n                  /\n                </span>\n              }\n              itemRender={(route, params, routes) => {\n                const isLast = routes.indexOf(route) === routes.length - 1;\n                return (\n                  <span\n                    style={{\n                      color: isLast\n                        ? currentTheme.header.breadcrumbColor\n                        : currentTheme.header.breadcrumbColor,\n                      cursor: isLast ? 'default' : 'pointer',\n                      transition: 'color 0.3s',\n                    }}\n                    onClick={(e) => {\n                      if (!isLast && route.href) {\n                        e.preventDefault();\n                        history.push(route.href);\n                      }\n                    }}\n                  >\n                    {route.title}\n                  </span>\n                );\n              }}\n            />\n          </div>\n          <div\n            style={{\n              display: 'flex',\n              alignItems: 'center',\n              gap: 12,\n            }}\n          >\n            <Button\n              type=\"text\"\n              icon={theme === 'light' ? <SunFilled /> : <MoonFilled />}\n              onClick={toggleTheme}\n              style={{\n                width: 40,\n                height: 40,\n                display: 'flex',\n                alignItems: 'center',\n                justifyContent: 'center',\n                borderRadius: 8,\n                color: currentTheme.header.textColor,\n                transition: 'all 0.3s ease',\n              }}\n              onMouseEnter={(e) => {\n                e.currentTarget.style.background =\n                  theme === 'light' ? '#f5f7fa' : '#2D3748';\n              }}\n              onMouseLeave={(e) => {\n                e.currentTarget.style.background = 'transparent';\n              }}\n            />\n            <div\n              style={{\n                display: 'flex',\n                alignItems: 'center',\n                gap: 12,\n                padding: '6px 12px',\n                borderRadius: 12,\n                border: `1px solid ${currentTheme.header.borderColor}`,\n                backgroundColor: currentTheme.header.userCardBg,\n                transition: 'all 0.3s ease',\n              }}\n            >\n              <div\n                style={{\n                  width: 36,\n                  height: 36,\n                  borderRadius: '50%',\n                  background:\n                    'linear-gradient(135deg, #4f54bd 0%, #6366f1 100%)',\n                  display: 'flex',\n                  alignItems: 'center',\n                  justifyContent: 'center',\n                  color: '#ffffff',\n                  fontWeight: 600,\n                  fontSize: 15,\n                  cursor: 'pointer',\n                  boxShadow: '0 2px 8px rgba(79, 84, 189, 0.3)',\n                  transition: 'all 0.3s ease',\n                }}\n                onMouseEnter={(e) => {\n                  e.currentTarget.style.transform = 'translateY(-1px)';\n                  e.currentTarget.style.boxShadow =\n                    '0 4px 12px rgba(79, 84, 189, 0.4)';\n                }}\n                onMouseLeave={(e) => {\n                  e.currentTarget.style.transform = 'translateY(0)';\n                  e.currentTarget.style.boxShadow =\n                    '0 2px 8px rgba(79, 84, 189, 0.3)';\n                }}\n              >\n                {localStorage.getItem('loginUser')?.charAt(0).toUpperCase() ||\n                  'U'}\n              </div>\n              <div\n                style={{\n                  display: 'flex',\n                  flexDirection: 'column',\n                  gap: 2,\n                }}\n              >\n                <div\n                  style={{\n                    fontSize: 14,\n                    fontWeight: 500,\n                    color: currentTheme.header.textColor,\n                    lineHeight: 1.2,\n                  }}\n                >\n                  {localStorage.getItem('loginUser') || '用户'}\n                </div>\n                <div\n                  style={{\n                    fontSize: 12,\n                    fontWeight: 400,\n                    color: theme === 'light' ? '#A0AEC0' : '#718096',\n                    lineHeight: 1.2,\n                  }}\n                >\n                  管理员\n                </div>\n              </div>\n            </div>\n            <Button\n              type=\"text\"\n              icon={<LogoutOutlined />}\n              onClick={() => {\n                localStorage.removeItem('loginUser');\n                history.push('/login');\n              }}\n              style={{\n                display: 'flex',\n                alignItems: 'center',\n                gap: 6,\n                padding: '8px 16px',\n                height: 36,\n                borderRadius: 8,\n                fontWeight: 500,\n                fontSize: 14,\n                color: currentTheme.header.textColor,\n                transition: 'all 0.3s ease',\n              }}\n              onMouseEnter={(e) => {\n                if (theme === 'light') {\n                  e.currentTarget.style.background = '#fee2e2';\n                  e.currentTarget.style.color = '#dc2626';\n                } else {\n                  e.currentTarget.style.background = '#7f1d1d';\n                  e.currentTarget.style.color = '#fca5a5';\n                }\n              }}\n              onMouseLeave={(e) => {\n                e.currentTarget.style.background = 'transparent';\n                e.currentTarget.style.color = currentTheme.header.textColor;\n              }}\n            >\n              退出登录\n            </Button>\n          </div>\n        </Header>\n        <Content\n          style={{\n            backgroundColor: currentTheme.content.background,\n            minHeight: 280,\n            maxHeight: 'calc(100vh - 64px)',\n            overflowY: 'auto',\n          }}\n        >\n          <Outlet />\n        </Content>\n      </Layout>\n    </Layout>\n  );\n}\n",
+      "__content": "import icon from '@/assets/icon/icon.svg';\nimport { useTheme } from '@/components/ThemeProvider';\nimport { themeConfig, ThemeType } from '@/config/theme';\nimport {\n  CalendarOutlined,\n  DashboardOutlined,\n  HistoryOutlined,\n  LogoutOutlined,\n  MoonFilled,\n  SunFilled,\n  ToolOutlined,\n} from '@ant-design/icons';\nimport { Breadcrumb, Button, Layout, Menu } from 'antd';\nimport styled from 'styled-components';\nimport { history, Outlet, useLocation } from 'umi';\n\nconst { Header, Sider, Content } = Layout;\n\nconst Sidebar = styled(Sider)<{ theme: ThemeType }>`\n  .ant-layout-sider-children {\n    height: 100%;\n    display: flex;\n    flex-direction: column;\n    justify-content: space-between;\n  }\n  .ant-menu-item {\n    color: ${(props) => themeConfig[props.theme].menu.defaultColor};\n\n    &:hover {\n      color: #4f54bd;\n    }\n\n    .anticon {\n      color: ${(props) => themeConfig[props.theme].menu.defaultColor};\n    }\n  }\n\n  .ant-menu-item-selected {\n    color: ${(props) => themeConfig[props.theme].menu.selectedColor};\n    background-color: ${(props) => themeConfig[props.theme].menu.selectedBg};\n\n    .anticon {\n      color: ${(props) => themeConfig[props.theme].menu.selectedColor};\n    }\n  }\n`;\n\nconst items = [\n  {\n    key: '/dashboard',\n    label: '首页看板',\n    icon: <DashboardOutlined style={{ fontSize: 18 }} />,\n  },\n  {\n    key: '/borrow',\n    label: '借出设备',\n    icon: <CalendarOutlined style={{ fontSize: 18 }} />,\n  },\n  {\n    key: '/returned',\n    label: '已还设备',\n    icon: <HistoryOutlined style={{ fontSize: 18 }} />,\n  },\n  {\n    key: '/devices',\n    label: '设备管理',\n    icon: <ToolOutlined style={{ fontSize: 18 }} />,\n  },\n];\n\nexport default function BasicLayout() {\n  const { theme, toggleTheme } = useTheme();\n  const location = useLocation();\n  const selectedKeys = [\n    location.pathname.startsWith('/dashboard')\n      ? '/dashboard'\n      : location.pathname,\n  ];\n\n  const breadcrumbItems = [\n    {\n      title: '首页',\n      href: '/dashboard',\n    },\n    items.find((item) => item.key === selectedKeys[0])\n      ? {\n          title: items.find((item) => item.key === selectedKeys[0])?.label,\n        }\n      : null,\n  ].filter(Boolean);\n\n  const currentTheme = themeConfig[theme];\n\n  return (\n    <Layout style={{ minHeight: '100vh', height: '100%' }}>\n      <Sidebar\n        width={240}\n        theme={theme}\n        style={{\n          background: currentTheme.sider.background,\n          borderRight: `1px solid ${currentTheme.sider.borderColor}`,\n          boxShadow: '0 2px 8px rgba(0, 0, 0, 0.05)',\n          display: 'flex',\n          flexDirection: 'column',\n        }}\n      >\n        <div\n          style={{\n            height: 64,\n            fontSize: 18,\n            display: 'flex',\n            alignItems: 'center',\n            justifyContent: 'center',\n            fontWeight: 600,\n            color: currentTheme.sider.logoColor,\n            background: currentTheme.sider.background,\n          }}\n        >\n          <img\n            src={icon}\n            alt=\"icon\"\n            style={{ width: 40, height: 40, marginRight: 12 }}\n          />\n          <span>资产管理平台</span>\n        </div>\n        <Menu\n          mode=\"inline\"\n          selectedKeys={selectedKeys}\n          items={items}\n          onClick={(e) => history.push(e.key)}\n          className=\"sidebar-menu\"\n          style={{\n            borderRight: 0,\n            fontSize: 14,\n            fontWeight: 400,\n            flex: 1,\n            paddingTop: 16,\n            background: currentTheme.sider.background,\n          }}\n          theme={theme}\n          selectable\n        />\n        <div\n          style={{\n            padding: '20px 24px',\n            borderBottom: `1px solid ${currentTheme.sider.borderColor}`,\n            background: currentTheme.sider.background,\n          }}\n        >\n          <div\n            style={{\n              display: 'flex',\n              alignItems: 'center',\n              gap: '12px',\n              cursor: 'pointer',\n              padding: '8px',\n              borderRadius: '8px',\n              transition: 'all 0.3s ease',\n            }}\n            onClick={() => history.push('/profile')}\n            onMouseEnter={(e) => {\n              e.currentTarget.style.background =\n                theme === 'light' ? '#f5f7fa' : '#2D3748';\n            }}\n            onMouseLeave={(e) => {\n              e.currentTarget.style.background = 'transparent';\n            }}\n          >\n            <div\n              style={{\n                width: 40,\n                height: 40,\n                borderRadius: '50%',\n                backgroundColor: '#4f54bd',\n                display: 'flex',\n                alignItems: 'center',\n                justifyContent: 'center',\n                color: '#ffffff',\n                fontWeight: 600,\n                fontSize: 16,\n                flexShrink: 0,\n              }}\n            >\n              {localStorage.getItem('loginUser')?.charAt(0).toUpperCase() ||\n                'A'}\n            </div>\n            <div\n              style={{\n                flex: 1,\n              }}\n            >\n              <div\n                style={{\n                  fontSize: 14,\n                  fontWeight: 500,\n                  color: currentTheme.text.primary,\n                  marginBottom: 2,\n                }}\n              >\n                管理员\n              </div>\n              <div\n                style={{\n                  fontSize: 12,\n                  fontWeight: 400,\n                  color: currentTheme.text.tertiary,\n                }}\n              >\n                admin@system.com\n              </div>\n            </div>\n          </div>\n        </div>\n      </Sidebar>\n      <Layout\n        style={{\n          background: currentTheme.layout.background,\n        }}\n      >\n        <Header\n          style={{\n            height: 64,\n            background: currentTheme.header.background,\n            padding: '0 32px',\n            display: 'flex',\n            justifyContent: 'space-between',\n            alignItems: 'center',\n            borderBottom: `1px solid ${currentTheme.header.borderColor}`,\n            boxShadow: '0 1px 4px rgba(0, 0, 0, 0.04)',\n          }}\n        >\n          <div\n            style={{\n              display: 'flex',\n              alignItems: 'center',\n              gap: 16,\n              flex: 1,\n            }}\n          >\n            <Breadcrumb\n              items={breadcrumbItems}\n              style={{\n                fontSize: 14,\n                fontWeight: 500,\n              }}\n              separator={\n                <span style={{ color: currentTheme.header.breadcrumbColor }}>\n                  /\n                </span>\n              }\n              itemRender={(route, params, routes) => {\n                const isLast = routes.indexOf(route) === routes.length - 1;\n                return (\n                  <span\n                    style={{\n                      color: isLast\n                        ? currentTheme.header.breadcrumbColor\n                        : currentTheme.header.breadcrumbColor,\n                      cursor: isLast ? 'default' : 'pointer',\n                      transition: 'color 0.3s',\n                    }}\n                    onClick={(e) => {\n                      if (!isLast && route.href) {\n                        e.preventDefault();\n                        history.push(route.href);\n                      }\n                    }}\n                  >\n                    {route.title}\n                  </span>\n                );\n              }}\n            />\n          </div>\n          <div\n            style={{\n              display: 'flex',\n              alignItems: 'center',\n              gap: 12,\n            }}\n          >\n            <Button\n              type=\"text\"\n              icon={theme === 'light' ? <SunFilled /> : <MoonFilled />}\n              onClick={toggleTheme}\n              style={{\n                width: 40,\n                height: 40,\n                display: 'flex',\n                alignItems: 'center',\n                justifyContent: 'center',\n                borderRadius: 8,\n                color: currentTheme.header.textColor,\n                transition: 'all 0.3s ease',\n              }}\n              onMouseEnter={(e) => {\n                e.currentTarget.style.background =\n                  theme === 'light' ? '#f5f7fa' : '#2D3748';\n              }}\n              onMouseLeave={(e) => {\n                e.currentTarget.style.background = 'transparent';\n              }}\n            />\n            <div\n              style={{\n                display: 'flex',\n                alignItems: 'center',\n                gap: 12,\n                padding: '6px 12px',\n                borderRadius: 12,\n                border: `1px solid ${currentTheme.header.borderColor}`,\n                backgroundColor: currentTheme.header.userCardBg,\n                transition: 'all 0.3s ease',\n              }}\n            >\n              <div\n                style={{\n                  width: 36,\n                  height: 36,\n                  borderRadius: '50%',\n                  background:\n                    'linear-gradient(135deg, #4f54bd 0%, #6366f1 100%)',\n                  display: 'flex',\n                  alignItems: 'center',\n                  justifyContent: 'center',\n                  color: '#ffffff',\n                  fontWeight: 600,\n                  fontSize: 15,\n                  cursor: 'pointer',\n                  boxShadow: '0 2px 8px rgba(79, 84, 189, 0.3)',\n                  transition: 'all 0.3s ease',\n                }}\n                onMouseEnter={(e) => {\n                  e.currentTarget.style.transform = 'translateY(-1px)';\n                  e.currentTarget.style.boxShadow =\n                    '0 4px 12px rgba(79, 84, 189, 0.4)';\n                }}\n                onMouseLeave={(e) => {\n                  e.currentTarget.style.transform = 'translateY(0)';\n                  e.currentTarget.style.boxShadow =\n                    '0 2px 8px rgba(79, 84, 189, 0.3)';\n                }}\n              >\n                {localStorage.getItem('loginUser')?.charAt(0).toUpperCase() ||\n                  'U'}\n              </div>\n              <div\n                style={{\n                  display: 'flex',\n                  flexDirection: 'column',\n                  gap: 2,\n                }}\n              >\n                <div\n                  style={{\n                    fontSize: 14,\n                    fontWeight: 500,\n                    color: currentTheme.header.textColor,\n                    lineHeight: 1.2,\n                  }}\n                >\n                  {localStorage.getItem('loginUser') || '用户'}\n                </div>\n                <div\n                  style={{\n                    fontSize: 12,\n                    fontWeight: 400,\n                    color: theme === 'light' ? '#A0AEC0' : '#718096',\n                    lineHeight: 1.2,\n                  }}\n                >\n                  管理员\n                </div>\n              </div>\n            </div>\n            <Button\n              type=\"text\"\n              icon={<LogoutOutlined />}\n              onClick={() => {\n                localStorage.removeItem('loginUser');\n                history.push('/login');\n              }}\n              style={{\n                display: 'flex',\n                alignItems: 'center',\n                gap: 6,\n                padding: '8px 16px',\n                height: 36,\n                borderRadius: 8,\n                fontWeight: 500,\n                fontSize: 14,\n                color: currentTheme.header.textColor,\n                transition: 'all 0.3s ease',\n              }}\n              onMouseEnter={(e) => {\n                if (theme === 'light') {\n                  e.currentTarget.style.background = '#fee2e2';\n                  e.currentTarget.style.color = '#dc2626';\n                } else {\n                  e.currentTarget.style.background = '#7f1d1d';\n                  e.currentTarget.style.color = '#fca5a5';\n                }\n              }}\n              onMouseLeave={(e) => {\n                e.currentTarget.style.background = 'transparent';\n                e.currentTarget.style.color = currentTheme.header.textColor;\n              }}\n            >\n              退出登录\n            </Button>\n          </div>\n        </Header>\n        <Content\n          style={{\n            backgroundColor: currentTheme.content.background,\n            minHeight: 280,\n            maxHeight: 'calc(100vh - 64px)',\n            overflowY: 'auto',\n          }}\n        >\n          <Outlet />\n        </Content>\n      </Layout>\n    </Layout>\n  );\n}\n",
       "__isJSFile": true,
       "__absFile": "/Users/ningshuo/code/my-projects/equipment-system/src/layouts/BasicLayout.tsx"
     },
@@ -3304,7 +2402,7 @@
       "parentId": "2",
       "id": "4",
       "absPath": "/dashboard",
-      "__content": "import { ThemeType } from '@/config/theme';\nimport { invoke } from '@/services/ipc';\nimport { eventBus } from '@/utils/eventBus';\nimport {\n  CheckCircleOutlined,\n  DatabaseOutlined,\n  ExclamationCircleOutlined,\n  LaptopOutlined,\n} from '@ant-design/icons';\nimport { Button, Card, Col, Modal, Row, Statistic, Table } from 'antd';\nimport { useEffect, useState } from 'react';\nimport styled from 'styled-components';\nimport BorrowTrendsChart from './components/BorrowTrendsChart';\nimport DeviceTypeChart from './components/DeviceTypeChart';\nimport DueSoonTimeline from './components/DueSoonTimeline';\n\nconst StyledModal = styled(Modal)<{ $theme: ThemeType }>`\n  .ant-modal-content {\n    background: ${(props) =>\n      props.$theme === 'light' ? '#ffffff' : '#1A202C'};\n  }\n\n  .ant-modal-header {\n    background: ${(props) =>\n      props.$theme === 'light' ? '#ffffff' : '#1A202C'};\n    border-bottom: 1px solid\n      ${(props) => (props.$theme === 'light' ? '#f0f0f0' : '#2d3748')};\n\n    .ant-modal-title {\n      color: ${(props) => (props.$theme === 'light' ? '#1A202C' : '#ffffff')};\n    }\n  }\n\n  .ant-modal-close-x {\n    color: ${(props) => (props.$theme === 'light' ? '#1A202C' : '#ffffff')};\n  }\n\n  .ant-modal-body {\n    color: ${(props) => (props.$theme === 'light' ? '#1A202C' : '#ffffff')};\n  }\n\n  h3 {\n    color: ${(props) => (props.$theme === 'light' ? '#1A202C' : '#ffffff')};\n  }\n\n  .ant-table {\n    background: ${(props) =>\n      props.$theme === 'light' ? '#ffffff' : '#1A202C'};\n\n    .ant-table-container {\n      background: ${(props) =>\n        props.$theme === 'light' ? '#ffffff' : '#1A202C'};\n    }\n\n    .ant-table-thead > tr > th {\n      background: ${(props) =>\n        props.$theme === 'light' ? '#fafafa' : '#2d3748'};\n      color: ${(props) => (props.$theme === 'light' ? '#1A202C' : '#ffffff')};\n      border-bottom: 1px solid\n        ${(props) => (props.$theme === 'light' ? '#f0f0f0' : '#2d3748')};\n    }\n\n    .ant-table-tbody > tr > td {\n      background: ${(props) =>\n        props.$theme === 'light' ? '#ffffff' : '#1A202C'};\n      border-bottom: 1px solid\n        ${(props) => (props.$theme === 'light' ? '#f0f0f0' : '#2d3748')};\n      color: ${(props) => (props.$theme === 'light' ? '#1A202C' : '#ffffff')};\n    }\n\n    .ant-table-tbody > tr:hover > td {\n      background: ${(props) =>\n        props.$theme === 'light' ? '#fafafa' : '#2d3748'};\n    }\n\n    .ant-table-empty {\n      background: ${(props) =>\n        props.$theme === 'light' ? '#ffffff' : '#1A202C'};\n    }\n\n    .ant-table-placeholder {\n      background: ${(props) =>\n        props.$theme === 'light' ? '#ffffff' : '#1A202C'};\n      color: ${(props) => (props.$theme === 'light' ? '#1A202C' : '#ffffff')};\n\n      .ant-empty-description {\n        color: ${(props) => (props.$theme === 'light' ? '#1A202C' : '#ffffff')};\n      }\n    }\n  }\n`;\n\nconst StatCard = styled(Card)<{ $theme: ThemeType }>`\n  border: none;\n  border-radius: 16px;\n  overflow: hidden;\n  transition: all 0.3s ease;\n  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);\n  cursor: pointer;\n  background: ${(props) => (props.$theme === 'light' ? '#ffffff' : '#1A202C')};\n\n  &:hover {\n    transform: translateY(-4px);\n    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);\n  }\n\n  .ant-card-body {\n    padding: 24px;\n    display: flex;\n    align-items: center;\n    gap: 20px;\n  }\n\n  .icon-wrapper {\n    width: 56px;\n    height: 56px;\n    border-radius: 14px;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    font-size: 28px;\n    color: #ffffff;\n    flex-shrink: 0;\n  }\n\n  .stat-content {\n    flex: 1;\n  }\n\n  .ant-statistic-title {\n    font-size: 14px;\n    font-weight: 500;\n    color: ${(props) => (props.$theme === 'light' ? '#6B7280' : '#A0AEC0')};\n    margin-bottom: 8px;\n  }\n\n  .ant-statistic-content {\n    font-size: 32px;\n    font-weight: 700;\n    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,\n      'Helvetica Neue', Arial, sans-serif;\n    color: ${(props) => (props.$theme === 'light' ? '#111827' : '#ffffff')};\n  }\n`;\n\nexport default function Dashboard() {\n  const [stats, setStats] = useState({\n    totalDevices: 0,\n    borrowedDevices: 0,\n    availableDevices: 0,\n    overdueDevices: 0,\n  });\n  const [overdue, setOverdue] = useState<any[]>([]);\n  const [dueSoon, setDueSoon] = useState<any[]>([]);\n  const [visible, setVisible] = useState(false);\n  const [theme, setTheme] = useState<'light' | 'dark'>(\n    (localStorage.getItem('theme') as 'light' | 'dark') || 'light',\n  );\n\n  useEffect(() => {\n    load();\n    loadReminders();\n\n    const unsubscribe = eventBus.subscribe('theme:changed', (newTheme) => {\n      setTheme(newTheme);\n    });\n\n    return () => unsubscribe();\n  }, []);\n\n  const load = async () => {\n    const data = await invoke('stats:dashboard');\n    setStats(data);\n    eventBus.emit('dashboard:updated', data);\n  };\n\n  const loadReminders = async () => {\n    const data = await invoke('borrow:listOverdue');\n    setOverdue(data?.overdue || []);\n    setDueSoon(data?.dueSoon || []);\n    setVisible(true);\n    eventBus.emit('reminders:loaded', data);\n  };\n\n  const columns = [\n    { title: '设备编号', dataIndex: 'device_code' },\n    { title: '设备名称', dataIndex: 'device_name' },\n    { title: '借用人', dataIndex: 'borrower_name' },\n    { title: '联系方式', dataIndex: 'borrower_phone' },\n    { title: '剩余天数', dataIndex: 'remaining_days' },\n    {\n      title: '通知状态',\n      dataIndex: 'notified',\n      render: (_: any, r: any) => (\n        <Button\n          type={r.notified ? 'default' : 'primary'}\n          onClick={async () => {\n            if (!r.notified) {\n              await invoke('notify:mark', r.id);\n              loadReminders();\n            }\n          }}\n        >\n          {r.notified ? '已通知' : '未通知'}\n        </Button>\n      ),\n    },\n  ];\n\n  return (\n    <div style={{ padding: 24 }}>\n      <Row gutter={[20, 20]}>\n        <Col span={6}>\n          <StatCard $theme={theme}>\n            <div\n              className=\"icon-wrapper\"\n              style={{\n                background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',\n              }}\n            >\n              <DatabaseOutlined />\n            </div>\n            <div className=\"stat-content\">\n              <Statistic title=\"设备总数\" value={stats.totalDevices} />\n            </div>\n          </StatCard>\n        </Col>\n        <Col span={6}>\n          <StatCard $theme={theme}>\n            <div\n              className=\"icon-wrapper\"\n              style={{\n                background: 'linear-gradient(135deg, #3b82f6 0%, #2563eb 100%)',\n              }}\n            >\n              <LaptopOutlined />\n            </div>\n            <div className=\"stat-content\">\n              <Statistic title=\"在借设备\" value={stats.borrowedDevices} />\n            </div>\n          </StatCard>\n        </Col>\n        <Col span={6}>\n          <StatCard $theme={theme}>\n            <div\n              className=\"icon-wrapper\"\n              style={{\n                background: 'linear-gradient(135deg, #10b981 0%, #059669 100%)',\n              }}\n            >\n              <CheckCircleOutlined />\n            </div>\n            <div className=\"stat-content\">\n              <Statistic title=\"可借设备\" value={stats.availableDevices} />\n            </div>\n          </StatCard>\n        </Col>\n        <Col span={6}>\n          <StatCard $theme={theme}>\n            <div\n              className=\"icon-wrapper\"\n              style={{\n                background: 'linear-gradient(135deg, #ef4444 0%, #dc2626 100%)',\n              }}\n            >\n              <ExclamationCircleOutlined />\n            </div>\n            <div className=\"stat-content\">\n              <Statistic\n                title=\"逾期设备\"\n                value={stats.overdueDevices}\n                valueStyle={{ color: '#EF4444', fontWeight: 700 }}\n              />\n            </div>\n          </StatCard>\n        </Col>\n      </Row>\n\n      <Row gutter={[20, 20]} style={{ marginTop: 20 }}>\n        <Col span={12}>\n          <DeviceTypeChart theme={theme} />\n        </Col>\n        <Col span={12}>\n          <BorrowTrendsChart theme={theme} />\n        </Col>\n      </Row>\n\n      <Row gutter={[20, 20]} style={{ marginTop: 20 }}>\n        <Col span={24}>\n          <DueSoonTimeline theme={theme} />\n        </Col>\n      </Row>\n\n      <StyledModal\n        $theme={theme}\n        title=\"设备归还提醒\"\n        open={visible}\n        onCancel={() => setVisible(false)}\n        footer={null}\n        width={900}\n      >\n        <h3>逾期设备</h3>\n        <Table\n          columns={columns}\n          dataSource={overdue}\n          rowKey=\"id\"\n          pagination={false}\n        />\n        <h3 style={{ marginTop: 16 }}>临期设备（≤5天）</h3>\n        <Table\n          columns={columns}\n          dataSource={dueSoon}\n          rowKey=\"id\"\n          pagination={false}\n        />\n      </StyledModal>\n    </div>\n  );\n}\n",
+      "__content": "import { useTheme } from '@/components/ThemeProvider';\nimport { ThemeType } from '@/config/theme';\nimport { invoke } from '@/services/ipc';\nimport { eventBus } from '@/utils/eventBus';\nimport {\n  CheckCircleOutlined,\n  DatabaseOutlined,\n  ExclamationCircleOutlined,\n  LaptopOutlined,\n} from '@ant-design/icons';\nimport { Button, Card, Col, Modal, Row, Statistic, Table } from 'antd';\nimport { useEffect, useState } from 'react';\nimport styled from 'styled-components';\nimport BorrowTrendsChart from './components/BorrowTrendsChart';\nimport DeviceTypeChart from './components/DeviceTypeChart';\nimport DueSoonTimeline from './components/DueSoonTimeline';\n\nconst StatCard = styled(Card)<{ $theme: ThemeType }>`\n  border: none;\n  border-radius: 16px;\n  overflow: hidden;\n  transition: all 0.3s ease;\n  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);\n  cursor: pointer;\n  background: ${(props) => (props.$theme === 'light' ? '#ffffff' : '#1A202C')};\n\n  &:hover {\n    transform: translateY(-4px);\n    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);\n  }\n\n  .ant-card-body {\n    padding: 24px;\n    display: flex;\n    align-items: center;\n    gap: 20px;\n  }\n\n  .icon-wrapper {\n    width: 56px;\n    height: 56px;\n    border-radius: 14px;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    font-size: 28px;\n    color: #ffffff;\n    flex-shrink: 0;\n  }\n\n  .stat-content {\n    flex: 1;\n  }\n\n  .ant-statistic-title {\n    font-size: 14px;\n    font-weight: 500;\n    color: ${(props) => (props.$theme === 'light' ? '#6B7280' : '#A0AEC0')};\n    margin-bottom: 8px;\n  }\n\n  .ant-statistic-content {\n    font-size: 32px;\n    font-weight: 700;\n    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,\n      'Helvetica Neue', Arial, sans-serif;\n    color: ${(props) => (props.$theme === 'light' ? '#111827' : '#ffffff')};\n  }\n`;\n\nexport default function Dashboard() {\n  const { theme } = useTheme();\n  const [stats, setStats] = useState({\n    totalDevices: 0,\n    borrowedDevices: 0,\n    availableDevices: 0,\n    overdueDevices: 0,\n  });\n  const [overdue, setOverdue] = useState<any[]>([]);\n  const [dueSoon, setDueSoon] = useState<any[]>([]);\n  const [visible, setVisible] = useState(false);\n\n  useEffect(() => {\n    load();\n    loadReminders();\n  }, []);\n\n  const load = async () => {\n    const data = await invoke('stats:dashboard');\n    setStats(data);\n    eventBus.emit('dashboard:updated', data);\n  };\n\n  const loadReminders = async () => {\n    const data = await invoke('borrow:listOverdue');\n    setOverdue(data?.overdue || []);\n    setDueSoon(data?.dueSoon || []);\n    setVisible(true);\n    eventBus.emit('reminders:loaded', data);\n  };\n\n  const columns = [\n    { title: '设备编号', dataIndex: 'device_code' },\n    { title: '设备名称', dataIndex: 'device_name' },\n    { title: '借用人', dataIndex: 'borrower_name' },\n    { title: '联系方式', dataIndex: 'borrower_phone' },\n    { title: '剩余天数', dataIndex: 'remaining_days' },\n    {\n      title: '通知状态',\n      dataIndex: 'notified',\n      render: (_: any, r: any) => (\n        <Button\n          type={r.notified ? 'default' : 'primary'}\n          onClick={async () => {\n            if (!r.notified) {\n              await invoke('notify:mark', r.id);\n              loadReminders();\n            }\n          }}\n        >\n          {r.notified ? '已通知' : '未通知'}\n        </Button>\n      ),\n    },\n  ];\n\n  return (\n    <>\n      <div style={{ padding: 24 }}>\n        <Row gutter={[20, 20]}>\n          <Col span={6}>\n            <StatCard $theme={theme}>\n              <div\n                className=\"icon-wrapper\"\n                style={{\n                  background:\n                    'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',\n                }}\n              >\n                <DatabaseOutlined />\n              </div>\n              <div className=\"stat-content\">\n                <Statistic title=\"设备总数\" value={stats.totalDevices} />\n              </div>\n            </StatCard>\n          </Col>\n          <Col span={6}>\n            <StatCard $theme={theme}>\n              <div\n                className=\"icon-wrapper\"\n                style={{\n                  background:\n                    'linear-gradient(135deg, #3b82f6 0%, #2563eb 100%)',\n                }}\n              >\n                <LaptopOutlined />\n              </div>\n              <div className=\"stat-content\">\n                <Statistic title=\"在借设备\" value={stats.borrowedDevices} />\n              </div>\n            </StatCard>\n          </Col>\n          <Col span={6}>\n            <StatCard $theme={theme}>\n              <div\n                className=\"icon-wrapper\"\n                style={{\n                  background:\n                    'linear-gradient(135deg, #10b981 0%, #059669 100%)',\n                }}\n              >\n                <CheckCircleOutlined />\n              </div>\n              <div className=\"stat-content\">\n                <Statistic title=\"可借设备\" value={stats.availableDevices} />\n              </div>\n            </StatCard>\n          </Col>\n          <Col span={6}>\n            <StatCard $theme={theme}>\n              <div\n                className=\"icon-wrapper\"\n                style={{\n                  background:\n                    'linear-gradient(135deg, #ef4444 0%, #dc2626 100%)',\n                }}\n              >\n                <ExclamationCircleOutlined />\n              </div>\n              <div className=\"stat-content\">\n                <Statistic\n                  title=\"逾期设备\"\n                  value={stats.overdueDevices}\n                  valueStyle={{ color: '#EF4444', fontWeight: 700 }}\n                />\n              </div>\n            </StatCard>\n          </Col>\n        </Row>\n\n        <Row gutter={[20, 20]} style={{ marginTop: 20 }}>\n          <Col span={12}>\n            <DeviceTypeChart theme={theme} />\n          </Col>\n          <Col span={12}>\n            <BorrowTrendsChart theme={theme} />\n          </Col>\n        </Row>\n\n        <Row gutter={[20, 20]} style={{ marginTop: 20 }}>\n          <Col span={24}>\n            <DueSoonTimeline theme={theme} />\n          </Col>\n        </Row>\n\n        <Modal\n          className=\"themed-modal\"\n          title=\"设备归还提醒\"\n          open={visible}\n          onCancel={() => setVisible(false)}\n          footer={null}\n          width={900}\n        >\n          <h3>逾期设备</h3>\n          <Table\n            columns={columns}\n            dataSource={overdue}\n            rowKey=\"id\"\n            pagination={false}\n          />\n          <h3 style={{ marginTop: 16 }}>临期设备（≤5天）</h3>\n          <Table\n            columns={columns}\n            dataSource={dueSoon}\n            rowKey=\"id\"\n            pagination={false}\n          />\n        </Modal>\n      </div>\n    </>\n  );\n}\n",
       "__isJSFile": true,
       "__absFile": "/Users/ningshuo/code/my-projects/equipment-system/src/pages/Dashboard/index.tsx"
     },
@@ -3344,7 +2442,7 @@
       "parentId": "2",
       "id": "8",
       "absPath": "/profile",
-      "__content": "import { invoke } from '@/services/ipc';\nimport { Button, Card, Form, Input, message } from 'antd';\nimport styled from 'styled-components';\nimport { history } from 'umi';\n\nconst StyledCard = styled(Card)<{ $theme: 'light' | 'dark' }>`\n  background: ${(props) => (props.$theme === 'light' ? '#ffffff' : '#1A202C')};\n\n  .ant-card-head {\n    border-bottom: 1px solid\n      ${(props) => (props.$theme === 'light' ? '#f0f0f0' : '#2d3748')};\n\n    .ant-card-head-title {\n      color: ${(props) => (props.$theme === 'light' ? '#1A202C' : '#ffffff')};\n    }\n  }\n\n  .ant-card-body {\n    color: ${(props) => (props.$theme === 'light' ? '#1A202C' : '#ffffff')};\n  }\n\n  .ant-form-item-label > label {\n    color: ${(props) => (props.$theme === 'light' ? '#1A202C' : '#ffffff')};\n  }\n\n  .ant-input,\n  .ant-input-password {\n    background: ${(props) =>\n      props.$theme === 'light' ? '#ffffff' : '#2d3748'};\n    border-color: ${(props) =>\n      props.$theme === 'light' ? '#d9d9d9' : '#4a5568'};\n    color: ${(props) => (props.$theme === 'light' ? '#1A202C' : '#ffffff')};\n\n    &::placeholder {\n      color: ${(props) => (props.$theme === 'light' ? '#bfbfbf' : '#718096')};\n    }\n\n    &:hover {\n      border-color: ${(props) =>\n        props.$theme === 'light' ? '#4096ff' : '#667eea'};\n    }\n  }\n\n  .ant-input:focus,\n  .ant-input-password:focus {\n    border-color: ${(props) =>\n      props.$theme === 'light' ? '#4096ff' : '#667eea'};\n    box-shadow: ${(props) =>\n      props.$theme === 'light'\n        ? '0 0 0 2px rgba(64, 150, 255, 0.2)'\n        : '0 0 0 2px rgba(102, 126, 234, 0.2)'};\n  }\n`;\n\nexport default function Profile() {\n  const [form] = Form.useForm();\n  const username = localStorage.getItem('loginUser') || 'admin';\n  const theme = (localStorage.getItem('theme') as 'light' | 'dark') || 'light';\n\n  const onFinish = async (v: any) => {\n    if (v.newPwd !== v.confirmPwd) {\n      message.error('两次输入的新密码不一致');\n      return;\n    }\n    const res = await invoke(\n      'auth:changePassword',\n      username,\n      v.oldPwd,\n      v.newPwd,\n    );\n    if (res?.success) {\n      message.success('密码修改成功，请重新登录');\n      localStorage.removeItem('loginUser');\n      localStorage.removeItem('token');\n      history.push('/login');\n    } else {\n      message.error(res?.message || '修改失败');\n    }\n  };\n\n  return (\n    <>\n      <div style={{ display: 'flex', justifyContent: 'center', marginTop: 80 }}>\n        <StyledCard $theme={theme} title=\"修改密码\" style={{ width: 480 }}>\n          <Form\n            form={form}\n            onFinish={onFinish}\n            labelCol={{ span: 6 }}\n            wrapperCol={{ span: 16 }}\n            validateTrigger={['onSubmit']}\n          >\n            <Form.Item\n              name=\"oldPwd\"\n              label=\"原密码\"\n              rules={[{ required: true, message: '请输入原密码' }]}\n            >\n              <Input.Password autoComplete=\"off\" />\n            </Form.Item>\n            <Form.Item\n              name=\"newPwd\"\n              label=\"新密码\"\n              rules={[\n                { required: true, message: '请输入新密码' },\n                { min: 6, message: '新密码至少6位' },\n                { max: 20, message: '新密码最多20位' },\n              ]}\n            >\n              <Input.Password autoComplete=\"off\" />\n            </Form.Item>\n            <Form.Item\n              name=\"confirmPwd\"\n              label=\"确认新密码\"\n              rules={[{ required: true, message: '请确认新密码' }]}\n            >\n              <Input.Password autoComplete=\"off\" />\n            </Form.Item>\n            <Form.Item wrapperCol={{ span: 16, offset: 6 }}>\n              <Button type=\"primary\" onClick={() => form.submit()}>\n                确认修改\n              </Button>\n            </Form.Item>\n          </Form>\n        </StyledCard>\n      </div>\n    </>\n  );\n}\n",
+      "__content": "import { invoke } from '@/services/ipc';\nimport { Button, Card, Form, Input, message } from 'antd';\nimport styled from 'styled-components';\nimport { history } from 'umi';\n\nconst StyledCard = styled(Card)<{ $theme: 'light' | 'dark' }>`\n  background: ${(props) => (props.$theme === 'light' ? '#ffffff' : '#1A202C')};\n\n  .ant-card-head {\n    border-bottom: 1px solid\n      ${(props) => (props.$theme === 'light' ? '#f0f0f0' : '#2d3748')};\n\n    .ant-card-head-title {\n      color: ${(props) => (props.$theme === 'light' ? '#1A202C' : '#ffffff')};\n    }\n  }\n\n  .ant-card-body {\n    color: ${(props) => (props.$theme === 'light' ? '#1A202C' : '#ffffff')};\n  }\n\n  .ant-form-item-label > label {\n    color: ${(props) => (props.$theme === 'light' ? '#1A202C' : '#ffffff')};\n  }\n\n  .ant-input,\n  .ant-input-password {\n    background: ${(props) =>\n      props.$theme === 'light' ? '#ffffff' : '#2d3748'};\n    border-color: ${(props) =>\n      props.$theme === 'light' ? '#d9d9d9' : '#4a5568'};\n    color: ${(props) => (props.$theme === 'light' ? '#1A202C' : '#ffffff')};\n\n    &::placeholder {\n      color: ${(props) => (props.$theme === 'light' ? '#bfbfbf' : '#718096')};\n    }\n\n    &:hover {\n      border-color: ${(props) =>\n        props.$theme === 'light' ? '#4096ff' : '#667eea'};\n    }\n  }\n\n  .ant-input:focus,\n  .ant-input-password:focus {\n    border-color: ${(props) =>\n      props.$theme === 'light' ? '#4096ff' : '#667eea'};\n    box-shadow: ${(props) =>\n      props.$theme === 'light'\n        ? '0 0 0 2px rgba(64, 150, 255, 0.2)'\n        : '0 0 0 2px rgba(102, 126, 234, 0.2)'};\n  }\n\n  .ant-select {\n    .ant-select-selector {\n      background: ${(props) =>\n        props.$theme === 'light' ? '#ffffff' : '#2d3748'};\n      border-color: ${(props) =>\n        props.$theme === 'light' ? '#d9d9d9' : '#4a5568'};\n      color: ${(props) => (props.$theme === 'light' ? '#1A202C' : '#ffffff')};\n\n      .ant-select-selection-placeholder {\n        color: ${(props) => (props.$theme === 'light' ? '#bfbfbf' : '#718096')};\n      }\n\n      .ant-select-selection-item {\n        color: ${(props) => (props.$theme === 'light' ? '#1A202C' : '#ffffff')};\n      }\n    }\n\n    &:hover .ant-select-selector {\n      border-color: ${(props) =>\n        props.$theme === 'light' ? '#4096ff' : '#667eea'};\n    }\n\n    &.ant-select-focused .ant-select-selector {\n      border-color: ${(props) =>\n        props.$theme === 'light' ? '#4096ff' : '#667eea'};\n      box-shadow: ${(props) =>\n        props.$theme === 'light'\n          ? '0 0 0 2px rgba(64, 150, 255, 0.2)'\n          : '0 0 0 2px rgba(102, 126, 234, 0.2)'};\n    }\n\n    .ant-select-arrow {\n      color: ${(props) => (props.$theme === 'light' ? '#bfbfbf' : '#718096')};\n    }\n  }\n`;\n\nexport default function Profile() {\n  const [form] = Form.useForm();\n  const username = localStorage.getItem('loginUser') || 'admin';\n  const theme = (localStorage.getItem('theme') as 'light' | 'dark') || 'light';\n\n  const onFinish = async (v: any) => {\n    if (v.newPwd !== v.confirmPwd) {\n      message.error('两次输入的新密码不一致');\n      return;\n    }\n    const res = await invoke(\n      'auth:changePassword',\n      username,\n      v.oldPwd,\n      v.newPwd,\n    );\n    if (res?.success) {\n      message.success('密码修改成功，请重新登录');\n      localStorage.removeItem('loginUser');\n      localStorage.removeItem('token');\n      history.push('/login');\n    } else {\n      message.error(res?.message || '修改失败');\n    }\n  };\n\n  return (\n    <>\n      <div style={{ display: 'flex', justifyContent: 'center', marginTop: 80 }}>\n        <StyledCard $theme={theme} title=\"修改密码\" style={{ width: 480 }}>\n          <Form\n            form={form}\n            onFinish={onFinish}\n            labelCol={{ span: 6 }}\n            wrapperCol={{ span: 16 }}\n            validateTrigger={['onSubmit']}\n          >\n            <Form.Item\n              name=\"oldPwd\"\n              label=\"原密码\"\n              rules={[{ required: true, message: '请输入原密码' }]}\n            >\n              <Input.Password autoComplete=\"off\" />\n            </Form.Item>\n            <Form.Item\n              name=\"newPwd\"\n              label=\"新密码\"\n              rules={[\n                { required: true, message: '请输入新密码' },\n                { min: 6, message: '新密码至少6位' },\n                { max: 20, message: '新密码最多20位' },\n              ]}\n            >\n              <Input.Password autoComplete=\"off\" />\n            </Form.Item>\n            <Form.Item\n              name=\"confirmPwd\"\n              label=\"确认新密码\"\n              rules={[{ required: true, message: '请确认新密码' }]}\n            >\n              <Input.Password autoComplete=\"off\" />\n            </Form.Item>\n            <Form.Item wrapperCol={{ span: 16, offset: 6 }}>\n              <Button type=\"primary\" onClick={() => form.submit()}>\n                确认修改\n              </Button>\n            </Form.Item>\n          </Form>\n        </StyledCard>\n      </div>\n    </>\n  );\n}\n",
       "__isJSFile": true,
       "__absFile": "/Users/ningshuo/code/my-projects/equipment-system/src/pages/Profile/index.tsx"
     }
@@ -3382,7 +2480,8 @@
   "appJS": {
     "path": "/Users/ningshuo/code/my-projects/equipment-system/src/app.tsx",
     "exports": [
-      "onRouteChange"
+      "onRouteChange",
+      "rootContainer"
     ]
   },
   "locale": "zh-CN",
@@ -3398,12 +2497,13 @@
   },
   "framework": "react",
   "typescript": {
-    "tsVersion": "5.9.3"
+    "tsVersion": "5.9.3",
+    "tslibVersion": "2.8.1"
   },
   "faviconFiles": [],
   "port": 8000,
   "host": "0.0.0.0",
-  "ip": "192.168.0.102",
+  "ip": "10.9.20.59",
   "prepare": {
     "buildResult": {
       "errors": [],
@@ -4501,13 +3601,29 @@
             "imports": [],
             "format": "esm"
           },
-          "src/services/webAdapter.ts": {
-            "bytes": 1051,
+          "src/config/api.ts": {
+            "bytes": 361,
             "imports": [],
             "format": "esm"
           },
+          "src/services/httpClient.ts": {
+            "bytes": 848,
+            "imports": [
+              {
+                "path": "src/config/api.ts",
+                "kind": "import-statement",
+                "original": "@/config/api"
+              },
+              {
+                "path": "axios",
+                "kind": "import-statement",
+                "external": true
+              }
+            ],
+            "format": "esm"
+          },
           "src/services/ipc.ts": {
-            "bytes": 1022,
+            "bytes": 1424,
             "imports": [
               {
                 "path": "src/utils/eventBus.ts",
@@ -4515,9 +3631,9 @@
                 "original": "@/utils/eventBus"
               },
               {
-                "path": "src/services/webAdapter.ts",
+                "path": "src/services/httpClient.ts",
                 "kind": "import-statement",
-                "original": "./webAdapter"
+                "original": "./httpClient"
               }
             ],
             "format": "esm"
@@ -4543,9 +3659,30 @@
             "imports": [],
             "format": "esm"
           },
-          "src/app.tsx": {
-            "bytes": 248,
+          "src/components/ThemeProvider.tsx": {
+            "bytes": 1208,
             "imports": [
+              {
+                "path": "react",
+                "kind": "import-statement",
+                "external": true
+              },
+              {
+                "path": "react/jsx-runtime",
+                "kind": "import-statement",
+                "external": true
+              }
+            ],
+            "format": "esm"
+          },
+          "src/app.tsx": {
+            "bytes": 412,
+            "imports": [
+              {
+                "path": "src/components/ThemeProvider.tsx",
+                "kind": "import-statement",
+                "original": "@/components/ThemeProvider"
+              },
               {
                 "path": "src/.umi/exports.ts",
                 "kind": "import-statement",
@@ -4553,6 +3690,11 @@
               },
               {
                 "path": "./global.less",
+                "kind": "import-statement",
+                "external": true
+              },
+              {
+                "path": "react/jsx-runtime",
                 "kind": "import-statement",
                 "external": true
               }
@@ -4689,7 +3831,7 @@
             "format": "esm"
           },
           "src/pages/Login/index.tsx": {
-            "bytes": 2053,
+            "bytes": 2372,
             "imports": [
               {
                 "path": "src/services/ipc.ts",
@@ -4730,7 +3872,7 @@
             "format": "esm"
           },
           "src/layouts/BasicLayout.tsx": {
-            "bytes": 13054,
+            "bytes": 12736,
             "imports": [
               {
                 "path": "@/assets/icon/icon.svg",
@@ -4738,14 +3880,14 @@
                 "external": true
               },
               {
+                "path": "src/components/ThemeProvider.tsx",
+                "kind": "import-statement",
+                "original": "@/components/ThemeProvider"
+              },
+              {
                 "path": "src/config/theme.ts",
                 "kind": "import-statement",
                 "original": "@/config/theme"
-              },
-              {
-                "path": "src/utils/eventBus.ts",
-                "kind": "import-statement",
-                "original": "@/utils/eventBus"
               },
               {
                 "path": "@ant-design/icons",
@@ -4754,11 +3896,6 @@
               },
               {
                 "path": "antd",
-                "kind": "import-statement",
-                "external": true
-              },
-              {
-                "path": "react",
                 "kind": "import-statement",
                 "external": true
               },
@@ -5022,8 +4159,13 @@
             "format": "esm"
           },
           "src/pages/Dashboard/index.tsx": {
-            "bytes": 8956,
+            "bytes": 6837,
             "imports": [
+              {
+                "path": "src/components/ThemeProvider.tsx",
+                "kind": "import-statement",
+                "original": "@/components/ThemeProvider"
+              },
               {
                 "path": "@/config/theme",
                 "kind": "import-statement",
@@ -5328,12 +4470,32 @@
           "src/.umi/out/umi.js": {
             "imports": [
               {
+                "path": "axios",
+                "kind": "import-statement",
+                "external": true
+              },
+              {
                 "path": "/Users/ningshuo/code/my-projects/equipment-system/node_modules/.pnpm/@umijs+renderer-react@4.5.3_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/@umijs/renderer-react",
                 "kind": "import-statement",
                 "external": true
               },
               {
+                "path": "react",
+                "kind": "import-statement",
+                "external": true
+              },
+              {
+                "path": "react/jsx-runtime",
+                "kind": "import-statement",
+                "external": true
+              },
+              {
                 "path": "./global.less",
+                "kind": "import-statement",
+                "external": true
+              },
+              {
+                "path": "react/jsx-runtime",
                 "kind": "import-statement",
                 "external": true
               },
@@ -5409,11 +4571,6 @@
               },
               {
                 "path": "antd",
-                "kind": "import-statement",
-                "external": true
-              },
-              {
-                "path": "react",
                 "kind": "import-statement",
                 "external": true
               },
@@ -6774,11 +5931,14 @@
               "src/utils/eventBus.ts": {
                 "bytesInOutput": 985
               },
-              "src/services/webAdapter.ts": {
-                "bytesInOutput": 326
+              "src/config/api.ts": {
+                "bytesInOutput": 447
+              },
+              "src/services/httpClient.ts": {
+                "bytesInOutput": 787
               },
               "src/services/ipc.ts": {
-                "bytesInOutput": 950
+                "bytesInOutput": 1374
               },
               "src/.umi/core/defineApp.ts": {
                 "bytesInOutput": 72
@@ -6789,8 +5949,11 @@
               "src/.umi/core/terminal.ts": {
                 "bytesInOutput": 70
               },
+              "src/components/ThemeProvider.tsx": {
+                "bytesInOutput": 1135
+              },
               "src/app.tsx": {
-                "bytesInOutput": 362
+                "bytesInOutput": 584
               },
               "src/.umi/core/helmetContext.ts": {
                 "bytesInOutput": 111
@@ -6802,19 +5965,19 @@
                 "bytesInOutput": 1013
               },
               "src/.umi/testBrowser.tsx": {
-                "bytesInOutput": 526
+                "bytesInOutput": 561
               },
               "src/.umi/exports.ts": {
                 "bytesInOutput": 1212
               },
               "src/pages/Login/index.tsx": {
-                "bytesInOutput": 2598
+                "bytesInOutput": 2880
               },
               "src/config/theme.ts": {
                 "bytesInOutput": 1607
               },
               "src/layouts/BasicLayout.tsx": {
-                "bytesInOutput": 18394
+                "bytesInOutput": 18099
               },
               "src/.umi/core/EmptyRoute.tsx": {
                 "bytesInOutput": 363
@@ -6829,16 +5992,16 @@
                 "bytesInOutput": 6895
               },
               "src/pages/Dashboard/components/DeviceTypeChart.tsx": {
-                "bytesInOutput": 4831
+                "bytesInOutput": 4840
               },
               "src/pages/Dashboard/components/DueSoonTimeline.tsx": {
-                "bytesInOutput": 7204
+                "bytesInOutput": 7222
               },
               "src/pages/Dashboard/index.tsx": {
-                "bytesInOutput": 10051
+                "bytesInOutput": 7807
               },
               "src/pages/Devices/index.tsx": {
-                "bytesInOutput": 25719
+                "bytesInOutput": 25728
               },
               "src/pages/Borrow/index.tsx": {
                 "bytesInOutput": 22270
@@ -6859,7 +6022,7 @@
                 "bytesInOutput": 2045
               }
             },
-            "bytes": 162717
+            "bytes": 163279
           }
         }
       }
@@ -9278,7 +8441,21 @@
       ],
       "/Users/ningshuo/code/my-projects/equipment-system/src/app.tsx": [
         {
-          "end": 31,
+          "end": 60,
+          "importKind": "value",
+          "source": "@/components/ThemeProvider",
+          "specifiers": [
+            {
+              "imported": "ThemeProvider",
+              "local": "ThemeProvider",
+              "type": "ImportSpecifier"
+            }
+          ],
+          "start": 1,
+          "type": "ImportDeclaration"
+        },
+        {
+          "end": 91,
           "importKind": "value",
           "source": "umi",
           "specifiers": [
@@ -9288,15 +8465,15 @@
               "type": "ImportSpecifier"
             }
           ],
-          "start": 1,
+          "start": 61,
           "type": "ImportDeclaration"
         },
         {
-          "end": 55,
+          "end": 115,
           "importKind": "value",
           "source": "./global.less",
           "specifiers": [],
-          "start": 32,
+          "start": 92,
           "type": "ImportDeclaration"
         }
       ],
@@ -9351,6 +8528,43 @@
           "type": "ImportDeclaration"
         }
       ],
+      "/Users/ningshuo/code/my-projects/equipment-system/src/components/ThemeProvider.tsx": [
+        {
+          "end": 94,
+          "importKind": "value",
+          "source": "react",
+          "specifiers": [
+            {
+              "imported": "createContext",
+              "local": "createContext",
+              "type": "ImportSpecifier"
+            },
+            {
+              "imported": "ReactNode",
+              "local": "ReactNode",
+              "type": "ImportSpecifier"
+            },
+            {
+              "imported": "useContext",
+              "local": "useContext",
+              "type": "ImportSpecifier"
+            },
+            {
+              "imported": "useEffect",
+              "local": "useEffect",
+              "type": "ImportSpecifier"
+            },
+            {
+              "imported": "useState",
+              "local": "useState",
+              "type": "ImportSpecifier"
+            }
+          ],
+          "start": 1,
+          "type": "ImportDeclaration"
+        }
+      ],
+      "/Users/ningshuo/code/my-projects/equipment-system/src/config/api.ts": [],
       "/Users/ningshuo/code/my-projects/equipment-system/src/config/theme.ts": [],
       "/Users/ningshuo/code/my-projects/equipment-system/src/layouts/BasicLayout.tsx": [
         {
@@ -9367,7 +8581,21 @@
           "type": "ImportDeclaration"
         },
         {
-          "end": 100,
+          "end": 98,
+          "importKind": "value",
+          "source": "@/components/ThemeProvider",
+          "specifiers": [
+            {
+              "imported": "useTheme",
+              "local": "useTheme",
+              "type": "ImportSpecifier"
+            }
+          ],
+          "start": 44,
+          "type": "ImportDeclaration"
+        },
+        {
+          "end": 155,
           "importKind": "value",
           "source": "@/config/theme",
           "specifiers": [
@@ -9382,25 +8610,11 @@
               "type": "ImportSpecifier"
             }
           ],
-          "start": 44,
+          "start": 99,
           "type": "ImportDeclaration"
         },
         {
-          "end": 145,
-          "importKind": "value",
-          "source": "@/utils/eventBus",
-          "specifiers": [
-            {
-              "imported": "eventBus",
-              "local": "eventBus",
-              "type": "ImportSpecifier"
-            }
-          ],
-          "start": 101,
-          "type": "ImportDeclaration"
-        },
-        {
-          "end": 303,
+          "end": 313,
           "importKind": "value",
           "source": "@ant-design/icons",
           "specifiers": [
@@ -9440,11 +8654,11 @@
               "type": "ImportSpecifier"
             }
           ],
-          "start": 146,
+          "start": 156,
           "type": "ImportDeclaration"
         },
         {
-          "end": 360,
+          "end": 370,
           "importKind": "value",
           "source": "antd",
           "specifiers": [
@@ -9469,25 +8683,11 @@
               "type": "ImportSpecifier"
             }
           ],
-          "start": 304,
+          "start": 314,
           "type": "ImportDeclaration"
         },
         {
-          "end": 394,
-          "importKind": "value",
-          "source": "react",
-          "specifiers": [
-            {
-              "imported": "useState",
-              "local": "useState",
-              "type": "ImportSpecifier"
-            }
-          ],
-          "start": 361,
-          "type": "ImportDeclaration"
-        },
-        {
-          "end": 434,
+          "end": 410,
           "importKind": "value",
           "source": "styled-components",
           "specifiers": [
@@ -9496,11 +8696,11 @@
               "type": "ImportDefaultSpecifier"
             }
           ],
-          "start": 395,
+          "start": 371,
           "type": "ImportDeclaration"
         },
         {
-          "end": 486,
+          "end": 462,
           "importKind": "value",
           "source": "umi",
           "specifiers": [
@@ -9520,7 +8720,7 @@
               "type": "ImportSpecifier"
             }
           ],
-          "start": 435,
+          "start": 411,
           "type": "ImportDeclaration"
         }
       ],
@@ -10160,7 +9360,21 @@
       ],
       "/Users/ningshuo/code/my-projects/equipment-system/src/pages/Dashboard/index.tsx": [
         {
-          "end": 44,
+          "end": 55,
+          "importKind": "value",
+          "source": "@/components/ThemeProvider",
+          "specifiers": [
+            {
+              "imported": "useTheme",
+              "local": "useTheme",
+              "type": "ImportSpecifier"
+            }
+          ],
+          "start": 1,
+          "type": "ImportDeclaration"
+        },
+        {
+          "end": 99,
           "importKind": "value",
           "source": "@/config/theme",
           "specifiers": [
@@ -10170,11 +9384,11 @@
               "type": "ImportSpecifier"
             }
           ],
-          "start": 1,
+          "start": 56,
           "type": "ImportDeclaration"
         },
         {
-          "end": 85,
+          "end": 140,
           "importKind": "value",
           "source": "@/services/ipc",
           "specifiers": [
@@ -10184,11 +9398,11 @@
               "type": "ImportSpecifier"
             }
           ],
-          "start": 45,
+          "start": 100,
           "type": "ImportDeclaration"
         },
         {
-          "end": 130,
+          "end": 185,
           "importKind": "value",
           "source": "@/utils/eventBus",
           "specifiers": [
@@ -10198,11 +9412,11 @@
               "type": "ImportSpecifier"
             }
           ],
-          "start": 86,
+          "start": 141,
           "type": "ImportDeclaration"
         },
         {
-          "end": 257,
+          "end": 312,
           "importKind": "value",
           "source": "@ant-design/icons",
           "specifiers": [
@@ -10227,11 +9441,11 @@
               "type": "ImportSpecifier"
             }
           ],
-          "start": 131,
+          "start": 186,
           "type": "ImportDeclaration"
         },
         {
-          "end": 329,
+          "end": 384,
           "importKind": "value",
           "source": "antd",
           "specifiers": [
@@ -10271,11 +9485,11 @@
               "type": "ImportSpecifier"
             }
           ],
-          "start": 258,
+          "start": 313,
           "type": "ImportDeclaration"
         },
         {
-          "end": 374,
+          "end": 429,
           "importKind": "value",
           "source": "react",
           "specifiers": [
@@ -10290,11 +9504,11 @@
               "type": "ImportSpecifier"
             }
           ],
-          "start": 330,
+          "start": 385,
           "type": "ImportDeclaration"
         },
         {
-          "end": 414,
+          "end": 469,
           "importKind": "value",
           "source": "styled-components",
           "specifiers": [
@@ -10303,11 +9517,11 @@
               "type": "ImportDefaultSpecifier"
             }
           ],
-          "start": 375,
+          "start": 430,
           "type": "ImportDeclaration"
         },
         {
-          "end": 478,
+          "end": 533,
           "importKind": "value",
           "source": "./components/BorrowTrendsChart",
           "specifiers": [
@@ -10316,11 +9530,11 @@
               "type": "ImportDefaultSpecifier"
             }
           ],
-          "start": 415,
+          "start": 470,
           "type": "ImportDeclaration"
         },
         {
-          "end": 538,
+          "end": 593,
           "importKind": "value",
           "source": "./components/DeviceTypeChart",
           "specifiers": [
@@ -10329,11 +9543,11 @@
               "type": "ImportDefaultSpecifier"
             }
           ],
-          "start": 479,
+          "start": 534,
           "type": "ImportDeclaration"
         },
         {
-          "end": 598,
+          "end": 653,
           "importKind": "value",
           "source": "./components/DueSoonTimeline",
           "specifiers": [
@@ -10342,7 +9556,7 @@
               "type": "ImportDefaultSpecifier"
             }
           ],
-          "start": 539,
+          "start": 594,
           "type": "ImportDeclaration"
         }
       ],
@@ -10517,10 +9731,15 @@
           "type": "ImportDeclaration"
         },
         {
-          "end": 138,
+          "end": 149,
           "importKind": "value",
           "source": "react",
           "specifiers": [
+            {
+              "imported": "useEffect",
+              "local": "useEffect",
+              "type": "ImportSpecifier"
+            },
             {
               "imported": "useState",
               "local": "useState",
@@ -10531,7 +9750,7 @@
           "type": "ImportDeclaration"
         },
         {
-          "end": 169,
+          "end": 180,
           "importKind": "value",
           "source": "umi",
           "specifiers": [
@@ -10541,11 +9760,11 @@
               "type": "ImportSpecifier"
             }
           ],
-          "start": 139,
+          "start": 150,
           "type": "ImportDeclaration"
         },
         {
-          "end": 204,
+          "end": 215,
           "importKind": "value",
           "source": "./index.less",
           "specifiers": [
@@ -10554,7 +9773,7 @@
               "type": "ImportDefaultSpecifier"
             }
           ],
-          "start": 170,
+          "start": 181,
           "type": "ImportDeclaration"
         }
       ],
@@ -10739,6 +9958,35 @@
           "type": "ImportDeclaration"
         }
       ],
+      "/Users/ningshuo/code/my-projects/equipment-system/src/services/httpClient.ts": [
+        {
+          "end": 42,
+          "importKind": "value",
+          "source": "@/config/api",
+          "specifiers": [
+            {
+              "imported": "apiConfig",
+              "local": "apiConfig",
+              "type": "ImportSpecifier"
+            }
+          ],
+          "start": 1,
+          "type": "ImportDeclaration"
+        },
+        {
+          "end": 69,
+          "importKind": "value",
+          "source": "axios",
+          "specifiers": [
+            {
+              "local": "axios",
+              "type": "ImportDefaultSpecifier"
+            }
+          ],
+          "start": 43,
+          "type": "ImportDeclaration"
+        }
+      ],
       "/Users/ningshuo/code/my-projects/equipment-system/src/services/ipc.ts": [
         {
           "end": 45,
@@ -10757,7 +10005,7 @@
         {
           "end": 97,
           "importKind": "value",
-          "source": "./webAdapter",
+          "source": "./httpClient",
           "specifiers": [
             {
               "imported": "invoke",
@@ -10769,7 +10017,6 @@
           "type": "ImportDeclaration"
         }
       ],
-      "/Users/ningshuo/code/my-projects/equipment-system/src/services/webAdapter.ts": [],
       "/Users/ningshuo/code/my-projects/equipment-system/src/utils/eventBus.ts": []
     }
   }

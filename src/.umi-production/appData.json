@@ -10,9 +10,9 @@
     "scripts": {
       "build:linux": "npm run build:web && electron-builder --linux",
       "build:mac": "npm run build:web && electron-builder --mac",
-      "build:publish:linux": "npm run build:linux && npm run publish:feishu",
-      "build:publish:mac": "npm run build:mac && npm run publish:feishu",
-      "build:publish:win": "npm run build:win && npm run publish:feishu",
+      "build:publish:linux": "node scripts/build-and-publish.js linux",
+      "build:publish:mac": "node scripts/build-and-publish.js mac",
+      "build:publish:win": "node scripts/build-and-publish.js win",
       "build:web": "umi build",
       "build:win": "npm run build:web && electron-builder --win",
       "dev": "concurrently \"npm run dev:web\" \"npm run dev:electron\"",
@@ -99,7 +99,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 1
+        "register": 0
       },
       "enableBy": "register",
       "type": "preset",
@@ -129,7 +129,7 @@
             0
           ]
         },
-        "register": 3
+        "register": 2
       },
       "enableBy": "register",
       "type": "plugin",
@@ -143,10 +143,10 @@
       "time": {
         "hooks": {
           "onStart": [
-            2
+            13
           ]
         },
-        "register": 1
+        "register": 2
       },
       "enableBy": "register",
       "type": "plugin",
@@ -163,7 +163,7 @@
             0
           ]
         },
-        "register": 1
+        "register": 0
       },
       "enableBy": "register",
       "type": "plugin",
@@ -176,7 +176,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 1
+        "register": 0
       },
       "enableBy": "register",
       "type": "plugin",
@@ -190,7 +190,7 @@
       "time": {
         "hooks": {
           "modifyAppData": [
-            14
+            17
           ]
         },
         "register": 10
@@ -273,7 +273,7 @@
             0
           ]
         },
-        "register": 4
+        "register": 6
       },
       "enableBy": "register",
       "type": "plugin",
@@ -1168,7 +1168,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 41
+        "register": 42
       },
       "enableBy": "register",
       "type": "plugin",
@@ -1181,7 +1181,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 19
+        "register": 17
       },
       "enableBy": "config",
       "type": "plugin",
@@ -1194,7 +1194,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 7
+        "register": 8
       },
       "enableBy": "config",
       "type": "plugin",
@@ -1208,7 +1208,7 @@
       "time": {
         "hooks": {
           "modifyAppData": [
-            5
+            0
           ]
         },
         "register": 0
@@ -1224,7 +1224,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 1
+        "register": 0
       },
       "enableBy": "register",
       "type": "plugin",
@@ -1237,7 +1237,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 0
+        "register": 1
       },
       "enableBy": "config",
       "type": "plugin",
@@ -1250,7 +1250,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 18
+        "register": 17
       },
       "type": "plugin",
       "path": "/Users/ningshuo/code/my-projects/equipment-system/node_modules/.pnpm/@umijs+preset-umi@4.5.3_@types+node@20.19.25_@types+react@18.3.26_@types+webpack@5.28.5_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/features/mock/mock.js",
@@ -1314,7 +1314,7 @@
       "time": {
         "hooks": {
           "modifyConfig": [
-            0
+            1
           ]
         },
         "register": 1
@@ -1381,7 +1381,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 1
+        "register": 0
       },
       "enableBy": "register",
       "type": "plugin",
@@ -1394,7 +1394,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 1
+        "register": 2
       },
       "enableBy": "register",
       "type": "plugin",
@@ -1407,7 +1407,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 1
+        "register": 2
       },
       "enableBy": "config",
       "type": "plugin",
@@ -1432,7 +1432,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 1
+        "register": 2
       },
       "enableBy": "config",
       "type": "plugin",
@@ -1484,7 +1484,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 0
+        "register": 1
       },
       "enableBy": "config",
       "type": "plugin",
@@ -1522,7 +1522,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 0
+        "register": 1
       },
       "type": "plugin",
       "path": "/Users/ningshuo/code/my-projects/equipment-system/node_modules/.pnpm/@umijs+preset-umi@4.5.3_@types+node@20.19.25_@types+react@18.3.26_@types+webpack@5.28.5_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/features/test/test.js",
@@ -1534,7 +1534,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 1
+        "register": 0
       },
       "type": "plugin",
       "path": "/Users/ningshuo/code/my-projects/equipment-system/node_modules/.pnpm/@umijs+preset-umi@4.5.3_@types+node@20.19.25_@types+react@18.3.26_@types+webpack@5.28.5_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/features/clickToComponent/clickToComponent.js",
@@ -1546,7 +1546,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 0
+        "register": 1
       },
       "enableBy": "config",
       "type": "plugin",
@@ -1572,7 +1572,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 1
+        "register": 0
       },
       "type": "plugin",
       "path": "/Users/ningshuo/code/my-projects/equipment-system/node_modules/.pnpm/@umijs+preset-umi@4.5.3_@types+node@20.19.25_@types+react@18.3.26_@types+webpack@5.28.5_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/features/webpack/webpack.js",
@@ -1601,7 +1601,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 1
+        "register": 2
       },
       "type": "plugin",
       "path": "/Users/ningshuo/code/my-projects/equipment-system/node_modules/.pnpm/@umijs+preset-umi@4.5.3_@types+node@20.19.25_@types+react@18.3.26_@types+webpack@5.28.5_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/features/ui/ui.js",
@@ -1613,7 +1613,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 1
+        "register": 0
       },
       "enableBy": "config",
       "type": "plugin",
@@ -1626,7 +1626,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 0
+        "register": 1
       },
       "type": "plugin",
       "path": "/Users/ningshuo/code/my-projects/equipment-system/node_modules/.pnpm/@umijs+preset-umi@4.5.3_@types+node@20.19.25_@types+react@18.3.26_@types+webpack@5.28.5_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/features/utoopack/utoopack.js",
@@ -1675,7 +1675,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 1
+        "register": 0
       },
       "enableBy": "register",
       "type": "plugin",
@@ -1701,7 +1701,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 24
+        "register": 17
       },
       "enableBy": "register",
       "type": "plugin",
@@ -1714,7 +1714,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 18
+        "register": 22
       },
       "type": "plugin",
       "path": "/Users/ningshuo/code/my-projects/equipment-system/node_modules/.pnpm/@umijs+preset-umi@4.5.3_@types+node@20.19.25_@types+react@18.3.26_@types+webpack@5.28.5_d32a7647d71e7c179e3ca085480294b1/node_modules/@umijs/preset-umi/dist/commands/dev/dev.js",
@@ -1804,7 +1804,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 0
+        "register": 1
       },
       "enableBy": "register",
       "type": "plugin",
@@ -1817,7 +1817,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 1
+        "register": 0
       },
       "enableBy": "register",
       "type": "plugin",
@@ -1856,7 +1856,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 0
+        "register": 1
       },
       "enableBy": "register",
       "type": "plugin",
@@ -1882,7 +1882,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 1
+        "register": 0
       },
       "enableBy": "register",
       "type": "plugin",
@@ -1934,7 +1934,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 0
+        "register": 1
       },
       "enableBy": "register",
       "type": "plugin",
@@ -1947,7 +1947,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 1
+        "register": 0
       },
       "enableBy": "register",
       "type": "plugin",
@@ -1960,7 +1960,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 10
+        "register": 12
       },
       "enableBy": "register",
       "type": "plugin",
@@ -2025,7 +2025,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 107
+        "register": 106
       },
       "enableBy": "config",
       "type": "plugin",
@@ -2241,7 +2241,7 @@
       "parentId": "2",
       "id": "4",
       "absPath": "/dashboard",
-      "__content": "import { ThemeType } from '@/config/theme';\nimport { invoke } from '@/services/ipc';\nimport { eventBus } from '@/utils/eventBus';\nimport {\n  CheckCircleOutlined,\n  DatabaseOutlined,\n  ExclamationCircleOutlined,\n  LaptopOutlined,\n} from '@ant-design/icons';\nimport { Button, Card, Col, Modal, Row, Statistic, Table } from 'antd';\nimport { useEffect, useState } from 'react';\nimport styled from 'styled-components';\nimport BorrowTrendsChart from './components/BorrowTrendsChart';\nimport DeviceTypeChart from './components/DeviceTypeChart';\nimport DueSoonTimeline from './components/DueSoonTimeline';\n\nconst StatCard = styled(Card)<{ $theme: ThemeType }>`\n  border: none;\n  border-radius: 16px;\n  overflow: hidden;\n  transition: all 0.3s ease;\n  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);\n  cursor: pointer;\n  background: ${(props) => (props.$theme === 'light' ? '#ffffff' : '#1A202C')};\n\n  &:hover {\n    transform: translateY(-4px);\n    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);\n  }\n\n  .ant-card-body {\n    padding: 24px;\n    display: flex;\n    align-items: center;\n    gap: 20px;\n  }\n\n  .icon-wrapper {\n    width: 56px;\n    height: 56px;\n    border-radius: 14px;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    font-size: 28px;\n    color: #ffffff;\n    flex-shrink: 0;\n  }\n\n  .stat-content {\n    flex: 1;\n  }\n\n  .ant-statistic-title {\n    font-size: 14px;\n    font-weight: 500;\n    color: ${(props) => (props.$theme === 'light' ? '#6B7280' : '#A0AEC0')};\n    margin-bottom: 8px;\n  }\n\n  .ant-statistic-content {\n    font-size: 32px;\n    font-weight: 700;\n    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,\n      'Helvetica Neue', Arial, sans-serif;\n    color: ${(props) => (props.$theme === 'light' ? '#111827' : '#ffffff')};\n  }\n`;\n\nexport default function Dashboard() {\n  const { theme } = useTheme();\n  const [stats, setStats] = useState({\n    totalDevices: 0,\n    borrowedDevices: 0,\n    availableDevices: 0,\n    overdueDevices: 0,\n  });\n  const [overdue, setOverdue] = useState<any[]>([]);\n  const [dueSoon, setDueSoon] = useState<any[]>([]);\n  const [visible, setVisible] = useState(false);\n\n  useEffect(() => {\n    load();\n    loadReminders();\n  }, []);\n\n  const load = async () => {\n    const data = await invoke('stats:dashboard');\n    setStats(data);\n    eventBus.emit('dashboard:updated', data);\n  };\n\n  const loadReminders = async () => {\n    const data = await invoke('borrow:listOverdue');\n    setOverdue(data?.overdue || []);\n    setDueSoon(data?.dueSoon || []);\n    setVisible(true);\n    eventBus.emit('reminders:loaded', data);\n  };\n\n  const columns = [\n    { title: '设备编号', dataIndex: 'device_code' },\n    { title: '设备名称', dataIndex: 'device_name' },\n    { title: '借用人', dataIndex: 'borrower_name' },\n    { title: '联系方式', dataIndex: 'borrower_phone' },\n    { title: '剩余天数', dataIndex: 'remaining_days' },\n    {\n      title: '通知状态',\n      dataIndex: 'notified',\n      render: (_: any, r: any) => (\n        <Button\n          type={r.notified ? 'default' : 'primary'}\n          onClick={async () => {\n            if (!r.notified) {\n              await invoke('notify:mark', r.id);\n              loadReminders();\n            }\n          }}\n        >\n          {r.notified ? '已通知' : '未通知'}\n        </Button>\n      ),\n    },\n  ];\n\n  return (\n    <div style={{ padding: 24 }}>\n      <Row gutter={[20, 20]}>\n        <Col span={6}>\n          <StatCard $theme={theme}>\n            <div\n              className=\"icon-wrapper\"\n              style={{\n                background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',\n              }}\n            >\n              <DatabaseOutlined />\n            </div>\n            <div className=\"stat-content\">\n              <Statistic title=\"设备总数\" value={stats.totalDevices} />\n            </div>\n          </StatCard>\n        </Col>\n        <Col span={6}>\n          <StatCard $theme={theme}>\n            <div\n              className=\"icon-wrapper\"\n              style={{\n                background: 'linear-gradient(135deg, #3b82f6 0%, #2563eb 100%)',\n              }}\n            >\n              <LaptopOutlined />\n            </div>\n            <div className=\"stat-content\">\n              <Statistic title=\"在借设备\" value={stats.borrowedDevices} />\n            </div>\n          </StatCard>\n        </Col>\n        <Col span={6}>\n          <StatCard $theme={theme}>\n            <div\n              className=\"icon-wrapper\"\n              style={{\n                background: 'linear-gradient(135deg, #10b981 0%, #059669 100%)',\n              }}\n            >\n              <CheckCircleOutlined />\n            </div>\n            <div className=\"stat-content\">\n              <Statistic title=\"可借设备\" value={stats.availableDevices} />\n            </div>\n          </StatCard>\n        </Col>\n        <Col span={6}>\n          <StatCard $theme={theme}>\n            <div\n              className=\"icon-wrapper\"\n              style={{\n                background: 'linear-gradient(135deg, #ef4444 0%, #dc2626 100%)',\n              }}\n            >\n              <ExclamationCircleOutlined />\n            </div>\n            <div className=\"stat-content\">\n              <Statistic\n                title=\"逾期设备\"\n                value={stats.overdueDevices}\n                valueStyle={{ color: '#EF4444', fontWeight: 700 }}\n              />\n            </div>\n          </StatCard>\n        </Col>\n      </Row>\n\n      <Row gutter={[20, 20]} style={{ marginTop: 20 }}>\n        <Col span={12}>\n          <DeviceTypeChart theme={theme} />\n        </Col>\n        <Col span={12}>\n          <BorrowTrendsChart theme={theme} />\n        </Col>\n      </Row>\n\n      <Row gutter={[20, 20]} style={{ marginTop: 20 }}>\n        <Col span={24}>\n          <DueSoonTimeline theme={theme} />\n        </Col>\n      </Row>\n\n      <Modal\n        className=\"themed-modal\"\n        title=\"设备归还提醒\"\n        open={visible}\n        onCancel={() => setVisible(false)}\n        footer={null}\n        width={900}\n      >\n        <h3>逾期设备</h3>\n        <Table\n          columns={columns}\n          dataSource={overdue}\n          rowKey=\"id\"\n          pagination={false}\n        />\n        <h3 style={{ marginTop: 16 }}>临期设备（≤5天）</h3>\n        <Table\n          columns={columns}\n          dataSource={dueSoon}\n          rowKey=\"id\"\n          pagination={false}\n        />\n      </Modal>\n    </div>\n  );\n}\n",
+      "__content": "import { useTheme } from '@/components/ThemeProvider';\nimport { ThemeType } from '@/config/theme';\nimport { invoke } from '@/services/ipc';\nimport { eventBus } from '@/utils/eventBus';\nimport {\n  CheckCircleOutlined,\n  DatabaseOutlined,\n  ExclamationCircleOutlined,\n  LaptopOutlined,\n} from '@ant-design/icons';\nimport { Button, Card, Col, Modal, Row, Statistic, Table } from 'antd';\nimport { useEffect, useState } from 'react';\nimport styled from 'styled-components';\nimport BorrowTrendsChart from './components/BorrowTrendsChart';\nimport DeviceTypeChart from './components/DeviceTypeChart';\nimport DueSoonTimeline from './components/DueSoonTimeline';\n\nconst StatCard = styled(Card)<{ $theme: ThemeType }>`\n  border: none;\n  border-radius: 16px;\n  overflow: hidden;\n  transition: all 0.3s ease;\n  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);\n  cursor: pointer;\n  background: ${(props) => (props.$theme === 'light' ? '#ffffff' : '#1A202C')};\n\n  &:hover {\n    transform: translateY(-4px);\n    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);\n  }\n\n  .ant-card-body {\n    padding: 24px;\n    display: flex;\n    align-items: center;\n    gap: 20px;\n  }\n\n  .icon-wrapper {\n    width: 56px;\n    height: 56px;\n    border-radius: 14px;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    font-size: 28px;\n    color: #ffffff;\n    flex-shrink: 0;\n  }\n\n  .stat-content {\n    flex: 1;\n  }\n\n  .ant-statistic-title {\n    font-size: 14px;\n    font-weight: 500;\n    color: ${(props) => (props.$theme === 'light' ? '#6B7280' : '#A0AEC0')};\n    margin-bottom: 8px;\n  }\n\n  .ant-statistic-content {\n    font-size: 32px;\n    font-weight: 700;\n    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,\n      'Helvetica Neue', Arial, sans-serif;\n    color: ${(props) => (props.$theme === 'light' ? '#111827' : '#ffffff')};\n  }\n`;\n\nexport default function Dashboard() {\n  const { theme } = useTheme();\n  const [stats, setStats] = useState({\n    totalDevices: 0,\n    borrowedDevices: 0,\n    availableDevices: 0,\n    overdueDevices: 0,\n  });\n  const [overdue, setOverdue] = useState<any[]>([]);\n  const [dueSoon, setDueSoon] = useState<any[]>([]);\n  const [visible, setVisible] = useState(false);\n\n  useEffect(() => {\n    load();\n    loadReminders();\n  }, []);\n\n  const load = async () => {\n    const data = await invoke('stats:dashboard');\n    setStats(data);\n    eventBus.emit('dashboard:updated', data);\n  };\n\n  const loadReminders = async () => {\n    const data = await invoke('borrow:listOverdue');\n    setOverdue(data?.overdue || []);\n    setDueSoon(data?.dueSoon || []);\n    setVisible(true);\n    eventBus.emit('reminders:loaded', data);\n  };\n\n  const columns = [\n    { title: '设备编号', dataIndex: 'device_code' },\n    { title: '设备名称', dataIndex: 'device_name' },\n    { title: '借用人', dataIndex: 'borrower_name' },\n    { title: '联系方式', dataIndex: 'borrower_phone' },\n    { title: '剩余天数', dataIndex: 'remaining_days' },\n    {\n      title: '通知状态',\n      dataIndex: 'notified',\n      render: (_: any, r: any) => (\n        <Button\n          type={r.notified ? 'default' : 'primary'}\n          onClick={async () => {\n            if (!r.notified) {\n              await invoke('notify:mark', r.id);\n              loadReminders();\n            }\n          }}\n        >\n          {r.notified ? '已通知' : '未通知'}\n        </Button>\n      ),\n    },\n  ];\n\n  return (\n    <>\n      <div style={{ padding: 24 }}>\n        <Row gutter={[20, 20]}>\n          <Col span={6}>\n            <StatCard $theme={theme}>\n              <div\n                className=\"icon-wrapper\"\n                style={{\n                  background:\n                    'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',\n                }}\n              >\n                <DatabaseOutlined />\n              </div>\n              <div className=\"stat-content\">\n                <Statistic title=\"设备总数\" value={stats.totalDevices} />\n              </div>\n            </StatCard>\n          </Col>\n          <Col span={6}>\n            <StatCard $theme={theme}>\n              <div\n                className=\"icon-wrapper\"\n                style={{\n                  background:\n                    'linear-gradient(135deg, #3b82f6 0%, #2563eb 100%)',\n                }}\n              >\n                <LaptopOutlined />\n              </div>\n              <div className=\"stat-content\">\n                <Statistic title=\"在借设备\" value={stats.borrowedDevices} />\n              </div>\n            </StatCard>\n          </Col>\n          <Col span={6}>\n            <StatCard $theme={theme}>\n              <div\n                className=\"icon-wrapper\"\n                style={{\n                  background:\n                    'linear-gradient(135deg, #10b981 0%, #059669 100%)',\n                }}\n              >\n                <CheckCircleOutlined />\n              </div>\n              <div className=\"stat-content\">\n                <Statistic title=\"可借设备\" value={stats.availableDevices} />\n              </div>\n            </StatCard>\n          </Col>\n          <Col span={6}>\n            <StatCard $theme={theme}>\n              <div\n                className=\"icon-wrapper\"\n                style={{\n                  background:\n                    'linear-gradient(135deg, #ef4444 0%, #dc2626 100%)',\n                }}\n              >\n                <ExclamationCircleOutlined />\n              </div>\n              <div className=\"stat-content\">\n                <Statistic\n                  title=\"逾期设备\"\n                  value={stats.overdueDevices}\n                  valueStyle={{ color: '#EF4444', fontWeight: 700 }}\n                />\n              </div>\n            </StatCard>\n          </Col>\n        </Row>\n\n        <Row gutter={[20, 20]} style={{ marginTop: 20 }}>\n          <Col span={12}>\n            <DeviceTypeChart theme={theme} />\n          </Col>\n          <Col span={12}>\n            <BorrowTrendsChart theme={theme} />\n          </Col>\n        </Row>\n\n        <Row gutter={[20, 20]} style={{ marginTop: 20 }}>\n          <Col span={24}>\n            <DueSoonTimeline theme={theme} />\n          </Col>\n        </Row>\n\n        <Modal\n          className=\"themed-modal\"\n          title=\"设备归还提醒\"\n          open={visible}\n          onCancel={() => setVisible(false)}\n          footer={null}\n          width={900}\n        >\n          <h3>逾期设备</h3>\n          <Table\n            columns={columns}\n            dataSource={overdue}\n            rowKey=\"id\"\n            pagination={false}\n          />\n          <h3 style={{ marginTop: 16 }}>临期设备（≤5天）</h3>\n          <Table\n            columns={columns}\n            dataSource={dueSoon}\n            rowKey=\"id\"\n            pagination={false}\n          />\n        </Modal>\n      </div>\n    </>\n  );\n}\n",
       "__isJSFile": true,
       "__absFile": "/Users/ningshuo/code/my-projects/equipment-system/src/pages/Dashboard/index.tsx"
     },

@@ -17,7 +17,7 @@ const APP_CONFIG = {
 const client = new lark.Client({
   appId: APP_CONFIG.appId,
   appSecret: APP_CONFIG.appSecret,
-  disableTokenCache: true,
+  disableTokenCache: false,
 });
 
 // 获取tenant_access_token
@@ -214,30 +214,35 @@ async function uploadFileToFeishu() {
     );
 
     // 读取文件并分片上传
-    // console.log('Starting chunked upload...');
-    // const fileBuffer = fs.readFileSync(filePath);
-    // const totalChunks = Math.ceil(fileSize / APP_CONFIG.chunkSize);
+    console.log('Starting chunked upload...');
+    const fileBuffer = fs.readFileSync(filePath);
+    const totalChunks = Math.ceil(fileSize / APP_CONFIG.chunkSize);
 
-    // for (let i = 0; i < totalChunks; i++) {
-    //   const start = i * APP_CONFIG.chunkSize;
-    //   const end = Math.min(start + APP_CONFIG.chunkSize, fileSize);
-    //   const chunk = fileBuffer.slice(start, end);
+    for (let i = 0; i < totalChunks; i++) {
+      const start = i * APP_CONFIG.chunkSize;
+      const end = Math.min(start + APP_CONFIG.chunkSize, fileSize);
+      const chunk = fileBuffer.slice(start, end);
 
-    //   console.log(`Uploading chunk ${i + 1}/${totalChunks} (${(chunk.length / (1024 * 1024)).toFixed(2)} MB)...`);
+      console.log(
+        `Uploading chunk ${i + 1}/${totalChunks} (${(
+          chunk.length /
+          (1024 * 1024)
+        ).toFixed(2)} MB)...`,
+      );
 
-    //   await uploadPart(upload_id, i, chunk, tenantToken);
+      await uploadPart(upload_id, i, chunk, tenantToken);
 
-    //   console.log(`Chunk ${i + 1}/${totalChunks} uploaded successfully`);
-    // }
+      console.log(`Chunk ${i + 1}/${totalChunks} uploaded successfully`);
+    }
 
-    // // 完成上传
-    // console.log('Finishing upload...');
-    // const result = await uploadFinish(upload_id, block_num, tenantToken);
+    // 完成上传
+    console.log('Finishing upload...');
+    const result = await uploadFinish(upload_id, block_num, tenantToken);
 
-    // console.log('File uploaded successfully!');
-    // console.log('File token:', result.file_token);
+    console.log('File uploaded successfully!');
+    console.log('File token:', result.file_token);
 
-    // return result;
+    return result;
   } catch (error) {
     console.error('Error uploading file to Feishu:', error);
     if (error && typeof error === 'object' && 'response' in error) {
