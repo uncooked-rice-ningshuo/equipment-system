@@ -90,6 +90,32 @@ jobs:
             echo "release_tag=v${VERSION}" >> "$GITHUB_OUTPUT"
           fi
 
+      - name: Install jq
+        shell: bash
+        run: |
+          sudo apt-get update -y
+          sudo apt-get install -y jq
+
+      - name: Delete existing release and tag
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          RELEASE_TAG: ${{ steps.meta.outputs.release_tag }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          API="https://api.github.com"
+          REPO="${{ github.repository }}"
+          AUTH="Authorization: Bearer $GITHUB_TOKEN"
+          ACCEPT="Accept: application/vnd.github+json"
+
+          rel="$(curl -sS -H "$AUTH" -H "$ACCEPT" "${API}/repos/${REPO}/releases/tags/${RELEASE_TAG}" || true)"
+          id="$(echo "$rel" | jq -r '.id // empty' || true)"
+          if [ -n "$id" ]; then
+            curl -sS -X DELETE -H "$AUTH" -H "$ACCEPT" "${API}/repos/${REPO}/releases/${id}" >/dev/null || true
+          fi
+
+          curl -sS -X DELETE -H "$AUTH" -H "$ACCEPT" "${API}/repos/${REPO}/git/refs/tags/${RELEASE_TAG}" >/dev/null || true
+
       - name: Create or update GitHub Release
         uses: softprops/action-gh-release@v1
         with:
@@ -119,162 +145,14 @@ jobs:
           name: release-${{ matrix.os }}
           path: artifacts/${{ matrix.os }}
 
-      - name: Install jq
-        if: runner.os == 'Linux'
-        shell: bash
-        run: |
-          sudo apt-get update -y
-          sudo apt-get install -y jq
-
-      - name: Upload release assets (replace on conflict)
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          RELEASE_TAG: ${{ needs.release.outputs.release_tag }}
-        shell: bash
-        run: |
-          set -euo pipefail
-
-          API="https://api.github.com"
-          REPO="${{ github.repository }}"
-          AUTH="Authorization: Bearer $GITHUB_TOKEN"
-          ACCEPT="Accept: application/vnd.github+json"
-
-          urlencode() {
-            python3 -c 'import sys, urllib.parse; print(urllib.parse.quote(sys.argv[1]))' "$1"
-          }
-
-          release_json="$(curl -sS -H "$AUTH" -H "$ACCEPT" "${API}/repos/${REPO}/releases/tags/${RELEASE_TAG}")"
-          release_id="$(echo "$release_json" | jq -r '.id')"
-          upload_url="$(echo "$release_json" | jq -r '.upload_url' | sed 's/{?name,label}$//')"
-
-          if [ -z "$release_id" ] || [ "$release_id" = "null" ]; then
-            echo "$release_json"
-            exit 1
-          fi
-
-          delete_asset_by_name() {
-            local asset_name="$1"
-            local page=1
-            while :; do
-              local assets
-              assets="$(curl -sS -H "$AUTH" -H "$ACCEPT" "${API}/repos/${REPO}/releases/${release_id}/assets?per_page=100&page=${page}")"
-              local count
-              count="$(echo "$assets" | jq 'length')"
-              if [ "$count" -eq 0 ]; then
-                break
-              fi
-
-              local ids
-              ids="$(echo "$assets" | jq -r --arg n "$asset_name" '.[] | select(.name == $n) | .id')"
-              if [ -n "$ids" ]; then
-                while IFS= read -r id; do
-                  [ -n "$id" ] || continue
-                  curl -sS -X DELETE -H "$AUTH" -H "$ACCEPT" "${API}/repos/${REPO}/releases/assets/${id}" >/dev/null || true
-                done <<< "$ids"
-              fi
-
-              if [ "$count" -lt 100 ]; then
-                break
-              fi
-              page=$((page + 1))
-            done
-          }
-
-          asset_exists() {
-            local asset_name="$1"
-            local page=1
-            while :; do
-              local assets
-              assets="$(curl -sS -H "$AUTH" -H "$ACCEPT" "${API}/repos/${REPO}/releases/${release_id}/assets?per_page=100&page=${page}")"
-              local count
-              count="$(echo "$assets" | jq 'length')"
-              if [ "$count" -eq 0 ]; then
-                return 1
-              fi
-              if echo "$assets" | jq -e --arg n "$asset_name" '.[] | select(.name == $n)' >/dev/null 2>&1; then
-                return 0
-              fi
-              if [ "$count" -lt 100 ]; then
-                return 1
-              fi
-              page=$((page + 1))
-            done
-          }
-
-          wait_asset_gone() {
-            local asset_name="$1"
-            local max_wait_s="${2:-90}"
-            local waited=0
-            while [ "$waited" -lt "$max_wait_s" ]; do
-              if ! asset_exists "$asset_name"; then
-                return 0
-              fi
-              sleep 3
-              waited=$((waited + 3))
-            done
-            return 1
-          }
-
-          upload_one() {
-            local file="$1"
-            local name
-            name="$(basename "$file")"
-            local qname
-            qname="$(urlencode "$name")"
-            local deleted_once=0
-
-            for attempt in 1 2 3 4 5 6 7 8 9 10; do
-              local resp
-              resp="$(mktemp)"
-              local code
-              code="$(curl -sS -o "$resp" -w "%{http_code}" -X POST \
-                -H "$AUTH" -H "$ACCEPT" -H "Content-Type: application/octet-stream" \
-                --data-binary @"$file" \
-                "${upload_url}?name=${qname}" || true)"
-
-              if [ "$code" = "201" ]; then
-                rm -f "$resp"
-                return 0
-              fi
-
-              if [ "$code" = "422" ] && jq -e '.errors[]? | select(.code=="already_exists" and .field=="name")' "$resp" >/dev/null 2>&1; then
-                echo "Conflict detected: $name (attempt=$attempt)"
-                jq '.message, .errors' "$resp" || true
-                rm -f "$resp"
-                if [ "$deleted_once" -eq 0 ]; then
-                  delete_asset_by_name "$name"
-                  deleted_once=1
-                fi
-                if ! wait_asset_gone "$name" 300; then
-                  echo "Asset still exists after delete: $name"
-                fi
-                sleep $((attempt * 30))
-                continue
-              fi
-
-              echo "Upload failed: $name (http=$code)"
-              cat "$resp"
-              rm -f "$resp"
-              return 1
-            done
-
-            echo "Final asset list (filtered):"
-            curl -sS -H "$AUTH" -H "$ACCEPT" "${API}/repos/${REPO}/releases/${release_id}/assets?per_page=100&page=1" | jq -r --arg n "$name" '.[] | select(.name == $n) | "\(.id) \(.name) \(.size)"' || true
-            echo "Upload failed after retries: $name"
-            return 1
-          }
-
-          shopt -s nullglob
-          files=(artifacts/${{ matrix.os }}/*)
-          if [ "${#files[@]}" -eq 0 ]; then
-            echo "No files found under artifacts/${{ matrix.os }}/"
-            exit 1
-          fi
-
-          for f in "${files[@]}"; do
-            [ -f "$f" ] || continue
-            upload_one "$f"
-          done
+      - name: Upload release assets
+        uses: svenstaro/upload-release-action@v2
+        with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          tag: ${{ needs.release.outputs.release_tag }}
+          overwrite: true
+          file_glob: true
+          file: artifacts/${{ matrix.os }}/*
 
   notify_feishu:
     if: startsWith(github.ref, 'refs/tags/') || github.ref == 'refs/heads/main'
