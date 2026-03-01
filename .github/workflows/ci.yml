@@ -21,7 +21,7 @@ jobs:
       - name: Install dependencies
         env:
           npm_config_disturl: https://nodejs.org/download/release
-        run: pnpm install --frozen-lockfile
+        run: pnpm install --frozen-lockfile --ignore-scripts
       - name: Build shared packages
         run: pnpm --filter "@equipment/*" build
       - name: Lint
@@ -58,7 +58,7 @@ jobs:
       - name: Install dependencies
         env:
           npm_config_disturl: https://nodejs.org/download/release
-        run: pnpm install --frozen-lockfile
+        run: pnpm install --frozen-lockfile --ignore-scripts
       - name: Build shared packages
         run: pnpm --filter "@equipment/*" build
       - name: Build Electron
@@ -86,7 +86,7 @@ jobs:
       - name: Install dependencies
         env:
           npm_config_disturl: https://nodejs.org/download/release
-        run: pnpm install --frozen-lockfile
+        run: pnpm install --frozen-lockfile --ignore-scripts
       - name: Build shared packages
         run: pnpm --filter "@equipment/*" build
       - name: Build Web
