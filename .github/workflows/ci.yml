@@ -45,8 +45,16 @@ jobs:
         if: runner.os == 'Windows'
         shell: pwsh
         run: |
-          $pnpmCmd = (Get-Command pnpm).Source
+          $pnpmCandidates = @()
+          try { $pnpmCandidates = (where.exe pnpm) } catch { $pnpmCandidates = @() }
+          $pnpmCmd = $pnpmCandidates | Where-Object { $_.ToLower().EndsWith('.cmd') } | Select-Object -First 1
+          if (-not $pnpmCmd) { $pnpmCmd = $pnpmCandidates | Select-Object -First 1 }
+          if (-not $pnpmCmd) { $pnpmCmd = "pnpm" }
+
+          $nodeExe = (Get-Command node).Source
+
           "npm_execpath=$pnpmCmd" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+          "npm_node_execpath=$nodeExe" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
       - name: Install dependencies
         env:
           npm_config_disturl: https://nodejs.org/download/release
