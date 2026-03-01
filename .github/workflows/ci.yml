@@ -99,7 +99,7 @@ jobs:
 
   notify_feishu:
     if: github.event_name == 'push'
-    needs: [lint, build-electron, build-web]
+    needs: [build-electron, build-web]
     runs-on: ubuntu-latest
     steps:
       - name: Download web artifacts
