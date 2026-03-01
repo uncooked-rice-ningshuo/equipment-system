@@ -96,3 +96,108 @@ jobs:
         with:
           name: web-dist
           path: packages/web/.next/
+
+  notify_feishu:
+    if: github.event_name == 'push'
+    needs: [lint, build-electron, build-web]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download web artifacts
+        continue-on-error: true
+        uses: actions/download-artifact@v4
+        with:
+          name: web-dist
+          path: artifacts/web
+
+      - name: Download Electron artifacts (Ubuntu)
+        continue-on-error: true
+        uses: actions/download-artifact@v4
+        with:
+          name: electron-ubuntu-latest
+          path: artifacts/electron/ubuntu
+
+      - name: Download Electron artifacts (Windows)
+        continue-on-error: true
+        uses: actions/download-artifact@v4
+        with:
+          name: electron-windows-latest
+          path: artifacts/electron/windows
+
+      - name: Download Electron artifacts (macOS)
+        continue-on-error: true
+        uses: actions/download-artifact@v4
+        with:
+          name: electron-macos-latest
+          path: artifacts/electron/macos
+
+      - name: Send to Feishu
+        env:
+          FEISHU_WEBHOOK: ${{ secrets.FEISHU_WEBHOOK }}
+          LINT_RESULT: ${{ needs.lint.result }}
+          ELECTRON_RESULT: ${{ needs.build-electron.result }}
+          WEB_RESULT: ${{ needs.build-web.result }}
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          RUN_URL="${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          REF_NAME="${{ github.ref_name }}"
+          SHA="${{ github.sha }}"
+          SHORT_SHA="${SHA:0:7}"
+
+          OVERALL="success"
+          if [ "${LINT_RESULT}" != "success" ] || [ "${ELECTRON_RESULT}" != "success" ] || [ "${WEB_RESULT}" != "success" ]; then
+            OVERALL="failed"
+          fi
+
+          TITLE="CI 通过"
+          TEMPLATE="green"
+          if [ "${OVERALL}" != "success" ]; then
+            TITLE="CI 失败"
+            TEMPLATE="red"
+          fi
+
+          WEB_FILES_COUNT="0"
+          if [ -d artifacts/web ]; then
+            WEB_FILES_COUNT="$(find artifacts/web -type f | wc -l | tr -d ' ')"
+          fi
+
+          CONTENT="**仓库：** ${{ github.repository }}\n**分支：** ${REF_NAME}\n**提交：** ${SHORT_SHA}\n**Lint：** ${LINT_RESULT}\n**Electron：** ${ELECTRON_RESULT}\n**Web：** ${WEB_RESULT}\n**Web 产物文件数：** ${WEB_FILES_COUNT}"
+
+          curl -X POST "$FEISHU_WEBHOOK" \
+            -H "Content-Type: application/json" \
+            -d "{
+              \"msg_type\": \"interactive\",
+              \"card\": {
+                \"header\": {
+                  \"title\": {
+                    \"tag\": \"plain_text\",
+                    \"content\": \"${TITLE}\"
+                  },
+                  \"template\": \"${TEMPLATE}\"
+                },
+                \"elements\": [
+                  {
+                    \"tag\": \"div\",
+                    \"text\": {
+                      \"tag\": \"lark_md\",
+                      \"content\": \"${CONTENT}\"
+                    }
+                  },
+                  {
+                    \"tag\": \"action\",
+                    \"actions\": [
+                      {
+                        \"tag\": \"button\",
+                        \"text\": {
+                          \"tag\": \"plain_text\",
+                          \"content\": \"查看 CI 运行\"
+                        },
+                        \"type\": \"primary\",
+                        \"url\": \"${RUN_URL}\"
+                      }
+                    ]
+                  }
+                ]
+              }
+            }"
