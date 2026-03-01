@@ -1,4 +1,4 @@
-import { invoke } from '@/services/ipc';
+import { authService } from '@/services';
 import { Button, Checkbox, Form, Input, message } from 'antd';
 import { useEffect, useState } from 'react';
 import { history } from 'umi';
@@ -9,30 +9,26 @@ export default function Login() {
 
   // 在组件加载时检查是否有旧的 token
   useEffect(() => {
-    const token = localStorage.getItem('token');
-    if (token) {
-      console.log('Found existing token on login page, clearing it');
-      localStorage.removeItem('token');
-      localStorage.removeItem('loginUser');
-    }
+    // We should probably rely on authService.logout() but clearing storage is fine for cleanup
+    localStorage.removeItem('token');
+    localStorage.removeItem('loginUser');
   }, []);
 
   const onFinish = async (values: any) => {
     setLoading(true);
     const { username, password } = values;
     try {
-      // Mapping 'admin' to email if needed, handled in backend now but good to keep in mind
-      const res = await invoke('auth:login', username, password);
-      if (res?.success) {
-        localStorage.setItem('loginUser', username);
-        if (res.token) {
-          localStorage.setItem('token', res.token);
-        }
-        message.success('登录成功');
-        history.push('/dashboard');
-      } else {
-        message.error(res?.message || '用户名或密码错误');
-      }
+      // Use authService instead of direct IPC
+      const user = await authService.login({ username, password });
+      // authService.login throws on error, returns user on success
+
+      localStorage.setItem('loginUser', user.username);
+      // Token management is handled inside authService (or cookie for web)
+
+      message.success('登录成功');
+      history.push('/dashboard');
+    } catch (err: any) {
+      message.error(err.message || '用户名或密码错误');
     } finally {
       setLoading(false);
     }

@@ -1,0 +1,198 @@
+name: Release Electron
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [windows-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v3
+        with:
+          version: 9
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build shared packages
+        run: pnpm --filter "@equipment/*" build
+
+      - name: Build Electron (macOS)
+        if: matrix.os == 'macos-latest'
+        run: pnpm --filter @equipment/electron-app electron:build:mac
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build Electron (Windows)
+        if: matrix.os == 'windows-latest'
+        run: pnpm --filter @equipment/electron-app electron:build:win
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: release-${{ matrix.os }}
+          path: packages/electron-app/dist-electron/*
+          if-no-files-found: error
+
+  release:
+    runs-on: ubuntu-latest
+    concurrency:
+      group: release-${{ github.repository }}-${{ github.ref }}
+      cancel-in-progress: false
+    outputs:
+      release_tag: ${{ steps.meta.outputs.release_tag }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Resolve release tag
+        id: meta
+        shell: bash
+        run: |
+          if [[ "${GITHUB_REF}" == refs/tags/* ]]; then
+            echo "release_tag=${GITHUB_REF_NAME}" >> "$GITHUB_OUTPUT"
+          else
+            VERSION="$(node -p "require('./package.json').version")"
+            echo "release_tag=v${VERSION}" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Create or update GitHub Release
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: ${{ steps.meta.outputs.release_tag }}
+          target_commitish: ${{ github.sha }}
+          name: Release ${{ steps.meta.outputs.release_tag }}
+          draft: false
+          prerelease: false
+          generate_release_notes: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  upload_release_assets:
+    needs: [build, release]
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [windows-latest, macos-latest]
+    concurrency:
+      group: release-assets-${{ github.repository }}-${{ needs.release.outputs.release_tag }}-${{ matrix.os }}
+      cancel-in-progress: false
+    steps:
+      - name: Download build artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: release-${{ matrix.os }}
+          path: artifacts/${{ matrix.os }}
+
+      - name: Upload release assets
+        uses: svenstaro/upload-release-action@v2
+        with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          tag: ${{ needs.release.outputs.release_tag }}
+          overwrite: true
+          file_glob: true
+          file: artifacts/${{ matrix.os }}/**/*
+
+  notify_feishu:
+    needs: [upload_release_assets, release]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download Windows artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: release-windows-latest
+          path: artifacts/windows
+
+      - name: Download macOS artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: release-macos-latest
+          path: artifacts/macos
+
+      - name: Send to Feishu
+        env:
+          FEISHU_WEBHOOK: ${{ secrets.FEISHU_WEBHOOK }}
+          RELEASE_TAG: ${{ needs.release.outputs.release_tag }}
+        shell: bash
+        run: |
+          RELEASE_URL="${{ github.server_url }}/${{ github.repository }}/releases/tag/${RELEASE_TAG}"
+          WIN_FILE="$(find artifacts/windows -type f -name "*.exe" | head -n 1 || true)"
+          MAC_FILE="$(find artifacts/macos -type f -name "*.dmg" | head -n 1 || true)"
+
+          WIN_NAME=""
+          MAC_NAME=""
+          if [ -n "$WIN_FILE" ]; then WIN_NAME="$(basename "$WIN_FILE")"; fi
+          if [ -n "$MAC_FILE" ]; then MAC_NAME="$(basename "$MAC_FILE")"; fi
+
+          CONTENT="**版本：** ${RELEASE_TAG}"
+          if [ -n "$WIN_NAME" ]; then CONTENT="${CONTENT}\n**Windows：** ${WIN_NAME}"; fi
+          if [ -n "$MAC_NAME" ]; then CONTENT="${CONTENT}\n**macOS：** ${MAC_NAME}"; fi
+
+          curl -X POST "$FEISHU_WEBHOOK" \
+            -H "Content-Type: application/json" \
+            -d "{
+              \"msg_type\": \"interactive\",
+              \"card\": {
+                \"header\": {
+                  \"title\": {
+                    \"tag\": \"plain_text\",
+                    \"content\": \"🚀 Electron 应用发布通知\"
+                  },
+                  \"template\": \"blue\"
+                },
+                \"elements\": [
+                  {
+                    \"tag\": \"div\",
+                    \"text\": {
+                      \"tag\": \"lark_md\",
+                      \"content\": \"${CONTENT}\"
+                    }
+                  },
+                  {
+                    \"tag\": \"action\",
+                    \"actions\": [
+                      {
+                        \"tag\": \"button\",
+                        \"text\": {
+                          \"tag\": \"plain_text\",
+                          \"content\": \"⬇️ 下载 (Release) \"
+                        },
+                        \"type\": \"primary\",
+                        \"url\": \"${RELEASE_URL}\"
+                      },
+                      {
+                        \"tag\": \"button\",
+                        \"text\": {
+                          \"tag\": \"plain_text\",
+                          \"content\": \"📋 查看 Release 页面\"
+                        },
+                        \"type\": \"default\",
+                        \"url\": \"${RELEASE_URL}\"
+                      }
+                    ]
+                  }
+                ]
+              }
+            }"

@@ -92,7 +92,7 @@ function createWindow() {
 
   const url = app.isPackaged
     ? `file://${path.join(__dirname, '../dist/index.html')}`
-    : 'http://localhost:8000';
+    : 'http://localhost:3001';
 
   mainWindow.loadURL(url);
 }

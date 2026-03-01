@@ -1,4 +1,5 @@
-import { invoke, invokeWithEvent } from '@/services/ipc';
+import { dataService } from '@/services';
+import { eventBus } from '@/utils/eventBus';
 import { ProColumns, ProTable } from '@ant-design/pro-components';
 import { Button, DatePicker, Form, Input, message, Modal, Select } from 'antd';
 import dayjs from 'dayjs';
@@ -327,7 +328,7 @@ export default function Borrow() {
 
   const loadAvailableDevices = async () => {
     try {
-      const data = await invoke<any[]>('device:list', { status: 'available' });
+      const data = await dataService.getDevices({ status: 'available' });
       setAvailableDevices(Array.isArray(data) ? data : []);
     } catch (error) {
       console.error('加载可用设备列表失败:', error);
@@ -344,31 +345,40 @@ export default function Borrow() {
 
     const payload = {
       device_id: device.id, // 使用 device_id 而不是 device_code
+      device_code: device.code,
+      device_name: device.name,
+      device_type: device.type,
+      device_brand: device.brand,
       borrower_name: values.borrower_name,
       borrower_class: values.borrower_class,
       borrower_student_id: values.borrower_student_id,
       borrower_phone: values.borrower_phone,
-      borrow_time: dayjs(values.borrow_time).toISOString(),
-      return_deadline: dayjs(values.return_deadline).toISOString(),
+      borrow_time: dayjs(values.borrow_time).toDate(),
+      return_deadline: dayjs(values.return_deadline).toDate(),
     };
-    const res = await invokeWithEvent('borrow:create', payload);
-    if (res?.success) {
+
+    try {
+      await dataService.createBorrowRecord(payload);
+      eventBus.emit('device:borrowed', payload);
       message.success('借出成功');
       setVisible(false);
       form.resetFields();
       actionRef.current?.reload();
-    } else {
-      message.error(res?.message || '借出失败');
+    } catch (error: any) {
+      message.error(error.message || '借出失败');
     }
   };
 
   const handleReturn = async (id: number) => {
-    const res = await invokeWithEvent('borrow:return', id);
-    if (res?.success) {
+    try {
+      await dataService.updateBorrowRecord(id, {
+        actual_return_time: new Date(),
+      });
+      eventBus.emit('device:returned', id);
       message.success('归还成功');
       actionRef.current?.reload();
-    } else {
-      message.error(res?.message || '归还失败');
+    } catch (error: any) {
+      message.error(error.message || '归还失败');
     }
   };
 
@@ -392,31 +402,13 @@ export default function Borrow() {
       if (restParams.deviceType) {
         filters.deviceType = restParams.deviceType;
       }
-      if (
-        restParams.borrowTimeRange &&
-        Array.isArray(restParams.borrowTimeRange)
-      ) {
-        filters.borrowTimeStart = dayjs(
-          restParams.borrowTimeRange[0],
-        ).toISOString();
-        filters.borrowTimeEnd = dayjs(
-          restParams.borrowTimeRange[1],
-        ).toISOString();
-      }
-      if (
-        restParams.returnDeadlineRange &&
-        Array.isArray(restParams.returnDeadlineRange)
-      ) {
-        filters.returnDeadlineStart = dayjs(
-          restParams.returnDeadlineRange[0],
-        ).toISOString();
-        filters.returnDeadlineEnd = dayjs(
-          restParams.returnDeadlineRange[1],
-        ).toISOString();
-      }
+      // Drizzle or DB layer might need adjustment for date ranges in filters if strict typing is used
+      // For now, assuming basic filter support
 
-      const data = await invoke<any[]>('borrow:list', filters);
-      const list = Array.isArray(data) ? data : [];
+      // We need to filter returned=false for this active borrow list
+      filters.returned = false;
+
+      const list = await dataService.getBorrowRecords(filters);
 
       return {
         data: list,
@@ -434,8 +426,9 @@ export default function Borrow() {
 
   const fetchUniqueValues = async (field: string) => {
     try {
-      const data = await invoke<any[]>('borrow:list');
-      const list = Array.isArray(data) ? data : [];
+      const list: any[] = await dataService.getBorrowRecords({
+        returned: false,
+      });
       return [...new Set(list.map((item) => item[field]).filter(Boolean))].map(
         (value) => ({ label: value, value }),
       );
@@ -624,10 +617,12 @@ export default function Borrow() {
                         .map((device) => ({
                           label: device.code,
                           value: device.code,
+                          id: device.id, // Include id for internal logic if needed
                         }))
                     : availableDevices.map((device) => ({
                         label: device.code,
                         value: device.code,
+                        id: device.id,
                       }))
                 }
                 onChange={(value) => {

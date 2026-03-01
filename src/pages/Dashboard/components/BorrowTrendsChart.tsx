@@ -1,7 +1,7 @@
 import ChartError from '@/components/ChartError';
 import ChartSkeleton from '@/components/ChartSkeleton';
 import { ThemeType } from '@/config/theme';
-import { invoke } from '@/services/ipc';
+import { statsService } from '@/services';
 import { eventBus } from '@/utils/eventBus';
 import { Card, Empty, Tabs } from 'antd';
 import ReactECharts from 'echarts-for-react';
@@ -68,7 +68,7 @@ export default function BorrowTrendsChart({ theme }: { theme: ThemeType }) {
     setLoading(true);
     setError(null);
     try {
-      const result = await invoke('stats:borrowedByType', period);
+      const result = await statsService.getBorrowedTrend(period);
       setData(Array.isArray(result) ? result : []);
     } catch (err: any) {
       setError(err.message || '加载借用统计失败');
@@ -92,7 +92,7 @@ export default function BorrowTrendsChart({ theme }: { theme: ThemeType }) {
     };
   }, [period]);
 
-  if (loading) {
+  if (loading && data.length === 0) {
     return (
       <ChartCard $theme={theme} title="借用统计">
         <StyledTabs

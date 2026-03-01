@@ -1,6 +1,6 @@
 import { useTheme } from '@/components/ThemeProvider';
 import { ThemeType } from '@/config/theme';
-import { invoke } from '@/services/ipc';
+import { statsService } from '@/services';
 import { eventBus } from '@/utils/eventBus';
 import {
   CheckCircleOutlined,
@@ -86,17 +86,27 @@ export default function Dashboard() {
   }, []);
 
   const load = async () => {
-    const data = await invoke('stats:dashboard');
-    setStats(data);
-    eventBus.emit('dashboard:updated', data);
+    try {
+      const data = await statsService.getDashboardStats();
+      setStats(data);
+      eventBus.emit('dashboard:updated', data);
+    } catch (error) {
+      console.error('Failed to load dashboard stats:', error);
+    }
   };
 
   const loadReminders = async () => {
-    const data = await invoke('borrow:listOverdue');
-    setOverdue(data?.overdue || []);
-    setDueSoon(data?.dueSoon || []);
-    setVisible(true);
-    eventBus.emit('reminders:loaded', data);
+    try {
+      const data = await statsService.getOverdueRecords();
+      setOverdue(data?.overdue || []);
+      setDueSoon(data?.dueSoon || []);
+      if (data?.overdue?.length > 0 || data?.dueSoon?.length > 0) {
+        setVisible(true);
+      }
+      eventBus.emit('reminders:loaded', data);
+    } catch (error) {
+      console.error('Failed to load reminders:', error);
+    }
   };
 
   const columns = [
@@ -113,7 +123,7 @@ export default function Dashboard() {
           type={r.notified ? 'default' : 'primary'}
           onClick={async () => {
             if (!r.notified) {
-              await invoke('notify:mark', r.id);
+              await statsService.markAsNotified(r.id);
               loadReminders();
             }
           }}

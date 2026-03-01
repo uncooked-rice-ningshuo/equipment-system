@@ -3,7 +3,7 @@
 // DO NOT CHANGE IT MANUALLY!
 import './core/polyfill';
 import '/Users/ningshuo/code/my-projects/equipment-system/src/global.css';
-import { renderClient } from '/Users/ningshuo/code/my-projects/equipment-system/node_modules/.pnpm/@umijs+renderer-react@4.5.3_react-dom@18.3.1_react@18.3.1__react@18.3.1/node_modules/@umijs/renderer-react';
+import { renderClient } from '/Users/ningshuo/code/my-projects/equipment-system/node_modules/@umijs/renderer-react';
 import { getRoutes } from './core/route';
 import { createPluginManager } from './core/plugin';
 import { createHistory } from './core/history';
@@ -76,6 +76,6 @@ render();
 
     if (typeof window !== 'undefined') {
       window.g_umi = {
-        version: '4.5.3',
+        version: '4.6.28',
       };
     }

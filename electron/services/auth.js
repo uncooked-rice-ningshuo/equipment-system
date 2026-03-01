@@ -34,10 +34,15 @@ async function initAuth() {
     emailVerification: {
       enabled: false,
     },
-    baseURL: 'http://localhost:8000',
-    trustedOrigins: ['app://equipment-system', 'http://localhost:8000'],
+    baseURL: 'http://localhost:3001',
+    trustedOrigins: ['app://equipment-system', 'http://localhost:3001'],
     session: {
-      expiresIn: 30 * 24 * 60 * 60 * 1000, // 30 天
+      expiresIn: 30 * 24 * 60 * 60, // 30 天 (seconds, not ms)
+      updateAge: 24 * 60 * 60, // 1 day
+      cookieCache: {
+        enabled: true,
+        maxAge: 30 * 24 * 60 * 60, // 30 days
+      },
     },
     logger: {
       level: 'debug',

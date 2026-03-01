@@ -1,4 +1,5 @@
-import { invoke, invokeWithEvent } from '@/services/ipc';
+import { dataService } from '@/services';
+import { eventBus } from '@/utils/eventBus';
 import { ProColumns, ProTable } from '@ant-design/pro-components';
 import { Button, Form, Input, InputNumber, message, Modal, Select } from 'antd';
 import { useRef, useState } from 'react';
@@ -260,17 +261,14 @@ export default function Devices() {
 
   const handleCreate = async (values: any) => {
     try {
-      const res = await invokeWithEvent('device:create', values);
-      if (res?.success) {
-        message.success('新增设备成功');
-        setCreateVisible(false);
-        createForm.resetFields();
-        actionRef.current?.reload();
-      } else {
-        message.error(res?.message || '新增设备失败');
-      }
-    } catch (error) {
-      message.error('新增设备失败');
+      await dataService.createDevice(values);
+      eventBus.emit('device:added', values);
+      message.success('新增设备成功');
+      setCreateVisible(false);
+      createForm.resetFields();
+      actionRef.current?.reload();
+    } catch (error: any) {
+      message.error(error.message || '新增设备失败');
     }
   };
 
@@ -284,21 +282,15 @@ export default function Devices() {
 
   const handleUpdate = async (values: any) => {
     try {
-      const res = await invokeWithEvent('device:update', {
-        id: currentRecord.id,
-        ...values,
-      });
-      if (res?.success) {
-        message.success('更新设备成功');
-        setEditVisible(false);
-        editForm.resetFields();
-        setCurrentRecord(null);
-        actionRef.current?.reload();
-      } else {
-        message.error(res?.message || '更新设备失败');
-      }
-    } catch (error) {
-      message.error('更新设备失败');
+      await dataService.updateDevice(currentRecord.id, values);
+      eventBus.emit('device:updated', { id: currentRecord.id, ...values });
+      message.success('更新设备成功');
+      setEditVisible(false);
+      editForm.resetFields();
+      setCurrentRecord(null);
+      actionRef.current?.reload();
+    } catch (error: any) {
+      message.error(error.message || '更新设备失败');
     }
   };
 
@@ -309,17 +301,14 @@ export default function Devices() {
 
   const confirmDelete = async () => {
     try {
-      const result = await invokeWithEvent('device:delete', currentRecord.id);
-      if (result.success) {
-        message.success('删除成功');
-        setDeleteVisible(false);
-        setCurrentRecord(null);
-        actionRef.current?.reload();
-      } else {
-        message.error(result.message || '删除失败');
-      }
-    } catch (error) {
-      message.error('删除失败');
+      await dataService.deleteDevice(currentRecord.id);
+      eventBus.emit('device:deleted', currentRecord.id);
+      message.success('删除成功');
+      setDeleteVisible(false);
+      setCurrentRecord(null);
+      actionRef.current?.reload();
+    } catch (error: any) {
+      message.error(error.message || '删除失败');
     }
   };
 
@@ -344,8 +333,7 @@ export default function Devices() {
         filters.status = restParams.status;
       }
 
-      const data = await invoke<any[]>('device:list', filters);
-      const list = Array.isArray(data) ? data : [];
+      const list = await dataService.getDevices(filters);
 
       return {
         data: list,
@@ -363,8 +351,7 @@ export default function Devices() {
 
   const fetchUniqueValues = async (field: string) => {
     try {
-      const data = await invoke<any[]>('device:list');
-      const list = Array.isArray(data) ? data : [];
+      const list: any[] = await dataService.getDevices();
       return [...new Set(list.map((item) => item[field]).filter(Boolean))].map(
         (value) => ({ label: value, value }),
       );

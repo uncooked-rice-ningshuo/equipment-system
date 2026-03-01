@@ -1,1 +1,1 @@
-npx --no-install umi verify-commit $1
+pnpm exec umi verify-commit $1

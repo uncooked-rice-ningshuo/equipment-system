@@ -1,0 +1,39 @@
+appId: com.equipment.app
+productName: 设备借还管理系统
+directories:
+  output: dist-electron
+  buildResources: build
+files:
+  - dist/main/**/*
+  - dist/preload.js
+  - dist/renderer/**/*
+  - node_modules/better-sqlite3/**/*
+  - node_modules/bcryptjs/**/*
+  - package.json
+extraResources:
+  - from: data
+    to: data
+    filter:
+      - "**/*"
+mac:
+  category: public.app-category.productivity
+  target:
+    - dmg
+    - zip
+win:
+  target:
+    - nsis
+    - portable
+nsis:
+  oneClick: false
+  allowToChangeInstallationDirectory: true
+  createDesktopShortcut: true
+copyright: Copyright © 2024
+dmg:
+  contents:
+    - x: 130
+      y: 220
+    - x: 410
+      y: 220
+      type: link
+      path: /Applications

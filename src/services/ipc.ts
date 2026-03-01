@@ -1,54 +1,26 @@
-import { eventBus } from '@/utils/eventBus';
-import { invoke as webInvoke } from './httpClient';
+// Legacy IPC bridge - TO BE REMOVED
+// Currently only used by ElectronDataService to bridge to main process
+// WebDataService uses sql.js directly and does not need this.
+
+// Channels that don't require authentication
+type Channel = `${string}:${string}`;
+const NO_AUTH_CHANNELS: Channel[] = ['auth:login'];
 
 export async function invoke<T = any>(
-  channel: string,
+  channel: Channel,
   ...args: any[]
 ): Promise<T> {
-  const token = localStorage.getItem('token');
-  const newArgs = [...args];
-
-  if (token && channel !== 'auth:login') {
-    newArgs.push(token);
-  }
-
-  let result: any;
   if (window.api && typeof window.api.invoke === 'function') {
-    result = await window.api.invoke(channel, ...newArgs);
-  } else {
-    result = await webInvoke(channel, ...newArgs);
-  }
-
-  // 处理未授权错误
-  if (result && result.success === false) {
-    if (
-      result.message?.includes('未授权') ||
-      result.message?.includes('会话已过期')
-    ) {
-      console.log('Session expired, clearing token and redirecting to login');
-      localStorage.removeItem('token');
-      localStorage.removeItem('loginUser');
-      window.location.href = '/login';
+    // Append token for authenticated channels
+    if (!NO_AUTH_CHANNELS.includes(channel)) {
+      const token = localStorage.getItem('token');
+      return window.api.invoke(channel, ...args, token);
     }
+    return window.api.invoke(channel, ...args);
   }
 
-  return result;
+  console.warn(
+    `[Legacy IPC] Call to ${channel} failed: Not in Electron environment`,
+  );
+  throw new Error('IPC not available in Web environment');
 }
-
-const EVENT_MAP: Record<string, string> = {
-  'borrow:create': 'device:borrowed',
-  'borrow:return': 'device:returned',
-  'device:create': 'device:added',
-  'device:update': 'device:updated',
-  'device:delete': 'device:deleted',
-};
-
-export const invokeWithEvent = async (channel: string, ...args: any[]) => {
-  const result = await invoke(channel, ...args);
-
-  if (EVENT_MAP[channel]) {
-    eventBus.emit(EVENT_MAP[channel], result);
-  }
-
-  return result;
-};

@@ -2,8 +2,11 @@ const Database = require('better-sqlite3');
 const fs = require('fs');
 const path = require('path');
 const { app } = require('electron');
+const { drizzle } = require('drizzle-orm/better-sqlite3');
+const schema = require('../db/schema');
 
 let db = null;
+let drizzleDb = null;
 let dbPath = null;
 let backupPath = null;
 
@@ -69,6 +72,9 @@ function initDatabase() {
 
   // 初始化 better-sqlite3
   db = new Database(dbPath, { verbose: null });
+  // 初始化 Drizzle
+  drizzleDb = drizzle(db, { schema });
+
   console.log('Database loaded using better-sqlite3:', dbPath);
 
   // Enable WAL mode for better concurrency and performance
@@ -112,6 +118,14 @@ function createTables() {
       CHECK (borrow_time < return_deadline),
       CHECK (actual_return_time IS NULL OR actual_return_time >= borrow_time)
     )`,
+    // Added users table for local auth
+    `CREATE TABLE IF NOT EXISTS users (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      username TEXT UNIQUE NOT NULL,
+      password TEXT NOT NULL,
+      role TEXT DEFAULT 'user',
+      created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
+    )`,
   ];
 
   db.transaction(() => {
@@ -153,12 +167,7 @@ function createTables() {
       db,
       'CREATE INDEX IF NOT EXISTS idx_borrow_device_code ON borrow_records(device_code)',
     );
-
-    try {
-      db.prepare('DROP TABLE IF EXISTS users').run();
-    } catch (error) {
-      console.error('Error dropping legacy users table:', error);
-    }
+    // Removed DROP TABLE users
 
     const triggers = db
       .prepare("SELECT name FROM sqlite_master WHERE type='trigger'")
@@ -201,6 +210,7 @@ function runStmt(database, sql, params = []) {
 module.exports = {
   initDatabase,
   getDatabase: () => db,
+  getDrizzleDb: () => drizzleDb, // Export Drizzle DB
   getDbPath: () => dbPath || 'Not initialized',
   saveDatabase,
   queryAll,

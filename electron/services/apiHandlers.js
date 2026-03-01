@@ -1,53 +1,48 @@
-const { queryAll, runStmt, getDatabase } = require('./database');
+const { getDrizzleDb, queryAll, runStmt, getDatabase } = require('./database');
 const dayjs = require('dayjs');
+const { devices, borrowRecords } = require('../db/schema');
+const { eq, like, and, or, desc, sql } = require('drizzle-orm');
 
 // Device handlers
 function deviceList(filters = {}) {
-  const db = getDatabase();
-  let sql = 'SELECT * FROM devices WHERE 1=1';
-  const params = [];
-  if (filters?.code) {
-    sql += ' AND code LIKE ?';
-    params.push(`%${filters.code}%`);
+  const db = getDrizzleDb();
+  const conditions = [];
+
+  if (filters?.code) conditions.push(like(devices.code, `%${filters.code}%`));
+  if (filters?.name) conditions.push(like(devices.name, `%${filters.name}%`));
+  if (filters?.status) conditions.push(eq(devices.status, filters.status));
+  if (filters?.type) conditions.push(eq(devices.type, filters.type));
+  if (filters?.brand)
+    conditions.push(like(devices.brand, `%${filters.brand}%`));
+
+  try {
+    const query = db.select().from(devices);
+    if (conditions.length > 0) {
+      query.where(and(...conditions));
+    }
+    return query.all();
+  } catch (e) {
+    console.error('Device List Error:', e);
+    return [];
   }
-  if (filters?.name) {
-    sql += ' AND name LIKE ?';
-    params.push(`%${filters.name}%`);
-  }
-  if (filters?.status) {
-    sql += ' AND status = ?';
-    params.push(filters.status);
-  }
-  if (filters?.type) {
-    sql += ' AND type = ?';
-    params.push(filters.type);
-  }
-  if (filters?.brand) {
-    sql += ' AND brand LIKE ?';
-    params.push(`%${filters.brand}%`);
-  }
-  const rows = queryAll(db, sql, params);
-  return rows;
 }
 
 function deviceCreate(device) {
-  const db = getDatabase();
+  const db = getDrizzleDb();
   const { code, name, type, brand, model, price, location } = device;
   try {
-    runStmt(
-      db,
-      'INSERT INTO devices (code, name, type, brand, model, price, location, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?)',
-      [
+    db.insert(devices)
+      .values({
         code,
         name,
-        type || '',
-        brand || '',
-        model || '',
-        price || 0,
-        location || '',
-        'available',
-      ],
-    );
+        type: type || '',
+        brand: brand || '',
+        model: model || '',
+        price: price || 0,
+        location: location || '',
+        status: 'available',
+      })
+      .run();
     return { success: true };
   } catch (e) {
     return { success: false, message: e.message };
@@ -55,25 +50,23 @@ function deviceCreate(device) {
 }
 
 function deviceUpdate(device) {
-  const db = getDatabase();
+  const db = getDrizzleDb();
   const { id, code, name, type, brand, model, price, location, status } =
     device;
   try {
-    runStmt(
-      db,
-      'UPDATE devices SET code=?, name=?, type=?, brand=?, model=?, price=?, location=?, status=? WHERE id=?',
-      [
+    db.update(devices)
+      .set({
         code,
         name,
-        type || '',
-        brand || '',
-        model || '',
-        price || 0,
-        location || '',
+        type,
+        brand,
+        model,
+        price,
+        location,
         status,
-        id,
-      ],
-    );
+      })
+      .where(eq(devices.id, id))
+      .run();
     return { success: true };
   } catch (e) {
     return { success: false, message: e.message };
@@ -81,15 +74,17 @@ function deviceUpdate(device) {
 }
 
 function deviceDelete(id) {
-  const db = getDatabase();
-  const status = queryAll(db, 'SELECT status FROM devices WHERE id = ?', [
-    id,
-  ])[0]?.status;
-  if (status === 'borrowed') {
-    return { success: false, message: '设备已借出，无法删除' };
-  }
+  const db = getDrizzleDb();
   try {
-    runStmt(db, 'DELETE FROM devices WHERE id = ?', [id]);
+    const device = db
+      .select({ status: devices.status })
+      .from(devices)
+      .where(eq(devices.id, id))
+      .get();
+    if (device?.status === 'borrowed') {
+      return { success: false, message: '设备已借出，无法删除' };
+    }
+    db.delete(devices).where(eq(devices.id, id)).run();
     return { success: true };
   } catch (e) {
     return { success: false, message: e.message };

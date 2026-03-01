@@ -1,7 +1,7 @@
 import ChartError from '@/components/ChartError';
 import ChartSkeleton from '@/components/ChartSkeleton';
 import { ThemeType } from '@/config/theme';
-import { invoke } from '@/services/ipc';
+import { statsService } from '@/services';
 import { eventBus } from '@/utils/eventBus';
 import { Card, Empty } from 'antd';
 import ReactECharts from 'echarts-for-react';
@@ -53,7 +53,7 @@ export default function DeviceTypeChart({ theme }: { theme: ThemeType }) {
     setLoading(true);
     setError(null);
     try {
-      const result = await invoke('stats:deviceTypeDistribution');
+      const result = await statsService.getDeviceTypeDistribution();
       setData(Array.isArray(result) ? result : []);
     } catch (err: any) {
       setError(err.message || '加载设备类型分布失败');
@@ -79,7 +79,7 @@ export default function DeviceTypeChart({ theme }: { theme: ThemeType }) {
     };
   }, []);
 
-  if (loading) {
+  if (loading && data.length === 0) {
     return (
       <ChartCard $theme={theme} title="设备类型分布">
         <ChartSkeleton />
