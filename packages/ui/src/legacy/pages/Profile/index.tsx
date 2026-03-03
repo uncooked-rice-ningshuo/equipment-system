@@ -1,5 +1,6 @@
 import { Button, Card, Form, Input, message } from 'antd';
 import styled from 'styled-components';
+import { useTheme } from '../../components';
 import { useLegacyNavigate } from '../../router';
 import { useLegacyServices } from '../../services';
 
@@ -37,17 +38,17 @@ const StyledCard = styled(Card)<{ $theme: 'light' | 'dark' }>`
 
     &:hover {
       border-color: ${(props) =>
-        props.$theme === 'light' ? '#4096ff' : '#667eea'};
+        props.$theme === 'light' ? '#6366F1' : '#667eea'};
     }
   }
 
   .ant-input:focus,
   .ant-input-password:focus {
     border-color: ${(props) =>
-      props.$theme === 'light' ? '#4096ff' : '#667eea'};
+      props.$theme === 'light' ? '#6366F1' : '#667eea'};
     box-shadow: ${(props) =>
       props.$theme === 'light'
-        ? '0 0 0 2px rgba(64, 150, 255, 0.2)'
+        ? '0 0 0 2px rgba(99, 102, 241, 0.2)'
         : '0 0 0 2px rgba(102, 126, 234, 0.2)'};
   }
 
@@ -70,15 +71,15 @@ const StyledCard = styled(Card)<{ $theme: 'light' | 'dark' }>`
 
     &:hover .ant-select-selector {
       border-color: ${(props) =>
-        props.$theme === 'light' ? '#4096ff' : '#667eea'};
+        props.$theme === 'light' ? '#6366F1' : '#667eea'};
     }
 
     &.ant-select-focused .ant-select-selector {
       border-color: ${(props) =>
-        props.$theme === 'light' ? '#4096ff' : '#667eea'};
+        props.$theme === 'light' ? '#6366F1' : '#667eea'};
       box-shadow: ${(props) =>
         props.$theme === 'light'
-          ? '0 0 0 2px rgba(64, 150, 255, 0.2)'
+          ? '0 0 0 2px rgba(99, 102, 241, 0.2)'
           : '0 0 0 2px rgba(102, 126, 234, 0.2)'};
     }
 
@@ -90,10 +91,10 @@ const StyledCard = styled(Card)<{ $theme: 'light' | 'dark' }>`
 
 export default function Profile() {
   const { authService } = useLegacyServices();
+  const { theme } = useTheme();
   const navigate = useLegacyNavigate();
   const [form] = Form.useForm();
   const username = localStorage.getItem('loginUser') || 'admin';
-  const theme = (localStorage.getItem('theme') as 'light' | 'dark') || 'light';
 
   const onFinish = async (v: any) => {
     if (v.newPwd !== v.confirmPwd) {

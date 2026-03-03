@@ -54,7 +54,7 @@ export const Dashboard: React.FC = () => {
             <Statistic
               title="借出中"
               value={stats?.borrowedDevices || 0}
-              valueStyle={{ color: '#1890ff' }}
+              valueStyle={{ color: '#6366F1' }}
               prefix={<ExportOutlined />}
             />
           </Card>

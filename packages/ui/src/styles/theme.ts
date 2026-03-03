@@ -32,13 +32,13 @@ export interface ThemeConfig {
 
 export const lightTheme: ThemeConfig = {
   colors: {
-    primary: '#1890ff',
-    primaryLight: '#40a9ff',
-    primaryDark: '#096dd9',
+    primary: '#6366F1',
+    primaryLight: '#818CF8',
+    primaryDark: '#4F46E5',
     success: '#52c41a',
     warning: '#faad14',
     error: '#ff4d4f',
-    info: '#1890ff',
+    info: '#6366F1',
     background: '#f0f2f5',
     surface: '#ffffff',
     border: '#d9d9d9',

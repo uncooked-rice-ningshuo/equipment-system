@@ -1,3 +1,5 @@
+import { ConfigProvider } from 'antd';
+import zhCN from 'antd/locale/zh_CN';
 import {
   createContext,
   ReactNode,
@@ -5,6 +7,11 @@ import {
   useEffect,
   useState,
 } from 'react';
+import {
+  GlobalAntdStyles,
+  GlobalSelectStyles,
+} from '../../styles/GlobalStyles';
+import { createAntdTheme } from '../../styles/antdTheme';
 import { ThemeType } from '../config/theme';
 
 interface ThemeContextType {
@@ -36,7 +43,11 @@ export const ThemeProvider = ({ children }: { children: ReactNode }) => {
 
   return (
     <ThemeContext.Provider value={{ theme, toggleTheme, setTheme }}>
-      {children}
+      <ConfigProvider locale={zhCN} theme={createAntdTheme(theme)}>
+        <GlobalSelectStyles $theme={theme} />
+        <GlobalAntdStyles $theme={theme} />
+        {children}
+      </ConfigProvider>
     </ThemeContext.Provider>
   );
 };

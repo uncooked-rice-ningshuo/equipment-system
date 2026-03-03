@@ -3,6 +3,7 @@ import { Button, Modal, message } from 'antd';
 import dayjs from 'dayjs';
 import { useRef, useState } from 'react';
 import styled from 'styled-components';
+import { useTheme } from '../../components';
 import { useLegacyServices } from '../../services';
 
 const StyledModal = styled(Modal)<{ $theme: 'light' | 'dark' }>`
@@ -49,10 +50,10 @@ const typeOptions = [
 
 export default function Returned() {
   const { dataService } = useLegacyServices();
+  const { theme } = useTheme();
   const actionRef = useRef<any>();
   const [deleteModalVisible, setDeleteModalVisible] = useState(false);
   const [currentRecord, setCurrentRecord] = useState<any>(null);
-  const theme = (localStorage.getItem('theme') as 'light' | 'dark') || 'light';
 
   const handleDelete = (record: any) => {
     setCurrentRecord(record);

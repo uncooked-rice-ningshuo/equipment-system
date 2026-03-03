@@ -60,7 +60,7 @@ export const AppSider: React.FC<AppSiderProps> = ({
           borderBottom: '1px solid #f0f0f0',
         }}
       >
-        <h3 style={{ margin: 0, color: '#1890ff' }}>Equipment System</h3>
+        <h3 style={{ margin: 0, color: '#6366F1' }}>Equipment System</h3>
       </div>
       <Menu
         mode="inline"

@@ -60,7 +60,7 @@ export default function DashboardPage({
             <Statistic
               title="已借出"
               value={stats?.borrowedDevices || 0}
-              valueStyle={{ color: '#1890ff' }}
+              valueStyle={{ color: '#6366F1' }}
               prefix={<SwapOutlined />}
               loading={loading}
             />

@@ -18,16 +18,16 @@ export const GlobalSelectStyles = createGlobalStyle<{
     .ant-picker-cell:hover:not(.ant-picker-cell-disabled) .ant-picker-cell-inner {
       background: ${(props) =>
         props.$theme === 'light'
-          ? 'rgba(24, 144, 255, 0.1)'
+          ? 'rgba(99, 102, 241, 0.1)'
           : 'rgba(102, 126, 234, 0.2)'};
     }
     .ant-picker-cell-selected .ant-picker-cell-inner {
       background: ${(props) =>
-        props.$theme === 'light' ? '#1890ff' : '#667eea'};
+        props.$theme === 'light' ? '#6366F1' : '#667eea'};
     }
     .ant-picker-cell-today .ant-picker-cell-inner::before {
       border-color: ${(props) =>
-        props.$theme === 'light' ? '#1890ff' : '#667eea'};
+        props.$theme === 'light' ? '#6366F1' : '#667eea'};
     }
     .ant-picker-header {
       color: ${(props) => (props.$theme === 'light' ? '#1A202C' : '#ffffff')};
@@ -51,11 +51,11 @@ export const GlobalSelectStyles = createGlobalStyle<{
         ${(props) => (props.$theme === 'light' ? '#f0f0f0' : '#2d3748')};
     }
     .ant-picker-today-btn {
-      color: ${(props) => (props.$theme === 'light' ? '#1890ff' : '#667eea')};
+      color: ${(props) => (props.$theme === 'light' ? '#6366F1' : '#667eea')};
     }
     .ant-picker-time-panel-column > li.ant-picker-time-panel-cell-selected .ant-picker-time-panel-cell-inner {
       background: ${(props) =>
-        props.$theme === 'light' ? '#1890ff' : '#667eea'};
+        props.$theme === 'light' ? '#6366F1' : '#667eea'};
     }
   }
 `;
@@ -98,9 +98,9 @@ export const GlobalAntdStyles = createGlobalStyle<{ $theme: 'light' | 'dark' }>`
   }
   .ant-pagination-item-active {
     background: ${(props) =>
-      props.$theme === 'light' ? '#1890ff' : '#667eea'};
+      props.$theme === 'light' ? '#6366F1' : '#667eea'};
     border-color: ${(props) =>
-      props.$theme === 'light' ? '#1890ff' : '#667eea'};
+      props.$theme === 'light' ? '#6366F1' : '#667eea'};
     a {
       color: #ffffff;
     }

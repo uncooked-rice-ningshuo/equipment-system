@@ -52,17 +52,17 @@ export const ThemedModal = styled.div<{ $theme: ThemeType }>`
 
     &:hover {
       border-color: ${(props) =>
-        props.$theme === 'light' ? '#4096ff' : '#667eea'};
+        props.$theme === 'light' ? '#6366F1' : '#667eea'};
     }
   }
 
   .ant-input:focus,
   .ant-input-password:focus {
     border-color: ${(props) =>
-      props.$theme === 'light' ? '#4096ff' : '#667eea'};
+      props.$theme === 'light' ? '#6366F1' : '#667eea'};
     box-shadow: ${(props) =>
       props.$theme === 'light'
-        ? '0 0 0 2px rgba(64, 150, 255, 0.2)'
+        ? '0 0 0 2px rgba(99, 102, 241, 0.2)'
         : '0 0 0 2px rgba(102, 126, 234, 0.2)'};
   }
 
@@ -85,15 +85,15 @@ export const ThemedModal = styled.div<{ $theme: ThemeType }>`
 
     &:hover .ant-select-selector {
       border-color: ${(props) =>
-        props.$theme === 'light' ? '#4096ff' : '#667eea'};
+        props.$theme === 'light' ? '#6366F1' : '#667eea'};
     }
 
     &.ant-select-focused .ant-select-selector {
       border-color: ${(props) =>
-        props.$theme === 'light' ? '#4096ff' : '#667eea'};
+        props.$theme === 'light' ? '#6366F1' : '#667eea'};
       box-shadow: ${(props) =>
         props.$theme === 'light'
-          ? '0 0 0 2px rgba(64, 150, 255, 0.2)'
+          ? '0 0 0 2px rgba(99, 102, 241, 0.2)'
           : '0 0 0 2px rgba(102, 126, 234, 0.2)'};
     }
 
@@ -115,16 +115,16 @@ export const ThemedModal = styled.div<{ $theme: ThemeType }>`
 
     &:hover {
       border-color: ${(props) =>
-        props.$theme === 'light' ? '#4096ff' : '#667eea'};
+        props.$theme === 'light' ? '#6366F1' : '#667eea'};
     }
   }
 
   .ant-picker-focused {
     border-color: ${(props) =>
-      props.$theme === 'light' ? '#4096ff' : '#667eea'};
+      props.$theme === 'light' ? '#6366F1' : '#667eea'};
     box-shadow: ${(props) =>
       props.$theme === 'light'
-        ? '0 0 0 2px rgba(64, 150, 255, 0.2)'
+        ? '0 0 0 2px rgba(99, 102, 241, 0.2)'
         : '0 0 0 2px rgba(102, 126, 234, 0.2)'};
   }
 
@@ -137,15 +137,15 @@ export const ThemedModal = styled.div<{ $theme: ThemeType }>`
 
     &:hover {
       border-color: ${(props) =>
-        props.$theme === 'light' ? '#4096ff' : '#667eea'};
+        props.$theme === 'light' ? '#6366F1' : '#667eea'};
     }
 
     &:focus-within {
       border-color: ${(props) =>
-        props.$theme === 'light' ? '#4096ff' : '#667eea'};
+        props.$theme === 'light' ? '#6366F1' : '#667eea'};
       box-shadow: ${(props) =>
         props.$theme === 'light'
-          ? '0 0 0 2px rgba(64, 150, 255, 0.2)'
+          ? '0 0 0 2px rgba(99, 102, 241, 0.2)'
           : '0 0 0 2px rgba(102, 126, 234, 0.2)'};
     }
 
