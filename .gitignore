@@ -36,3 +36,6 @@ coverage
 /.axure/
 /release/
 /data/.worktrees/
+
+/packages/electron-app/dist-electron/
+**/.turbo/

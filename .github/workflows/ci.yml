@@ -119,7 +119,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '24'
+          node-version: 20
 
       - name: Install pnpm
         uses: pnpm/action-setup@v3
@@ -135,16 +135,16 @@ jobs:
         shell: bash
         run: |
           if [ "${{ matrix.os }}" == "windows-latest" ]; then
-            pnpm run build:win
+            pnpm run release:electron:win
           else
-            pnpm run build:mac
+            pnpm run release:electron:mac
           fi
 
       - name: Upload build artifacts
         uses: actions/upload-artifact@v4
         with:
           name: release-${{ matrix.os }}
-          path: release/**
+          path: packages/electron-app/dist-electron/*
           if-no-files-found: error
 
   release:

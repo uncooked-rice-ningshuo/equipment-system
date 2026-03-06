@@ -22,6 +22,8 @@
     "lint": "turbo run lint --filter=@equipment/*",
     "prepare": "husky",
     "release:electron": "pnpm --filter @equipment/electron-app electron:build",
+    "release:electron:mac": "pnpm --filter @equipment/electron-app electron:build:mac",
+    "release:electron:win": "pnpm --filter @equipment/electron-app electron:build:win",
     "test:electron:build": "pnpm --filter @equipment/electron-app test:build"
   },
   "devDependencies": {
