@@ -11,7 +11,7 @@ files:
   - node_modules/bcryptjs/**/*
   - package.json
 extraResources:
-  - from: data
+  - from: ../../data
     to: data
     filter:
       - "**/*"
