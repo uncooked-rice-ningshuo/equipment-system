@@ -18,7 +18,7 @@ export class ElectronStatsService implements IStatsService {
     return invoke('stats:deviceTypeDistribution');
   }
 
-  async getBorrowedTrend(period: string) {
+  async getBorrowedTrend(period: 'week' | 'month' | 'quarter') {
     return invoke('stats:borrowedByType', period);
   }
 }

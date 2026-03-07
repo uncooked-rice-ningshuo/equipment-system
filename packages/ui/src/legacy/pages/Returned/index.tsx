@@ -5,6 +5,7 @@ import { useRef, useState } from 'react';
 import styled from 'styled-components';
 import { useTheme } from '../../components';
 import { useLegacyServices } from '../../services';
+import { formatDateTime } from '../../utils';
 
 const StyledModal = styled(Modal)<{ $theme: 'light' | 'dark' }>`
   .ant-modal-content {
@@ -222,34 +223,40 @@ export default function Returned() {
     },
     {
       title: '借出时间',
-      dataIndex: 'borrow_time',
+      dataIndex: 'borrowTimeRange',
       valueType: 'dateRange',
+      hideInTable: true,
       fieldProps: {
         placeholder: ['开始时间', '结束时间'],
       },
-      render: (text: any) => dayjs(text).format('YYYY-MM-DD HH:mm'),
+    },
+    {
+      title: '归还时间',
+      dataIndex: 'returnTimeRange',
+      valueType: 'dateRange',
+      hideInTable: true,
+      fieldProps: {
+        placeholder: ['开始时间', '结束时间'],
+      },
+    },
+    {
+      title: '借出时间',
+      dataIndex: 'borrow_time',
+      hideInSearch: true,
+      render: (_: any, record: any) => formatDateTime(record.borrow_time),
     },
     {
       title: '归还时间',
       dataIndex: 'actual_return_time',
-      valueType: 'dateRange',
-      fieldProps: {
-        placeholder: ['开始时间', '结束时间'],
-      },
-      render: (text: any) => {
-        if (!text) return '-';
-        try {
-          return dayjs(text).format('YYYY-MM-DD HH:mm');
-        } catch {
-          return '-';
-        }
-      },
+      hideInSearch: true,
+      render: (_: any, record: any) =>
+        formatDateTime(record.actual_return_time),
     },
     {
       title: '应还时间',
       dataIndex: 'return_deadline',
       hideInSearch: true,
-      render: (text: any) => dayjs(text).format('YYYY-MM-DD HH:mm'),
+      render: (_: any, record: any) => formatDateTime(record.return_deadline),
     },
     {
       title: '借用天数',
@@ -325,13 +332,11 @@ export default function Returned() {
             </p>
             <p>
               <strong>借出时间：</strong>
-              {dayjs(currentRecord.borrow_time).format('YYYY-MM-DD HH:mm')}
+              {formatDateTime(currentRecord.borrow_time)}
             </p>
             <p>
               <strong>归还时间：</strong>
-              {dayjs(currentRecord.actual_return_time).format(
-                'YYYY-MM-DD HH:mm',
-              )}
+              {formatDateTime(currentRecord.actual_return_time)}
             </p>
             <p style={{ color: '#ff4d4f', marginTop: 16 }}>
               删除后数据不可恢复！

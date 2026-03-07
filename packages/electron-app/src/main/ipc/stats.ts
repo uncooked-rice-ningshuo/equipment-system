@@ -9,6 +9,50 @@ import { ipcMain } from 'electron';
 import { getDatabase, getDrizzleDb } from '../db/connection';
 
 export function registerStatsIpc(): void {
+  const getBorrowTrends = async (
+    period: 'week' | 'month' | 'quarter',
+  ): Promise<DeviceTypeStat[]> => {
+    const rawDb = getDatabase();
+    const nowMs = Date.now();
+    const nowSec = Math.floor(nowMs / 1000);
+
+    let thresholdMs: number;
+    let thresholdSec: number;
+    switch (period) {
+      case 'week':
+        thresholdMs = nowMs - 7 * 24 * 60 * 60 * 1000;
+        thresholdSec = nowSec - 7 * 24 * 60 * 60;
+        break;
+      case 'month':
+        thresholdMs = nowMs - 30 * 24 * 60 * 60 * 1000;
+        thresholdSec = nowSec - 30 * 24 * 60 * 60;
+        break;
+      case 'quarter':
+        {
+          const date = new Date(nowMs);
+          date.setMonth(date.getMonth() - 3);
+          thresholdMs = date.getTime();
+        }
+        thresholdSec = Math.floor(thresholdMs / 1000);
+        break;
+      default:
+        thresholdMs = nowMs - 7 * 24 * 60 * 60 * 1000;
+        thresholdSec = nowSec - 7 * 24 * 60 * 60;
+    }
+
+    return rawDb
+      .prepare(
+        `SELECT COALESCE(d.type, '未分类') as name, COUNT(*) as value
+           FROM borrow_records br
+           JOIN devices d ON d.id = br.device_id
+           WHERE (br.borrow_time >= ? AND br.borrow_time >= 1000000000000)
+              OR (br.borrow_time >= ? AND br.borrow_time < 1000000000000)
+           GROUP BY d.type
+           ORDER BY value DESC`,
+      )
+      .all(thresholdMs, thresholdSec) as DeviceTypeStat[];
+  };
+
   // 仪表盘统计数据
   ipcMain.handle('stats:dashboard', async (): Promise<DashboardStats> => {
     const db = getDrizzleDb();
@@ -28,14 +72,18 @@ export function registerStatsIpc(): void {
       .all();
 
     // 逾期设备数（使用原始 SQL 查询）
-    const now = new Date().toISOString();
+    const nowMs = Date.now();
+    const nowSec = Math.floor(nowMs / 1000);
     const overdueResult = rawDb
       .prepare(
         `SELECT COUNT(*) as count FROM borrow_records
          WHERE actual_return_time IS NULL
-         AND datetime(return_deadline) < datetime(?)`,
+         AND (
+           (return_deadline < ? AND return_deadline >= 1000000000000)
+           OR (return_deadline < ? AND return_deadline < 1000000000000)
+         )`,
       )
-      .get(now) as { count: number };
+      .get(nowMs, nowSec) as { count: number };
 
     return {
       totalDevices: totalDevices || 0,
@@ -69,37 +117,19 @@ export function registerStatsIpc(): void {
     'stats:borrowTrends',
     async (
       _event,
-      period: 'week' | 'month' | 'year',
+      period: 'week' | 'month' | 'quarter',
     ): Promise<DeviceTypeStat[]> => {
-      const rawDb = getDatabase();
+      return getBorrowTrends(period);
+    },
+  );
 
-      let days: number;
-      switch (period) {
-        case 'week':
-          days = 7;
-          break;
-        case 'month':
-          days = 30;
-          break;
-        case 'year':
-          days = 365;
-          break;
-        default:
-          days = 7;
-      }
-
-      const result = rawDb
-        .prepare(
-          `SELECT COALESCE(d.type, '未分类') as name, COUNT(*) as value
-           FROM borrow_records br
-           JOIN devices d ON d.id = br.device_id
-           WHERE br.borrow_time >= datetime('now', '-${days} days')
-           GROUP BY d.type
-           ORDER BY value DESC`,
-        )
-        .all() as DeviceTypeStat[];
-
-      return result;
+  ipcMain.handle(
+    'stats:borrowedByType',
+    async (
+      _event,
+      period: 'week' | 'month' | 'quarter',
+    ): Promise<DeviceTypeStat[]> => {
+      return getBorrowTrends(period);
     },
   );
 }

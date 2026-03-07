@@ -98,6 +98,13 @@ function createTables() {
       created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
       updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
     )`,
+    `CREATE TABLE IF NOT EXISTS device_types (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      name TEXT UNIQUE NOT NULL,
+      description TEXT,
+      created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+      updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
+    )`,
     `CREATE TABLE IF NOT EXISTS borrow_records (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
       device_id INTEGER NOT NULL,
@@ -142,6 +149,10 @@ function createTables() {
     runStmt(
       db,
       'CREATE INDEX IF NOT EXISTS idx_devices_brand ON devices(brand, type)',
+    );
+    runStmt(
+      db,
+      'CREATE INDEX IF NOT EXISTS idx_device_types_name ON device_types(name)',
     );
     runStmt(
       db,

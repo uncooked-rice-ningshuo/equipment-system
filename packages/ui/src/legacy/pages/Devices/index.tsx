@@ -2,6 +2,7 @@ import { ProColumns, ProTable } from '@ant-design/pro-components';
 import { Button, Form, Input, InputNumber, message, Modal, Select } from 'antd';
 import { useRef, useState } from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
+import DeviceTypeSelect from '../../../components/fields/DeviceTypeSelect';
 import { useTheme } from '../../components';
 import { useLegacyServices } from '../../services';
 import { eventBus } from '../../utils';
@@ -12,14 +13,6 @@ const statusOptions = [
   { label: '已借出', value: 'borrowed' },
   { label: '维修中', value: 'maintenance' },
   { label: '已报废', value: 'scrap' },
-];
-
-const typeOptions = [
-  { label: '柜式空调', value: '柜式空调' },
-  { label: '数字示波器', value: '数字示波器' },
-  { label: '笔记本电脑', value: '笔记本电脑' },
-  { label: '服务器', value: '服务器' },
-  { label: '打印机', value: '打印机' },
 ];
 
 const GlobalSelectStyles = createGlobalStyle<{ $theme: 'light' | 'dark' }>`
@@ -299,12 +292,12 @@ export default function Devices() {
       title: '设备类型',
       dataIndex: 'type',
       valueType: 'select',
-      valueEnum: typeOptions.reduce((acc: any, item) => {
-        acc[item.value] = { text: item.label };
-        return acc;
-      }, {}),
+      request: async () => fetchUniqueValues('type'),
       fieldProps: {
         placeholder: '请选择设备类型',
+        showSearch: true,
+        filterOption: (input: string, option: any) =>
+          option.label.toLowerCase().includes(input.toLowerCase()),
       },
     },
     {
@@ -463,7 +456,10 @@ export default function Devices() {
               label="设备类型"
               rules={[{ required: true, message: '请选择设备类型' }]}
             >
-              <Select placeholder="请选择设备类型" options={typeOptions} />
+              <DeviceTypeSelect
+                dataService={dataService}
+                placeholder="请选择设备类型"
+              />
             </Form.Item>
             <Form.Item
               name="brand"
@@ -544,7 +540,10 @@ export default function Devices() {
               label="设备类型"
               rules={[{ required: true, message: '请选择设备类型' }]}
             >
-              <Select placeholder="请选择设备类型" options={typeOptions} />
+              <DeviceTypeSelect
+                dataService={dataService}
+                placeholder="请选择设备类型"
+              />
             </Form.Item>
             <Form.Item
               name="brand"

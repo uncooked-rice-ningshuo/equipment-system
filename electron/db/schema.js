@@ -20,6 +20,18 @@ const devices = sqliteTable('devices', {
     .default(sql`(unixepoch() * 1000)`),
 });
 
+const deviceTypes = sqliteTable('device_types', {
+  id: integer('id').primaryKey({ autoIncrement: true }),
+  name: text('name').unique().notNull(),
+  description: text('description'),
+  created_at: integer('created_at', { mode: 'timestamp' })
+    .notNull()
+    .default(sql`(unixepoch() * 1000)`),
+  updated_at: integer('updated_at', { mode: 'timestamp' })
+    .notNull()
+    .default(sql`(unixepoch() * 1000)`),
+});
+
 // Borrow Records table
 const borrowRecords = sqliteTable('borrow_records', {
   id: integer('id').primaryKey({ autoIncrement: true }),
@@ -54,6 +66,7 @@ const users = sqliteTable('users', {
 
 module.exports = {
   devices,
+  deviceTypes,
   borrowRecords,
   users,
 };

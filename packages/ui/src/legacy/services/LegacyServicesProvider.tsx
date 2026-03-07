@@ -1,8 +1,13 @@
 import {
   AuthResult,
   AuthUser,
+  DeviceType,
+  DeviceTypeFilter,
   IAuthService,
   IDataService,
+  ListOptions,
+  ListResult,
+  NewDeviceType,
 } from '@equipment/shared';
 import { createContext, ReactNode, useContext, useMemo } from 'react';
 
@@ -35,7 +40,7 @@ type LegacyBorrowRecord = {
 type LegacyStatsService = {
   getDashboardStats: () => Promise<LegacyDashboardStats>;
   getDeviceTypeDistribution: () => Promise<any[]>;
-  getBorrowedTrend: (period: 'week' | 'month' | 'year') => Promise<any[]>;
+  getBorrowedTrend: (period: 'week' | 'month' | 'quarter') => Promise<any[]>;
   getOverdueRecords: () => Promise<{
     overdue: LegacyBorrowRecord[];
     dueSoon: LegacyBorrowRecord[];
@@ -63,6 +68,10 @@ type LegacyDataService = {
   createDevice: (data: any) => Promise<any>;
   updateDevice: (id: number, data: any) => Promise<any>;
   deleteDevice: (id: number) => Promise<void>;
+  getDeviceTypes?: (
+    options?: ListOptions<DeviceTypeFilter>,
+  ) => Promise<ListResult<DeviceType>>;
+  createDeviceType?: (data: NewDeviceType) => Promise<DeviceType>;
   getBorrowRecords: (filters?: any) => Promise<LegacyBorrowRecord[]>;
   createBorrowRecord: (data: any) => Promise<LegacyBorrowRecord>;
   updateBorrowRecord: (id: number, data: any) => Promise<any>;
@@ -153,6 +162,23 @@ function createLegacyDataService(
     deleteDevice(id: number) {
       return coreDataService.deleteDevice(id);
     },
+    getDeviceTypes(options?: ListOptions<DeviceTypeFilter>) {
+      if (!coreDataService.getDeviceTypes) {
+        return Promise.resolve({
+          data: [],
+          total: 0,
+          page: options?.pagination?.page ?? 1,
+          pageSize: options?.pagination?.pageSize ?? 0,
+        });
+      }
+      return coreDataService.getDeviceTypes(options);
+    },
+    createDeviceType(data: NewDeviceType) {
+      if (!coreDataService.createDeviceType) {
+        return Promise.reject(new Error('当前数据服务不支持新增设备类型'));
+      }
+      return coreDataService.createDeviceType(data);
+    },
     async getBorrowRecords(filters?: any) {
       const normalized = sanitizeObject(filters) ?? {};
       if (
@@ -234,7 +260,7 @@ function createLegacyStatsService(
     getDeviceTypeDistribution() {
       return coreDataService.getDeviceTypeDistribution() as any;
     },
-    getBorrowedTrend(period: 'week' | 'month' | 'year') {
+    getBorrowedTrend(period: 'week' | 'month' | 'quarter') {
       return coreDataService.getBorrowTrends(period) as any;
     },
     async getOverdueRecords() {

@@ -15,7 +15,7 @@ import { NextRequest } from 'next/server';
 // GET /api/devices/[id]
 export async function GET(
   request: NextRequest,
-  { params }: { params: { id: string } },
+  context: { params: Promise<{ id: string }> },
 ) {
   try {
     const session = await getAuth().api.getSession({
@@ -25,7 +25,8 @@ export async function GET(
       return errorResponse('Unauthorized', 401);
     }
 
-    const id = parseInt(params.id);
+    const { id: idParam } = await context.params;
+    const id = parseInt(idParam);
     if (isNaN(id)) {
       return errorResponse('Invalid ID', 400);
     }
@@ -51,7 +52,7 @@ export async function GET(
 // PUT /api/devices/[id]
 export async function PUT(
   request: NextRequest,
-  { params }: { params: { id: string } },
+  context: { params: Promise<{ id: string }> },
 ) {
   try {
     const session = await getAuth().api.getSession({
@@ -61,7 +62,8 @@ export async function PUT(
       return errorResponse('Unauthorized', 401);
     }
 
-    const id = parseInt(params.id);
+    const { id: idParam } = await context.params;
+    const id = parseInt(idParam);
     if (isNaN(id)) {
       return errorResponse('Invalid ID', 400);
     }
@@ -93,7 +95,7 @@ export async function PUT(
 // DELETE /api/devices/[id]
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { id: string } },
+  context: { params: Promise<{ id: string }> },
 ) {
   try {
     const session = await getAuth().api.getSession({
@@ -103,7 +105,8 @@ export async function DELETE(
       return errorResponse('Unauthorized', 401);
     }
 
-    const id = parseInt(params.id);
+    const { id: idParam } = await context.params;
+    const id = parseInt(idParam);
     if (isNaN(id)) {
       return errorResponse('Invalid ID', 400);
     }

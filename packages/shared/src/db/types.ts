@@ -2,7 +2,7 @@
  * 数据库类型定义补充
  */
 
-import { BorrowRecord, Device, User } from './schema';
+import { BorrowRecord, Device, DeviceType, User } from './schema';
 
 // ==================== 设备相关 ====================
 export type DeviceStatus = 'available' | 'borrowed' | 'maintenance' | 'scrap';
@@ -16,6 +16,15 @@ export interface DeviceFilter {
 }
 
 export type DeviceIpc = Omit<Device, 'createdAt' | 'updatedAt'> & {
+  createdAt: number;
+  updatedAt: number;
+};
+
+export interface DeviceTypeFilter {
+  name?: string;
+}
+
+export type DeviceTypeIpc = Omit<DeviceType, 'createdAt' | 'updatedAt'> & {
   createdAt: number;
   updatedAt: number;
 };

@@ -4,7 +4,7 @@ import {
   ExclamationCircleOutlined,
   LaptopOutlined,
 } from '@ant-design/icons';
-import { Button, Card, Col, Modal, Row, Statistic, Table } from 'antd';
+import { Button, Card, Col, message, Modal, Row, Statistic, Table } from 'antd';
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { useTheme } from '../../components';
@@ -91,7 +91,9 @@ export default function Dashboard() {
       const data = await statsService.getDashboardStats();
       setStats(data);
       eventBus.emit('dashboard:updated', data);
-    } catch {}
+    } catch (err: any) {
+      message.error(err?.message || '加载仪表盘统计失败');
+    }
   };
 
   const loadReminders = async () => {
@@ -103,7 +105,9 @@ export default function Dashboard() {
         setVisible(true);
       }
       eventBus.emit('reminders:loaded', data);
-    } catch {}
+    } catch (err: any) {
+      message.error(err?.message || '加载归还提醒失败');
+    }
   };
 
   const columns = [

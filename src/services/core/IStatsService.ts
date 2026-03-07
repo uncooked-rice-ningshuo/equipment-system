@@ -9,6 +9,6 @@ export interface IStatsService {
   markAsNotified(recordId: number): Promise<void>;
   getDeviceTypeDistribution(): Promise<{ name: string; value: number }[]>;
   getBorrowedTrend(
-    period: 'week' | 'month' | 'year',
+    period: 'week' | 'month' | 'quarter',
   ): Promise<{ name: string; value: number }[]>;
 }

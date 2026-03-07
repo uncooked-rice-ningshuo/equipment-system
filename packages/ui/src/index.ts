@@ -10,5 +10,6 @@ export * from './styles';
 export * from './hooks';
 
 export * from './components/charts';
+export * from './components/fields';
 export * from './components/modals';
 export * from './pages';

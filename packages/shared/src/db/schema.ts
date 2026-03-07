@@ -29,6 +29,14 @@ export const devices = pgTable('devices', {
   updatedAt: timestamp('updated_at').notNull().defaultNow(),
 });
 
+export const deviceTypes = pgTable('device_types', {
+  id: serial('id').primaryKey(),
+  name: varchar('name', { length: 100 }).notNull().unique(),
+  description: varchar('description', { length: 200 }).default(''),
+  createdAt: timestamp('created_at').notNull().defaultNow(),
+  updatedAt: timestamp('updated_at').notNull().defaultNow(),
+});
+
 // ==================== 借还记录表 ====================
 export const borrowRecords = pgTable('borrow_records', {
   id: serial('id').primaryKey(),
@@ -73,6 +81,9 @@ export const sessions = pgTable('sessions', {
 // ==================== 类型导出 ====================
 export type Device = typeof devices.$inferSelect;
 export type NewDevice = typeof devices.$inferInsert;
+
+export type DeviceType = typeof deviceTypes.$inferSelect;
+export type NewDeviceType = typeof deviceTypes.$inferInsert;
 
 export type BorrowRecord = typeof borrowRecords.$inferSelect;
 export type NewBorrowRecord = typeof borrowRecords.$inferInsert;

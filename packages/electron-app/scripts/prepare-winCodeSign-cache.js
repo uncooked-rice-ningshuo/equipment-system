@@ -38,7 +38,7 @@ function downloadToFile(https, fs, url, filePath) {
           response.headers.location
         ) {
           response.resume();
-          downloadToFile(response.headers.location, filePath).then(
+          downloadToFile(https, fs, response.headers.location, filePath).then(
             resolve,
             reject,
           );
@@ -111,14 +111,28 @@ async function main() {
   const sevenZipBin = cjsDefault(await import('7zip-bin'));
   const sevenZipPath = sevenZipBin.path7za;
 
+  try {
+    await fsp.chmod(sevenZipPath, 0o755);
+  } catch (err) {
+    void err;
+  }
+
   const result = spawnSync(
     sevenZipPath,
     ['x', '-y', '-bd', tmpArchivePath, `-o${destDir}`, '-x!darwin'],
     { stdio: 'inherit' },
   );
 
+  if (result.error) {
+    throw result.error;
+  }
+
   if (result.status !== 0) {
-    throw new Error(`Extract winCodeSign failed (exit=${result.status})`);
+    throw new Error(
+      `Extract winCodeSign failed (status=${result.status}, signal=${
+        result.signal ?? 'null'
+      })`,
+    );
   }
 
   if (!(await exists(fsp, marker))) {

@@ -23,6 +23,8 @@ const validChannels = [
   'device:create',
   'device:update',
   'device:delete',
+  'deviceType:list',
+  'deviceType:create',
   // 借还
   'borrow:list',
   'borrow:create',

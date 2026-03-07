@@ -59,7 +59,7 @@ const CHART_COLORS = [
 ];
 
 export default function BorrowTrendsChart({ theme }: { theme: ThemeType }) {
-  const [period, setPeriod] = useState<'week' | 'month' | 'year'>('week');
+  const [period, setPeriod] = useState<'week' | 'month' | 'quarter'>('week');
   const [data, setData] = useState<any[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -98,11 +98,11 @@ export default function BorrowTrendsChart({ theme }: { theme: ThemeType }) {
         <StyledTabs
           $theme={theme}
           activeKey={period}
-          onChange={(key) => setPeriod(key as 'week' | 'month' | 'year')}
+          onChange={(key) => setPeriod(key as 'week' | 'month' | 'quarter')}
           items={[
             { key: 'week', label: '本周' },
             { key: 'month', label: '本月' },
-            { key: 'year', label: '本年' },
+            { key: 'quarter', label: '近3个月' },
           ]}
         />
         <ChartSkeleton />
@@ -116,11 +116,11 @@ export default function BorrowTrendsChart({ theme }: { theme: ThemeType }) {
         <StyledTabs
           $theme={theme}
           activeKey={period}
-          onChange={(key) => setPeriod(key as 'week' | 'month' | 'year')}
+          onChange={(key) => setPeriod(key as 'week' | 'month' | 'quarter')}
           items={[
             { key: 'week', label: '本周' },
             { key: 'month', label: '本月' },
-            { key: 'year', label: '本年' },
+            { key: 'quarter', label: '近3个月' },
           ]}
         />
         <ChartError message={error} onRetry={load} />
@@ -134,11 +134,11 @@ export default function BorrowTrendsChart({ theme }: { theme: ThemeType }) {
         <StyledTabs
           $theme={theme}
           activeKey={period}
-          onChange={(key) => setPeriod(key as 'week' | 'month' | 'year')}
+          onChange={(key) => setPeriod(key as 'week' | 'month' | 'quarter')}
           items={[
             { key: 'week', label: '本周' },
             { key: 'month', label: '本月' },
-            { key: 'year', label: '本年' },
+            { key: 'quarter', label: '近3个月' },
           ]}
         />
         <Empty description="暂无数据" />
@@ -229,11 +229,11 @@ export default function BorrowTrendsChart({ theme }: { theme: ThemeType }) {
       <StyledTabs
         $theme={theme}
         activeKey={period}
-        onChange={(key) => setPeriod(key as 'week' | 'month' | 'year')}
+        onChange={(key) => setPeriod(key as 'week' | 'month' | 'quarter')}
         items={[
           { key: 'week', label: '本周' },
           { key: 'month', label: '本月' },
-          { key: 'year', label: '本年' },
+          { key: 'quarter', label: '近3个月' },
         ]}
       />
       <ReactECharts option={option} style={{ height: 280 }} />

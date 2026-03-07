@@ -5,7 +5,7 @@ import { useEffect, useRef, useState } from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
 import { useTheme } from '../../components';
 import { useLegacyServices } from '../../services';
-import { eventBus } from '../../utils';
+import { eventBus, formatDateTime } from '../../utils';
 
 const typeOptions = [
   { label: '柜式空调', value: '柜式空调' },
@@ -511,7 +511,7 @@ export default function Borrow() {
       fieldProps: {
         placeholder: ['开始时间', '结束时间'],
       },
-      render: (text: any) => dayjs(text).format('YYYY-MM-DD HH:mm'),
+      render: (_: any, record: any) => formatDateTime(record.borrow_time),
     },
     {
       title: '应还时间',
@@ -520,7 +520,7 @@ export default function Borrow() {
       fieldProps: {
         placeholder: ['开始时间', '结束时间'],
       },
-      render: (text: any) => dayjs(text).format('YYYY-MM-DD HH:mm'),
+      render: (_: any, record: any) => formatDateTime(record.return_deadline),
     },
     {
       title: '操作',

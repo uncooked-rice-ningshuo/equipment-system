@@ -6,13 +6,16 @@
 import {
   BorrowRecord,
   Device,
+  DeviceType,
   NewBorrowRecord,
   NewDevice,
+  NewDeviceType,
 } from '../../db/schema';
 import {
   BorrowFilter,
   DashboardStats,
   DeviceFilter,
+  DeviceTypeFilter,
   DeviceTypeStat,
   ListOptions,
   ListResult,
@@ -27,6 +30,17 @@ export interface IDataService {
   updateDevice(id: number, data: Partial<NewDevice>): Promise<Device>;
   deleteDevice(id: number): Promise<void>;
 
+  getDeviceTypes?(
+    options?: ListOptions<DeviceTypeFilter>,
+  ): Promise<ListResult<DeviceType>>;
+  getDeviceTypeById?(id: number): Promise<DeviceType | null>;
+  createDeviceType?(data: NewDeviceType): Promise<DeviceType>;
+  updateDeviceType?(
+    id: number,
+    data: Partial<NewDeviceType>,
+  ): Promise<DeviceType>;
+  deleteDeviceType?(id: number): Promise<void>;
+
   // ==================== 借还管理 ====================
   getBorrowRecords(
     options?: ListOptions<BorrowFilter>,
@@ -40,7 +54,9 @@ export interface IDataService {
   // ==================== 统计查询 ====================
   getDashboardStats(): Promise<DashboardStats>;
   getDeviceTypeDistribution(): Promise<DeviceTypeStat[]>;
-  getBorrowTrends(period: 'week' | 'month' | 'year'): Promise<DeviceTypeStat[]>;
+  getBorrowTrends(
+    period: 'week' | 'month' | 'quarter',
+  ): Promise<DeviceTypeStat[]>;
   getOverdueRecords(): Promise<BorrowRecord[]>;
   getDueSoonRecords(days?: number): Promise<BorrowRecord[]>;
 

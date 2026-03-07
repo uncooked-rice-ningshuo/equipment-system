@@ -5,6 +5,7 @@
 import { initDefaultUser, registerAuthIpc } from './auth';
 import { registerBorrowIpc } from './borrow';
 import { registerDeviceIpc } from './devices';
+import { registerDeviceTypeIpc } from './deviceTypes';
 import { registerStatsIpc } from './stats';
 
 export function registerIpcHandlers(): void {
@@ -14,6 +15,7 @@ export function registerIpcHandlers(): void {
   // 注册各模块 IPC
   registerAuthIpc();
   registerDeviceIpc();
+  registerDeviceTypeIpc();
   registerBorrowIpc();
   registerStatsIpc();
 

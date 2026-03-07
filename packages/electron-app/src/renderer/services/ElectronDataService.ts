@@ -9,12 +9,15 @@ import {
   DashboardStats,
   Device,
   DeviceFilter,
+  DeviceType,
+  DeviceTypeFilter,
   DeviceTypeStat,
   IDataService,
   ListOptions,
   ListResult,
   NewBorrowRecord,
   NewDevice,
+  NewDeviceType,
 } from '@equipment/shared';
 
 export class ElectronDataService implements IDataService {
@@ -23,6 +26,16 @@ export class ElectronDataService implements IDataService {
     options?: ListOptions<DeviceFilter>,
   ): Promise<ListResult<Device>> {
     return window.electronAPI.invoke('device:list', options);
+  }
+
+  async getDeviceTypes(
+    options?: ListOptions<DeviceTypeFilter>,
+  ): Promise<ListResult<DeviceType>> {
+    return window.electronAPI.invoke('deviceType:list', options);
+  }
+
+  async createDeviceType(data: NewDeviceType): Promise<DeviceType> {
+    return window.electronAPI.invoke('deviceType:create', data);
   }
 
   async getDeviceById(id: number): Promise<Device | null> {
@@ -91,7 +104,7 @@ export class ElectronDataService implements IDataService {
   }
 
   async getBorrowTrends(
-    period: 'week' | 'month' | 'year',
+    period: 'week' | 'month' | 'quarter',
   ): Promise<DeviceTypeStat[]> {
     return window.electronAPI.invoke('stats:borrowTrends', period);
   }

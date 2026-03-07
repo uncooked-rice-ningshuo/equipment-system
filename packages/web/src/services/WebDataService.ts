@@ -9,12 +9,15 @@ import {
   DashboardStats,
   Device,
   DeviceFilter,
+  DeviceType,
+  DeviceTypeFilter,
   DeviceTypeStat,
   IDataService,
   ListOptions,
   ListResult,
   NewBorrowRecord,
   NewDevice,
+  NewDeviceType,
 } from '@equipment/shared';
 
 const API_BASE = '/api';
@@ -58,6 +61,26 @@ export class WebDataService implements IDataService {
     }
 
     return fetchAPI(`${API_BASE}/devices?${params}`);
+  }
+
+  async getDeviceTypes(
+    options?: ListOptions<DeviceTypeFilter>,
+  ): Promise<ListResult<DeviceType>> {
+    const params = new URLSearchParams();
+
+    if (options?.filters) {
+      if (options.filters.name) params.set('name', options.filters.name);
+    }
+
+    const query = params.toString();
+    return fetchAPI(`${API_BASE}/device-types${query ? `?${query}` : ''}`);
+  }
+
+  async createDeviceType(data: NewDeviceType): Promise<DeviceType> {
+    return fetchAPI(`${API_BASE}/device-types`, {
+      method: 'POST',
+      body: JSON.stringify(data),
+    });
   }
 
   async getDeviceById(id: number): Promise<Device | null> {
@@ -171,10 +194,12 @@ export class WebDataService implements IDataService {
   }
 
   async getBorrowTrends(
-    period: 'week' | 'month' | 'year',
+    period: 'week' | 'month' | 'quarter',
   ): Promise<DeviceTypeStat[]> {
-    // 从借还记录计算趋势
-    const { data: records } = await this.getBorrowRecords();
+    const [{ data: records }, { data: devices }] = await Promise.all([
+      this.getBorrowRecords(),
+      this.getDevices(),
+    ]);
 
     const now = new Date();
     let startDate: Date;
@@ -186,7 +211,7 @@ export class WebDataService implements IDataService {
       case 'month':
         startDate = new Date(now.getTime() - 30 * 24 * 60 * 60 * 1000);
         break;
-      case 'year':
+      case 'quarter':
         startDate = new Date(now.getTime() - 365 * 24 * 60 * 60 * 1000);
         break;
       default:
@@ -194,13 +219,15 @@ export class WebDataService implements IDataService {
     }
 
     const typeMap = new Map<string, number>();
+    const deviceTypeMap = new Map<number, string>();
+    for (const device of devices) {
+      deviceTypeMap.set(device.id, device.type || '未分类');
+    }
 
     for (const record of records) {
       const borrowTime = new Date(record.borrowTime);
       if (borrowTime >= startDate) {
-        // 需要从设备信息中获取类型
-        const device = await this.getDeviceById(record.deviceId);
-        const type = device?.type || '未分类';
+        const type = deviceTypeMap.get(record.deviceId) || '未分类';
         typeMap.set(type, (typeMap.get(type) || 0) + 1);
       }
     }

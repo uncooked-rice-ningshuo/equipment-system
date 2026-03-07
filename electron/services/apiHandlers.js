@@ -372,7 +372,8 @@ function statsBorrowedByType(period = 'week') {
       days = 30;
       break;
     case 'year':
-      days = 365;
+    case 'quarter':
+      days = 90;
       break;
     default:
       days = 7;

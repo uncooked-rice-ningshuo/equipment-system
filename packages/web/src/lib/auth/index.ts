@@ -37,4 +37,4 @@ export function getAuth(): ReturnType<typeof betterAuth> {
 
 // 导出类型
 export type AuthSession = ReturnType<typeof getAuth>['$Infer']['Session'];
-export type AuthUser = ReturnType<typeof getAuth>['$Infer']['User'];
+export type AuthUser = ReturnType<typeof getAuth>['$Infer']['Session']['user'];

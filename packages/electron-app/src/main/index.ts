@@ -9,6 +9,14 @@ import { closeDatabase, getDatabase, initDatabase } from './db/connection';
 import { registerIpcHandlers } from './ipc';
 import { registerAuthIpc } from './ipc/auth';
 
+const STABLE_APP_NAME = '设备借还管理系统';
+const legacyUserDataPath = app.getPath('userData');
+const stableUserDataPath = path.join(app.getPath('appData'), STABLE_APP_NAME);
+if (legacyUserDataPath !== stableUserDataPath) {
+  process.env.EQUIPMENT_LEGACY_USER_DATA = legacyUserDataPath;
+  app.setPath('userData', stableUserDataPath);
+}
+
 // 保持窗口对象的全局引用
 let mainWindow: BrowserWindow | null = null;
 
@@ -65,11 +73,21 @@ function startCleanupTask(): void {
       const cutoffDate = new Date();
       cutoffDate.setDate(cutoffDate.getDate() - RETENTION_DAYS);
 
+      const sample = db
+        .prepare(
+          'SELECT actual_return_time AS v FROM borrow_records WHERE actual_return_time IS NOT NULL LIMIT 1',
+        )
+        .get() as { v?: unknown } | undefined;
+      const cutoff =
+        typeof sample?.v === 'number'
+          ? cutoffDate.getTime()
+          : cutoffDate.toISOString();
+
       const result = db
         .prepare(
           'DELETE FROM borrow_records WHERE actual_return_time IS NOT NULL AND actual_return_time < ?',
         )
-        .run(cutoffDate.toISOString());
+        .run(cutoff);
 
       if (result.changes > 0) {
         console.log(`[Cleanup] Deleted ${result.changes} old records`);

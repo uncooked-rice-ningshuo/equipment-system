@@ -3,6 +3,7 @@
 import type { Device, IDataService, NewDevice } from '@equipment/shared';
 import { Form, Input, InputNumber, Modal, Select, message } from 'antd';
 import { useEffect, useState } from 'react';
+import DeviceTypeSelect from '../fields/DeviceTypeSelect';
 
 const { Option } = Select;
 
@@ -95,13 +96,11 @@ export default function DeviceModal({
         </Form.Item>
 
         <Form.Item label="类型" name="type">
-          <Select placeholder="选择设备类型" allowClear>
-            <Option value="电脑">电脑</Option>
-            <Option value="手机">手机</Option>
-            <Option value="平板">平板</Option>
-            <Option value="相机">相机</Option>
-            <Option value="其他">其他</Option>
-          </Select>
+          <DeviceTypeSelect
+            dataService={dataService}
+            placeholder="选择设备类型"
+            allowClear
+          />
         </Form.Item>
 
         <Form.Item label="品牌" name="brand">

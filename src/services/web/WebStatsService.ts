@@ -146,13 +146,11 @@ export class WebStatsService implements IStatsService {
     return Array.from(map.entries()).map(([name, value]) => ({ name, value }));
   }
 
-  async getBorrowedTrend(period: 'week' | 'month' | 'year') {
+  async getBorrowedTrend(period: 'week' | 'month' | 'quarter') {
     const { db } = await getDb();
-    let days = 7;
-    if (period === 'month') days = 30;
-    if (period === 'year') days = 365;
-
-    const startDate = dayjs().subtract(days, 'day').toDate();
+    let startDate = dayjs().subtract(7, 'day').toDate();
+    if (period === 'month') startDate = dayjs().subtract(30, 'day').toDate();
+    if (period === 'quarter') startDate = dayjs().subtract(3, 'month').toDate();
 
     // Complex join and group by might be hard in pure JS-side logic if Drizzle aggregation is limited
     // But let's try manual aggregation for reliability in this adapter

@@ -20,9 +20,9 @@ export function successResponse(data: any, status: number = 200) {
  * 验证用户是否已登录
  */
 export async function requireAuth(request: Request) {
-  const { auth: authClient } = await import('@/lib/auth');
+  const { getAuth } = await import('@/lib/auth');
 
-  const session = await authClient.api.getSession({
+  const session = await getAuth().api.getSession({
     headers: request.headers,
   });
 

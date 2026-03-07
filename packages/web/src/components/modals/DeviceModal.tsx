@@ -1,11 +1,139 @@
 'use client';
 
 import { dataService } from '@/services';
-import type { Device, NewDevice } from '@equipment/shared';
-import { Form, Input, InputNumber, Modal, Select, message } from 'antd';
-import { useEffect, useState } from 'react';
+import type { Device, IDataService, NewDevice } from '@equipment/shared';
+import {
+  Button,
+  Divider,
+  Form,
+  Input,
+  InputNumber,
+  Modal,
+  Select,
+  Space,
+  message,
+} from 'antd';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 
 const { Option } = Select;
+
+function DeviceTypeSelect({
+  dataService,
+  value,
+  onChange,
+  placeholder,
+  allowClear,
+  disabled,
+}: {
+  dataService: IDataService;
+  value?: string;
+  onChange?: (value?: string) => void;
+  placeholder?: string;
+  allowClear?: boolean;
+  disabled?: boolean;
+}) {
+  const [loading, setLoading] = useState(false);
+  const [items, setItems] = useState<string[]>([]);
+  const [newName, setNewName] = useState('');
+  const [creating, setCreating] = useState(false);
+
+  const refresh = useCallback(async () => {
+    if (!dataService.getDeviceTypes) return;
+    setLoading(true);
+    try {
+      const res = await dataService.getDeviceTypes({
+        pagination: { page: 1, pageSize: 1000 },
+      });
+      setItems((res.data || []).map((t) => t.name).filter(Boolean));
+    } catch (e: any) {
+      message.error(e?.message || '获取设备类型失败');
+    } finally {
+      setLoading(false);
+    }
+  }, [dataService]);
+
+  const options = useMemo(() => {
+    const set = new Set<string>();
+    for (const name of items) {
+      const n = typeof name === 'string' ? name.trim() : '';
+      if (n) set.add(n);
+    }
+    const current = typeof value === 'string' ? value.trim() : '';
+    if (current) set.add(current);
+    return Array.from(set)
+      .sort((a, b) => a.localeCompare(b, 'zh-Hans-CN'))
+      .map((name) => ({ label: name, value: name }));
+  }, [items, value]);
+
+  const addItem = useCallback(async () => {
+    const name = newName.trim();
+    if (!name) return;
+
+    if (options.some((o) => o.value.trim() === name)) {
+      message.info('该类型已存在');
+      onChange?.(name);
+      setNewName('');
+      return;
+    }
+
+    if (!dataService.createDeviceType) {
+      message.error('当前数据服务不支持新增设备类型');
+      return;
+    }
+
+    setCreating(true);
+    try {
+      await dataService.createDeviceType({ name });
+      onChange?.(name);
+      setNewName('');
+      await refresh();
+      message.success('设备类型已添加');
+    } catch (e: any) {
+      message.error(e?.message || '新增设备类型失败');
+    } finally {
+      setCreating(false);
+    }
+  }, [dataService, newName, onChange, options, refresh]);
+
+  return (
+    <Select
+      value={value}
+      onChange={onChange}
+      placeholder={placeholder}
+      allowClear={allowClear}
+      disabled={disabled}
+      loading={loading}
+      showSearch
+      optionFilterProp="label"
+      options={options}
+      onDropdownVisibleChange={(open) => {
+        if (open) refresh();
+      }}
+      dropdownRender={(menu) => (
+        <>
+          {menu}
+          <Divider style={{ margin: '8px 0' }} />
+          <Space style={{ padding: '0 8px 8px' }}>
+            <Input
+              value={newName}
+              placeholder="新增设备类型"
+              onChange={(e) => setNewName(e.target.value)}
+              onKeyDown={(e) => e.stopPropagation()}
+            />
+            <Button
+              type="primary"
+              onClick={addItem}
+              loading={creating}
+              disabled={!newName.trim()}
+            >
+              新增
+            </Button>
+          </Space>
+        </>
+      )}
+    />
+  );
+}
 
 interface DeviceModalProps {
   open: boolean;
@@ -92,13 +220,11 @@ export default function DeviceModal({
         </Form.Item>
 
         <Form.Item label="类型" name="type">
-          <Select placeholder="选择设备类型" allowClear>
-            <Option value="电脑">电脑</Option>
-            <Option value="手机">手机</Option>
-            <Option value="平板">平板</Option>
-            <Option value="相机">相机</Option>
-            <Option value="其他">其他</Option>
-          </Select>
+          <DeviceTypeSelect
+            dataService={dataService}
+            placeholder="选择设备类型"
+            allowClear
+          />
         </Form.Item>
 
         <Form.Item label="品牌" name="brand">

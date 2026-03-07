@@ -222,4 +222,50 @@ export function registerBorrowIpc(): void {
         .run();
     },
   );
+
+  ipcMain.handle(
+    'borrow:listOverdue',
+    async (): Promise<{ overdue: BorrowRecord[]; dueSoon: BorrowRecord[] }> => {
+      const db = getDrizzleDb();
+      const now = new Date();
+      const days = 5;
+      const future = new Date(now.getTime() + days * 24 * 60 * 60 * 1000);
+
+      const [overdue, dueSoon] = await Promise.all([
+        db
+          .select()
+          .from(borrowRecords)
+          .where(
+            and(
+              isNull(borrowRecords.actualReturnTime),
+              lte(borrowRecords.returnDeadline, now),
+            ),
+          )
+          .orderBy(borrowRecords.returnDeadline)
+          .all(),
+        db
+          .select()
+          .from(borrowRecords)
+          .where(
+            and(
+              isNull(borrowRecords.actualReturnTime),
+              gte(borrowRecords.returnDeadline, now),
+              lte(borrowRecords.returnDeadline, future),
+            ),
+          )
+          .orderBy(borrowRecords.returnDeadline)
+          .all(),
+      ]);
+
+      return { overdue, dueSoon };
+    },
+  );
+
+  ipcMain.handle('notify:mark', async (_event, id: number): Promise<void> => {
+    const db = getDrizzleDb();
+    db.update(borrowRecords)
+      .set({ notified: true, notifyTime: new Date() })
+      .where(eq(borrowRecords.id, id))
+      .run();
+  });
 }

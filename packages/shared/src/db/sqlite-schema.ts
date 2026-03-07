@@ -16,10 +16,22 @@ export const devices = sqliteTable('devices', {
   price: real('price').default(0),
   location: text('location').default(''),
   status: text('status').notNull().default('available'),
-  createdAt: integer('created_at', { mode: 'timestamp' })
+  createdAt: integer('created_at', { mode: 'timestamp_ms' })
     .notNull()
     .$defaultFn(() => new Date()),
-  updatedAt: integer('updated_at', { mode: 'timestamp' })
+  updatedAt: integer('updated_at', { mode: 'timestamp_ms' })
+    .notNull()
+    .$defaultFn(() => new Date()),
+});
+
+export const deviceTypes = sqliteTable('device_types', {
+  id: integer('id').primaryKey({ autoIncrement: true }),
+  name: text('name').notNull().unique(),
+  description: text('description').default(''),
+  createdAt: integer('created_at', { mode: 'timestamp_ms' })
+    .notNull()
+    .$defaultFn(() => new Date()),
+  updatedAt: integer('updated_at', { mode: 'timestamp_ms' })
     .notNull()
     .$defaultFn(() => new Date()),
 });
@@ -36,12 +48,14 @@ export const borrowRecords = sqliteTable('borrow_records', {
   borrowerClass: text('borrower_class').default(''),
   borrowerStudentId: text('borrower_student_id').default(''),
   borrowerPhone: text('borrower_phone').default(''),
-  borrowTime: integer('borrow_time', { mode: 'timestamp' }).notNull(),
-  returnDeadline: integer('return_deadline', { mode: 'timestamp' }).notNull(),
-  actualReturnTime: integer('actual_return_time', { mode: 'timestamp' }),
+  borrowTime: integer('borrow_time', { mode: 'timestamp_ms' }).notNull(),
+  returnDeadline: integer('return_deadline', {
+    mode: 'timestamp_ms',
+  }).notNull(),
+  actualReturnTime: integer('actual_return_time', { mode: 'timestamp_ms' }),
   notified: integer('notified', { mode: 'boolean' }).default(false),
-  notifyTime: integer('notify_time', { mode: 'timestamp' }),
-  createdAt: integer('created_at', { mode: 'timestamp' })
+  notifyTime: integer('notify_time', { mode: 'timestamp_ms' }),
+  createdAt: integer('created_at', { mode: 'timestamp_ms' })
     .notNull()
     .$defaultFn(() => new Date()),
 });
@@ -52,10 +66,10 @@ export const users = sqliteTable('users', {
   username: text('username').notNull().unique(),
   passwordHash: text('password_hash').notNull(),
   displayName: text('display_name').default(''),
-  createdAt: integer('created_at', { mode: 'timestamp' })
+  createdAt: integer('created_at', { mode: 'timestamp_ms' })
     .notNull()
     .$defaultFn(() => new Date()),
-  updatedAt: integer('updated_at', { mode: 'timestamp' })
+  updatedAt: integer('updated_at', { mode: 'timestamp_ms' })
     .notNull()
     .$defaultFn(() => new Date()),
 });
@@ -67,8 +81,8 @@ export const sessions = sqliteTable('sessions', {
     .notNull()
     .references(() => users.id),
   token: text('token').notNull().unique(),
-  expiresAt: integer('expires_at', { mode: 'timestamp' }).notNull(),
-  createdAt: integer('created_at', { mode: 'timestamp' })
+  expiresAt: integer('expires_at', { mode: 'timestamp_ms' }).notNull(),
+  createdAt: integer('created_at', { mode: 'timestamp_ms' })
     .notNull()
     .$defaultFn(() => new Date()),
 });
@@ -76,6 +90,9 @@ export const sessions = sqliteTable('sessions', {
 // ==================== 类型导出 ====================
 export type Device = typeof devices.$inferSelect;
 export type NewDevice = typeof devices.$inferInsert;
+
+export type DeviceType = typeof deviceTypes.$inferSelect;
+export type NewDeviceType = typeof deviceTypes.$inferInsert;
 
 export type BorrowRecord = typeof borrowRecords.$inferSelect;
 export type NewBorrowRecord = typeof borrowRecords.$inferInsert;

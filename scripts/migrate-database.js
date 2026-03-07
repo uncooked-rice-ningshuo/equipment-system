@@ -45,6 +45,14 @@ function migrateDatabase(oldDbPath, newDbPath) {
       updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
     );
 
+    CREATE TABLE device_types (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      name TEXT UNIQUE NOT NULL,
+      description TEXT,
+      created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+      updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
+    );
+
     CREATE TABLE borrow_records (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
       device_id INTEGER NOT NULL,
@@ -70,6 +78,7 @@ function migrateDatabase(oldDbPath, newDbPath) {
     CREATE INDEX idx_devices_status ON devices(status);
     CREATE INDEX idx_devices_type ON devices(type);
     CREATE INDEX idx_devices_brand ON devices(brand, type);
+    CREATE INDEX idx_device_types_name ON device_types(name);
     CREATE INDEX idx_borrow_device ON borrow_records(device_id);
     CREATE INDEX idx_borrow_time ON borrow_records(borrow_time);
     CREATE INDEX idx_borrow_deadline ON borrow_records(return_deadline);

@@ -43,7 +43,7 @@ export default function BorrowTrendsChart({
 }: {
   dataService: IDataService;
 }) {
-  const [period, setPeriod] = useState<'week' | 'month' | 'year'>('week');
+  const [period, setPeriod] = useState<'week' | 'month' | 'quarter'>('week');
   const [data, setData] = useState<DeviceTypeStat[]>([]);
   const [loading, setLoading] = useState(false);
 
@@ -126,11 +126,11 @@ export default function BorrowTrendsChart({
       extra={
         <Tabs
           activeKey={period}
-          onChange={(key) => setPeriod(key as 'week' | 'month' | 'year')}
+          onChange={(key) => setPeriod(key as 'week' | 'month' | 'quarter')}
           items={[
             { key: 'week', label: '本周' },
             { key: 'month', label: '本月' },
-            { key: 'year', label: '本年' },
+            { key: 'quarter', label: '近3个月' },
           ]}
           size="small"
         />
