@@ -22,12 +22,27 @@ mac:
     - zip
 win:
   target:
-    - nsis
-    - portable
+    - target: nsis
+      arch:
+        - x64
+    - target: nsis
+      arch:
+        - arm64
+    - target: portable
+      arch:
+        - x64
+    - target: portable
+      arch:
+        - arm64
 nsis:
+  artifactName: ${productName} Setup ${version} ${arch}.${ext}
+  buildUniversalInstaller: false
   oneClick: false
   allowToChangeInstallationDirectory: true
   createDesktopShortcut: true
+portable:
+  artifactName: ${productName} ${version} ${arch}.${ext}
+  buildUniversalInstaller: false
 copyright: Copyright © 2024
 dmg:
   contents:

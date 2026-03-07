@@ -2,9 +2,9 @@
 
 import { ClockCircleOutlined } from '@ant-design/icons';
 import type { BorrowRecord, IDataService } from '@equipment/shared';
-import { Card, Empty, Spin, Tag, Timeline } from 'antd';
+import { Card, Empty, Select, Spin, Tag, Timeline } from 'antd';
 import dayjs from 'dayjs';
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import styled from 'styled-components';
 
 const TimelineCard = styled(Card)`
@@ -45,6 +45,14 @@ const TimelineItemContent = styled.div`
 const getRemainingDays = (deadline: Date | string) =>
   dayjs(deadline).diff(dayjs(), 'day');
 
+type FilterType = 'all' | 'overdue' | 'upcoming';
+
+const selectOptions = [
+  { value: 'all', label: '全部记录' },
+  { value: 'overdue', label: '仅逾期' },
+  { value: 'upcoming', label: '未逾期' },
+];
+
 export default function DueSoonTimeline({
   dataService,
   days = 7,
@@ -52,15 +60,21 @@ export default function DueSoonTimeline({
   dataService: IDataService;
   days?: number;
 }) {
-  const [records, setRecords] = useState<BorrowRecord[]>([]);
+  const [overdueRecords, setOverdueRecords] = useState<BorrowRecord[]>([]);
+  const [upcomingRecords, setUpcomingRecords] = useState<BorrowRecord[]>([]);
   const [loading, setLoading] = useState(false);
+  const [filter, setFilter] = useState<FilterType>('all');
 
   useEffect(() => {
     const loadData = async () => {
       setLoading(true);
       try {
-        const result = await dataService.getDueSoonRecords(days);
-        setRecords(result);
+        const [overdue, upcoming] = await Promise.all([
+          dataService.getOverdueRecords(),
+          dataService.getDueSoonRecords(days),
+        ]);
+        setOverdueRecords(overdue);
+        setUpcomingRecords(upcoming);
       } finally {
         setLoading(false);
       }
@@ -68,9 +82,49 @@ export default function DueSoonTimeline({
     loadData();
   }, [dataService, days]);
 
+  const filteredRecords = useMemo(() => {
+    let records: BorrowRecord[] = [];
+
+    if (filter === 'all') {
+      records = [...overdueRecords, ...upcomingRecords];
+    } else if (filter === 'overdue') {
+      records = overdueRecords;
+    } else if (filter === 'upcoming') {
+      records = upcomingRecords;
+    }
+
+    // 按归还截止日期排序（逾期在前，然后按日期从早到晚）
+    return records.sort((a, b) => {
+      const aOverdue = dayjs(a.returnDeadline).isBefore(dayjs());
+      const bOverdue = dayjs(b.returnDeadline).isBefore(dayjs());
+
+      if (aOverdue && !bOverdue) return -1;
+      if (!aOverdue && bOverdue) return 1;
+
+      return dayjs(a.returnDeadline).diff(dayjs(b.returnDeadline));
+    });
+  }, [overdueRecords, upcomingRecords, filter]);
+
+  const getEmptyText = () => {
+    if (filter === 'overdue') return '暂无逾期记录';
+    if (filter === 'upcoming') return '暂无即将到期记录';
+    return '暂无待归还设备';
+  };
+
+  const filterSelect = (
+    <Select
+      value={filter}
+      onChange={setFilter}
+      style={{ width: 100 }}
+      size="small"
+      variant="borderless"
+      options={selectOptions}
+    />
+  );
+
   if (loading) {
     return (
-      <TimelineCard title="归还倒计时">
+      <TimelineCard title="待归还记录" extra={filterSelect}>
         <div
           style={{
             height: 300,
@@ -85,9 +139,9 @@ export default function DueSoonTimeline({
     );
   }
 
-  if (records.length === 0) {
+  if (filteredRecords.length === 0) {
     return (
-      <TimelineCard title="归还倒计时">
+      <TimelineCard title="归还倒计时" extra={filterSelect}>
         <div
           style={{
             height: 300,
@@ -96,23 +150,26 @@ export default function DueSoonTimeline({
             justifyContent: 'center',
           }}
         >
-          <Empty description="暂无待归还设备" />
+          <Empty description={getEmptyText()} />
         </div>
       </TimelineCard>
     );
   }
 
   return (
-    <TimelineCard title="归还倒计时">
+    <TimelineCard title="归还倒计时" extra={filterSelect}>
       <Timeline mode="left">
-        {records.map((record) => {
+        {filteredRecords.map((record) => {
           const remainingDays = getRemainingDays(record.returnDeadline);
-          const color =
-            remainingDays <= 2
-              ? '#ef4444'
-              : remainingDays <= 5
-              ? '#f59e0b'
-              : '#10b981';
+          const isOverdue = remainingDays < 0;
+          const overdueDays = Math.abs(remainingDays);
+          const color = isOverdue
+            ? '#dc2626'
+            : remainingDays <= 2
+            ? '#ef4444'
+            : remainingDays <= 5
+            ? '#f59e0b'
+            : '#10b981';
 
           return (
             <Timeline.Item
@@ -143,14 +200,16 @@ export default function DueSoonTimeline({
                   </div>
                   <Tag
                     color={
-                      remainingDays <= 0
+                      isOverdue
                         ? 'error'
                         : remainingDays <= 2
                         ? 'warning'
                         : 'success'
                     }
                   >
-                    {remainingDays <= 0 ? '已逾期' : `剩余 ${remainingDays} 天`}
+                    {isOverdue
+                      ? `逾期 ${overdueDays} 天`
+                      : `剩余 ${remainingDays} 天`}
                   </Tag>
                 </div>
               </TimelineItemContent>

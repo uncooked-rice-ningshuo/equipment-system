@@ -1,6 +1,6 @@
 {
   "name": "@equipment/electron-app",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "private": true,
   "main": "./dist/main/index.js",
   "scripts": {
@@ -8,13 +8,14 @@
     "build:main": "tsc -p tsconfig.main.json",
     "build:preload": "tsc -p tsconfig.preload.json",
     "build:renderer": "vite build --config vite.renderer.config.ts",
-    "dev": "npm run build && concurrently \"tsc -p tsconfig.main.json --watch\" \"tsc -p tsconfig.preload.json --watch\" \"vite dev --config vite.renderer.config.ts\" \"wait-on http://localhost:5173 dist/main/index.js dist/preload.js && electron .\"",
+    "dev": "npm run ensure:native && npm run build && concurrently \"tsc -p tsconfig.main.json --watch\" \"tsc -p tsconfig.preload.json --watch\" \"vite dev --config vite.renderer.config.ts\" \"wait-on http://localhost:5173 dist/main/index.js dist/preload.js && electron .\"",
     "electron:build": "npm run build && electron-builder",
     "electron:build:linux": "npm run build && electron-builder --linux",
     "electron:build:mac": "npm run build && electron-builder --mac",
     "electron:build:win": "npm run build && node scripts/prepare-winCodeSign-cache.js && electron-builder --win",
     "electron:dev": "electron ./dist/main/index.js",
-    "postinstall": "electron-builder install-app-deps",
+    "ensure:native": "node scripts/ensure-native-deps.js",
+    "postinstall": "npm run ensure:native",
     "lint": "eslint src/",
     "rebuild:native": "electron-builder install-app-deps",
     "test:build": "npm run build && electron-builder --dir"
