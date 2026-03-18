@@ -1,11 +1,21 @@
 import { ProColumns, ProTable } from '@ant-design/pro-components';
 import { Button, Form, Input, InputNumber, message, Modal, Select } from 'antd';
+import dayjs from 'dayjs';
 import { useRef, useState } from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
 import DeviceTypeSelect from '../../../components/fields/DeviceTypeSelect';
 import { useTheme } from '../../components';
 import { useLegacyServices } from '../../services';
-import { eventBus } from '../../utils';
+import type { DeviceExcelRow, DeviceExcelRowError } from '../../utils';
+import {
+  buildDevicesTemplateWorkbookBuffer,
+  buildDevicesWorkbookBuffer,
+  downloadExcelBuffer,
+  eventBus,
+  parseDevicesWorkbookBuffer,
+  toNewDeviceForCreate,
+  toNewDeviceForUpdate,
+} from '../../utils';
 
 const statusOptions = [
   { label: '全部', value: '' },
@@ -168,12 +178,19 @@ export default function Devices() {
   const { dataService } = useLegacyServices();
   const { theme } = useTheme();
   const actionRef = useRef<any>();
+  const formRef = useRef<any>();
+  const fileInputRef = useRef<HTMLInputElement | null>(null);
   const [createVisible, setCreateVisible] = useState(false);
   const [editVisible, setEditVisible] = useState(false);
   const [deleteVisible, setDeleteVisible] = useState(false);
   const [createForm] = Form.useForm();
   const [editForm] = Form.useForm();
   const [currentRecord, setCurrentRecord] = useState<any>(null);
+  const [excelBusy, setExcelBusy] = useState(false);
+  const [importPreviewOpen, setImportPreviewOpen] = useState(false);
+  const [importRows, setImportRows] = useState<DeviceExcelRow[]>([]);
+  const [importErrors, setImportErrors] = useState<DeviceExcelRowError[]>([]);
+  const [importFileName, setImportFileName] = useState('');
 
   const handleCreate = async (values: any) => {
     try {
@@ -223,6 +240,186 @@ export default function Devices() {
       actionRef.current?.reload();
     } catch (error: any) {
       message.error(error.message || '删除失败');
+    }
+  };
+
+  const getCurrentFilters = () => {
+    const values = formRef.current?.getFieldsValue?.() ?? {};
+    const filters: any = {};
+
+    if (values.code) filters.code = values.code;
+    if (values.name) filters.name = values.name;
+    if (values.type) filters.type = values.type;
+    if (values.brand) filters.brand = values.brand;
+    if (values.status && values.status !== '') filters.status = values.status;
+
+    return filters;
+  };
+
+  const handleDownloadTemplate = () => {
+    const buffer = buildDevicesTemplateWorkbookBuffer();
+    downloadExcelBuffer(
+      buffer,
+      `devices_template_${dayjs().format('YYYYMMDD_HHmmss')}.xlsx`,
+    );
+  };
+
+  const handleExportExcel = async () => {
+    setExcelBusy(true);
+    try {
+      const list = await dataService.getDevices(getCurrentFilters());
+      const buffer = buildDevicesWorkbookBuffer(list as any);
+      downloadExcelBuffer(
+        buffer,
+        `devices_${dayjs().format('YYYYMMDD_HHmmss')}.xlsx`,
+      );
+    } catch (error: any) {
+      message.error(error.message || '导出失败');
+    } finally {
+      setExcelBusy(false);
+    }
+  };
+
+  const handleImportExcelClick = () => {
+    fileInputRef.current?.click();
+  };
+
+  const handleImportFileChange = async (e: any) => {
+    const file: File | undefined = e?.target?.files?.[0];
+    if (!file) return;
+    e.target.value = '';
+
+    if (!file.name.toLowerCase().endsWith('.xlsx')) {
+      message.error('仅支持 .xlsx 文件');
+      return;
+    }
+
+    setExcelBusy(true);
+    try {
+      const buffer = await file.arrayBuffer();
+      const result = parseDevicesWorkbookBuffer(buffer);
+      setImportFileName(file.name);
+      setImportRows(result.rows);
+      setImportErrors(result.errors);
+      setImportPreviewOpen(true);
+    } catch {
+      message.error('Excel 解析失败');
+    } finally {
+      setExcelBusy(false);
+    }
+  };
+
+  const stripUndefined = (input: any) => {
+    if (!input || typeof input !== 'object') return input;
+    const next: any = {};
+    for (const [k, v] of Object.entries(input)) {
+      if (v === undefined) continue;
+      next[k] = v;
+    }
+    return next;
+  };
+
+  const handleConfirmImport = async () => {
+    if (excelBusy) return;
+    if (!importRows.length) {
+      message.error('没有可导入的有效行');
+      return;
+    }
+
+    const progressKey = 'deviceExcelImport';
+    setExcelBusy(true);
+    message.open({
+      type: 'loading',
+      content: `正在导入... (0/${importRows.length})`,
+      key: progressKey,
+      duration: 0,
+    });
+
+    try {
+      const existingList: any[] = await dataService.getDevices();
+      const deviceByCode = new Map<string, any>();
+      for (const d of existingList) {
+        if (!d?.code) continue;
+        deviceByCode.set(String(d.code).trim(), d);
+      }
+
+      const writeErrors: DeviceExcelRowError[] = [];
+      let successCount = 0;
+
+      for (let i = 0; i < importRows.length; i++) {
+        const row = importRows[i];
+        const codeKey = String(row.code).trim();
+        const existing = deviceByCode.get(codeKey);
+
+        try {
+          if (existing?.id) {
+            const payload = stripUndefined(toNewDeviceForUpdate(row));
+            await dataService.updateDevice(Number(existing.id), payload);
+            successCount += 1;
+          } else {
+            const payload = stripUndefined(toNewDeviceForCreate(row));
+            const created = await dataService.createDevice(payload);
+            deviceByCode.set(codeKey, created);
+            successCount += 1;
+          }
+        } catch (error: any) {
+          writeErrors.push({
+            rowNumber: row.rowNumber,
+            message: error?.message || '写入失败',
+          });
+        }
+
+        if ((i + 1) % 20 === 0 || i === importRows.length - 1) {
+          message.open({
+            type: 'loading',
+            content: `正在导入... (${i + 1}/${importRows.length})`,
+            key: progressKey,
+            duration: 0,
+          });
+        }
+      }
+
+      const allErrors = [...importErrors, ...writeErrors];
+      message.open({
+        type: allErrors.length ? 'warning' : 'success',
+        content: `导入完成：成功 ${successCount} 行，失败 ${allErrors.length} 行`,
+        key: progressKey,
+        duration: 3,
+      });
+
+      setImportPreviewOpen(false);
+      actionRef.current?.reload();
+
+      Modal.info({
+        title: '导入结果',
+        content: (
+          <div style={{ lineHeight: 1.8 }}>
+            <div>
+              成功：{successCount} 行；失败：{allErrors.length} 行
+            </div>
+            {allErrors.length > 0 && (
+              <div style={{ marginTop: 12 }}>
+                <div style={{ fontWeight: 600, marginBottom: 8 }}>失败明细</div>
+                <div style={{ maxHeight: 280, overflow: 'auto' }}>
+                  {allErrors.slice(0, 300).map((e) => (
+                    <div key={`${e.rowNumber}-${e.message}`}>
+                      第 {e.rowNumber} 行：{e.message}
+                    </div>
+                  ))}
+                  {allErrors.length > 300 && (
+                    <div style={{ marginTop: 8, opacity: 0.7 }}>
+                      仅展示前 300 条错误
+                    </div>
+                  )}
+                </div>
+              </div>
+            )}
+          </div>
+        ),
+        width: 720,
+      });
+    } finally {
+      setExcelBusy(false);
     }
   };
 
@@ -391,9 +588,17 @@ export default function Devices() {
     <>
       <GlobalSelectStyles $theme={theme} />
       <div style={{ padding: 24 }}>
+        <input
+          ref={fileInputRef}
+          type="file"
+          accept=".xlsx"
+          style={{ display: 'none' }}
+          onChange={handleImportFileChange}
+        />
         <ProTable<any>
           columns={columns}
           actionRef={actionRef}
+          formRef={formRef}
           request={fetchData}
           rowKey="id"
           search={{
@@ -409,6 +614,27 @@ export default function Devices() {
           headerTitle="设备管理"
           toolBarRender={() => [
             <Button
+              key="template"
+              onClick={handleDownloadTemplate}
+              disabled={excelBusy}
+            >
+              下载模板
+            </Button>,
+            <Button
+              key="import"
+              onClick={handleImportExcelClick}
+              disabled={excelBusy}
+            >
+              导入 Excel
+            </Button>,
+            <Button
+              key="export"
+              onClick={handleExportExcel}
+              disabled={excelBusy}
+            >
+              导出 Excel
+            </Button>,
+            <Button
               type="primary"
               key="create"
               onClick={() => setCreateVisible(true)}
@@ -417,6 +643,89 @@ export default function Devices() {
             </Button>,
           ]}
         />
+        <StyledModal
+          $theme={theme}
+          title="Excel 导入预览"
+          open={importPreviewOpen}
+          onCancel={() => setImportPreviewOpen(false)}
+          onOk={handleConfirmImport}
+          confirmLoading={excelBusy}
+          okText="开始导入"
+          cancelText="取消"
+          width={720}
+          destroyOnClose
+        >
+          <div style={{ lineHeight: 1.8 }}>
+            <div>
+              <strong>文件：</strong>
+              {importFileName}
+            </div>
+            <div>
+              <strong>可导入行数：</strong>
+              {importRows.length}
+            </div>
+            <div>
+              <strong>校验失败行数：</strong>
+              {importErrors.length}
+            </div>
+            {importErrors.length > 0 && (
+              <div style={{ marginTop: 12 }}>
+                <div style={{ fontWeight: 600, marginBottom: 8 }}>失败明细</div>
+                <div
+                  style={{
+                    maxHeight: 240,
+                    overflow: 'auto',
+                    border:
+                      theme === 'light'
+                        ? '1px solid #f0f0f0'
+                        : '1px solid #2d3748',
+                    padding: 12,
+                    borderRadius: 8,
+                  }}
+                >
+                  {importErrors.slice(0, 200).map((e) => (
+                    <div key={`${e.rowNumber}-${e.message}`}>
+                      第 {e.rowNumber} 行：{e.message}
+                    </div>
+                  ))}
+                  {importErrors.length > 200 && (
+                    <div style={{ marginTop: 8, opacity: 0.7 }}>
+                      仅展示前 200 条错误
+                    </div>
+                  )}
+                </div>
+              </div>
+            )}
+            {importRows.length > 0 && (
+              <div style={{ marginTop: 12 }}>
+                <div style={{ fontWeight: 600, marginBottom: 8 }}>示例预览</div>
+                <div
+                  style={{
+                    maxHeight: 200,
+                    overflow: 'auto',
+                    border:
+                      theme === 'light'
+                        ? '1px solid #f0f0f0'
+                        : '1px solid #2d3748',
+                    padding: 12,
+                    borderRadius: 8,
+                  }}
+                >
+                  {importRows.slice(0, 20).map((r) => (
+                    <div key={`${r.rowNumber}-${r.code}`}>
+                      第 {r.rowNumber} 行：{r.code} / {r.name}
+                    </div>
+                  ))}
+                  {importRows.length > 20 && (
+                    <div style={{ marginTop: 8, opacity: 0.7 }}>
+                      仅展示前 20 行
+                    </div>
+                  )}
+                </div>
+              </div>
+            )}
+          </div>
+        </StyledModal>
         <StyledModal
           $theme={theme}
           title="新增设备"
