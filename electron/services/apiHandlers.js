@@ -84,7 +84,13 @@ function deviceDelete(id) {
     if (device?.status === 'borrowed') {
       return { success: false, message: '设备已借出，无法删除' };
     }
-    db.delete(devices).where(eq(devices.id, id)).run();
+
+    // Use transaction to delete device and its borrow records
+    db.transaction((tx) => {
+      tx.delete(borrowRecords).where(eq(borrowRecords.device_id, id)).run();
+      tx.delete(devices).where(eq(devices.id, id)).run();
+    });
+
     return { success: true };
   } catch (e) {
     return { success: false, message: e.message };

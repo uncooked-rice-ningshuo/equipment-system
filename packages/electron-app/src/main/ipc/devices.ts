@@ -9,7 +9,7 @@ import type {
   ListResult,
   NewDevice,
 } from '@equipment/shared';
-import { devices } from '@equipment/shared/db/sqlite-schema';
+import { borrowRecords, devices } from '@equipment/shared/db/sqlite-schema';
 import { and, desc, eq, like } from 'drizzle-orm';
 import { ipcMain } from 'electron';
 import { getDrizzleDb } from '../db/connection';
@@ -124,10 +124,21 @@ export function registerDeviceIpc(): void {
 
     // 检查设备是否已借出
     const device = db.select().from(devices).where(eq(devices.id, id)).get();
-    if (device?.status === 'borrowed') {
+    if (!device) {
+      throw new Error('设备不存在');
+    }
+
+    if (device.status === 'borrowed') {
       throw new Error('设备已借出，无法删除');
     }
 
-    db.delete(devices).where(eq(devices.id, id)).run();
+    // 在事务中删除设备及其关联记录
+    db.transaction((tx) => {
+      // 1. 删除关联的借还记录
+      tx.delete(borrowRecords).where(eq(borrowRecords.deviceId, id)).run();
+
+      // 2. 删除设备本身
+      tx.delete(devices).where(eq(devices.id, id)).run();
+    });
   });
 }

@@ -128,7 +128,14 @@ export async function DELETE(
       return errorResponse('设备已借出，无法删除', 409);
     }
 
-    await db.delete(devices).where(eq(devices.id, id));
+    // 在事务中删除设备及其关联记录
+    await db.transaction(async (tx) => {
+      // 1. 删除关联的借还记录
+      await tx.delete(borrowRecords).where(eq(borrowRecords.deviceId, id));
+
+      // 2. 删除设备本身
+      await tx.delete(devices).where(eq(devices.id, id));
+    });
 
     return successResponse({ deleted: true });
   } catch (error) {
