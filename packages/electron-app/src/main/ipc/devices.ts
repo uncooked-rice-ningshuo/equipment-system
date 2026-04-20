@@ -41,6 +41,9 @@ export function registerDeviceIpc(): void {
         if (options.filters.type) {
           conditions.push(eq(devices.type, options.filters.type));
         }
+        if (options.filters.brand) {
+          conditions.push(like(devices.brand, `%${options.filters.brand}%`));
+        }
       }
 
       // 排序

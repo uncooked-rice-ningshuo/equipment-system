@@ -43,6 +43,18 @@ export function registerBorrowIpc(): void {
           );
         }
 
+        if (options.filters.deviceName) {
+          conditions.push(
+            like(borrowRecords.deviceName, `%${options.filters.deviceName}%`),
+          );
+        }
+
+        if (options.filters.deviceType) {
+          conditions.push(
+            like(devices.type, `%${options.filters.deviceType}%`),
+          );
+        }
+
         if (options.filters.borrowerName) {
           conditions.push(
             like(
@@ -60,13 +72,64 @@ export function registerBorrowIpc(): void {
             ),
           );
         }
+
+        if (options.filters.borrowerStudentId) {
+          conditions.push(
+            like(
+              borrowRecords.borrowerStudentId,
+              `%${options.filters.borrowerStudentId}%`,
+            ),
+          );
+        }
+
+        if (options.filters.borrowTimeStart) {
+          conditions.push(
+            gte(
+              borrowRecords.borrowTime,
+              new Date(options.filters.borrowTimeStart),
+            ),
+          );
+        }
+
+        if (options.filters.borrowTimeEnd) {
+          conditions.push(
+            lte(
+              borrowRecords.borrowTime,
+              new Date(options.filters.borrowTimeEnd),
+            ),
+          );
+        }
+
+        if (options.filters.returnTimeStart) {
+          conditions.push(
+            gte(
+              borrowRecords.actualReturnTime,
+              new Date(options.filters.returnTimeStart),
+            ),
+          );
+        }
+
+        if (options.filters.returnTimeEnd) {
+          conditions.push(
+            lte(
+              borrowRecords.actualReturnTime,
+              new Date(options.filters.returnTimeEnd),
+            ),
+          );
+        }
       }
 
+      const filteredBase = base.leftJoin(
+        devices,
+        eq(borrowRecords.deviceId, devices.id),
+      );
       const filtered =
-        conditions.length > 0 ? base.where(and(...conditions)) : base;
+        conditions.length > 0
+          ? filteredBase.where(and(...conditions))
+          : filteredBase;
       const ordered = filtered.orderBy(desc(borrowRecords.borrowTime));
 
-      const result = ordered.all();
+      const result = ordered.all().map((row) => row.borrow_records);
 
       return {
         data: result,

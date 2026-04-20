@@ -78,6 +78,9 @@ importers:
         specifier: ^9.0.1
         version: 9.0.1
     devDependencies:
+      7zip-bin:
+        specifier: ^5.2.0
+        version: 5.2.0
       '@types/bcryptjs':
         specifier: ^2.4.6
         version: 2.4.6
@@ -7059,7 +7062,7 @@ snapshots:
       ejs: 3.1.10
       electron-builder-squirrel-windows: 24.13.3(dmg-builder@26.8.1)
       electron-publish: 24.13.1
-      form-data: 4.0.4
+      form-data: 4.0.5
       fs-extra: 10.1.0
       hosted-git-info: 4.1.0
       is-ci: 3.0.1

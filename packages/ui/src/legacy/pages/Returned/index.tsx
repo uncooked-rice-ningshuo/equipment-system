@@ -41,14 +41,6 @@ const StyledModal = styled(Modal)<{ $theme: 'light' | 'dark' }>`
   }
 `;
 
-const typeOptions = [
-  { label: '柜式空调', value: '柜式空调' },
-  { label: '数字示波器', value: '数字示波器' },
-  { label: '笔记本电脑', value: '笔记本电脑' },
-  { label: '服务器', value: '服务器' },
-  { label: '打印机', value: '打印机' },
-];
-
 export default function Returned() {
   const { dataService } = useLegacyServices();
   const { theme } = useTheme();
@@ -79,13 +71,27 @@ export default function Returned() {
       void pageSize;
       const filters: any = { returned: true };
 
-      if (restParams.deviceCode) filters.deviceCode = restParams.deviceCode;
-      if (restParams.deviceName) filters.deviceName = restParams.deviceName;
-      if (restParams.borrowerName)
-        filters.borrowerName = restParams.borrowerName;
-      if (restParams.borrowerClass)
-        filters.borrowerClass = restParams.borrowerClass;
-      if (restParams.deviceType) filters.deviceType = restParams.deviceType;
+      if (restParams.device_code || restParams.deviceCode) {
+        filters.deviceCode = restParams.device_code ?? restParams.deviceCode;
+      }
+      if (restParams.device_name || restParams.deviceName) {
+        filters.deviceName = restParams.device_name ?? restParams.deviceName;
+      }
+      if (restParams.borrower_name || restParams.borrowerName) {
+        filters.borrowerName =
+          restParams.borrower_name ?? restParams.borrowerName;
+      }
+      if (restParams.borrower_class || restParams.borrowerClass) {
+        filters.borrowerClass =
+          restParams.borrower_class ?? restParams.borrowerClass;
+      }
+      if (restParams.borrower_student_id || restParams.borrowerStudentId) {
+        filters.borrowerStudentId =
+          restParams.borrower_student_id ?? restParams.borrowerStudentId;
+      }
+      if (restParams.device_type || restParams.deviceType) {
+        filters.deviceType = restParams.device_type ?? restParams.deviceType;
+      }
 
       if (
         restParams.borrowTimeRange &&
@@ -141,6 +147,20 @@ export default function Returned() {
     }
   };
 
+  const fetchDeviceTypeValues = async () => {
+    try {
+      const list: any[] = await dataService.getDevices();
+      return [...new Set(list.map((item) => item.type).filter(Boolean))].map(
+        (value) => ({
+          label: value,
+          value,
+        }),
+      );
+    } catch {
+      return [];
+    }
+  };
+
   const columns: ProColumns<any>[] = [
     {
       title: '设备编号',
@@ -171,10 +191,7 @@ export default function Returned() {
       title: '设备类型',
       dataIndex: 'device_type',
       valueType: 'select',
-      valueEnum: typeOptions.reduce((acc: any, item) => {
-        acc[item.value] = { text: item.label };
-        return acc;
-      }, {}),
+      request: fetchDeviceTypeValues,
       fieldProps: {
         placeholder: '请选择设备类型',
       },
