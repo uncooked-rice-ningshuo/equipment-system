@@ -6,7 +6,6 @@ import { initDefaultUser, registerAuthIpc } from './auth';
 import { registerBorrowIpc } from './borrow';
 import { registerDeviceIpc } from './devices';
 import { registerDeviceTypeIpc } from './deviceTypes';
-import { registerReportIpc } from './report';
 import { registerStatsIpc } from './stats';
 
 export function registerIpcHandlers(): void {
@@ -19,7 +18,6 @@ export function registerIpcHandlers(): void {
   registerDeviceTypeIpc();
   registerBorrowIpc();
   registerStatsIpc();
-  registerReportIpc();
 
   console.log('[IPC] All handlers registered');
 }
