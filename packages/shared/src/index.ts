@@ -4,6 +4,7 @@
  */
 
 // 数据库 Schema 和类型 (PostgreSQL - Web 版)
+export * from './db/auth-schema';
 export * from './db/schema';
 export * from './db/types';
 

@@ -3,6 +3,8 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
+    "auth:migrate:apply": "node ./scripts/migrate-auth-to-user.js --apply",
+    "auth:migrate:dry-run": "node ./scripts/migrate-auth-to-user.js --dry-run",
     "build": "next build",
     "db:generate": "drizzle-kit generate",
     "db:migrate": "drizzle-kit migrate",

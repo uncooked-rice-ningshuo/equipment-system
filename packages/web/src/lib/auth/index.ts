@@ -4,9 +4,15 @@
  */
 
 import { getDb } from '@/lib/db';
-import * as schema from '@equipment/shared/db/schema';
+import {
+  authAccounts,
+  authSessions,
+  authUsers,
+  authVerifications,
+} from '@equipment/shared/db/auth-schema';
 import { betterAuth } from 'better-auth';
 import { drizzleAdapter } from 'better-auth/adapters/drizzle';
+import { username } from 'better-auth/plugins';
 
 let auth: ReturnType<typeof betterAuth> | null = null;
 
@@ -17,10 +23,13 @@ export function getAuth(): ReturnType<typeof betterAuth> {
     database: drizzleAdapter(db, {
       provider: 'pg',
       schema: {
-        user: schema.users,
-        session: schema.sessions,
+        user: authUsers,
+        session: authSessions,
+        account: authAccounts,
+        verification: authVerifications,
       },
     }),
+    plugins: [username()],
     emailAndPassword: {
       enabled: true,
       autoSignIn: true,

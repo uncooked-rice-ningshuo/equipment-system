@@ -13,17 +13,25 @@ import {
 } from '@equipment/shared';
 
 export class WebAuthService implements IAuthService {
+  private async loginViaServer(
+    identifier: string,
+    password: string,
+  ): Promise<void> {
+    const response = await fetch('/api/auth/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ identifier, password }),
+    });
+
+    const payload = await response.json();
+    if (!response.ok || !payload?.success) {
+      throw new Error(payload?.error || payload?.message || '登录失败');
+    }
+  }
+
   async login(credentials: LoginCredentials): Promise<AuthResult> {
     try {
-      // better-auth 使用 email 作为用户名
-      const result = await authClient.signIn.email({
-        email: credentials.username,
-        password: credentials.password,
-      });
-
-      if (result.error) {
-        return { success: false, message: result.error.message };
-      }
+      await this.loginViaServer(credentials.username, credentials.password);
 
       // 获取 session 信息
       const session = await authClient.getSession();

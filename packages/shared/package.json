@@ -4,6 +4,7 @@
   "private": true,
   "exports": {
     ".": "./dist/index.js",
+    "./db/auth-schema": "./dist/db/auth-schema.js",
     "./db/schema": "./dist/db/schema.js",
     "./db/sqlite-schema": "./dist/db/sqlite-schema.js",
     "./db/types": "./dist/db/types.js",
