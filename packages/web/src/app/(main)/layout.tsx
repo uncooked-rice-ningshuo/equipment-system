@@ -4,6 +4,7 @@ import { authService, dataService } from '@/services';
 import {
   DashboardOutlined,
   DesktopOutlined,
+  FileTextOutlined,
   HistoryOutlined,
   SwapOutlined,
 } from '@ant-design/icons';
@@ -36,6 +37,11 @@ const menuItems = [
     key: '/returned',
     icon: <HistoryOutlined />,
     label: '归还记录',
+  },
+  {
+    key: '/reports/weekly',
+    icon: <FileTextOutlined />,
+    label: '智能周报',
   },
 ];
 

@@ -60,6 +60,25 @@ export const borrowRecords = sqliteTable('borrow_records', {
     .$defaultFn(() => new Date()),
 });
 
+// ==================== 报告查询记录表 ====================
+export const reportQueries = sqliteTable('report_queries', {
+  id: integer('id').primaryKey({ autoIncrement: true }),
+  reportType: text('report_type').notNull().default('weekly'),
+  periodStart: integer('period_start', { mode: 'timestamp_ms' }).notNull(),
+  periodEnd: integer('period_end', { mode: 'timestamp_ms' }).notNull(),
+  generatedAt: integer('generated_at', { mode: 'timestamp_ms' })
+    .notNull()
+    .$defaultFn(() => new Date()),
+  kpiSnapshot: text('kpi_snapshot').notNull(),
+  reportJson: text('report_json').notNull(),
+  model: text('model').notNull().default(''),
+  status: text('status').notNull().default('success'),
+  errorMessage: text('error_message'),
+  createdAt: integer('created_at', { mode: 'timestamp_ms' })
+    .notNull()
+    .$defaultFn(() => new Date()),
+});
+
 // ==================== 用户表 ====================
 export const users = sqliteTable('users', {
   id: integer('id').primaryKey({ autoIncrement: true }),
@@ -96,6 +115,9 @@ export type NewDeviceType = typeof deviceTypes.$inferInsert;
 
 export type BorrowRecord = typeof borrowRecords.$inferSelect;
 export type NewBorrowRecord = typeof borrowRecords.$inferInsert;
+
+export type ReportQuery = typeof reportQueries.$inferSelect;
+export type NewReportQuery = typeof reportQueries.$inferInsert;
 
 export type User = typeof users.$inferSelect;
 export type NewUser = typeof users.$inferInsert;

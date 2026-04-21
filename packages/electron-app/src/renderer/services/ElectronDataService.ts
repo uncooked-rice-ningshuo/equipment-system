@@ -18,6 +18,8 @@ import {
   NewBorrowRecord,
   NewDevice,
   NewDeviceType,
+  WeeklyReportRecord,
+  WeeklyReportSummary,
 } from '@equipment/shared';
 
 export class ElectronDataService implements IDataService {
@@ -120,5 +122,18 @@ export class ElectronDataService implements IDataService {
   // ==================== 通知标记 ====================
   async markNotified(recordId: number): Promise<void> {
     return window.electronAPI.invoke('borrow:markNotified', recordId);
+  }
+
+  // ==================== 智能周报 ====================
+  async generateWeeklyReport(): Promise<WeeklyReportRecord> {
+    return window.electronAPI.invoke('report:weeklyGenerate');
+  }
+
+  async getWeeklyReportHistory(): Promise<WeeklyReportSummary[]> {
+    return window.electronAPI.invoke('report:weeklyHistory');
+  }
+
+  async getWeeklyReportById(id: number): Promise<WeeklyReportRecord | null> {
+    return window.electronAPI.invoke('report:weeklyGetById', id);
   }
 }

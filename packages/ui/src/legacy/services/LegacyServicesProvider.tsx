@@ -8,6 +8,8 @@ import {
   ListOptions,
   ListResult,
   NewDeviceType,
+  WeeklyReportRecord,
+  WeeklyReportSummary,
 } from '@equipment/shared';
 import { createContext, ReactNode, useContext, useMemo } from 'react';
 
@@ -76,6 +78,9 @@ type LegacyDataService = {
   createBorrowRecord: (data: any) => Promise<LegacyBorrowRecord>;
   updateBorrowRecord: (id: number, data: any) => Promise<any>;
   deleteBorrowRecord: (id: number) => Promise<void>;
+  generateWeeklyReport: () => Promise<WeeklyReportRecord>;
+  getWeeklyReportHistory: () => Promise<WeeklyReportSummary[]>;
+  getWeeklyReportById: (id: number) => Promise<WeeklyReportRecord | null>;
 };
 
 export type LegacyServices = {
@@ -246,6 +251,15 @@ function createLegacyDataService(
     },
     deleteBorrowRecord(id: number) {
       return coreDataService.deleteBorrowRecord(id);
+    },
+    generateWeeklyReport() {
+      return coreDataService.generateWeeklyReport();
+    },
+    getWeeklyReportHistory() {
+      return coreDataService.getWeeklyReportHistory();
+    },
+    getWeeklyReportById(id: number) {
+      return coreDataService.getWeeklyReportById(id);
     },
   };
 }

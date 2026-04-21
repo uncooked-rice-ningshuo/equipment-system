@@ -11,4 +11,5 @@ export * from './db/types';
 // SQLite Schema (用于 Electron) - 从 @equipment/shared/db/sqlite-schema 导入
 
 // 服务接口
+export * from './report';
 export * from './services/core';

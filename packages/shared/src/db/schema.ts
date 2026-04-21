@@ -6,6 +6,7 @@
 import {
   boolean,
   integer,
+  jsonb,
   pgTable,
   real,
   serial,
@@ -57,6 +58,23 @@ export const borrowRecords = pgTable('borrow_records', {
   createdAt: timestamp('created_at').notNull().defaultNow(),
 });
 
+// ==================== 报告查询记录表 ====================
+export const reportQueries = pgTable('report_queries', {
+  id: serial('id').primaryKey(),
+  reportType: varchar('report_type', { length: 32 })
+    .notNull()
+    .default('weekly'),
+  periodStart: timestamp('period_start').notNull(),
+  periodEnd: timestamp('period_end').notNull(),
+  generatedAt: timestamp('generated_at').notNull().defaultNow(),
+  kpiSnapshot: jsonb('kpi_snapshot').notNull(),
+  reportJson: jsonb('report_json').notNull(),
+  model: varchar('model', { length: 120 }).notNull().default(''),
+  status: varchar('status', { length: 20 }).notNull().default('success'),
+  errorMessage: text('error_message'),
+  createdAt: timestamp('created_at').notNull().defaultNow(),
+});
+
 // ==================== 用户表 (Electron 本地认证) ====================
 export const users = pgTable('users', {
   id: serial('id').primaryKey(),
@@ -87,6 +105,9 @@ export type NewDeviceType = typeof deviceTypes.$inferInsert;
 
 export type BorrowRecord = typeof borrowRecords.$inferSelect;
 export type NewBorrowRecord = typeof borrowRecords.$inferInsert;
+
+export type ReportQuery = typeof reportQueries.$inferSelect;
+export type NewReportQuery = typeof reportQueries.$inferInsert;
 
 export type User = typeof users.$inferSelect;
 export type NewUser = typeof users.$inferInsert;

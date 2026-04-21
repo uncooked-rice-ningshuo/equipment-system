@@ -20,6 +20,7 @@ import {
   ListOptions,
   ListResult,
 } from '../../db/types';
+import { WeeklyReportRecord, WeeklyReportSummary } from '../../report/types';
 
 export interface IDataService {
   // ==================== 设备管理 ====================
@@ -62,4 +63,9 @@ export interface IDataService {
 
   // ==================== 通知标记 ====================
   markNotified(recordId: number): Promise<void>;
+
+  // ==================== 智能周报 ====================
+  generateWeeklyReport(): Promise<WeeklyReportRecord>;
+  getWeeklyReportHistory(): Promise<WeeklyReportSummary[]>;
+  getWeeklyReportById(id: number): Promise<WeeklyReportRecord | null>;
 }

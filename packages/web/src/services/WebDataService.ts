@@ -18,6 +18,8 @@ import {
   NewBorrowRecord,
   NewDevice,
   NewDeviceType,
+  WeeklyReportRecord,
+  WeeklyReportSummary,
 } from '@equipment/shared';
 
 const API_BASE = '/api';
@@ -262,5 +264,24 @@ export class WebDataService implements IDataService {
   async markNotified(recordId: number): Promise<void> {
     // Web 版暂时不需要实现
     console.log('Mark notified:', recordId);
+  }
+
+  // ==================== 智能周报 ====================
+  async generateWeeklyReport(): Promise<WeeklyReportRecord> {
+    return fetchAPI(`${API_BASE}/reports/weekly`, {
+      method: 'POST',
+    });
+  }
+
+  async getWeeklyReportHistory(): Promise<WeeklyReportSummary[]> {
+    return fetchAPI(`${API_BASE}/reports/weekly/history`);
+  }
+
+  async getWeeklyReportById(id: number): Promise<WeeklyReportRecord | null> {
+    try {
+      return await fetchAPI(`${API_BASE}/reports/weekly/${id}`);
+    } catch {
+      return null;
+    }
   }
 }

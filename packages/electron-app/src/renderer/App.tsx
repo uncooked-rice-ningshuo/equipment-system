@@ -1,6 +1,7 @@
 import {
   DashboardOutlined,
   DesktopOutlined,
+  FileTextOutlined,
   HistoryOutlined,
   SwapOutlined,
 } from '@ant-design/icons';
@@ -17,6 +18,7 @@ import {
   Login,
   Profile,
   Returned,
+  WeeklyReport,
 } from '@equipment/ui/legacy/pages';
 import { useEffect, useMemo, useState } from 'react';
 import { authService, dataService } from './services';
@@ -27,7 +29,8 @@ type RoutePath =
   | '/borrow'
   | '/returned'
   | '/devices'
-  | '/profile';
+  | '/profile'
+  | '/reports';
 
 function normalizePath(input: string | undefined): RoutePath {
   const raw = (input ?? '').trim();
@@ -43,6 +46,7 @@ function normalizePath(input: string | undefined): RoutePath {
     case '/returned':
     case '/devices':
     case '/profile':
+    case '/reports':
       return withLeadingSlash;
     case '/':
     case '':
@@ -72,6 +76,11 @@ const menuItems = [
     key: '/devices',
     icon: <DesktopOutlined />,
     label: '设备管理',
+  },
+  {
+    key: '/reports',
+    icon: <FileTextOutlined />,
+    label: '智能周报',
   },
 ];
 
@@ -179,6 +188,8 @@ export default function App() {
                 <Returned />
               ) : path === '/devices' ? (
                 <Devices />
+              ) : path === '/reports' ? (
+                <WeeklyReport />
               ) : (
                 <Profile />
               )}

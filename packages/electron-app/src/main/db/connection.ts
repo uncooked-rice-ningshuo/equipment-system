@@ -192,6 +192,24 @@ function initTables(): void {
     CREATE INDEX IF NOT EXISTS idx_sessions_expires ON sessions(expires_at);
   `);
 
+  db.exec(`
+    CREATE TABLE IF NOT EXISTS report_queries (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      report_type TEXT NOT NULL DEFAULT 'weekly',
+      period_start INTEGER NOT NULL,
+      period_end INTEGER NOT NULL,
+      generated_at INTEGER NOT NULL DEFAULT (strftime('%s', 'now') * 1000),
+      kpi_snapshot TEXT NOT NULL,
+      report_json TEXT NOT NULL,
+      model TEXT NOT NULL DEFAULT '',
+      status TEXT NOT NULL DEFAULT 'success',
+      error_message TEXT,
+      created_at INTEGER NOT NULL DEFAULT (strftime('%s', 'now') * 1000)
+    );
+    CREATE INDEX IF NOT EXISTS idx_report_queries_generated_at ON report_queries(generated_at);
+    CREATE INDEX IF NOT EXISTS idx_report_queries_status ON report_queries(status);
+  `);
+
   console.log('[Database] Tables initialized');
 }
 
@@ -217,6 +235,11 @@ function upgradeTimestampsToMs(): void {
 
     `UPDATE sessions SET expires_at = expires_at * 1000 WHERE expires_at IS NOT NULL AND expires_at > 0 AND expires_at < ${threshold}`,
     `UPDATE sessions SET created_at = created_at * 1000 WHERE created_at IS NOT NULL AND created_at > 0 AND created_at < ${threshold}`,
+
+    `UPDATE report_queries SET period_start = period_start * 1000 WHERE period_start IS NOT NULL AND period_start > 0 AND period_start < ${threshold}`,
+    `UPDATE report_queries SET period_end = period_end * 1000 WHERE period_end IS NOT NULL AND period_end > 0 AND period_end < ${threshold}`,
+    `UPDATE report_queries SET generated_at = generated_at * 1000 WHERE generated_at IS NOT NULL AND generated_at > 0 AND generated_at < ${threshold}`,
+    `UPDATE report_queries SET created_at = created_at * 1000 WHERE created_at IS NOT NULL AND created_at > 0 AND created_at < ${threshold}`,
   ];
 
   let changed = 0;

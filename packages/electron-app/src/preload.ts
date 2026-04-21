@@ -37,6 +37,10 @@ const validChannels = [
   'stats:dashboard',
   'stats:deviceTypeDistribution',
   'stats:borrowTrends',
+  // 智能周报
+  'report:weeklyGenerate',
+  'report:weeklyHistory',
+  'report:weeklyGetById',
 ];
 
 // 暴露 API 到 window.electronAPI
