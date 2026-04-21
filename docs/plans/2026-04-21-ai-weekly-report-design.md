@@ -1,6 +1,6 @@
 # 智能周报功能设计（Web + Electron 同步）
 
-日期：2026-04-20  
+日期：2026-04-21  
 状态：已确认（可进入实现）
 
 ## 1. 背景与目标
@@ -9,10 +9,11 @@
 
 本次目标：
 
-- 输入近一周借用数据（可带筛选条件）
+- 查询时固定使用“最近 7 天”借用数据（不提供筛选条件）
 - 调用云端大模型生成结构化报告
 - 强制输出严格 JSON Schema
 - 前端按统一模板渲染，并支持打印
+- 每次查询结果持久化入库，可查看历史并再次渲染打印
 - Web 与 Electron 双端口径一致、行为一致
 
 非目标（本期不做）：
@@ -52,25 +53,30 @@
 
 Web：
 
-- 新增 API：`POST /api/reports/weekly`
+- 新增 API：`POST /api/reports/weekly`（生成并入库）
+- 新增 API：`GET /api/reports/weekly/history`（历史列表）
+- 新增 API：`GET /api/reports/weekly/:id`（历史详情）
 - 复用现有鉴权 (`getAuth().api.getSession`) 与 DB 获取 (`getDb()`)
-- 页面调用 API 获取报告数据并渲染打印
+- 页面调用 API 生成报告、查看历史、按历史记录重渲染打印
 
 Electron：
 
-- 新增 IPC：`report:weekly`
+- 新增 IPC：`report:weeklyGenerate`
+- 新增 IPC：`report:weeklyHistory`
+- 新增 IPC：`report:weeklyGetById`
 - 在 main 进程调用共享核心
-- renderer 通过 `window.electronAPI.invoke` 获取结构化报告数据
+- renderer 通过 `window.electronAPI.invoke` 生成和读取历史报告
 
 ## 4. 数据流
 
-1. 前端提交请求（周期 + 筛选条件）
+1. 前端点击“生成智能周报”（无需填写筛选条件）
 2. 端适配层读取借还数据与设备数据
 3. `aggregator` 产出 `WeeklyReportDataSnapshot`（含锁定事实）
 4. 调用大模型并要求 `json_schema` 返回
 5. 本地做 Schema 校验 + 一致性校验
-6. 通过后返回前端渲染；失败走重试/降级
-7. 页面提供打印视图
+6. 通过后将报告 JSON + 快照摘要写入 `report_queries`（新表）
+7. 返回“本次生成结果 + recordId”给前端渲染
+8. 历史页读取 `report_queries` 列表，支持再次打开并打印
 
 ## 5. 固定 JSON Schema（建议）
 
@@ -129,7 +135,7 @@ Electron：
 
 周时间窗：
 
-- 默认最近 7 天（含当日），支持自定义 `start/end`
+- 固定最近 7 天（含当日），不接收前端自定义时间范围
 - 时区以请求端配置为准，统一转 UTC 存储比较
 
 核心指标口径：
@@ -140,6 +146,27 @@ Electron：
 - `overdueRate`：`overdueTotal / borrowTotal`（borrowTotal=0 时为 0）
 - `activeBorrowerCount`：周期内去重借用人数量
 - `avgBorrowDurationHours`：已归还记录平均借用时长（小时）
+
+## 6.1 历史查询持久化模型
+
+新增表建议：`report_queries`
+
+字段建议：
+
+- `id`：主键
+- `reportType`：固定 `weekly`
+- `periodStart` / `periodEnd`：本次统计窗口
+- `generatedAt`：生成时间
+- `kpiSnapshot`：关键 KPI 快照（JSON）
+- `reportJson`：完整结构化报告（JSON）
+- `model`：模型标识
+- `status`：`success|fallback|failed`
+- `errorMessage`：失败信息（可空）
+
+说明：
+
+- “每次查询都入库”指每次用户点击生成，都落一条记录。
+- 历史重渲染直接读取 `reportJson`，不再二次请求模型，保证可追溯与可复现。
 
 ## 7. 项目具体落点（文件级）
 
@@ -157,6 +184,11 @@ Electron：
 - `prompt.ts`
 - `generateWeeklyReport.ts`
 
+数据库 schema 扩展：
+
+- `/Users/ningshuo/code/my-projects/equipment-system/packages/shared/src/db/schema.ts`
+- `/Users/ningshuo/code/my-projects/equipment-system/packages/shared/src/db/sqlite-schema.ts`
+
 导出入口更新：
 
 - `/Users/ningshuo/code/my-projects/equipment-system/packages/shared/src/index.ts`
@@ -166,10 +198,13 @@ Electron：
 新增 API：
 
 - `/Users/ningshuo/code/my-projects/equipment-system/packages/web/src/app/api/reports/weekly/route.ts`
+- `/Users/ningshuo/code/my-projects/equipment-system/packages/web/src/app/api/reports/weekly/history/route.ts`
+- `/Users/ningshuo/code/my-projects/equipment-system/packages/web/src/app/api/reports/weekly/[id]/route.ts`
 
 新增页面：
 
 - `/Users/ningshuo/code/my-projects/equipment-system/packages/web/src/app/(main)/reports/weekly/page.tsx`
+- `/Users/ningshuo/code/my-projects/equipment-system/packages/web/src/app/(main)/reports/history/page.tsx`
 
 菜单接入：
 
@@ -234,8 +269,9 @@ renderer 服务扩展：
 处理流程：
 
 1. 首次生成失败 -> 降温重试 1 次
-2. 再失败 -> 输出“降级结构化报告”（由模板+聚合数据生成）
-3. 前端始终获得可打印结构，避免空白页
+2. 再失败 -> 输出“降级结构化报告”（由模板+聚合数据生成），并同样入库
+3. 若最终失败（无可用降级数据）-> 仍写失败记录（`status=failed`）
+4. 前端始终可查看历史记录状态，成功与降级记录均可打印
 
 ## 10. 前端渲染与打印
 
@@ -244,6 +280,8 @@ renderer 服务扩展：
 - 使用固定模板渲染 `meta/kpis/sections/risks/actions`
 - 图表按 `chartHint` 与聚合快照渲染
 - 显示“生成时间、统计周期、数据量、模型版本”
+- 提供“历史查询记录”列表（时间、状态、模型、核心 KPI）
+- 点击历史记录可直接重渲染并打印
 
 打印要求：
 
@@ -261,11 +299,12 @@ renderer 服务扩展：
 
 - Schema 校验通过/失败样本
 - 一致性校验失败样本
+- 历史记录 JSON 反序列化与渲染兼容性
 
 集成测试：
 
-- Web API 主流程
-- Electron IPC 主流程
+- Web API 生成 + 入库 + 历史读取主流程
+- Electron IPC 生成 + 入库 + 历史读取主流程
 - 同输入下双端输出结构一致
 
 ## 12. 分阶段上线
@@ -273,26 +312,29 @@ renderer 服务扩展：
 Phase 1（建议 1 周）：
 
 - 手动生成周报
+- 每次生成自动入库
+- 历史列表与历史重渲染打印
 - 页面渲染与打印
 - 双端可用
 
 Phase 2：
 
-- 报表存档（可选）
 - 历史对比（可选）
-- 参数模板复用（可选）
+- 导出 PDF（可选）
+- 历史查询检索（可选）
 
 ## 13. 实施清单（可执行）
 
 1. 创建 shared `report` 核心模块
-2. Web API 与 Electron IPC 接入共享模块
-3. 扩展双端 DataService 能力
-4. 新增共享 UI 报表页面并挂载菜单
-5. 增加打印样式与打印按钮
-6. 完成口径/合约/集成测试
-7. 配置环境变量并灰度上线
+2. 增加 `report_queries` 表（PG + SQLite）及迁移
+3. Web API 与 Electron IPC 接入共享模块（生成/历史/详情）
+4. 扩展双端 DataService 能力
+5. 新增共享 UI 报表页与历史页并挂载菜单
+6. 增加打印样式与打印按钮
+7. 完成口径/合约/集成测试
+8. 配置环境变量并灰度上线
 
 ---
 
 该设计已按以下确认项收敛：  
-`Web + Electron 同步`、`云端大模型 API`、`严格 JSON Schema`、`方案 A`。
+`Web + Electron 同步`、`云端大模型 API`、`严格 JSON Schema`、`固定近一周无筛选`、`每次查询持久化并支持历史重渲染打印`、`方案 A`。
