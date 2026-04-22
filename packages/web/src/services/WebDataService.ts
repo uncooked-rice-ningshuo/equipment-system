@@ -48,6 +48,14 @@ async function fetchAPI<T>(url: string, options?: RequestInit): Promise<T> {
   return data.data || data;
 }
 
+function toParamDate(value?: Date | string): string | undefined {
+  if (!value) return undefined;
+  if (value instanceof Date) return value.toISOString();
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return undefined;
+  return date.toISOString();
+}
+
 export class WebDataService implements IDataService {
   // ==================== 设备管理 ====================
   async getDevices(
@@ -60,6 +68,7 @@ export class WebDataService implements IDataService {
       if (options.filters.name) params.set('name', options.filters.name);
       if (options.filters.status) params.set('status', options.filters.status);
       if (options.filters.type) params.set('type', options.filters.type);
+      if (options.filters.brand) params.set('brand', options.filters.brand);
     }
 
     return fetchAPI(`${API_BASE}/devices?${params}`);
@@ -137,6 +146,24 @@ export class WebDataService implements IDataService {
       if (options.filters.borrowerClass) {
         params.set('borrowerClass', options.filters.borrowerClass);
       }
+      if (options.filters.borrowerStudentId) {
+        params.set('borrowerStudentId', options.filters.borrowerStudentId);
+      }
+      if (options.filters.deviceName) {
+        params.set('deviceName', options.filters.deviceName);
+      }
+      if (options.filters.deviceType) {
+        params.set('deviceType', options.filters.deviceType);
+      }
+
+      const borrowTimeStart = toParamDate(options.filters.borrowTimeStart);
+      if (borrowTimeStart) params.set('borrowTimeStart', borrowTimeStart);
+      const borrowTimeEnd = toParamDate(options.filters.borrowTimeEnd);
+      if (borrowTimeEnd) params.set('borrowTimeEnd', borrowTimeEnd);
+      const returnTimeStart = toParamDate(options.filters.returnTimeStart);
+      if (returnTimeStart) params.set('returnTimeStart', returnTimeStart);
+      const returnTimeEnd = toParamDate(options.filters.returnTimeEnd);
+      if (returnTimeEnd) params.set('returnTimeEnd', returnTimeEnd);
     }
 
     return fetchAPI(`${API_BASE}/borrow?${params}`);

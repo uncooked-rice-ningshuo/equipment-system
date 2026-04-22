@@ -81,8 +81,14 @@ export default function MainLayout({
   }, [router]);
 
   const handleLogout = async () => {
-    await authService.logout();
-    router.push('/login');
+    try {
+      await authService.logout();
+    } catch (error) {
+      console.error('[MainLayout] logout failed:', error);
+    } finally {
+      router.replace('/login');
+      router.refresh();
+    }
   };
 
   const selectedKeys = useMemo(() => {

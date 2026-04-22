@@ -8,7 +8,17 @@ import { getAuth } from '@/lib/auth';
 import { getDb } from '@/lib/db';
 import { errorResponse, successResponse } from '@/lib/utils';
 import { borrowRecords, devices } from '@equipment/shared/db/schema';
-import { and, desc, eq, isNotNull, isNull, like } from 'drizzle-orm';
+import {
+  and,
+  desc,
+  eq,
+  gte,
+  inArray,
+  isNotNull,
+  isNull,
+  like,
+  lte,
+} from 'drizzle-orm';
 import { NextRequest } from 'next/server';
 
 // GET /api/borrow
@@ -24,8 +34,15 @@ export async function GET(request: NextRequest) {
     const { searchParams } = new URL(request.url);
     const returned = searchParams.get('returned');
     const deviceCode = searchParams.get('deviceCode');
+    const deviceName = searchParams.get('deviceName');
+    const deviceType = searchParams.get('deviceType');
     const borrowerName = searchParams.get('borrowerName');
     const borrowerClass = searchParams.get('borrowerClass');
+    const borrowerStudentId = searchParams.get('borrowerStudentId');
+    const borrowTimeStart = searchParams.get('borrowTimeStart');
+    const borrowTimeEnd = searchParams.get('borrowTimeEnd');
+    const returnTimeStart = searchParams.get('returnTimeStart');
+    const returnTimeEnd = searchParams.get('returnTimeEnd');
 
     const db = getDb();
     const base = db.select().from(borrowRecords);
@@ -40,6 +57,9 @@ export async function GET(request: NextRequest) {
     if (deviceCode) {
       conditions.push(like(borrowRecords.deviceCode, `%${deviceCode}%`));
     }
+    if (deviceName) {
+      conditions.push(like(borrowRecords.deviceName, `%${deviceName}%`));
+    }
 
     if (borrowerName) {
       conditions.push(like(borrowRecords.borrowerName, `%${borrowerName}%`));
@@ -47,6 +67,51 @@ export async function GET(request: NextRequest) {
 
     if (borrowerClass) {
       conditions.push(like(borrowRecords.borrowerClass, `%${borrowerClass}%`));
+    }
+    if (borrowerStudentId) {
+      conditions.push(
+        like(borrowRecords.borrowerStudentId, `%${borrowerStudentId}%`),
+      );
+    }
+
+    if (borrowTimeStart) {
+      const date = new Date(borrowTimeStart);
+      if (!Number.isNaN(date.getTime())) {
+        conditions.push(gte(borrowRecords.borrowTime, date));
+      }
+    }
+    if (borrowTimeEnd) {
+      const date = new Date(borrowTimeEnd);
+      if (!Number.isNaN(date.getTime())) {
+        conditions.push(lte(borrowRecords.borrowTime, date));
+      }
+    }
+    if (returnTimeStart) {
+      const date = new Date(returnTimeStart);
+      if (!Number.isNaN(date.getTime())) {
+        conditions.push(gte(borrowRecords.actualReturnTime, date));
+      }
+    }
+    if (returnTimeEnd) {
+      const date = new Date(returnTimeEnd);
+      if (!Number.isNaN(date.getTime())) {
+        conditions.push(lte(borrowRecords.actualReturnTime, date));
+      }
+    }
+
+    if (deviceType) {
+      const typedDevices = await db
+        .select({ id: devices.id })
+        .from(devices)
+        .where(eq(devices.type, deviceType));
+      const typedIds = typedDevices.map((item) => item.id);
+      if (typedIds.length === 0) {
+        return successResponse({
+          data: [],
+          total: 0,
+        });
+      }
+      conditions.push(inArray(borrowRecords.deviceId, typedIds));
     }
 
     const query = conditions.length > 0 ? base.where(and(...conditions)) : base;

@@ -52,7 +52,26 @@ export class WebAuthService implements IAuthService {
   }
 
   async logout(): Promise<void> {
-    await authClient.signOut();
+    try {
+      await authClient.signOut();
+      return;
+    } catch (error) {
+      console.warn(
+        '[WebAuthService] signOut via authClient failed, fallback to API',
+        error,
+      );
+    }
+
+    const response = await fetch('/api/auth/sign-out', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      credentials: 'include',
+      body: JSON.stringify({}),
+    });
+
+    if (!response.ok) {
+      throw new Error('退出登录失败');
+    }
   }
 
   async changePassword(

@@ -132,9 +132,9 @@ export default function WeeklyReport() {
   const trendData = parseDailyTrend(trend);
   const typeStats = parseTypeStats(byDeviceType);
   const typeTotal = typeStats.reduce((sum, item) => sum + item.value, 0) || 1;
-  const maxTrend =
+  const maxTrendTotal =
     trendData.reduce(
-      (max, item) => Math.max(max, item.borrow, item.returned),
+      (max, item) => Math.max(max, item.borrow + item.returned),
       0,
     ) || 1;
 
@@ -167,6 +167,8 @@ export default function WeeklyReport() {
           padding: 24px;
           color: #0b1c30;
           font-family: Inter, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+          -webkit-print-color-adjust: exact;
+          print-color-adjust: exact;
         }
         .wr-header {
           border-bottom: 1px solid #c3c6d7;
@@ -225,6 +227,7 @@ export default function WeeklyReport() {
           gap: 6px;
           height: 110px;
           margin-top: 10px;
+          overflow: hidden;
         }
         .wr-trend-col {
           flex: 1;
@@ -235,8 +238,18 @@ export default function WeeklyReport() {
           gap: 3px;
           min-width: 20px;
         }
-        .wr-bar-borrow { width: 100%; background: #1752c3; border-radius: 3px 3px 0 0; }
-        .wr-bar-return { width: 100%; background: #c8d9f7; border-radius: 3px 3px 0 0; }
+        .wr-bar-borrow {
+          width: 100%;
+          background: #1752c3;
+          border: 1px solid #1752c3;
+          border-radius: 3px 3px 0 0;
+        }
+        .wr-bar-return {
+          width: 100%;
+          background: #c8d9f7;
+          border: 1px solid #9fb8ea;
+          border-radius: 3px 3px 0 0;
+        }
         .wr-risk-row,
         .wr-action-row {
           border: 1px solid #c3c6d7;
@@ -265,16 +278,28 @@ export default function WeeklyReport() {
         }
         @media print {
           @page { size: A4 portrait; margin: 10mm; }
-          body { background: #fff !important; }
+          html, body { background: #fff !important; margin: 0 !important; }
+          body * { visibility: hidden !important; }
           .weekly-report-no-print { display: none !important; }
-          .wr-stage { padding: 0 !important; overflow: visible !important; }
+          .wr-paper,
+          .wr-paper * { visibility: visible !important; }
+          .wr-paper,
+          .wr-paper * {
+            -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
+          }
           .wr-paper {
-            width: auto !important;
+            position: absolute !important;
+            left: 0 !important;
+            top: 0 !important;
+            width: calc(210mm - 20mm) !important;
             min-height: auto !important;
             box-shadow: none !important;
             border: none !important;
             border-radius: 0 !important;
             padding: 0 !important;
+            margin: 0 !important;
+            background: #fff !important;
           }
           .wr-main-grid,
           .wr-kpi-grid { break-inside: avoid; }
@@ -346,13 +371,13 @@ export default function WeeklyReport() {
                   <div className="wr-header">
                     <div>
                       <Title level={3} style={{ margin: 0, color: '#0b1c30' }}>
-                        Data Intelligence
+                        数据智能分析
                       </Title>
                       <Title
                         level={2}
                         style={{ margin: '2px 0 8px', fontSize: 30 }}
                       >
-                        Weekly Smart Insights
+                        每周智能洞察报告
                       </Title>
                       <Space size={8}>
                         <span className="wr-meta-chip">
@@ -363,20 +388,20 @@ export default function WeeklyReport() {
                           className="wr-meta-chip"
                           style={{ background: '#2563eb', color: '#fff' }}
                         >
-                          VERIFIED REPORT
+                          已校验报告
                         </span>
                       </Space>
                     </div>
                     <div style={{ textAlign: 'right' }}>
                       <Text strong style={{ color: '#004ac6', fontSize: 16 }}>
-                        REPORT #{report.meta.reportId}
+                        报告编号 #{report.meta.reportId}
                       </Text>
                       <br />
                       <Text
                         type="secondary"
                         style={{ textTransform: 'uppercase' }}
                       >
-                        Generated: {formatDateTime(report.meta.generatedAt)}
+                        生成时间：{formatDateTime(report.meta.generatedAt)}
                       </Text>
                       <br />
                       {statusTag(current.status)}
@@ -385,25 +410,25 @@ export default function WeeklyReport() {
 
                   <div className="wr-kpi-grid">
                     <div className="wr-kpi-item">
-                      <Text type="secondary">Borrow Total</Text>
+                      <Text type="secondary">借出总数</Text>
                       <Title level={2} style={{ margin: 0, color: '#004ac6' }}>
                         {kpis.borrowTotal}
                       </Title>
                     </div>
                     <div className="wr-kpi-item">
-                      <Text type="secondary">Return Total</Text>
+                      <Text type="secondary">归还总数</Text>
                       <Title level={2} style={{ margin: 0 }}>
                         {kpis.returnTotal}
                       </Title>
                     </div>
                     <div className="wr-kpi-item">
-                      <Text type="secondary">Overdue Rate</Text>
+                      <Text type="secondary">逾期率</Text>
                       <Title level={2} style={{ margin: 0, color: '#ba1a1a' }}>
                         {toPercent(kpis.overdueRate)}
                       </Title>
                     </div>
                     <div className="wr-kpi-item">
-                      <Text type="secondary">Avg Duration</Text>
+                      <Text type="secondary">平均借用时长</Text>
                       <Title level={2} style={{ margin: 0 }}>
                         {kpis.avgBorrowDurationHours}h
                       </Title>
@@ -413,7 +438,7 @@ export default function WeeklyReport() {
                   <div className="wr-main-grid">
                     <div className="wr-block">
                       <h3 className="wr-section-title">
-                        {overview?.title || 'Executive Overview'}
+                        {overview?.title || '管理层概览'}
                       </h3>
                       <Text>{overview?.summary || '-'}</Text>
                       <ul className="wr-list">
@@ -426,14 +451,14 @@ export default function WeeklyReport() {
                     </div>
                     <div className="wr-block">
                       <h3 className="wr-section-title">
-                        {trend?.title || 'Weekly Trend'}
+                        {trend?.title || '每周趋势'}
                       </h3>
                       <div className="wr-trend">
                         {(trendData.length > 0
                           ? trendData
                           : [
                               {
-                                day: 'N/A',
+                                day: '暂无',
                                 borrow: kpis.borrowTotal,
                                 returned: kpis.returnTotal,
                               },
@@ -443,19 +468,25 @@ export default function WeeklyReport() {
                             <div
                               className="wr-bar-return"
                               style={{
-                                height: `${Math.max(
-                                  6,
-                                  (item.returned / maxTrend) * 88,
-                                )}px`,
+                                height:
+                                  item.returned > 0
+                                    ? `${Math.max(
+                                        4,
+                                        (item.returned / maxTrendTotal) * 92,
+                                      )}px`
+                                    : '0px',
                               }}
                             />
                             <div
                               className="wr-bar-borrow"
                               style={{
-                                height: `${Math.max(
-                                  8,
-                                  (item.borrow / maxTrend) * 96,
-                                )}px`,
+                                height:
+                                  item.borrow > 0
+                                    ? `${Math.max(
+                                        5,
+                                        (item.borrow / maxTrendTotal) * 92,
+                                      )}px`
+                                    : '0px',
                               }}
                             />
                             <Text type="secondary" style={{ fontSize: 10 }}>
@@ -470,7 +501,7 @@ export default function WeeklyReport() {
                   <div className="wr-main-grid">
                     <div className="wr-block">
                       <h3 className="wr-section-title">
-                        {byDeviceType?.title || 'Device Type Analysis'}
+                        {byDeviceType?.title || '设备类型分析'}
                       </h3>
                       {(typeStats.length > 0
                         ? typeStats
@@ -517,7 +548,7 @@ export default function WeeklyReport() {
                         className="wr-section-title"
                         style={{ color: '#fff' }}
                       >
-                        {borrowerInsights?.title || 'Borrower Insights'}
+                        {borrowerInsights?.title || '借用人洞察'}
                       </h3>
                       <Text style={{ color: '#dbeafe' }}>
                         {borrowerInsights?.summary ||
@@ -539,7 +570,7 @@ export default function WeeklyReport() {
                           }}
                         >
                           <Text style={{ color: '#bfdbfe', fontSize: 11 }}>
-                            ACTIVE BORROWERS
+                            活跃借用人数
                           </Text>
                           <Title level={4} style={{ color: '#fff', margin: 0 }}>
                             {kpis.activeBorrowerCount}
@@ -553,7 +584,7 @@ export default function WeeklyReport() {
                           }}
                         >
                           <Text style={{ color: '#bfdbfe', fontSize: 11 }}>
-                            RETURN RATE
+                            归还率
                           </Text>
                           <Title level={4} style={{ color: '#fff', margin: 0 }}>
                             {toPercent(
@@ -569,7 +600,7 @@ export default function WeeklyReport() {
 
                   <div className="wr-main-grid">
                     <div>
-                      <h3 className="wr-section-title">Risk Assessment</h3>
+                      <h3 className="wr-section-title">风险评估</h3>
                       {(report.risks?.length ? report.risks : []).map(
                         (risk: any, idx: number) => (
                           <div className="wr-risk-row" key={`risk-${idx}`}>
@@ -594,7 +625,7 @@ export default function WeeklyReport() {
                       )}
                     </div>
                     <div>
-                      <h3 className="wr-section-title">Action Plan</h3>
+                      <h3 className="wr-section-title">行动计划</h3>
                       {(report.actions?.length ? report.actions : []).map(
                         (action: any, idx: number) => (
                           <div className="wr-action-row" key={`action-${idx}`}>
@@ -620,8 +651,8 @@ export default function WeeklyReport() {
                   </div>
 
                   <div className="wr-footer">
-                    <span>© Data Intelligence System - Confidential</span>
-                    <span>Page 01 of 01</span>
+                    <span>© 设备借还智能分析系统 - 机密</span>
+                    <span>第 01 页 / 共 01 页</span>
                   </div>
                 </>
               ) : (

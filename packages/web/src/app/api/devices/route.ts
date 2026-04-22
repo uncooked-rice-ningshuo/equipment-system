@@ -29,6 +29,7 @@ export async function GET(request: NextRequest) {
       name: searchParams.get('name') || undefined,
       status: searchParams.get('status') || undefined,
       type: searchParams.get('type') || undefined,
+      brand: searchParams.get('brand') || undefined,
     };
 
     // 构建查询
@@ -46,6 +47,9 @@ export async function GET(request: NextRequest) {
     }
     if (filters.type) {
       conditions.push(eq(devices.type, filters.type));
+    }
+    if (filters.brand) {
+      conditions.push(like(devices.brand, `%${filters.brand}%`));
     }
 
     const query = conditions.length > 0 ? base.where(and(...conditions)) : base;
