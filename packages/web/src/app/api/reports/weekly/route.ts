@@ -52,8 +52,14 @@ export async function POST(request: NextRequest) {
         apiKey: process.env.LLM_API_KEY,
         baseUrl: process.env.LLM_BASE_URL || 'https://api.openai.com/v1',
         model: process.env.LLM_MODEL,
-        timeoutMs: Number(process.env.LLM_TIMEOUT_MS || 20000),
+        timeoutMs: Number(process.env.LLM_TIMEOUT_MS || 60000),
       },
+    });
+    console.info('[API] /api/reports/weekly generation result', {
+      status: generated.status,
+      model: generated.model,
+      errorMessage: generated.errorMessage || null,
+      sampleSize: snapshot.sampleSize,
     });
 
     const [created] = await db

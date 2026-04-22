@@ -1,5 +1,6 @@
 import { Button, Card, List, Space, Tag, Typography, message } from 'antd';
 import { useEffect, useState } from 'react';
+import { useTheme } from '../../components';
 import { useLegacyServices } from '../../services';
 import { formatDateTime } from '../../utils';
 
@@ -31,7 +32,45 @@ function toPercent(value: number): string {
 }
 
 function sectionByKey(report: any, key: string) {
-  return report?.sections?.find((s: any) => s?.key === key);
+  const sections = Array.isArray(report?.sections) ? report.sections : [];
+  const direct = sections.find((s: any) => s?.key === key);
+  if (direct) return direct;
+  const titleMatcher: Record<string, (title: string) => boolean> = {
+    overview: (title) =>
+      title.includes('概览') ||
+      title.includes('概况') ||
+      title.includes('总览'),
+    trend: (title) => title.includes('趋势'),
+    byDeviceType: (title) =>
+      title.includes('设备类型') ||
+      title.includes('类型统计') ||
+      title.includes('按设备类型'),
+    borrowerInsights: (title) =>
+      title.includes('借用人洞察') || title.includes('借用洞察'),
+  };
+  return sections.find((s: any) => {
+    const title = String(s?.title || '').trim();
+    return titleMatcher[key]?.(title);
+  });
+}
+
+function localizedSectionTitle(
+  key: 'overview' | 'trend' | 'byDeviceType' | 'borrowerInsights',
+  rawTitle?: string,
+) {
+  const titleMap = {
+    overview: '管理层概览',
+    trend: '每周趋势',
+    byDeviceType: '设备类型分析',
+    borrowerInsights: '借用人洞察',
+  } as const;
+  const normalized = String(rawTitle || '')
+    .trim()
+    .toLowerCase();
+  if (!normalized || normalized === key.toLowerCase()) {
+    return titleMap[key];
+  }
+  return rawTitle || titleMap[key];
 }
 
 function parseDailyTrend(
@@ -58,11 +97,24 @@ function parseDailyTrend(
   return parsed.slice(-7);
 }
 
+function buildEmptyTrend(): Array<{
+  day: string;
+  borrow: number;
+  returned: number;
+}> {
+  const days = ['周一', '周二', '周三', '周四', '周五', '周六', '周日'];
+  return days.map((day) => ({
+    day,
+    borrow: 0,
+    returned: 0,
+  }));
+}
+
 function parseTypeStats(section: any): Array<{ name: string; value: number }> {
   if (!section?.bullets?.length) return [];
   return section.bullets
     .map((item: string) => {
-      const m = item.match(/(.+):\s*(\d+)/);
+      const m = item.match(/(.+?)(?:[:：]\s*|\s+)(\d+)(?:\s*次)?(?:\s*%?)$/);
       if (!m) return null;
       return { name: m[1].trim(), value: Number(m[2]) };
     })
@@ -70,6 +122,8 @@ function parseTypeStats(section: any): Array<{ name: string; value: number }> {
 }
 
 export default function WeeklyReport() {
+  const { theme } = useTheme();
+  const isDark = theme === 'dark';
   const { dataService } = useLegacyServices();
   const [history, setHistory] = useState<HistoryItem[]>([]);
   const [current, setCurrent] = useState<any | null>(null);
@@ -130,17 +184,66 @@ export default function WeeklyReport() {
   const byDeviceType = sectionByKey(report, 'byDeviceType');
   const borrowerInsights = sectionByKey(report, 'borrowerInsights');
   const trendData = parseDailyTrend(trend);
+  const displayTrendData = trendData.length > 0 ? trendData : buildEmptyTrend();
   const typeStats = parseTypeStats(byDeviceType);
-  const typeTotal = typeStats.reduce((sum, item) => sum + item.value, 0) || 1;
+  const displayTypeStats =
+    typeStats.length > 0
+      ? typeStats
+      : [
+          {
+            name: '未分类',
+            value: Math.max(0, Number(kpis?.borrowTotal || 0)),
+          },
+        ];
+  const typeTotal =
+    displayTypeStats.reduce((sum, item) => sum + Math.max(0, item.value), 0) ||
+    1;
   const maxTrendTotal =
-    trendData.reduce(
+    displayTrendData.reduce(
       (max, item) => Math.max(max, item.borrow + item.returned),
       0,
     ) || 1;
 
   return (
-    <div style={{ padding: 24 }}>
+    <div
+      style={{ padding: 24 }}
+      className={isDark ? 'wr-root wr-root-dark' : 'wr-root wr-root-light'}
+    >
       <style>{`
+        .wr-root-light {
+          --wr-stage-bg: transparent;
+          --wr-paper-bg: #ffffff;
+          --wr-paper-text: #0b1c30;
+          --wr-paper-border: #d8deeb;
+          --wr-paper-shadow: 0 6px 24px rgba(15,23,42,0.08);
+          --wr-divider: #c3c6d7;
+          --wr-chip-bg: #dbeafe;
+          --wr-chip-text: #0b1c30;
+          --wr-block-bg: #ffffff;
+          --wr-muted: #737686;
+          --wr-row-bg: #ffffff;
+          --wr-bar-borrow: #1752c3;
+          --wr-bar-borrow-border: #1752c3;
+          --wr-bar-return: #c8d9f7;
+          --wr-bar-return-border: #9fb8ea;
+        }
+        .wr-root-dark {
+          --wr-stage-bg: #141a24;
+          --wr-paper-bg: #0f1726;
+          --wr-paper-text: #e6edf8;
+          --wr-paper-border: #2a364a;
+          --wr-paper-shadow: 0 12px 36px rgba(2,8,23,0.45);
+          --wr-divider: #314159;
+          --wr-chip-bg: #1f3559;
+          --wr-chip-text: #dbeafe;
+          --wr-block-bg: #141d2d;
+          --wr-muted: #9fb0c8;
+          --wr-row-bg: #162236;
+          --wr-bar-borrow: #4d86ff;
+          --wr-bar-borrow-border: #4d86ff;
+          --wr-bar-return: #2f4f8c;
+          --wr-bar-return-border: #5579bd;
+        }
         .wr-shell { display: flex; flex-direction: column; gap: 16px; }
         .wr-toolbar {
           display: flex;
@@ -156,22 +259,29 @@ export default function WeeklyReport() {
           align-items: start;
         }
         .wr-history-card .ant-card-body { padding: 8px; }
-        .wr-stage { display: flex; justify-content: center; overflow: auto; padding: 8px; }
+        .wr-stage {
+          display: flex;
+          justify-content: center;
+          overflow: auto;
+          padding: 8px;
+          background: var(--wr-stage-bg);
+          border-radius: 12px;
+        }
         .wr-paper {
           width: 210mm;
           min-height: 297mm;
-          background: #ffffff;
-          box-shadow: 0 6px 24px rgba(15,23,42,0.08);
-          border: 1px solid #d8deeb;
+          background: var(--wr-paper-bg);
+          box-shadow: var(--wr-paper-shadow);
+          border: 1px solid var(--wr-paper-border);
           border-radius: 10px;
           padding: 24px;
-          color: #0b1c30;
+          color: var(--wr-paper-text);
           font-family: Inter, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
           -webkit-print-color-adjust: exact;
           print-color-adjust: exact;
         }
         .wr-header {
-          border-bottom: 1px solid #c3c6d7;
+          border-bottom: 1px solid var(--wr-divider);
           padding-bottom: 14px;
           margin-bottom: 14px;
           display: flex;
@@ -179,8 +289,8 @@ export default function WeeklyReport() {
           gap: 16px;
         }
         .wr-meta-chip {
-          background: #dbeafe;
-          color: #0b1c30;
+          background: var(--wr-chip-bg);
+          color: var(--wr-chip-text);
           border-radius: 999px;
           padding: 2px 10px;
           font-size: 11px;
@@ -193,10 +303,10 @@ export default function WeeklyReport() {
           margin-bottom: 14px;
         }
         .wr-kpi-item {
-          border: 1px solid #c3c6d7;
+          border: 1px solid var(--wr-divider);
           border-radius: 10px;
           padding: 10px;
-          background: #fff;
+          background: var(--wr-block-bg);
         }
         .wr-main-grid {
           display: grid;
@@ -205,10 +315,10 @@ export default function WeeklyReport() {
           margin-bottom: 12px;
         }
         .wr-block {
-          border: 1px solid #c3c6d7;
+          border: 1px solid var(--wr-divider);
           border-radius: 10px;
           padding: 12px;
-          background: #fff;
+          background: var(--wr-block-bg);
         }
         .wr-blue {
           background: #0f4ccb;
@@ -240,19 +350,20 @@ export default function WeeklyReport() {
         }
         .wr-bar-borrow {
           width: 100%;
-          background: #1752c3;
-          border: 1px solid #1752c3;
+          background: var(--wr-bar-borrow);
+          border: 1px solid var(--wr-bar-borrow-border);
           border-radius: 3px 3px 0 0;
         }
         .wr-bar-return {
           width: 100%;
-          background: #c8d9f7;
-          border: 1px solid #9fb8ea;
+          background: var(--wr-bar-return);
+          border: 1px solid var(--wr-bar-return-border);
           border-radius: 3px 3px 0 0;
         }
         .wr-risk-row,
         .wr-action-row {
-          border: 1px solid #c3c6d7;
+          border: 1px solid var(--wr-divider);
+          background: var(--wr-row-bg);
           border-radius: 10px;
           padding: 8px 10px;
           display: flex;
@@ -262,13 +373,13 @@ export default function WeeklyReport() {
           margin-top: 8px;
         }
         .wr-footer {
-          border-top: 1px solid #c3c6d7;
+          border-top: 1px solid var(--wr-divider);
           margin-top: 12px;
           padding-top: 10px;
           display: flex;
           justify-content: space-between;
           font-size: 10px;
-          color: #737686;
+          color: var(--wr-muted);
           letter-spacing: 0.6px;
           text-transform: uppercase;
         }
@@ -278,7 +389,10 @@ export default function WeeklyReport() {
         }
         @media print {
           @page { size: A4 portrait; margin: 10mm; }
-          html, body { background: #fff !important; margin: 0 !important; }
+          html, body {
+            background: var(--wr-stage-bg) !important;
+            margin: 0 !important;
+          }
           body * { visibility: hidden !important; }
           .weekly-report-no-print { display: none !important; }
           .wr-paper,
@@ -299,10 +413,39 @@ export default function WeeklyReport() {
             border-radius: 0 !important;
             padding: 0 !important;
             margin: 0 !important;
-            background: #fff !important;
+            background: var(--wr-paper-bg) !important;
+            color: var(--wr-paper-text) !important;
           }
           .wr-main-grid,
           .wr-kpi-grid { break-inside: avoid; }
+          .wr-root-dark .wr-paper {
+            background: #0b111d !important;
+            color: #e6edf8 !important;
+          }
+          .wr-root-dark .wr-kpi-item,
+          .wr-root-dark .wr-block,
+          .wr-root-dark .wr-risk-row,
+          .wr-root-dark .wr-action-row {
+            background: #111a2a !important;
+            border-color: #2f405a !important;
+          }
+          .wr-root-dark .wr-header,
+          .wr-root-dark .wr-footer {
+            border-color: #2f405a !important;
+          }
+          .wr-root-dark .wr-paper .ant-typography {
+            color: #e6edf8 !important;
+          }
+          .wr-root-dark .wr-paper .ant-typography-secondary {
+            color: #9fb0c8 !important;
+          }
+          .wr-root-dark .wr-meta-chip {
+            background: #1f3559 !important;
+            color: #dbeafe !important;
+          }
+          .wr-root-dark .wr-footer {
+            color: #9fb0c8 !important;
+          }
         }
       `}</style>
 
@@ -336,7 +479,9 @@ export default function WeeklyReport() {
                     cursor: 'pointer',
                     background:
                       current?.id === item.id
-                        ? 'rgba(37,99,235,0.06)'
+                        ? isDark
+                          ? 'rgba(77,134,255,0.16)'
+                          : 'rgba(37,99,235,0.06)'
                         : 'transparent',
                     borderRadius: 8,
                     padding: 10,
@@ -370,7 +515,10 @@ export default function WeeklyReport() {
                 <>
                   <div className="wr-header">
                     <div>
-                      <Title level={3} style={{ margin: 0, color: '#0b1c30' }}>
+                      <Title
+                        level={3}
+                        style={{ margin: 0, color: 'var(--wr-paper-text)' }}
+                      >
                         数据智能分析
                       </Title>
                       <Title
@@ -438,7 +586,7 @@ export default function WeeklyReport() {
                   <div className="wr-main-grid">
                     <div className="wr-block">
                       <h3 className="wr-section-title">
-                        {overview?.title || '管理层概览'}
+                        {localizedSectionTitle('overview', overview?.title)}
                       </h3>
                       <Text>{overview?.summary || '-'}</Text>
                       <ul className="wr-list">
@@ -451,19 +599,10 @@ export default function WeeklyReport() {
                     </div>
                     <div className="wr-block">
                       <h3 className="wr-section-title">
-                        {trend?.title || '每周趋势'}
+                        {localizedSectionTitle('trend', trend?.title)}
                       </h3>
                       <div className="wr-trend">
-                        {(trendData.length > 0
-                          ? trendData
-                          : [
-                              {
-                                day: '暂无',
-                                borrow: kpis.borrowTotal,
-                                returned: kpis.returnTotal,
-                              },
-                            ]
-                        ).map((item, idx) => (
+                        {displayTrendData.map((item, idx) => (
                           <div className="wr-trend-col" key={`trend-${idx}`}>
                             <div
                               className="wr-bar-return"
@@ -501,54 +640,64 @@ export default function WeeklyReport() {
                   <div className="wr-main-grid">
                     <div className="wr-block">
                       <h3 className="wr-section-title">
-                        {byDeviceType?.title || '设备类型分析'}
+                        {localizedSectionTitle(
+                          'byDeviceType',
+                          byDeviceType?.title,
+                        )}
                       </h3>
-                      {(typeStats.length > 0
-                        ? typeStats
-                        : [{ name: '未分类', value: kpis.borrowTotal }]
-                      ).map((item, idx) => (
-                        <div key={`type-${idx}`} style={{ marginBottom: 10 }}>
-                          <div
-                            style={{
-                              display: 'flex',
-                              justifyContent: 'space-between',
-                            }}
-                          >
-                            <Text>{item.name}</Text>
-                            <Text>
-                              {Math.round((item.value / typeTotal) * 100)}%
-                            </Text>
-                          </div>
-                          <div
-                            style={{
-                              width: '100%',
-                              height: 6,
-                              borderRadius: 999,
-                              background: '#e5eeff',
-                              marginTop: 4,
-                            }}
-                          >
+                      {displayTypeStats.map((item, idx) => {
+                        const percentage = Math.min(
+                          100,
+                          Math.max(
+                            0,
+                            Math.round((item.value / typeTotal) * 100),
+                          ),
+                        );
+                        return (
+                          <div key={`type-${idx}`} style={{ marginBottom: 10 }}>
                             <div
                               style={{
-                                width: `${Math.max(
-                                  8,
-                                  Math.round((item.value / typeTotal) * 100),
-                                )}%`,
+                                display: 'flex',
+                                justifyContent: 'space-between',
+                              }}
+                            >
+                              <Text>{item.name}</Text>
+                              <Text>{percentage}%</Text>
+                            </div>
+                            <div
+                              style={{
+                                width: '100%',
                                 height: 6,
                                 borderRadius: 999,
-                                background: '#004ac6',
+                                background: '#e5eeff',
+                                marginTop: 4,
                               }}
-                            />
+                            >
+                              <div
+                                style={{
+                                  width: `${Math.max(
+                                    percentage > 0 ? 8 : 0,
+                                    percentage,
+                                  )}%`,
+                                  height: 6,
+                                  borderRadius: 999,
+                                  background: '#004ac6',
+                                }}
+                              />
+                            </div>
                           </div>
-                        </div>
-                      ))}
+                        );
+                      })}
                     </div>
                     <div className="wr-block wr-blue">
                       <h3
                         className="wr-section-title"
                         style={{ color: '#fff' }}
                       >
-                        {borrowerInsights?.title || '借用人洞察'}
+                        {localizedSectionTitle(
+                          'borrowerInsights',
+                          borrowerInsights?.title,
+                        )}
                       </h3>
                       <Text style={{ color: '#dbeafe' }}>
                         {borrowerInsights?.summary ||
