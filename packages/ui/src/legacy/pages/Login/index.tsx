@@ -170,7 +170,7 @@ export default function Login() {
   return (
     <Container>
       <Card>
-        <Title>崔力老师，欢迎回来！</Title>
+        <Title>欢迎使用！</Title>
         <StyledForm
           onFinish={onFinish}
           layout="vertical"
