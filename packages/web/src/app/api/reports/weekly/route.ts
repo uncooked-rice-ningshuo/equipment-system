@@ -53,6 +53,11 @@ export async function POST(request: NextRequest) {
         baseUrl: process.env.LLM_BASE_URL || 'https://api.openai.com/v1',
         model: process.env.LLM_MODEL,
         timeoutMs: Number(process.env.LLM_TIMEOUT_MS || 60000),
+        endpoint:
+          process.env.LLM_ENDPOINT === 'responses' ||
+          process.env.LLM_ENDPOINT === 'chat_completions'
+            ? process.env.LLM_ENDPOINT
+            : undefined,
       },
     });
     console.info('[API] /api/reports/weekly generation result', {

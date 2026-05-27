@@ -11,12 +11,16 @@ type LlmConfig = {
   baseUrl?: string;
   model?: string;
   timeoutMs?: number;
+  endpoint?: 'responses' | 'chat_completions';
 };
 
 type GenerateWeeklyReportInput = {
   snapshot: WeeklyReportDataSnapshot;
   llm: LlmConfig;
 };
+
+type NormalizedLlmConfig = Required<Omit<LlmConfig, 'endpoint'>> &
+  Pick<LlmConfig, 'endpoint'>;
 
 type DiagnosticStage =
   | 'config'
@@ -36,6 +40,79 @@ class LlmDiagnosticError extends Error {
     this.stage = stage;
     this.detail = detail;
   }
+}
+
+type LlmEndpoint = 'responses' | 'chat_completions';
+
+function stripTrailingSlashes(value: string): string {
+  return value.replace(/\/+$/, '');
+}
+
+function normalizeLlmBaseUrl(baseUrl: string): string {
+  const trimmed = stripTrailingSlashes(baseUrl.trim());
+  if (!trimmed) return trimmed;
+
+  try {
+    const url = new URL(trimmed);
+    if (url.pathname === '' || url.pathname === '/') {
+      url.pathname = '/v1';
+      return stripTrailingSlashes(url.toString());
+    }
+  } catch {
+    return trimmed;
+  }
+
+  return trimmed;
+}
+
+function endpointFromUrl(url: string): LlmEndpoint | null {
+  const normalized = stripTrailingSlashes(url.trim());
+  if (/\/chat\/completions$/i.test(normalized)) return 'chat_completions';
+  if (/\/responses$/i.test(normalized)) return 'responses';
+  return null;
+}
+
+function defaultLlmEndpoint(baseUrl: string): LlmEndpoint {
+  try {
+    const url = new URL(baseUrl);
+    return /(^|\.)api\.openai\.com$/i.test(url.hostname)
+      ? 'responses'
+      : 'chat_completions';
+  } catch {
+    return 'chat_completions';
+  }
+}
+
+export function resolveWeeklyReportLlmRequestTarget(
+  baseUrl: string,
+  endpoint?: LlmEndpoint,
+): { url: string; endpoint: LlmEndpoint } {
+  const trimmed = stripTrailingSlashes(baseUrl.trim());
+  const embeddedEndpoint = endpointFromUrl(trimmed);
+  if (embeddedEndpoint) {
+    if (endpoint && endpoint !== embeddedEndpoint) {
+      const baseWithoutEndpoint = trimmed.replace(
+        embeddedEndpoint === 'chat_completions'
+          ? /\/chat\/completions$/i
+          : /\/responses$/i,
+        '',
+      );
+      return resolveWeeklyReportLlmRequestTarget(baseWithoutEndpoint, endpoint);
+    }
+    return {
+      url: trimmed,
+      endpoint: embeddedEndpoint,
+    };
+  }
+
+  const normalizedBaseUrl = normalizeLlmBaseUrl(trimmed);
+  const resolvedEndpoint = endpoint || defaultLlmEndpoint(normalizedBaseUrl);
+  const path =
+    resolvedEndpoint === 'chat_completions' ? 'chat/completions' : 'responses';
+  return {
+    url: `${normalizedBaseUrl}/${path}`,
+    endpoint: resolvedEndpoint,
+  };
 }
 
 function toPreview(value: unknown, maxLength = 800): string {
@@ -280,7 +357,7 @@ function inferSectionKeyByTitle(
   return null;
 }
 
-function normalizeMiniMaxPayload(
+function normalizeChatCompletionsPayload(
   payload: any,
   snapshot: WeeklyReportDataSnapshot,
   model: string,
@@ -357,7 +434,7 @@ function normalizeMiniMaxPayload(
 
 async function requestLlmJson(
   prompt: string,
-  llm: Required<LlmConfig>,
+  llm: NormalizedLlmConfig,
 ): Promise<unknown> {
   const stripNoise = (text: string): string => {
     return text
@@ -429,12 +506,13 @@ async function requestLlmJson(
   const controller = new AbortController();
   const timeout = setTimeout(() => controller.abort(), llm.timeoutMs);
   try {
-    const normalizedBaseUrl = llm.baseUrl.replace(/\/$/, '');
-    const isMiniMax = /minimax/i.test(normalizedBaseUrl);
+    const target = resolveWeeklyReportLlmRequestTarget(
+      llm.baseUrl,
+      llm.endpoint,
+    );
 
-    if (isMiniMax) {
-      const url = `${normalizedBaseUrl}/chat/completions`;
-      const response = await fetch(url, {
+    if (target.endpoint === 'chat_completions') {
+      const response = await fetch(target.url, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -487,7 +565,7 @@ async function requestLlmJson(
           'LLM response missing message.content',
         );
       }
-      console.info('[WeeklyReport][LLM][response] minimax raw', {
+      console.info('[WeeklyReport][LLM][response] chat_completions raw', {
         model: llm.model,
         contentLength: outputText.length,
         outputPreview: toPreview(outputText),
@@ -495,8 +573,7 @@ async function requestLlmJson(
       return extractJson(outputText);
     }
 
-    const url = `${normalizedBaseUrl}/responses`;
-    const response = await fetch(url, {
+    const response = await fetch(target.url, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -576,6 +653,7 @@ export async function generateWeeklyReport({
     baseUrl: llm.baseUrl || '',
     model: llm.model || '',
     timeoutMs: llm.timeoutMs || 60000,
+    endpoint: llm.endpoint,
   };
 
   if (!normalizedLlm.apiKey || !normalizedLlm.baseUrl || !normalizedLlm.model) {
@@ -592,8 +670,14 @@ export async function generateWeeklyReport({
 
   try {
     const startedAt = Date.now();
+    const requestTarget = resolveWeeklyReportLlmRequestTarget(
+      normalizedLlm.baseUrl,
+      normalizedLlm.endpoint,
+    );
     console.info('[WeeklyReport][LLM][request] start', {
       baseUrl: normalizedLlm.baseUrl,
+      requestUrl: requestTarget.url,
+      endpoint: requestTarget.endpoint,
       model: normalizedLlm.model,
       timeoutMs: normalizedLlm.timeoutMs,
       sampleSize: snapshot.sampleSize,
@@ -605,9 +689,10 @@ export async function generateWeeklyReport({
       rawType: Array.isArray(raw) ? 'array' : typeof raw,
       rawPreview: toPreview(raw),
     });
-    const normalizedRaw = /minimax/i.test(normalizedLlm.baseUrl)
-      ? normalizeMiniMaxPayload(raw, snapshot, normalizedLlm.model)
-      : raw;
+    const normalizedRaw =
+      requestTarget.endpoint === 'chat_completions'
+        ? normalizeChatCompletionsPayload(raw, snapshot, normalizedLlm.model)
+        : raw;
     console.info('[WeeklyReport][LLM][response] normalized json', {
       model: normalizedLlm.model,
       sections: Array.isArray((normalizedRaw as any)?.sections)
