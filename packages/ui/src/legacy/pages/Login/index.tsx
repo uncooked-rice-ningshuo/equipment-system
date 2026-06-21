@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { useLegacyNavigate } from '../../router';
 import { useLegacyServices } from '../../services';
+import { getUserErrorMessage } from '../../utils';
 
 const Container = styled.div`
   position: relative;
@@ -161,7 +162,7 @@ export default function Login() {
       message.success('登录成功');
       navigate('/dashboard');
     } catch (err: any) {
-      message.error(err.message || '用户名或密码错误');
+      message.error(getUserErrorMessage(err, '用户名或密码错误'));
     } finally {
       setLoading(false);
     }

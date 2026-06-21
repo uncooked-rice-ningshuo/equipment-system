@@ -5,7 +5,7 @@ import styled, { createGlobalStyle } from 'styled-components';
 import DeviceTypeSelect from '../../../components/fields/DeviceTypeSelect';
 import { useTheme } from '../../components';
 import { useLegacyServices } from '../../services';
-import { eventBus } from '../../utils';
+import { eventBus, getUserErrorMessage } from '../../utils';
 
 const statusOptions = [
   { label: '全部', value: '' },
@@ -184,7 +184,7 @@ export default function Devices() {
       createForm.resetFields();
       actionRef.current?.reload();
     } catch (error: any) {
-      message.error(error.message || '新增设备失败');
+      message.error(getUserErrorMessage(error, '新增设备失败'));
     }
   };
 
@@ -204,7 +204,7 @@ export default function Devices() {
       setCurrentRecord(null);
       actionRef.current?.reload();
     } catch (error: any) {
-      message.error(error.message || '更新设备失败');
+      message.error(getUserErrorMessage(error, '更新设备失败'));
     }
   };
 
@@ -222,7 +222,7 @@ export default function Devices() {
       setCurrentRecord(null);
       actionRef.current?.reload();
     } catch (error: any) {
-      message.error(error.message || '删除失败');
+      message.error(getUserErrorMessage(error, '删除失败'));
     }
   };
 

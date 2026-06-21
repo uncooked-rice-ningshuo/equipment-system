@@ -2,7 +2,7 @@ import { Button, Card, List, Space, Tag, Typography, message } from 'antd';
 import { useEffect, useState } from 'react';
 import { useTheme } from '../../components';
 import { useLegacyServices } from '../../services';
-import { formatDateTime } from '../../utils';
+import { formatDateTime, getUserErrorMessage } from '../../utils';
 
 const { Title, Text } = Typography;
 
@@ -140,7 +140,7 @@ export default function WeeklyReport() {
         setCurrent(latest);
       }
     } catch (error: any) {
-      message.error(error?.message || '加载历史记录失败');
+      message.error(getUserErrorMessage(error, '加载历史记录失败'));
     } finally {
       setHistoryLoading(false);
     }
@@ -158,7 +158,7 @@ export default function WeeklyReport() {
       message.success('智能周报已生成并保存');
       await loadHistory();
     } catch (error: any) {
-      message.error(error?.message || '生成周报失败');
+      message.error(getUserErrorMessage(error, '生成周报失败'));
     } finally {
       setLoading(false);
     }
@@ -173,7 +173,7 @@ export default function WeeklyReport() {
       }
       setCurrent(detail);
     } catch (error: any) {
-      message.error(error?.message || '打开历史记录失败');
+      message.error(getUserErrorMessage(error, '打开历史记录失败'));
     }
   };
 

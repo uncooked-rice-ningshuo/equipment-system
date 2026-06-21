@@ -247,7 +247,7 @@ function createLegacyDataService(
         await coreDataService.returnBorrowRecord(id);
         return;
       }
-      throw new Error('Unsupported updateBorrowRecord operation');
+      throw new Error('当前数据服务不支持该借还记录更新操作');
     },
     deleteBorrowRecord(id: number) {
       return coreDataService.deleteBorrowRecord(id);

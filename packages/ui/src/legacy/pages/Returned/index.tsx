@@ -5,7 +5,7 @@ import { useRef, useState } from 'react';
 import styled from 'styled-components';
 import { useTheme } from '../../components';
 import { useLegacyServices } from '../../services';
-import { formatDateTime } from '../../utils';
+import { formatDateTime, getUserErrorMessage } from '../../utils';
 
 const StyledModal = styled(Modal)<{ $theme: 'light' | 'dark' }>`
   .ant-modal-content {
@@ -60,7 +60,7 @@ export default function Returned() {
       setDeleteModalVisible(false);
       actionRef.current?.reload();
     } catch (error: any) {
-      message.error(error.message || '删除失败');
+      message.error(getUserErrorMessage(error, '删除失败'));
     }
   };
 

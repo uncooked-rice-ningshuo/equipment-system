@@ -50,7 +50,7 @@ export function registerDeviceTypeIpc(): void {
     async (_event, input: NewDeviceType): Promise<DeviceType> => {
       const rawName = input?.name;
       if (typeof rawName !== 'string' || rawName.trim().length === 0) {
-        throw new Error('Missing required field: name');
+        throw new Error('缺少必填字段：设备类型名称');
       }
 
       const name = rawName.trim();

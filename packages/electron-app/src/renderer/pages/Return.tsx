@@ -1,5 +1,6 @@
 import { RollbackOutlined } from '@ant-design/icons';
 import type { BorrowRecord } from '@equipment/shared';
+import { getUserErrorMessage } from '@equipment/ui/legacy';
 import {
   Button,
   DatePicker,
@@ -60,7 +61,7 @@ export const Return: React.FC = () => {
       setReturnModalVisible(false);
       loadRecords();
     } catch (error: any) {
-      message.error(error.message || '归还失败');
+      message.error(getUserErrorMessage(error, '归还失败'));
     }
   };
 

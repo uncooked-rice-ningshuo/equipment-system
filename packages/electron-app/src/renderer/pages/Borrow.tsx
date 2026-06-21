@@ -1,5 +1,6 @@
 import { PlusOutlined } from '@ant-design/icons';
 import type { Device, User } from '@equipment/shared';
+import { getUserErrorMessage } from '@equipment/ui/legacy';
 import {
   Button,
   Card,
@@ -54,7 +55,7 @@ export const Borrow: React.FC = () => {
       form.resetFields();
       loadData();
     } catch (error: any) {
-      message.error(error.message || '借出失败');
+      message.error(getUserErrorMessage(error, '借出失败'));
     } finally {
       setLoading(false);
     }

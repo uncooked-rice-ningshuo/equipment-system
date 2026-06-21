@@ -5,7 +5,7 @@ import { useEffect, useRef, useState } from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
 import { useTheme } from '../../components';
 import { useLegacyServices } from '../../services';
-import { eventBus, formatDateTime } from '../../utils';
+import { eventBus, formatDateTime, getUserErrorMessage } from '../../utils';
 
 const GlobalSelectStyles = createGlobalStyle<{ $theme: 'light' | 'dark' }>`
   ${(props) =>
@@ -358,7 +358,7 @@ export default function Borrow() {
       form.resetFields();
       actionRef.current?.reload();
     } catch (error: any) {
-      message.error(error.message || '借出失败');
+      message.error(getUserErrorMessage(error, '借出失败'));
     }
   };
 
@@ -371,7 +371,7 @@ export default function Borrow() {
       message.success('归还成功');
       actionRef.current?.reload();
     } catch (error: any) {
-      message.error(error.message || '归还失败');
+      message.error(getUserErrorMessage(error, '归还失败'));
     }
   };
 

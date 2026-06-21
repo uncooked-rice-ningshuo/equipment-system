@@ -1,5 +1,6 @@
 import { DeleteOutlined, EditOutlined, PlusOutlined } from '@ant-design/icons';
 import type { Device } from '@equipment/shared';
+import { getUserErrorMessage } from '@equipment/ui/legacy';
 import {
   Button,
   Form,
@@ -58,7 +59,7 @@ export const Devices: React.FC = () => {
       message.success('删除成功');
       loadDevices();
     } catch (error: any) {
-      message.error(error.message || '删除失败');
+      message.error(getUserErrorMessage(error, '删除失败'));
     }
   };
 
@@ -74,7 +75,7 @@ export const Devices: React.FC = () => {
       setModalVisible(false);
       loadDevices();
     } catch (error: any) {
-      message.error(error.message || '操作失败');
+      message.error(getUserErrorMessage(error, '操作失败'));
     }
   };
 

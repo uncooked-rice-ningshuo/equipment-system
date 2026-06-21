@@ -1,4 +1,5 @@
 import { LockOutlined, UserOutlined } from '@ant-design/icons';
+import { getUserErrorMessage } from '@equipment/ui/legacy';
 import { Button, Card, Form, Input, message, Typography } from 'antd';
 import React, { useState } from 'react';
 
@@ -20,7 +21,7 @@ export const Login: React.FC<LoginProps> = ({ onLogin }) => {
       await onLogin(values.username, values.password);
       message.success('登录成功');
     } catch (error: any) {
-      message.error(error.message || '登录失败');
+      message.error(getUserErrorMessage(error, '登录失败'));
     } finally {
       setLoading(false);
     }

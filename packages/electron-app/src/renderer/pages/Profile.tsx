@@ -1,5 +1,6 @@
 import { LockOutlined, UserOutlined } from '@ant-design/icons';
 import type { User } from '@equipment/shared';
+import { getUserErrorMessage } from '@equipment/ui/legacy';
 import { Button, Card, Form, Input, message, Tabs } from 'antd';
 import React, { useState } from 'react';
 import { ipc } from '../utils/ipc';
@@ -25,7 +26,7 @@ export const Profile: React.FC<ProfileProps> = ({ user }) => {
       message.success('密码修改成功');
       passwordForm.resetFields();
     } catch (error: any) {
-      message.error(error.message || '密码修改失败');
+      message.error(getUserErrorMessage(error, '密码修改失败'));
     } finally {
       setPasswordLoading(false);
     }

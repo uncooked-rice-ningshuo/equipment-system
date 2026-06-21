@@ -115,7 +115,7 @@ export function registerReportIpc(): void {
         .from(reportQueries)
         .where(eq(reportQueries.id, Number(res.lastInsertRowid)))
         .get();
-      if (!created) throw new Error('Failed to create weekly report record');
+      if (!created) throw new Error('创建周报记录失败');
 
       return toRecord(created);
     },

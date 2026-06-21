@@ -10,7 +10,7 @@ import styled from 'styled-components';
 import { useTheme } from '../../components';
 import { ThemeType } from '../../config/theme';
 import { useLegacyServices } from '../../services';
-import { eventBus } from '../../utils';
+import { eventBus, getUserErrorMessage } from '../../utils';
 import BorrowTrendsChart from './components/BorrowTrendsChart';
 import DeviceTypeChart from './components/DeviceTypeChart';
 import DueSoonTimeline from './components/DueSoonTimeline';
@@ -92,7 +92,7 @@ export default function Dashboard() {
       setStats(data);
       eventBus.emit('dashboard:updated', data);
     } catch (err: any) {
-      message.error(err?.message || '加载仪表盘统计失败');
+      message.error(getUserErrorMessage(err, '加载仪表盘统计失败'));
     }
   };
 
@@ -106,7 +106,7 @@ export default function Dashboard() {
       }
       eventBus.emit('reminders:loaded', data);
     } catch (err: any) {
-      message.error(err?.message || '加载归还提醒失败');
+      message.error(getUserErrorMessage(err, '加载归还提醒失败'));
     }
   };
 
